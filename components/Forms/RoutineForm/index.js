@@ -9,6 +9,8 @@ import {
   Typography,
   Checkbox,
   Button,
+  Autocomplete,
+  TextField,
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
@@ -17,7 +19,9 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
+import DateTimePicker from "../../FormsUI/DateTimePicker";
 import protocolName from "../SelectItems/protocolName.json";
+import protocolData from "../SelectItems/protocolTest";
 import injectionSites from "../SelectItems/injectionSites.json";
 import { FormControlLabel } from "@mui/material";
 
@@ -102,7 +106,7 @@ function RoutineForm() {
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Textfield name="date" label="Exam Date"></Textfield>
+                        <DateTimePicker name="date" label="Exam Date" />
                       </Grid>
                       <Grid item xs={3}>
                         <FormControlLabel
@@ -125,6 +129,28 @@ function RoutineForm() {
                           options={protocolName}
                         ></Select>
                       </Grid>
+                      {/* 
+                      <Grid item xs={12}>
+                        <Autocomplete
+                          id="test"
+                          name="protocoltest"
+                          options={protocolData}
+                          fullWidth
+                          getOptionLabel={(protocolData) => `${protocolData?.protocol}`}
+                          renderInput={(params) => {
+                            return (
+                              <TextField
+                                {...params}
+                                variant="filled"
+                                label="Protocol Test"
+                              />
+                            );
+                          }}
+                          renderOption={(option) => {
+                            return <h4>{`${option.protocol}`}</h4>;
+                          }}
+                        ></Autocomplete>
+                      </Grid> */}
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
                       </Grid>
@@ -260,7 +286,12 @@ function RoutineForm() {
                         </Typography>
                       </Grid>
                       <Grid item xs={12}>
-                        <Textfield multiline name="remark" label="Remarks" />
+                        <Textfield
+                          multiline
+                          rows={4}
+                          name="remark"
+                          label="Anything you would like to add"
+                        />
                       </Grid>
                     </Grid>
 
