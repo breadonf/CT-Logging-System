@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 const FORM_VALIDATION = yup.object().shape({
   PID: yup.string().required("Required"),
-  inPatient: yup.boolean(),
+  inPatient: yup.boolean().required("Required"),
   age: yup
     .number()
     .required("Required")
@@ -25,7 +25,7 @@ const FORM_VALIDATION = yup.object().shape({
   date: yup.date().required("Required"),
   urgent: yup.boolean(),
   sedation: yup.boolean(),
-  protocol: yup.string().required('Required'),
+  protocol: yup.string().required("Required"),
   kV_A: yup.string().required("Required"),
   kV_B: yup.string(),
   pitch: yup

@@ -7,7 +7,6 @@ import {
   Paper,
   Grid,
   Typography,
-  Checkbox,
   Button,
   Autocomplete,
   TextField,
@@ -20,6 +19,7 @@ import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineE
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
+import Checkbox from "../../FormsUI/Checkbox";
 import protocolName from "../SelectItems/protocolName.json";
 import protocolData from "../SelectItems/protocolTest";
 import injectionSites from "../SelectItems/injectionSites.json";
@@ -72,10 +72,10 @@ function RoutineForm() {
                         <Textfield name="age" label="Age (years)"></Textfield>
                       </Grid>
                       <Grid item xs={3}>
-                        <FormControlLabel
-                          control={<Checkbox />}
-                          label="In Patient"
+                        <Checkbox
                           name="inPatient"
+                          legend="In patient?"
+                          label="Yes"
                         />
                       </Grid>
                       <Grid item xs={4}>
@@ -109,17 +109,17 @@ function RoutineForm() {
                         <DateTimePicker name="date" label="Exam Date" />
                       </Grid>
                       <Grid item xs={3}>
-                        <FormControlLabel
-                          control={<Checkbox />}
-                          label="Urgent"
+                        <Checkbox
+                          label="Yes"
                           name="urgent"
+                          legend="Urgent?"
                         />
                       </Grid>
                       <Grid item xs={3}>
-                        <FormControlLabel
-                          control={<Checkbox />}
-                          label="Sedation"
+                        <Checkbox
+                          label="Yes"
                           name="sedation"
+                          legend="Sedation"
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -183,17 +183,17 @@ function RoutineForm() {
                         ></Select>
                       </Grid>
                       <Grid item xs={3}>
-                        <FormControlLabel
-                          control={<Checkbox />}
-                          label="Hand Injection"
+                        <Checkbox
+                          label="Yes"
                           name="handInjection"
+                          legend="Hand Injection"
                         />
                       </Grid>
                       <Grid item xs={3}>
-                        <FormControlLabel
-                          control={<Checkbox />}
-                          label="Mixed Contrast"
+                        <Checkbox
+                          label="Yes"
                           name="mixedContrast"
+                          legend="Mixed Contrast"
                         />
                       </Grid>
                       <Grid item xs={4}>
@@ -216,10 +216,10 @@ function RoutineForm() {
                       </Grid>
 
                       <Grid item xs={2}>
-                        <FormControlLabel
-                          control={<Checkbox />}
+                        <Checkbox
                           name="pre"
                           label="Pre Con"
+                          legend="Pre Con"
                         />
                       </Grid>
                       <Grid item xs={2}>
