@@ -9,17 +9,17 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid age")
     .min(0, "Invalid Input")
     .max(100),
-  height: yup
-    .number()
-    .typeError("Please enter a valid height")
-    .min(0, "Invalid Input"),
   weight: yup
     .number()
-    .typeError("Please enter a valid weight")
+    .typeError("Please enter a valid weight in kg")
+    .min(0, "Invalid Input"),
+  height: yup
+    .number()
+    .typeError("Please enter a valid height in cm")
     .min(0, "Invalid Input"),
   circumference: yup
     .number()
-    .typeError("Please enter a valid weight")
+    .typeError("Please enter a valid circumference in cm")
     .min(0, "Invalid Input"),
 
   date: yup.date().required("Required"),
@@ -31,19 +31,45 @@ const FORM_VALIDATION = yup.object().shape({
   pitch: yup
     .number()
     .required("Required")
-    .typeError("Please enter a valid pitch"),
+    .typeError("Please enter a valid pitch")
+    .min(0, "Invalid Input")
+    .max(5),
 
-  route: yup.string().required("Required"),
-  inPatient: yup.boolean(),
+  route: yup.string(),
+  handInjection: yup.boolean(),
   mixedContrast: yup.boolean(),
-  type: yup.string().required("Required"),
-  rate: yup.number().typeError("Please enter a valid rate"),
+  type: yup.string(),
+  rate: yup
+    .number()
+    .typeError("Please enter a valid rate")
+    .min(0, "Invalid Input")
+    .max(10),
   volume: yup.number().typeError("Please enter a volume"),
   pre: yup.boolean(),
-  delay1: yup.number().typeError("Please enter a valid time in seconds"),
-  delay2: yup.number().typeError("Please enter a valid time in seconds"),
-  delay3: yup.number().typeError("Please enter a valid time in seconds"),
-  delay4: yup.number().typeError("Please enter a valid time in seconds"),
+  ttp: yup.number().typeError("Please entera valid ttp in s"),
+  delay1: yup
+    .number()
+    .integer()
+    .nullable()
+    .typeError("Please enter a valid time in s"),
+  delay2: yup
+    .number()
+    .integer()
+    .nullable()
+    .typeError("Please enter a valid time in s")
+    .moreThan(yup.ref("delay1")),
+  delay3: yup
+    .number()
+    .integer()
+    .nullable()
+    .moreThan(yup.ref("delay2"))
+    .typeError("Please enter a valid time in s"),
+  delay4: yup
+    .number()
+    .integer()
+    .nullable()
+    .typeError("Please enter a valid time in s")
+    .moreThan(yup.ref("delay3")),
 
   pher: yup.string().required("Required"),
   gist: yup.string().required("Required"),

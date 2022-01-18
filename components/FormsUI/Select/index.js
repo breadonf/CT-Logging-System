@@ -6,7 +6,7 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { value } = e.target;
     setFieldValue(name, value);
   };
@@ -27,6 +27,9 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
 
   return (
     <TextField {...configSelect}>
+      <MenuItem value="">
+        <em>None</em>
+      </MenuItem>
       {Object.keys(options).map((item, pos) => {
         return (
           <MenuItem key={pos} value={item}>

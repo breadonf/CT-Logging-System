@@ -20,7 +20,9 @@ import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import Checkbox from "../../FormsUI/Checkbox";
+import SubmitButton from "../../FormsUI/SubmitButton";
 import protocolName from "../SelectItems/protocolName.json";
+import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import protocolData from "../SelectItems/protocolTest";
 import injectionSites from "../SelectItems/injectionSites.json";
 import { FormControlLabel } from "@mui/material";
@@ -109,11 +111,7 @@ function RoutineForm() {
                         <DateTimePicker name="date" label="Exam Date" />
                       </Grid>
                       <Grid item xs={3}>
-                        <Checkbox
-                          label="Yes"
-                          name="urgent"
-                          legend="Urgent?"
-                        />
+                        <Checkbox label="Yes" name="urgent" legend="Urgent?" />
                       </Grid>
                       <Grid item xs={3}>
                         <Checkbox
@@ -197,10 +195,11 @@ function RoutineForm() {
                         />
                       </Grid>
                       <Grid item xs={4}>
-                        <Textfield
+                        <Select
                           name="type"
                           label="Type of Contrast"
-                        ></Textfield>
+                          options={typeOfContrast}
+                        ></Select>
                       </Grid>
                       <Grid item xs={4}>
                         <Textfield
@@ -216,11 +215,13 @@ function RoutineForm() {
                       </Grid>
 
                       <Grid item xs={2}>
-                        <Checkbox
-                          name="pre"
-                          label="Pre Con"
-                          legend="Pre Con"
-                        />
+                        <Checkbox name="pre" label="Pre Con" legend="Pre Con" />
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Textfield
+                          name="ttp"
+                          label="Time to Peak(s)"
+                        ></Textfield>
                       </Grid>
                       <Grid item xs={2}>
                         <Textfield
@@ -303,20 +304,14 @@ function RoutineForm() {
                       sx={{ py: 4, justifyContent: "center" }}
                     >
                       <Grid item xs={4}>
-                        <Button
-                          variant="contained"
-                          type="submit"
-                          value="Submit"
-                          fullWidth
-                        >
-                          Submit
-                        </Button>
+                        <SubmitButton>Submit</SubmitButton>
                       </Grid>
                       <Grid item xs={4}>
                         <Button
                           variant="contained"
                           type="reset"
                           value="Reset"
+                          onClick={Formik.resetForm}
                           fullWidth
                         >
                           Reset

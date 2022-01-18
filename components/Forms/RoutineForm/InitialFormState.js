@@ -4,6 +4,7 @@ const INITIAL_FORM_STATE = {
   age: "",
   weight: "",
   height: "",
+  circumference: "",
 
   date: "",
   urgent: false,
@@ -20,10 +21,15 @@ const INITIAL_FORM_STATE = {
   rate: "",
   volume: "",
   pre: false,
+  ttp: "",
   delay1: "",
   delay2: "",
   delay3: "",
   delay4: "",
+
+  pher: "",
+  gist: "",
+  nurse: "",
 
   remark: "",
 };
