@@ -1,12 +1,7 @@
 import React from "react";
-import Layout from "../../components/Layout";
 
 function Patient() {
-  return (
-    <Layout>
-      <p>Patient based query</p>
-    </Layout>
-  );
+  return <p>Patient based query</p>;
 }
 
 export default Patient;

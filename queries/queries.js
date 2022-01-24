@@ -8,29 +8,31 @@ import fetchData from "../helpers/fetchData";
 
 const HomepageCT = `
     #graphql
-    query HomepageCT {
-        CT {
-            count
-            Date
-            PID
-            Inpatient
-            Age
-            remark
-            kV_A
-            kV_b
-            Pitch
-            Route
-            Type
-            rate
-            volume
-           
-            modeOfInjection
-            monitoringDelay
-            scanDelay
-            monitoringInterval
-            height   
-            }
+    query HomePageCT {
+      CT {
+        count
+        Date_func {
+          year
+          month
+          day
+        }
+        PID
+        Inpatient
+        Age
+        remark
+        kV_A
+        kV_b
+        Pitch
+        Height
+        Weight
+        Route
+        Type
+        rate
+        volume
+        protocol
+      }
     }
+    
 `;
 
 const HomepageProtocol = `
