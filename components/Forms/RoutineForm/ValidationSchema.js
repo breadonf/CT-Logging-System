@@ -46,7 +46,7 @@ const FORM_VALIDATION = yup.object().shape({
     .max(10),
   volume: yup.number().typeError("Please enter a volume"),
   pre: yup.boolean(),
-  ttp: yup.number().typeError("Please entera valid ttp in s"),
+  ttp: yup.number().typeError("Please enter a valid ttp in s"),
   delay1: yup
     .number()
     .integer()

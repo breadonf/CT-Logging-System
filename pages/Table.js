@@ -1,12 +1,28 @@
 import React from "react";
-import Layout from "../components/Layout";
+import Head from "next/head";
+import { useQuery } from "react-query";
+import { getHomepageCT, getHomepageProtocol } from "../queries/queries";
+import TableMaterial from "../components/Table/TableMaterial";
+import { useState } from "react";
 
-function Table() {
+export default function Table() {
+  const [selectedProtocols, setSelectedProtocols] = useState([]);
+  const { data: records, isSuccess } = useQuery(
+    "record",
+    async () => await getHomepageCT()
+  );
+  const getSelectedProtocols = (protocol) => {
+    setSelectedProtocols(protocol);
+    console.log(selectedProtocols);
+  };
   return (
-    <Layout>
-      <p>This is a datagrid</p>
-    </Layout>
+    <>
+      <Head>
+        <title>CT record</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <TableMaterial records={records} isSuccess={isSuccess} />
+    </>
   );
 }
-
-export default Table;

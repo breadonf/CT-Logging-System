@@ -1,13 +1,9 @@
 import React from "react";
 import CardiacForm from "../../components/Forms/CardiacForm";
-import Layout from "../../components/Layout";
+
 
 function CardiacCases() {
-  return (
-    <Layout>
-      <CardiacForm />
-    </Layout>
-  );
+  return <CardiacForm />;
 }
 
 export default CardiacCases;

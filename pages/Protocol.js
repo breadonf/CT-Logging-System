@@ -1,12 +1,7 @@
 import React from "react";
-import Layout from "../components/Layout";
 
 function Protocol() {
-  return (
-    <Layout>
-      <p>Protocol Review</p>
-    </Layout>
-  );
+  return <p>Protocol Review</p>;
 }
 
 export default Protocol;
