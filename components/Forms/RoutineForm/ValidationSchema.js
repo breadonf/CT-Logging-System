@@ -26,6 +26,7 @@ const FORM_VALIDATION = yup.object().shape({
   urgent: yup.boolean(),
   sedation: yup.boolean(),
   protocol: yup.string().required("Required"),
+  protocolTest: yup.string().required("Required"),
   kV_A: yup.string().required("Required"),
   kV_B: yup.string(),
   pitch: yup
@@ -71,7 +72,7 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid time in s")
     .moreThan(yup.ref("delay3")),
 
-  pher: yup.string().required("Required"),
+  pher: yup.string(),
   gist: yup.string().required("Required"),
   nurse: yup.string(),
 
