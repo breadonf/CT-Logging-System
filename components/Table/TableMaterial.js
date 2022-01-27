@@ -2,16 +2,6 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const headers = [
   { field: "count", headerName: "Entry id" },
-  { field: "Date", headerName: "Exam Date" },
-  {
-    field: "Inpatient",
-    headerName: "Inpatient",
-    options: { booleanCell: true },
-  },
-  { field: "PID", headerName: "Patient ID" },
-  { field: "Age", headerName: "Age" },
-  { field: "weight", headerName: "Weight" },
-  { field: "height", headerName: "Height" },
   {
     field: "Date_func",
     headerName: "Date of Exam",
@@ -31,6 +21,16 @@ const headers = [
       return result.join("-");
     },
   },
+  {
+    field: "Inpatient",
+    headerName: "Inpatient",
+    options: { booleanCell: true },
+  },
+  { field: "PID", headerName: "Patient ID" },
+  { field: "Age", headerName: "Age" },
+  { field: "Weight", headerName: "Weight" },
+  { field: "Height", headerName: "Height" },
+
   { field: "count", headerName: "Entry id" },
   { field: "count", headerName: "Entry id" },
   { field: "count", headerName: "Entry id" },
