@@ -9,7 +9,6 @@ import {
   Typography,
   Button,
   Autocomplete,
-  TextField,
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
@@ -127,28 +126,36 @@ function RoutineForm() {
                           options={protocolName}
                         ></Select>
                       </Grid>
-                      {/* 
+                    
                       <Grid item xs={12}>
                         <Autocomplete
-                          id="test"
-                          name="protocoltest"
+                          name="protocolTest"
                           options={protocolData}
                           fullWidth
-                          getOptionLabel={(protocolData) => `${protocolData?.protocol}`}
                           renderInput={(params) => {
                             return (
-                              <TextField
+                              <Textfield
                                 {...params}
-                                variant="filled"
+                                id="test"
+                                name="protocolTest"
                                 label="Protocol Test"
                               />
                             );
                           }}
-                          renderOption={(option) => {
-                            return <h4>{`${option.protocol}`}</h4>;
+                          getOptionLabel={(option) => option.protocol}
+                          renderOption={(props, option) => {
+                            return (
+                              <li
+                                key={option.id}
+                                value={option.protocol}
+                                {...props}
+                              >
+                                {option.protocol}
+                              </li>
+                            );
                           }}
-                        ></Autocomplete>
-                      </Grid> */}
+                        ></Autocomplete> 
+                      </Grid>
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
                       </Grid>

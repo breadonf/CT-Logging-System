@@ -10,6 +10,7 @@ const INITIAL_FORM_STATE = {
   urgent: false,
   sedation: false,
   protocol: "",
+  protocolTest: "",
   kV_A: "",
   kV_B: "",
   pitch: "",
