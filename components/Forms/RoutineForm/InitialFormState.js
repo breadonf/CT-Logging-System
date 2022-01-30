@@ -27,6 +27,7 @@ const INITIAL_FORM_STATE = {
   delay2: "",
   delay3: "",
   delay4: "",
+  delays: [{ phase: "", delayTime: 0 }],
 
   pher: "",
   gist: "",
