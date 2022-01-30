@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form } from "formik";
+import { Formik, Form, FieldArray } from "formik";
 import INITIAL_FORM_STATE from "./InitialFormState";
 import FORM_VALIDATION from "./ValidationSchema";
 import {
@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
   Autocomplete,
+  MenuItem,
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
@@ -24,7 +25,7 @@ import protocolName from "../SelectItems/protocolName.json";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import protocolData from "../SelectItems/protocolTest";
 import injectionSites from "../SelectItems/injectionSites.json";
-import { FormControlLabel } from "@mui/material";
+import ProtocolTestAutocomplete from "../../FormsUI/ProtocolTestAutocomplete";
 
 function RoutineForm() {
   return (
@@ -126,7 +127,13 @@ function RoutineForm() {
                           options={protocolName}
                         ></Select>
                       </Grid>
-                    
+                      {/* 
+                      <ProtocolTestAutocomplete
+                        name="protocolTest"
+                        options={protocolData}
+                        label="Protocol Test"
+                      />*/}
+                      {/*
                       <Grid item xs={12}>
                         <Autocomplete
                           name="protocolTest"
@@ -145,17 +152,17 @@ function RoutineForm() {
                           getOptionLabel={(option) => option.protocol}
                           renderOption={(props, option) => {
                             return (
-                              <li
+                              <MenuItem
                                 key={option.id}
                                 value={option.protocol}
                                 {...props}
                               >
                                 {option.protocol}
-                              </li>
+                              </MenuItem>
                             );
                           }}
-                        ></Autocomplete> 
-                      </Grid>
+                        ></Autocomplete>
+                      </Grid>*/}
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
                       </Grid>
@@ -222,7 +229,11 @@ function RoutineForm() {
                       </Grid>
 
                       <Grid item xs={2}>
-                        <Checkbox name="pre" label="Pre Con" legend="Pre Con" />
+                        <Checkbox
+                          name="directPost"
+                          label="Yes"
+                          legend="Direct Post Con?"
+                        />
                       </Grid>
                       <Grid item xs={2}>
                         <Textfield
@@ -254,6 +265,26 @@ function RoutineForm() {
                           label="Delay Time 4(s)"
                         ></Textfield>
                       </Grid>
+                      {/* 
+                      <FieldArray name="delays">
+                        {({push, remove, }) => (
+                          <>
+                          <Grid item>
+                            <Typography variant="body2">All Phases and Delay Time</Typography>
+                          </Grid>
+                          {values.delays.map((_, index) => (
+                            <Grid container>
+                                <Grid item sx={2}>
+                                  <Textfield name={`delays.${index}`.phase}></Textfield>
+                                </Grid>
+                                <Grid item sx={2}>
+                                  <Textfield name={`delays.${index}`.delayTime}></Textfield>
+                                </Grid>
+                            </Grid>
+                          ))}
+                          </>
+                        )}
+                      </FieldArray>*/}
                     </Grid>
 
                     {/* Staff Details */}
