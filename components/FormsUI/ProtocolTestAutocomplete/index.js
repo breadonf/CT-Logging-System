@@ -1,8 +1,9 @@
 import React from "react";
 import { Autocomplete, TextField, MenuItem } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import protocolData from "../../Forms/SelectItems/protocolTest";
 
-const ProtocolTestAutocomplete = ({ name, protocolData, ...otherProps }) => {
+const ProtocolTestAutocomplete = ({ name, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -18,8 +19,7 @@ const ProtocolTestAutocomplete = ({ name, protocolData, ...otherProps }) => {
 
   return (
     <Autocomplete
-      name="protocolTest"
-      options={protocolData}
+      options={options}
       fullWidth
       value={value}
       onChange={handleChange}
@@ -31,7 +31,6 @@ const ProtocolTestAutocomplete = ({ name, protocolData, ...otherProps }) => {
             {...otherProps}
             id="test"
             variant="filled"
-            name="protocolTest"
             label="Protocol Test"
           />
         );
