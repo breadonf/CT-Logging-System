@@ -1,7 +1,8 @@
+/**
+ * Dependencies Import
+ */
 import React from "react";
-import { Formik, Form } from "formik";
-import INITIAL_FORM_STATE from "./InitialFormState";
-import FORM_VALIDATION from "./ValidationSchema";
+import { useField, useFormikContext, Formik, Form } from "formik";
 import {
   Container,
   Paper,
@@ -9,25 +10,46 @@ import {
   Typography,
   Button,
   Autocomplete,
-  TextField,
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
+import { FormControlLabel } from "@mui/material";
+import { useQuery } from "react-query";
+/**
+ * FormUI component Import
+ */
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import Checkbox from "../../FormsUI/Checkbox";
 import SubmitButton from "../../FormsUI/SubmitButton";
-import protocolName from "../SelectItems/protocolName.json";
+import ProtocolAutocomplete from "../../FormsUI/ProtocolAutocomplete";
+
+/**
+ * Data Import
+ */
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
-import protocolData from "../SelectItems/protocolTest";
 import injectionSites from "../SelectItems/injectionSites.json";
-import { FormControlLabel } from "@mui/material";
+import INITIAL_FORM_STATE from "./InitialFormState";
+import FORM_VALIDATION from "./ValidationSchema";
+
+/**
+ * Queries Import
+ */
+import { getHomepageProtocol } from "../../../queries/queries";
 
 function RoutineForm() {
+  const handleChange = (e) => {
+    const { value } = e.target;
+    console.log(value);
+  };
+  const { data: protocolData, isSuccess } = useQuery(
+    "Protocol",
+    async () => await getHomepageProtocol()
+  );
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -121,34 +143,11 @@ function RoutineForm() {
                         />
                       </Grid>
                       <Grid item xs={12}>
-                        <Select
+                        <ProtocolAutocomplete
                           name="protocol"
-                          label="Exam Protocol"
-                          options={protocolName}
-                        ></Select>
+                          protocolData={isSuccess ? protocolData : []}
+                        ></ProtocolAutocomplete>
                       </Grid>
-                      {/* 
-                      <Grid item xs={12}>
-                        <Autocomplete
-                          id="test"
-                          name="protocoltest"
-                          options={protocolData}
-                          fullWidth
-                          getOptionLabel={(protocolData) => `${protocolData?.protocol}`}
-                          renderInput={(params) => {
-                            return (
-                              <TextField
-                                {...params}
-                                variant="filled"
-                                label="Protocol Test"
-                              />
-                            );
-                          }}
-                          renderOption={(option) => {
-                            return <h4>{`${option.protocol}`}</h4>;
-                          }}
-                        ></Autocomplete>
-                      </Grid> */}
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
                       </Grid>
@@ -304,7 +303,14 @@ function RoutineForm() {
                       sx={{ py: 4, justifyContent: "center" }}
                     >
                       <Grid item xs={4}>
-                        <SubmitButton>Submit</SubmitButton>
+                        <Button
+                          variant="contained"
+                          type="submit"
+                          value="Submit"
+                          fullWidth
+                        >
+                          Submit
+                        </Button>
                       </Grid>
                       <Grid item xs={4}>
                         <Button

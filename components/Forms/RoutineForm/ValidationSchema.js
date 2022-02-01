@@ -71,7 +71,7 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid time in s")
     .moreThan(yup.ref("delay3")),
 
-  pher: yup.string().required("Required"),
+  pher: yup.string(),
   gist: yup.string().required("Required"),
   nurse: yup.string(),
 
