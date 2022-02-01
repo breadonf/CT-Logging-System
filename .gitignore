@@ -1,4 +1,3 @@
-git # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 node_modules/
@@ -36,5 +35,4 @@ yarn-error.log*
 # vercel
 .vercel
 node_modules
-
 .next
