@@ -5,7 +5,6 @@ const INITIAL_FORM_STATE = {
   weight: "",
   height: "",
   circumference: "",
-
   date: "",
   urgent: false,
   sedation: false,
@@ -13,7 +12,6 @@ const INITIAL_FORM_STATE = {
   kV_A: "",
   kV_B: "",
   pitch: "",
-
   route: "",
   handInjection: false,
   mixedContrast: false,
@@ -26,11 +24,9 @@ const INITIAL_FORM_STATE = {
   delay2: "",
   delay3: "",
   delay4: "",
-
   pher: "",
   gist: "",
   nurse: "",
-
   remark: "",
 };
 
