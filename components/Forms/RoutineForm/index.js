@@ -2,7 +2,13 @@
  * Dependencies Import
  */
 import React from "react";
+<<<<<<< HEAD
 import { useField, useFormikContext, Formik, Form } from "formik";
+=======
+import { Formik, Form, FieldArray } from "formik";
+import INITIAL_FORM_STATE from "./InitialFormState";
+import FORM_VALIDATION from "./ValidationSchema";
+>>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
 import {
   Container,
   Paper,
@@ -10,6 +16,7 @@ import {
   Typography,
   Button,
   Autocomplete,
+  MenuItem,
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
@@ -33,6 +40,7 @@ import ProtocolAutocomplete from "../../FormsUI/ProtocolAutocomplete";
  */
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
+<<<<<<< HEAD
 import INITIAL_FORM_STATE from "./InitialFormState";
 import FORM_VALIDATION from "./ValidationSchema";
 
@@ -40,6 +48,9 @@ import FORM_VALIDATION from "./ValidationSchema";
  * Queries Import
  */
 import { getHomepageProtocol } from "../../../queries/queries";
+=======
+import ProtocolTestAutocomplete from "../../FormsUI/ProtocolTestAutocomplete";
+>>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
 
 function RoutineForm() {
   const handleChange = (e) => {
@@ -145,9 +156,52 @@ function RoutineForm() {
                       <Grid item xs={12}>
                         <ProtocolAutocomplete
                           name="protocol"
+<<<<<<< HEAD
                           protocolData={isSuccess ? protocolData : []}
                         ></ProtocolAutocomplete>
                       </Grid>
+=======
+                          label="Exam Protocol"
+                          options={protocolName}
+                        ></Select>
+                      </Grid>
+                      {/* 
+                      <ProtocolTestAutocomplete
+                        name="protocolTest"
+                        options={protocolData}
+                        label="Protocol Test"
+                      />*/}
+                      {/*
+                      <Grid item xs={12}>
+                        <Autocomplete
+                          name="protocolTest"
+                          options={protocolData}
+                          fullWidth
+                          renderInput={(params) => {
+                            return (
+                              <Textfield
+                                {...params}
+                                id="test"
+                                name="protocolTest"
+                                label="Protocol Test"
+                              />
+                            );
+                          }}
+                          getOptionLabel={(option) => option.protocol}
+                          renderOption={(props, option) => {
+                            return (
+                              <MenuItem
+                                key={option.id}
+                                value={option.protocol}
+                                {...props}
+                              >
+                                {option.protocol}
+                              </MenuItem>
+                            );
+                          }}
+                        ></Autocomplete>
+                      </Grid>*/}
+>>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
                       </Grid>
@@ -214,7 +268,11 @@ function RoutineForm() {
                       </Grid>
 
                       <Grid item xs={2}>
-                        <Checkbox name="pre" label="Pre Con" legend="Pre Con" />
+                        <Checkbox
+                          name="directPost"
+                          label="Yes"
+                          legend="Direct Post Con?"
+                        />
                       </Grid>
                       <Grid item xs={2}>
                         <Textfield
@@ -246,6 +304,26 @@ function RoutineForm() {
                           label="Delay Time 4(s)"
                         ></Textfield>
                       </Grid>
+                      {/* 
+                      <FieldArray name="delays">
+                        {({push, remove, }) => (
+                          <>
+                          <Grid item>
+                            <Typography variant="body2">All Phases and Delay Time</Typography>
+                          </Grid>
+                          {values.delays.map((_, index) => (
+                            <Grid container>
+                                <Grid item sx={2}>
+                                  <Textfield name={`delays.${index}`.phase}></Textfield>
+                                </Grid>
+                                <Grid item sx={2}>
+                                  <Textfield name={`delays.${index}`.delayTime}></Textfield>
+                                </Grid>
+                            </Grid>
+                          ))}
+                          </>
+                        )}
+                      </FieldArray>*/}
                     </Grid>
 
                     {/* Staff Details */}
