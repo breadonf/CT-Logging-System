@@ -8,7 +8,7 @@ const INITIAL_FORM_STATE = {
   date: "",
   urgent: false,
   sedation: false,
-  protocol: "",
+  protocol: [],
   kV_A: "",
   kV_B: "",
   pitch: "",
@@ -24,11 +24,6 @@ const INITIAL_FORM_STATE = {
   delay2: "",
   delay3: "",
   delay4: "",
-<<<<<<< HEAD
-=======
-  delays: [{ phase: "", delayTime: 0 }],
-
->>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
   pher: "",
   gist: "",
   nurse: "",

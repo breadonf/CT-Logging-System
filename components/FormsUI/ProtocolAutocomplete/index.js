@@ -3,6 +3,7 @@ import { Autocomplete, TextField, MenuItem } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
 export default function ProtocolAutocomplete({
+  id,
   name,
   protocolData,
   ...otherProps
@@ -11,32 +12,33 @@ export default function ProtocolAutocomplete({
   const [field, meta] = useField(name);
 
   const handleChange = (e, value) => {
-    setFieldValue("protocol", value !== null ? value.name : "");
+    let result = value.map((a) => a.name);
+    setFieldValue(name, value !== null ? result : []);
   };
-
+  const configAuto = {
+    ...field,
+    ...otherProps,
+    variant: "filled",
+    margin: "normal",
+    label: "Protocol",
+    fullWidth: true,
+    name: name,
+  };
   if (meta && meta.touched && meta.error) {
-    Autocomplete.error = true;
-    Autocomplete.helperText = meta.error;
+    configAuto.error = true;
+    configAuto.helperText = meta.error;
   }
 
   return (
     <Autocomplete
-      id="protocol"
-      name="protocol"
+      id={id}
+      name={name}
       fullWidth
       options={protocolData}
       getOptionLabel={(option) => option.name}
       onChange={handleChange}
-      renderInput={(params) => (
-        <TextField
-          variant="filled"
-          margin="normal"
-          label="Protocol"
-          fullWidth
-          name="protocol"
-          {...params}
-        />
-      )}
+      renderInput={(params) => <TextField {...configAuto} {...params} />}
+      {...otherProps}
     />
   );
 }
