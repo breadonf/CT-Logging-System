@@ -22,14 +22,10 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid circumference in cm")
     .min(0, "Invalid Input"),
 
-  date: yup.date().required("Required"),
+  date: yup.string().required("Required"),
   urgent: yup.boolean(),
   sedation: yup.boolean(),
-  protocol: yup.string().required("Required"),
-<<<<<<< HEAD
-=======
-  protocolTest: yup.string(),
->>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
+  protocol: yup.array().min(1, "Required"),
   kV_A: yup.string().required("Required"),
   kV_B: yup.string(),
   pitch: yup

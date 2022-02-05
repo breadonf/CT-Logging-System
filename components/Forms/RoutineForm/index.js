@@ -2,13 +2,7 @@
  * Dependencies Import
  */
 import React from "react";
-<<<<<<< HEAD
 import { useField, useFormikContext, Formik, Form } from "formik";
-=======
-import { Formik, Form, FieldArray } from "formik";
-import INITIAL_FORM_STATE from "./InitialFormState";
-import FORM_VALIDATION from "./ValidationSchema";
->>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
 import {
   Container,
   Paper,
@@ -40,7 +34,6 @@ import ProtocolAutocomplete from "../../FormsUI/ProtocolAutocomplete";
  */
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
-<<<<<<< HEAD
 import INITIAL_FORM_STATE from "./InitialFormState";
 import FORM_VALIDATION from "./ValidationSchema";
 
@@ -48,11 +41,23 @@ import FORM_VALIDATION from "./ValidationSchema";
  * Queries Import
  */
 import { getHomepageProtocol } from "../../../queries/queries";
-=======
-import ProtocolTestAutocomplete from "../../FormsUI/ProtocolTestAutocomplete";
->>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
 
 function RoutineForm() {
+  const handleSubmit = (values, { setSubmitting, setFieldValue }) => {
+    const toDate = (dateStr) => {
+      const [year, month, day] = dateStr.split("-");
+      return new Date(year, month - 1, day);
+    };
+    const converted = toDate(values.date);
+    setTimeout(() => {
+      setFieldValue("date", converted);
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 400);
+
+    console.log(values);
+  };
+
   const handleChange = (e) => {
     const { value } = e.target;
     console.log(value);
@@ -68,9 +73,7 @@ function RoutineForm() {
           <Formik
             initialValues={{ ...INITIAL_FORM_STATE }}
             validationSchema={FORM_VALIDATION}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
+            onSubmit={handleSubmit}
           >
             <Form>
               <Grid container spacing={2} sx={{ py: 5 }}>
@@ -155,53 +158,12 @@ function RoutineForm() {
                       </Grid>
                       <Grid item xs={12}>
                         <ProtocolAutocomplete
+                          multiple
+                          id="protocol"
                           name="protocol"
-<<<<<<< HEAD
                           protocolData={isSuccess ? protocolData : []}
                         ></ProtocolAutocomplete>
                       </Grid>
-=======
-                          label="Exam Protocol"
-                          options={protocolName}
-                        ></Select>
-                      </Grid>
-                      {/* 
-                      <ProtocolTestAutocomplete
-                        name="protocolTest"
-                        options={protocolData}
-                        label="Protocol Test"
-                      />*/}
-                      {/*
-                      <Grid item xs={12}>
-                        <Autocomplete
-                          name="protocolTest"
-                          options={protocolData}
-                          fullWidth
-                          renderInput={(params) => {
-                            return (
-                              <Textfield
-                                {...params}
-                                id="test"
-                                name="protocolTest"
-                                label="Protocol Test"
-                              />
-                            );
-                          }}
-                          getOptionLabel={(option) => option.protocol}
-                          renderOption={(props, option) => {
-                            return (
-                              <MenuItem
-                                key={option.id}
-                                value={option.protocol}
-                                {...props}
-                              >
-                                {option.protocol}
-                              </MenuItem>
-                            );
-                          }}
-                        ></Autocomplete>
-                      </Grid>*/}
->>>>>>> c82d4f0903136b4bc7958f98fc087314128718e0
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
                       </Grid>
