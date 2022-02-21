@@ -35,12 +35,24 @@ const HomepageCT = `
     
 `;
 
-const HomepageProtocol = `
+const HomepageData = `
     #graphql
-    query HomepageFilter {
+    query HomepageData {
+      radiologists: Radiologists {
+        name
+        id
+      }
       protocol {
         name
         id
+      }
+      radiographers {
+        id
+        name
+      }
+      nurses: Nurses  {
+        id
+        name
       }
     }
 `;
@@ -63,10 +75,10 @@ export const getHomepageCT = async () => {
   return data.data.CT;
 };
 
-export const getHomepageProtocol = async () => {
-  const data = await fetchData(HomepageProtocol, {
+export const getHomepageData = async () => {
+  const data = await fetchData(HomepageData, {
     variables: {},
   });
 
-  return data.data.protocol;
+  return data.data;
 };

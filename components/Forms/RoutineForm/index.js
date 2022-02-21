@@ -27,7 +27,7 @@ import Select from "../../FormsUI/Select";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import Checkbox from "../../FormsUI/Checkbox";
 import SubmitButton from "../../FormsUI/SubmitButton";
-import ProtocolAutocomplete from "../../FormsUI/ProtocolAutocomplete";
+import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 
 /**
  * Data Import
@@ -40,7 +40,7 @@ import FORM_VALIDATION from "./ValidationSchema";
 /**
  * Queries Import
  */
-import { getHomepageProtocol } from "../../../queries/queries";
+import { getHomepageData } from "../../../queries/queries";
 
 function RoutineForm() {
   const handleSubmit = (values, { setSubmitting, setFieldValue }) => {
@@ -51,6 +51,7 @@ function RoutineForm() {
     const converted = toDate(values.date);
     setTimeout(() => {
       setFieldValue("date", converted);
+      // Submission
       alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
     }, 400);
@@ -62,10 +63,11 @@ function RoutineForm() {
     const { value } = e.target;
     console.log(value);
   };
-  const { data: protocolData, isSuccess } = useQuery(
-    "Protocol",
-    async () => await getHomepageProtocol()
+  const { data: autocompleteOptions, isSuccess } = useQuery(
+    "autocompleteOptions",
+    async () => await getHomepageData()
   );
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -157,12 +159,15 @@ function RoutineForm() {
                         />
                       </Grid>
                       <Grid item xs={12}>
-                        <ProtocolAutocomplete
+                        <AutocompleteWrapper
                           multiple
                           id="protocol"
                           name="protocol"
-                          protocolData={isSuccess ? protocolData : []}
-                        ></ProtocolAutocomplete>
+                          label="Protocol"
+                          autocompleteOptions={
+                            isSuccess ? autocompleteOptions.protocol : []
+                          }
+                        ></AutocompleteWrapper>
                       </Grid>
                       <Grid item xs={4}>
                         <Textfield name="kV_A" label="kV (Tube A)"></Textfield>
@@ -302,13 +307,37 @@ function RoutineForm() {
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
-                        <Textfield name="pher" label="Radiographer"></Textfield>
+                        <AutocompleteWrapper
+                          multiple
+                          id="radiographers"
+                          name="radiographers"
+                          label="Radiographer"
+                          autocompleteOptions={
+                            isSuccess ? autocompleteOptions.radiographers : []
+                          }
+                        ></AutocompleteWrapper>
                       </Grid>
                       <Grid item xs={4}>
-                        <Textfield name="gist" label="Radiologist"></Textfield>
+                        <AutocompleteWrapper
+                          multiple
+                          id="radiologists"
+                          name="radiologists"
+                          label="Radiologist"
+                          autocompleteOptions={
+                            isSuccess ? autocompleteOptions.radiologists : []
+                          }
+                        ></AutocompleteWrapper>
                       </Grid>
                       <Grid item xs={4}>
-                        <Textfield name="nurse" label="Nurse"></Textfield>
+                        <AutocompleteWrapper
+                          multiple
+                          id="nurses"
+                          name="nurses"
+                          label="Nurses"
+                          autocompleteOptions={
+                            isSuccess ? autocompleteOptions.nurses : []
+                          }
+                        ></AutocompleteWrapper>
                       </Grid>
                     </Grid>
 
@@ -319,6 +348,19 @@ function RoutineForm() {
                       component={"div"}
                       sx={{ py: 5 }}
                     >
+                      <Grid item>
+                        <Typography variant="h5" color="#05668D">
+                          <BorderColorIcon sx={{ mr: 1 }} />
+                          Keywords
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Textfield
+                          rows={4}
+                          name="keywords"
+                          label="Keywords for the case"
+                        />
+                      </Grid>
                       <Grid item>
                         <Typography variant="h5" color="#05668D">
                           <BorderColorIcon sx={{ mr: 1 }} />

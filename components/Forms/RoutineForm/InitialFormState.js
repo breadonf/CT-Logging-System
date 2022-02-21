@@ -24,9 +24,10 @@ const INITIAL_FORM_STATE = {
   delay2: "",
   delay3: "",
   delay4: "",
-  pher: "",
-  gist: "",
-  nurse: "",
+  radiographers: "",
+  radiologists: "",
+  nurses: "",
+  keywords: "",
   remark: "",
 };
 
