@@ -2,10 +2,11 @@ import React from "react";
 import { Autocomplete, TextField, MenuItem } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-export default function ProtocolAutocomplete({
+export default function AutocompleteWrapper({
   id,
   name,
-  protocolData,
+  label,
+  autocompleteOptions,
   ...otherProps
 }) {
   const { setFieldValue } = useFormikContext();
@@ -20,7 +21,7 @@ export default function ProtocolAutocomplete({
     ...otherProps,
     variant: "filled",
     margin: "normal",
-    label: "Protocol",
+    label: label,
     fullWidth: true,
     name: name,
   };
@@ -34,7 +35,7 @@ export default function ProtocolAutocomplete({
       id={id}
       name={name}
       fullWidth
-      options={protocolData}
+      options={autocompleteOptions}
       getOptionLabel={(option) => option.name}
       onChange={handleChange}
       renderInput={(params) => <TextField {...configAuto} {...params} />}

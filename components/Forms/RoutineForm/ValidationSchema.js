@@ -71,10 +71,9 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid time in s")
     .moreThan(yup.ref("delay3")),
 
-  pher: yup.string(),
-  gist: yup.string().required("Required"),
-  nurse: yup.string(),
-
+  radiographers: yup.array().min(1, "Required"),
+  radiologists: yup.array(),
+  nurses: yup.array(),
   remark: yup.string(),
 });
 
