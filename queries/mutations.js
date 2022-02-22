@@ -1,5 +1,5 @@
 import { useMutation } from "react-apollo";
-import { withRouter } from "react-router-dom";
+import { useRouter } from 'next/router'
 import gql from "graphql-tag";
 // need custom date scalar?
 // change type to contrastType?
@@ -74,11 +74,11 @@ const submitCaseMutation = gql`
       message
     }
   }
-`;
+`
 
-const submitCaseContainer = (props) => {
-  const [mutate] = useMutation(submitCaseMutation);
-
+export const submitCaseContainer = (props) => {
+  const mutate = useMutation(submitCaseMutation);
+  const router = useRouter()
   async function submit(values) {
     const { data } = await mutate({
       variables: values,
@@ -88,12 +88,9 @@ const submitCaseContainer = (props) => {
     }
     return null;
   }
-
   function onFinish() {
-    props.history.push("/");
+    router.push("/");
   }
-
   return props.children({ submit, onFinish });
 };
 
-export default withRouter(submitCaseContainer);
