@@ -17,7 +17,7 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 /**
  * FormUI component Import
  */
@@ -45,7 +45,7 @@ import submitCaseContainer from "../../../queries/mutations";
 
 function RoutineForm() {
   const handleSubmit = async (
-    values, 
+    values,
     { props, setErrors, setSubmitting, setFieldValue }
   ) => {
     const toDate = (dateStr) => {
@@ -54,12 +54,6 @@ function RoutineForm() {
     };
     const converted = toDate(values.date);
     setTimeout(() => {
-      const errors = await props.submit(values);
-      if (errors) {
-        setErrors(normalizeErrors(errors));
-      } else {
-        props.onFinish();
-      }
       setSubmitting(false);
       setFieldValue("date", converted);
     }, 400);

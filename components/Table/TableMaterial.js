@@ -1,5 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
-
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 const headers = [
   { field: "count", headerName: "Entry id" },
   {
@@ -24,16 +24,18 @@ const headers = [
   {
     field: "Inpatient",
     headerName: "Inpatient",
-    options: { booleanCell: true },
+    renderCell: (isInpatient) => {
+      return isInpatient.value ? <CheckRoundedIcon /> : <></>;
+    },
   },
+
   { field: "PID", headerName: "Patient ID" },
   { field: "Age", headerName: "Age" },
-  { field: "Weight", headerName: "Weight" },
-  { field: "Height", headerName: "Height" },
-
-  { field: "count", headerName: "Entry id" },
-  { field: "count", headerName: "Entry id" },
-  { field: "count", headerName: "Entry id" },
+  { headerName: "Weight", field: "Weight" },
+  { headerName: "Height", field: "height" },
+  { headerName: "kV (Tube A)", field: "kV_a" },
+  { headerName: "kV (Tube B)", field: "kV_b" },
+  { headerName: "Protocol", field: "protocol" },
   "Patient ID",
   "Protocol",
   "Inpatient?",
