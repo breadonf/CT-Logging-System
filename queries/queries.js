@@ -20,19 +20,18 @@ const HomepageCT = `
         Inpatient
         Age
         remark
-        kV_A
+        kV_a
         kV_b
         Pitch
-        Height
+        height
         Weight
-        Route
-        Type
+        route
+        type
         rate
         volume
         protocol
       }
     }
-    
 `;
 
 const HomepageData = `
