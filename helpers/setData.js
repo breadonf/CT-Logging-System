@@ -1,6 +1,6 @@
 const graphQLAPI = process.env.NEXT_PUBLIC_GRAPHQL;
 
-const submitCase = async (mutation, data = {}) => {
+const setData = async (mutation, data = {}) => {
   const query = JSON.stringify({
     query: mutation,
     variables: data,
@@ -19,4 +19,4 @@ const submitCase = async (mutation, data = {}) => {
   return json.data;
 };
 
-export default submitCase;
+export default setData;

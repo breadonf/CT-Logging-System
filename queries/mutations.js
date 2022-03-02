@@ -12,20 +12,3 @@ export const createCTrecord = `
     }
   }
 `;
-export const submitCaseContainer = (props) => {
-  const [mutate] = useMutation(submitCaseMutation);
-  const router = useRouter();
-  async function submit(values) {
-    const { data } = await mutate({
-      variables: values,
-    });
-    if (data) {
-      return data.submitCase;
-    }
-    return null;
-  }
-  function onFinish() {
-    router.push("/");
-  }
-  return props.children({ submit, onFinish });
-};
