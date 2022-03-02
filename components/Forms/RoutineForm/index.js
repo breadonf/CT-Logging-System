@@ -40,10 +40,13 @@ import FORM_VALIDATION from "./ValidationSchema";
  * Queries Import
  */
 import { getHomepageData } from "../../../queries/queries";
-import { normalizeErrors } from "../../../helpers/errorHelpers";
-import submitCaseContainer from "../../../queries/mutations";
+import { createCTrecord } from "../../../queries/mutations";
+import setData from "../../../helpers/setData";
 
 function RoutineForm() {
+  const mutation = useMutation((newFormData) => {
+    setData(createCTrecord, { data: newFormData });
+  });
   const handleSubmit = async (
     values,
     { props, setErrors, setSubmitting, setFieldValue }
@@ -52,15 +55,22 @@ function RoutineForm() {
       const [year, month, day] = dateStr.split("-");
       return new Date(year, month - 1, day);
     };
-    const converted = toDate(values.date);
+    const convertedPitch = parseFloat(values.pitch);
+    const convertedDate = toDate(values.date);
+    const modifiedValues = { ...values };
+    delete modifiedValues.date;
+    modifiedValues.Date = convertedDate;
+    modifiedValues.pitch = convertedPitch;
     setTimeout(() => {
+      mutation.mutate({ ...modifiedValues });
       setSubmitting(false);
-      setFieldValue("date", converted);
     }, 400);
-
-    console.log(values);
+    if (mutation.isError) {
+      console.log(mutation.error.message);
+    }
+    console.log(mutation);
+    console.log(valueToSend);
   };
-
   const handleChange = (e) => {
     const { value } = e.target;
     console.log(value);
@@ -214,7 +224,7 @@ function RoutineForm() {
                         </Grid>
                         <Grid item xs={6}>
                           <Select
-                            name="route"
+                            name="injectionSite"
                             label="Injection Site"
                             options={injectionSites}
                           ></Select>
@@ -255,7 +265,7 @@ function RoutineForm() {
 
                         <Grid item xs={2}>
                           <Checkbox
-                            name="directPost"
+                            name="directPostContrast"
                             label="Yes"
                             legend="Direct Post Con?"
                           />
