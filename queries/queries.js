@@ -10,26 +10,38 @@ const HomepageCT = `
     #graphql
     query HomePageCT {
       CT {
-        count
         Date_func {
           year
-          month
           day
+          month
         }
-        PID
-        Inpatient
-        Age
+        count
         remark
-        kV_a
-        kV_b
-        Pitch
-        height
-        Weight
-        route
-        type
         rate
         volume
+        kV_a
+        sedation
+        injectionSite
+        circumference
+        urgent
+        directPostContrast
+        handInjection
+        mixedContrast
+        keywords
+        PID
+        radiographers
+        radiologists
+        nurses
         protocol
+        pitch
+        height
+        weight
+        ttp
+        age
+        inPatient
+        kV_b
+        delays
+        contrastType
       }
     }
 `;
