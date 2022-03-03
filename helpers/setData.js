@@ -15,8 +15,12 @@ const setData = async (mutation, data = {}) => {
   });
 
   const json = await res.json();
+  console.log("data", data);
+  if (json.errors) {
+    console.log(json.errors);
+  }
 
-  return json.data;
+  return json;
 };
 
 export default setData;
