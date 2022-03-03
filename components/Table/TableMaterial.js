@@ -22,20 +22,28 @@ const headers = [
     },
   },
   {
-    field: "Inpatient",
+    field: "inPatient",
     headerName: "Inpatient",
     renderCell: (isInpatient) => {
       return isInpatient.value ? <CheckRoundedIcon /> : <></>;
     },
   },
 
-  { field: "PID", headerName: "Patient ID" },
-  { field: "Age", headerName: "Age" },
-  { headerName: "Weight", field: "Weight" },
+  { field: "PID", headerName: "Patient ID", flex: 0.05 },
+  { field: "age", headerName: "Age" },
+  {
+    headerName: "Protocol",
+    field: "protocol",
+    flex: 0.2,
+    renderCell: (protocols) => {
+      return protocols.value ? protocols.value.join(", ") : <></>;
+    },
+  },
+  { headerName: "Weight", field: "weight" },
   { headerName: "Height", field: "height" },
   { headerName: "kV (Tube A)", field: "kV_a" },
   { headerName: "kV (Tube B)", field: "kV_b" },
-  { headerName: "Protocol", field: "protocol" },
+
   "Patient ID",
   "Protocol",
   "Inpatient?",
@@ -56,29 +64,30 @@ export default function TableMaterial({ records, isSuccess }) {
   return (
     <>
       {isSuccess && (
-        <DataGrid
-          autoHeight={true}
-          rows={records}
-          booleanCell={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              classNameName="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          }
-          columns={headers}
-          pageSize={5}
-          getRowId={(row) => row.count}
-        />
+        <div style={{ height: "80vh" }}>
+          <DataGrid
+            rows={records}
+            booleanCell={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                classNameName="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            }
+            columns={headers}
+            getRowId={(row) => row.count}
+            autoPageSize
+          />
+        </div>
       )}
     </>
   );
