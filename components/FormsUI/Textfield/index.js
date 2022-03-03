@@ -18,7 +18,13 @@ const TextfieldWrapper = ({ name, ...otherProps }) => {
   }
 
   return (
-    <TextField {...configTextfield} sx={{ input: { color: "#05668D" } }} />
+    <TextField
+      {...configTextfield}
+      sx={{
+        input: { color: "#05668D" },
+        label: { fontWeight: "bold", color: "#495371" },
+      }}
+    />
   );
 };
 

@@ -20,6 +20,7 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
   const configCheckbox = {
     ...field,
     onChange: handleChange,
+    sx: { label: { fontWeight: "bold" } },
   };
 
   const configFormControl = {};
