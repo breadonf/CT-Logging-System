@@ -1,20 +1,39 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
-import { getHomepageCT, getHomepageProtocol } from "../queries/queries";
+import { getHomepageCT, getHomepageCTNumber } from "../queries/queries";
 import TableMaterial from "../components/Table/TableMaterial";
-import { useState } from "react";
 import { Paper, Grid } from "@mui/material";
+
+
+
 export default function Table() {
-  const [selectedProtocols, setSelectedProtocols] = useState([]);
-  const { data: records, isSuccess } = useQuery(
-    "record",
-    async () => await getHomepageCT()
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const {
+    data: records,
+    isSuccess,
+    isLoading,
+    isFetching,
+    isPreviousData,
+  } = useQuery(
+    ["record", pageNumber],
+    async () =>
+      await getHomepageCT(pageNumber).then(
+        console.log("isPreviousData", isPreviousData)
+      ),
+    {
+      keepPreviousData: true,
+    }
   );
-  const getSelectedProtocols = (protocol) => {
-    setSelectedProtocols(protocol);
-    console.log(selectedProtocols);
-  };
+  const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(
+    "rowNumbers",
+    async () =>
+      await getHomepageCTNumber().then(console.log("Number of Rows", rowCount)),
+    {
+      staleTime: 60 * 1000,
+    }
+  );
   return (
     <Grid container>
       <Head>
@@ -25,9 +44,19 @@ export default function Table() {
       <Grid item xs={12}>
         <Paper
           elevation={12}
-          sx={{ minHeight: "90vh", px: 3, py: 5, bgcolor: "#F0F3BD" }}
+          sx={{ px: 3, py: 5, bgcolor: "#F0F3BD", minHeight: "90vh" }}
         >
-          <TableMaterial records={records} isSuccess={isSuccess} />
+          {isSuccess && isRowCountSuccess && (
+            <TableMaterial
+              setPageNumber={setPageNumber}
+              records={records}
+              isSuccess={isSuccess}
+              rowCount={rowCount}
+              isLoading={isLoading}
+              pageNumber={pageNumber}
+              isPreviousData={isPreviousData}
+            />
+          )}
         </Paper>
       </Grid>
     </Grid>

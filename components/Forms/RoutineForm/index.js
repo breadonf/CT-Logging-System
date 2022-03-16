@@ -68,12 +68,19 @@ function RoutineForm() {
     const modifiedValues = preprocessor(values);
     setTimeout(() => {
       mutation.mutate({ ...modifiedValues });
+
       setSubmitting(false);
     }, 400);
     if (mutation.isError) {
-      console.log(mutation.error.message);
+      console.log(
+        "🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
+        mutation.error.message
+      );
     }
-    console.log("mutation", mutation);
+    console.log(
+      "🚀 ~ file: index.js ~ line 71 ~ setTimeout ~ mutation",
+      mutation
+    );
   };
   const handleChange = (e) => {
     const { value } = e.target;
