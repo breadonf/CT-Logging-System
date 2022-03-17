@@ -9,12 +9,8 @@ import fetchData from "../helpers/fetchData";
 const HomepageCT = `
     #graphql
     query HomePageCT($page: Int!) {
-      CT (page:$page, limit: 100, sort: ["sort", "-Date"]){
-        Date_func {
-          year
-          day
-          month
-        }
+      CT (page:$page, limit: 25, sort: ["sort", "-Date"]){
+        Date
         count
         remark
         rate

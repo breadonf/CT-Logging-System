@@ -1,27 +1,32 @@
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbar,
+  useGridApiContext,
+  useGridSelector,
+  gridPageCountSelector,
+  gridPageSelector,
+} from "@mui/x-data-grid";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { useState, useEffect } from "react";
 import wait from "../../helpers/wait";
 import Chip from "@mui/material/Chip";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
 const headers = [
   { field: "count", headerName: "Entry id" },
   {
-    field: "Date_func",
+    field: "Date",
     headerName: "Date of Exam",
-    valueGetter: (params) => {
-      let result = [];
-      if (params.row.Date_func) {
-        if (params.row.Date_func.year) {
-          result.push(params.row.Date_func.year);
-        }
-        if (params.row.Date_func.month) {
-          result.push(params.row.Date_func.month);
-        }
-        if (params.row.Date_func.day) {
-          result.push(params.row.Date_func.day);
-        }
-      }
-      return result.join("-");
+    flex: 0.2,
+    valueGetter: ({ value }) => value && new Date(value),
+    valueFormatter: ({ value }) => {
+      const valueFormatted =
+        value.getFullYear().toString() +
+        "-" +
+        (value.getMonth() + 1).toString() +
+        "-" +
+        value.getDate().toString();
+      return valueFormatted;
     },
   },
   {
@@ -33,7 +38,11 @@ const headers = [
   },
 
   { field: "PID", headerName: "Patient ID", flex: 0.05 },
-  { field: "age", headerName: "Age" },
+  {
+    field: "age",
+    headerName: "Age",
+    valueGetter: ({ value }) => value && new Number(value),
+  },
   {
     headerName: "Protocol",
     field: "protocol",
@@ -65,6 +74,24 @@ const headers = [
     },
   },
 ];
+function CustomPagination() {
+  const apiRef = useGridApiContext();
+  const page = useGridSelector(apiRef, gridPageSelector);
+  const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+  return (
+    <Pagination
+      color="primary"
+      variant="outlined"
+      shape="rounded"
+      page={page + 1}
+      count={pageCount}
+      // @ts-expect-error
+      renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
+      onChange={(event, value) => apiRef.current.setPage(value - 1)}
+    />
+  );
+}
 
 export default function TableMaterial({
   rowCount,
@@ -121,8 +148,9 @@ export default function TableMaterial({
       }
     },
     rowCount: rowCount,
-    components: { Toolbar: GridToolbar },
+    components: { Toolbar: GridToolbar, Pagination: CustomPagination },
     loading: isLoading,
+    pageSize: 25,
   };
   return (
     <>
