@@ -7,6 +7,7 @@ export default function AutocompleteWrapper({
   name,
   label,
   autocompleteOptions,
+  prepopulatedValue,
   ...otherProps
 }) {
   const { setFieldValue } = useFormikContext();
@@ -14,7 +15,9 @@ export default function AutocompleteWrapper({
 
   const handleChange = (e, value) => {
     let result = value.map((a) => a.name);
+    console.log(result);
     setFieldValue(name, value !== null ? result : []);
+    console.log("Autocomplete", value);
   };
   const configAuto = {
     ...field,
@@ -29,15 +32,19 @@ export default function AutocompleteWrapper({
     configAuto.error = true;
     configAuto.helperText = meta.error;
   }
+  let flattenedAutocompleteOptions = autocompleteOptions.map(
+    ({ name }) => name
+  );
 
   return (
     <Autocomplete
       id={id}
       name={name}
       fullWidth
-      options={autocompleteOptions}
-      getOptionLabel={(option) => option.name}
+      options={flattenedAutocompleteOptions}
+      getOptionLabel={(option) => option}
       onChange={handleChange}
+      defaultValue={prepopulatedValue}
       renderInput={(params) => <TextField {...configAuto} {...params} />}
       {...otherProps}
     />

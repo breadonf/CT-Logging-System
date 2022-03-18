@@ -15,14 +15,17 @@ const FORM_VALIDATION = yup.object().shape({
   circumference: yup
     .number()
     .typeError("Please enter a valid circumference in cm")
-    .min(0, "Invalid Input"),
+    .min(0, "Invalid Input")
+    .nullable(),
 
   date: yup.string().required("Required"),
-  urgent: yup.boolean(),
+  urgent: yup.boolean().nullable(),
   sedation: yup.boolean(),
   protocol: yup.array().min(1, "Required"),
-  kV_a: yup.string().required("Required"),
-  kV_b: yup.string(),
+  kV_a: yup.lazy((val) =>
+    Array.isArray(val) ? yup.array().of(yup.string()) : yup.string()
+  ),
+  kV_b: yup.string().nullable(),
   pitch: yup
     .number()
     .required("Required")
@@ -42,9 +45,9 @@ const FORM_VALIDATION = yup.object().shape({
     .nullable(),
   volume: yup.number().typeError("Please enter a volume").nullable(),
   ttp: yup.number().typeError("Please enter a valid ttp in s").nullable(),
-  radiographers: yup.array().min(1, "Required"),
+  radiographers: yup.array().nullable(),
   radiologists: yup.array(),
-  nurses: yup.array(),
+  nurses: yup.array().nullable(),
   remark: yup.string(),
 });
 

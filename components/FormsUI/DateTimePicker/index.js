@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { useField } from "formik";
 import { imageConfigDefault } from "next/dist/server/image-config";
 
-const DateTimePicker = ({ name, ...otherProps }) => {
+const DateTimePicker = ({ name, prepopulatedValue, ...otherProps }) => {
   const [field, meta] = useField(name);
 
   const configDateTimePicker = {
@@ -15,8 +15,8 @@ const DateTimePicker = ({ name, ...otherProps }) => {
     InputLabelProps: {
       shrink: true,
     },
+    defaultValue: prepopulatedValue,
   };
-
   if (meta && meta.touched && meta.error) {
     configDateTimePicker.error = true;
     imageConfigDefault.helperText = meta.error;

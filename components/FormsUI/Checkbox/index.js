@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
+const CheckboxWrapper = ({ name, label, legend, checked, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -21,6 +21,7 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
     ...field,
     onChange: handleChange,
     sx: { label: { fontWeight: "bold" } },
+    checked: checked,
   };
 
   const configFormControl = {};

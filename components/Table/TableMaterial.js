@@ -6,7 +6,7 @@ import Chip from "@mui/material/Chip";
 import CustomPagination from "./CustomPagination";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import Link from "next/link";
-
+import PageviewIcon from "@mui/icons-material/Pageview";
 export default function TableMaterial({
   rowCount,
   setPageNumber,
@@ -42,6 +42,14 @@ export default function TableMaterial({
         width: 100,
         renderCell: (isInpatient) => {
           return isInpatient.value ? <CheckRoundedIcon /> : <></>;
+        },
+      },
+      {
+        field: "sedation",
+        headerName: "Sedation",
+        width: 100,
+        renderCell: (isSedation) => {
+          return isSedation.value ? <CheckRoundedIcon /> : <></>;
         },
       },
 
@@ -80,7 +88,7 @@ export default function TableMaterial({
       {
         headerName: "Reporting Radiologists",
         field: "radiologists",
-        flex: 0.2,
+        width: 150,
         renderCell: (radiologists) => {
           return radiologists.value ? (
             <div>
@@ -99,6 +107,13 @@ export default function TableMaterial({
         width: 80,
         getActions: (params) => [
           <Link href={`/Exam/${params.id}`}>
+            <GridActionsCellItem
+              icon={<PageviewIcon />}
+              label="View"
+              onClick={console.log("clicked")}
+            />
+          </Link>,
+          <Link href={`/Forms/editForm/${params.id}`}>
             <GridActionsCellItem
               icon={<ModeEditIcon />}
               label="Edit"
