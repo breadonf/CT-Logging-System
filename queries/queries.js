@@ -38,6 +38,7 @@ const HomepageCT = `
         kV_b
         delays
         contrastType
+        ctdi
       }
     }
 `;
@@ -93,6 +94,47 @@ const HomepageFilteredRecord = `
     }
 `;
 
+const ExamDetailsByID = `
+    #graphql
+    query ExamDetailsByID($ctByIdId: ID!) {
+      CT_by_id(id:$ctByIdId) {
+        Date_func {
+          year
+          month
+          day
+        }
+        count
+        remark
+        rate
+        volume
+        kV_a
+        sedation
+        injectionSite
+        circumference
+        urgent
+        directPostContrast
+        handInjection
+        mixedContrast
+        keywords
+        PID
+        radiographers
+        radiologists
+        nurses
+        protocol
+        pitch
+        height
+        weight
+        ttp
+        age
+        inPatient
+        kV_b
+        delays
+        contrastType
+        ctdi
+      }
+    }
+`;
+
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
     variables: { page: page },
@@ -112,6 +154,14 @@ export const getHomepageCTNumber = async () => {
 export const getHomepageData = async () => {
   const data = await fetchData(HomepageData, {
     variables: {},
+  });
+
+  return data.data;
+};
+
+export const getExamDetailsByID = async (ctByIdId) => {
+  const data = await fetchData(ExamDetailsByID, {
+    variables: { ctByIdId: ctByIdId },
   });
 
   return data.data;
