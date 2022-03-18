@@ -9,6 +9,7 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     setFieldValue(name, value);
+    console.log("Select", value);
   };
 
   const configSelect = {
@@ -18,6 +19,7 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
     variant: "filled",
     fullWidth: true,
     onChange: handleChange,
+    defaultValue: "",
   };
 
   if (meta && meta.touched && meta.error) {
@@ -32,7 +34,7 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
       </MenuItem>
       {Object.keys(options).map((item, pos) => {
         return (
-          <MenuItem key={pos} value={item}>
+          <MenuItem key={pos} value={options[item]}>
             {options[item]}
           </MenuItem>
         );

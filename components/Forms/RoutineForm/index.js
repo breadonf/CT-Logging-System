@@ -45,7 +45,6 @@ import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
 import kV_a from "../SelectItems/kV_a.json";
 import kV_b from "../SelectItems/kV_b.json";
-import INITIAL_FORM_STATE from "./InitialFormState";
 import FORM_VALIDATION from "./ValidationSchema";
 
 /**
@@ -53,39 +52,8 @@ import FORM_VALIDATION from "./ValidationSchema";
  */
 import { getHomepageData } from "../../../queries/queries";
 import { createCTrecord } from "../../../queries/mutations";
-import setData from "../../../helpers/setData";
-import preprocessor from "../../../helpers/preprocessor";
 
-function RoutineForm() {
-  const mutation = useMutation((newFormData) => {
-    setData(createCTrecord, { data: newFormData });
-  });
-
-  const handleSubmit = async (
-    values,
-    { props, setErrors, setSubmitting, setFieldValue }
-  ) => {
-    const modifiedValues = preprocessor(values);
-    setTimeout(() => {
-      mutation.mutate({ ...modifiedValues });
-
-      setSubmitting(false);
-    }, 400);
-    if (mutation.isError) {
-      console.log(
-        "🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
-        mutation.error.message
-      );
-    }
-    console.log(
-      "🚀 ~ file: index.js ~ line 71 ~ setTimeout ~ mutation",
-      mutation
-    );
-  };
-  const handleChange = (e) => {
-    const { value } = e.target;
-    console.log(value);
-  };
+function RoutineForm({ data, handleSubmit }) {
   const { data: autocompleteOptions, isSuccess } = useQuery(
     "autocompleteOptions",
     async () => await getHomepageData()
@@ -96,12 +64,13 @@ function RoutineForm() {
     setContrast(e.target.checked);
     console.log(contrast);
   };
+
   return (
     <Grid container>
       <Grid item xs={12}>
         <Container maxWidth="lg">
           <Formik
-            initialValues={{ ...INITIAL_FORM_STATE }}
+            initialValues={data}
             validationSchema={FORM_VALIDATION}
             onSubmit={handleSubmit}
           >
@@ -177,7 +146,11 @@ function RoutineForm() {
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <DateTimePicker name="date" label="Exam Date" />
+                        <DateTimePicker
+                          name="date"
+                          label="Exam Date"
+                          prepopulatedValue={data.Date?.split("T")[0]}
+                        />
                       </Grid>
                       <Grid item xs={3}>
                         <Checkbox label="Yes" name="urgent" legend="Urgent?" />
@@ -187,6 +160,7 @@ function RoutineForm() {
                           label="Yes"
                           name="sedation"
                           legend="Sedation"
+                          checked={data.sedation}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -195,6 +169,7 @@ function RoutineForm() {
                           id="protocol"
                           name="protocol"
                           label="Protocol"
+                          prepopulatedValue={data.protocol}
                           autocompleteOptions={
                             isSuccess ? autocompleteOptions.protocol : []
                           }
@@ -302,7 +277,7 @@ function RoutineForm() {
                                   const { delays } = values;
                                   return (
                                     <div>
-                                      {delays.map((delay, index) => (
+                                      {delays?.map((delay, index) => (
                                         <div key={index}>
                                           <Grid container alignItems="center">
                                             <Grid item xs={8} sx={{ pb: 2 }}>

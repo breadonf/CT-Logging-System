@@ -67,18 +67,18 @@ const HomepageData = `
     query HomepageData {
       radiologists: Radiologists {
         name
-        id
+        
       }
       protocol {
         name
-        id
+        
       }
       radiographers {
-        id
+        
         name
       }
       nurses: Nurses  {
-        id
+        
         name
       }
     }
@@ -98,6 +98,7 @@ const ExamDetailsByID = `
     #graphql
     query ExamDetailsByID($ctByIdId: ID!) {
       CT_by_id(id:$ctByIdId) {
+        Date
         Date_func {
           year
           month

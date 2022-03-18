@@ -1,4 +1,6 @@
 {
-    "1":"Left Elbow/Arm",
-    "2":"Left Wrist"
+  "L Elbow/Arm": "Left Elbow/Arm",
+  "L Hand/Wrist": "Left Hand/Wrist",
+  "R Hand/Wrist": "Right Hand/Wrist",
+  "R Elbow/Arm": "Right Elbow/Arm"
 }
