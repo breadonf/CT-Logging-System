@@ -1,5 +1,6 @@
 import React from "react";
-import { Autocomplete, TextField, MenuItem } from "@mui/material";
+import { TextField, MenuItem } from "@mui/material";
+import { Autocomplete } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
 export default function AutocompleteWrapper({
@@ -8,16 +9,16 @@ export default function AutocompleteWrapper({
   label,
   autocompleteOptions,
   prepopulatedValue,
+  multiple,
   ...otherProps
 }) {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
   const handleChange = (e, value) => {
-    let result = value.map((a) => a.name);
+    const result = value.map((option) => option);
     console.log(result);
     setFieldValue(name, value !== null ? result : []);
-    console.log("Autocomplete", value);
   };
   const configAuto = {
     ...field,
@@ -26,7 +27,7 @@ export default function AutocompleteWrapper({
     margin: "normal",
     label: label,
     fullWidth: true,
-    name: name,
+    error: false,
   };
   if (meta && meta.touched && meta.error) {
     configAuto.error = true;
@@ -35,9 +36,9 @@ export default function AutocompleteWrapper({
   let flattenedAutocompleteOptions = autocompleteOptions.map(
     ({ name }) => name
   );
-
   return (
     <Autocomplete
+      multiple={multiple}
       id={id}
       name={name}
       fullWidth
@@ -45,6 +46,9 @@ export default function AutocompleteWrapper({
       getOptionLabel={(option) => option}
       onChange={handleChange}
       defaultValue={prepopulatedValue}
+      isOptionEqualToValue={(option, val) => {
+        option === val;
+      }}
       renderInput={(params) => <TextField {...configAuto} {...params} />}
       {...otherProps}
     />

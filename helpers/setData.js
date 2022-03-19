@@ -1,11 +1,14 @@
 const graphQLAPI = process.env.NEXT_PUBLIC_GRAPHQL;
 
-const setData = async (mutation, data = {}) => {
+const setData = async (mutation, { data, updateCtItemId }, update = false) => {
   const query = JSON.stringify({
     query: mutation,
-    variables: data,
+    variables: update
+      ? { data: data, updateCtItemId: updateCtItemId }
+      : { data: data },
   });
-
+  console.log("Query Content", data, updateCtItemId);
+  console.log("Query Content", query);
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(graphQLAPI, {
@@ -15,11 +18,11 @@ const setData = async (mutation, data = {}) => {
   });
 
   const json = await res.json();
-  console.log("data", data);
+
   if (json.errors) {
     console.log(json.errors);
   }
-
+  console.log("res", json);
   return json;
 };
 

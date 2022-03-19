@@ -107,18 +107,10 @@ export default function TableMaterial({
         width: 80,
         getActions: (params) => [
           <Link href={`/Exam/${params.id}`}>
-            <GridActionsCellItem
-              icon={<PageviewIcon />}
-              label="View"
-              onClick={console.log("clicked")}
-            />
+            <GridActionsCellItem icon={<PageviewIcon />} label="View" />
           </Link>,
           <Link href={`/Forms/editForm/${params.id}`}>
-            <GridActionsCellItem
-              icon={<ModeEditIcon />}
-              label="Edit"
-              onClick={console.log("clicked")}
-            />
+            <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
           </Link>,
         ],
       },

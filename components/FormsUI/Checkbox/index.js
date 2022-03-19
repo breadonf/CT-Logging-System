@@ -26,7 +26,8 @@ const CheckboxWrapper = ({ name, label, legend, checked, ...otherProps }) => {
 
   const configFormControl = {};
   if (meta && meta.touched && meta.error) {
-    configFormControl.error = true;
+    configCheckbox.error = true;
+    configCheckbox.helperText = meta.error;
   }
 
   return (

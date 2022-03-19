@@ -5,17 +5,31 @@ import preprocessor from "../../helpers/preprocessor";
 import { createCTrecord } from "../../queries/mutations";
 import { useMutation } from "react-query";
 import setData from "../../helpers/setData";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 function RoutineCases() {
-  const mutation = useMutation((newFormData) => {
-    setData(createCTrecord, { data: newFormData });
-  });
-  const handleSubmit = async (
-    values,
-    { props, setErrors, setSubmitting, setFieldValue }
-  ) => {
+  const mutation = useMutation(
+    (newFormData) => {
+      setData(createCTrecord, { data: newFormData });
+    },
+    { mutationKey: "createCTitem" }
+  );
+  const handleSubmit = async (values, { setSubmitting }) => {
     const modifiedValues = preprocessor(values);
-    setTimeout(() => {
-      mutation.mutate({ ...modifiedValues });
+    setTimeout(async () => {
+      await mutation.mutate(
+        { ...modifiedValues },
+        {
+          onSuccess: async (res, variables) => {
+            console.log("onSuccess", res);
+            console.log("onSuccess", variables);
+
+            alert(
+              `Success, your Ct records for ${modifiedValues.PID} is saved ${res?.count}`
+            );
+          },
+        }
+      );
 
       setSubmitting(false);
     }, 400);
@@ -29,6 +43,11 @@ function RoutineCases() {
       "🚀 ~ file: index.js ~ line 71 ~ setTimeout ~ mutation",
       mutation
     );
+    if (mutation.onSettled) {
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>;
+    }
   };
   return <RoutineForm data={INITIAL_FORM_STATE} handleSubmit={handleSubmit} />;
 }

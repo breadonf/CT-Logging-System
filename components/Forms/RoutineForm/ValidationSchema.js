@@ -17,9 +17,8 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid circumference in cm")
     .min(0, "Invalid Input")
     .nullable(),
-
-  date: yup.string().required("Required"),
-  urgent: yup.boolean().nullable(),
+  Date: yup.string().typeError("Required").required("Required"),
+  urgent: yup.boolean(),
   sedation: yup.boolean(),
   protocol: yup.array().min(1, "Required"),
   kV_a: yup.lazy((val) =>
@@ -32,23 +31,25 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid pitch")
     .min(0, "Invalid Input")
     .max(5),
-
-  injectionSite: yup.string(),
-  handInjection: yup.boolean(),
-  mixedContrast: yup.boolean(),
-  contrastType: yup.string(),
+  injectionSite: yup.string().nullable(),
+  handInjection: yup.boolean().nullable(),
+  mixedContrast: yup.boolean().nullable(),
+  contrastType: yup.string().nullable(),
   rate: yup
     .number()
     .typeError("Please enter a valid rate")
     .min(0, "Invalid Input")
     .max(10)
     .nullable(),
+  directPostContrast: yup.boolean().nullable(),
   volume: yup.number().typeError("Please enter a volume").nullable(),
   ttp: yup.number().typeError("Please enter a valid ttp in s").nullable(),
   radiographers: yup.array().nullable(),
-  radiologists: yup.array(),
+  radiologists: yup.array().nullable(),
   nurses: yup.array().nullable(),
-  remark: yup.string(),
+  remark: yup.string().nullable(),
+  keywords: yup.string().nullable(),
+  delays: yup.array().nullable(),
 });
 
 export default FORM_VALIDATION;
