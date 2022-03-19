@@ -1,10 +1,10 @@
 const preprocessor = (values) => {
   const toDate = (dateStr) => {
     const [year, month, day] = dateStr.split("-");
-    return new Date(year, month - 1, day);
+    return new Date(year, month - 1, day, 8);
   };
   let re = /([0-9]{1,3})(M|D|m|d{0,1})/;
-  let matchedGrp = values.age.match(re);
+  let matchedGrp = values.age.toString().match(re);
   const computedAge = 0;
   if (matchedGrp && matchedGrp[2] == "") {
     computedAge = parseFloat(matchedGrp[1]);
@@ -20,9 +20,11 @@ const preprocessor = (values) => {
   const convertedTtp = parseFloat(ttp);
   const convertedRate = parseFloat(rate);
 
-  const convertedDate = toDate(values.date);
+  const convertedDate = toDate(values.Date);
   const modifiedValues = { ...values };
-  delete modifiedValues.date;
+  delete modifiedValues.Date;
+  delete modifiedValues.count;
+  delete modifiedValues.Date_func;
   modifiedValues.Date = convertedDate;
   modifiedValues.height = convertedHeight;
   modifiedValues.weight = convertedWeight;

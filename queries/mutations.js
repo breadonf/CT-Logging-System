@@ -12,3 +12,14 @@ export const createCTrecord = `
     }
   }
 `;
+
+export const updateCTRecordById = `
+  mutation Mutation($updateCtItemId: ID!, $data: update_CT_input!) {
+    update_CT_item(id: $updateCtItemId, data: $data) {
+      count
+      PID
+      protocol
+      status
+    }
+  }
+`;
