@@ -16,18 +16,14 @@ export default function Table() {
     isPreviousData,
   } = useQuery(
     ["record", pageNumber],
-    async () =>
-      await getHomepageCT(pageNumber).then(
-        console.log("isPreviousData", isPreviousData)
-      ),
+    async () => await getHomepageCT(pageNumber),
     {
       keepPreviousData: true,
     }
   );
   const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(
     "rowNumbers",
-    async () =>
-      await getHomepageCTNumber().then(console.log("Number of Rows", rowCount)),
+    async () => await getHomepageCTNumber(),
     {
       staleTime: 60 * 1000,
     }

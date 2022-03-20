@@ -46,6 +46,7 @@ export default function EditRoutineForm() {
             alert(
               `Success, your Ct records for ${modifiedValues.PID} is updated ${res?.count}`
             );
+            router.push("/Table");
           },
           onError: async (err, varia) => {
             console.log("onError", err, varia);

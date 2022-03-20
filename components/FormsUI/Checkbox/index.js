@@ -20,7 +20,7 @@ const CheckboxWrapper = ({ name, label, legend, checked, ...otherProps }) => {
   const configCheckbox = {
     ...field,
     onChange: handleChange,
-    checked: checked,
+    checked: checked ? checked : field.value,
   };
 
   const configFormControl = {};

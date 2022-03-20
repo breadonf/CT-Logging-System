@@ -22,7 +22,9 @@ const FORM_VALIDATION = yup.object().shape({
   sedation: yup.boolean(),
   protocol: yup.array().min(1, "Required"),
   kV_a: yup.lazy((val) =>
-    Array.isArray(val) ? yup.array().of(yup.string()) : yup.string()
+    Array.isArray(val)
+      ? yup.array().typeError("Required").of(yup.string().typeError("Required"))
+      : yup.string().typeError("Required")
   ),
   kV_b: yup.string().nullable(),
   pitch: yup
@@ -46,10 +48,12 @@ const FORM_VALIDATION = yup.object().shape({
   ttp: yup.number().typeError("Please enter a valid ttp in s").nullable(),
   radiographers: yup.array().nullable(),
   radiologists: yup.array().nullable(),
+  examType: yup.array().nullable(),
   nurses: yup.array().nullable(),
   remark: yup.string().nullable(),
   keywords: yup.string().nullable(),
   delays: yup.array().nullable(),
+  ctdi: yup.number().required("Required"),
 });
 
 export default FORM_VALIDATION;

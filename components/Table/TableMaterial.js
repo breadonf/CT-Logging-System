@@ -66,7 +66,12 @@ export default function TableMaterial({
           return protocols.value ? (
             <div>
               {protocols.formattedValue.map((protocol) => (
-                <Chip variant="outlined" color="error" label={protocol} />
+                <Chip
+                  key={`protocolid-${protocol}`}
+                  variant="outlined"
+                  color="error"
+                  label={protocol}
+                />
               ))}
             </div>
           ) : (
@@ -93,7 +98,12 @@ export default function TableMaterial({
           return radiologists.value ? (
             <div>
               {radiologists.formattedValue.map((radiologist) => (
-                <Chip variant="outlined" color="primary" label={radiologist} />
+                <Chip
+                  key={`radiologistid-${radiologist}`}
+                  variant="outlined"
+                  color="primary"
+                  label={radiologist}
+                />
               ))}
             </div>
           ) : (
@@ -127,7 +137,7 @@ export default function TableMaterial({
     );
 
     setData(records);
-    console.log("pageNumber", pageNumber);
+
     wait(0);
     setIsLoading(false);
   }, [pageNumber, records]);

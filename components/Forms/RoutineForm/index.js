@@ -64,9 +64,7 @@ function RoutineForm({ data, handleSubmit }) {
 
   const handleSwitch = (e) => {
     setContrast(e.target.checked);
-    console.log(contrast);
   };
-
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Grid container>
@@ -193,6 +191,7 @@ function RoutineForm({ data, handleSubmit }) {
                             name="examType"
                             label="Exam Type"
                             multiple
+                            prepopulatedValue={data?.examType}
                             options={examType}
                           />
                         </Grid>
@@ -212,6 +211,9 @@ function RoutineForm({ data, handleSubmit }) {
                         </Grid>
                         <Grid item xs={4}>
                           <Textfield name="pitch" label="Pitch"></Textfield>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Textfield name="ctdi" label="CTDI"></Textfield>
                         </Grid>
                       </Grid>
 
@@ -391,6 +393,7 @@ function RoutineForm({ data, handleSubmit }) {
                             id="radiographers"
                             name="radiographers"
                             label="Radiographer"
+                            prepopulatedValue={data.radiographers}
                             autocompleteOptions={
                               isSuccess ? autocompleteOptions.radiographers : []
                             }
@@ -402,6 +405,7 @@ function RoutineForm({ data, handleSubmit }) {
                             id="radiologists"
                             name="radiologists"
                             label="Radiologist"
+                            prepopulatedValue={data.radiologists}
                             autocompleteOptions={
                               isSuccess ? autocompleteOptions.radiologists : []
                             }
@@ -413,6 +417,7 @@ function RoutineForm({ data, handleSubmit }) {
                             id="nurses"
                             name="nurses"
                             label="Nurses"
+                            prepopulatedValue={data.nurses}
                             autocompleteOptions={
                               isSuccess ? autocompleteOptions.nurses : []
                             }
