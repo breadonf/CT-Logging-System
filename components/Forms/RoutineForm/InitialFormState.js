@@ -25,7 +25,7 @@ const INITIAL_FORM_STATE = {
   nurses: [],
   keywords: undefined,
   remark: undefined,
-  delays: undefined,
+  delays: [""],
   examType: [],
   ctdi: undefined,
 };

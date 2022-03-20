@@ -301,6 +301,7 @@ function RoutineForm({ data, handleSubmit }) {
                                     } = fieldArrayProps;
                                     const { values } = form;
                                     const { delays } = values;
+                                    console.log("delays", delays);
                                     return (
                                       <div>
                                         {delays?.map((delay, index) => (
