@@ -1,15 +1,15 @@
 const INITIAL_FORM_STATE = {
-  PID: "Y1234",
+  PID: null,
   inPatient: false,
-  age: "1",
-  weight: 1,
-  height: 1,
+  age: null,
+  weight: null,
+  height: null,
   circumference: null,
   Date: null,
   urgent: false,
   sedation: false,
   protocol: [],
-  kV_a: "70",
+  kV_a: null,
   kV_b: null,
   pitch: 1,
   injectionSite: null,
@@ -26,6 +26,7 @@ const INITIAL_FORM_STATE = {
   keywords: null,
   remark: null,
   delays: null,
+  examType: [],
 };
 
 export default INITIAL_FORM_STATE;

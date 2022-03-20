@@ -47,6 +47,7 @@ import injectionSites from "../SelectItems/injectionSites.json";
 import kV_a from "../SelectItems/kV_a.json";
 import kV_b from "../SelectItems/kV_b.json";
 import FORM_VALIDATION from "./ValidationSchema";
+import examType from "../SelectItems/examType.json";
 
 /**
  * Queries and helpers Import
@@ -186,6 +187,14 @@ function RoutineForm({ data, handleSubmit }) {
                               isSuccess ? autocompleteOptions.protocol : []
                             }
                           ></AutocompleteWrapper>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Select
+                            name="examType"
+                            label="Exam Type"
+                            multiple
+                            options={examType}
+                          />
                         </Grid>
                         <Grid item xs={4}>
                           <Select

@@ -9,7 +9,7 @@ import fetchData from "../helpers/fetchData";
 const HomepageCT = `
     #graphql
     query HomePageCT($page: Int!) {
-      CT (page:$page, limit: 25, sort: ["sort", "-Date"]){
+      CT (page:$page, limit: 25, sort: ["sort", "-count"]){
         Date
         count
         remark

@@ -1,0 +1,13 @@
+{
+  "B": "Brain",
+  "H": "Face or Orbit",
+  "T": "Thorax",
+  "A": "Abdomen",
+  "P": "Pelvis",
+  "N": "Neck",
+  "C": "ECG-gated cardiac",
+  "U": "Upper Limb",
+  "L": "Lower Limb",
+  "S": "Spine",
+  "I": "IR"
+}
