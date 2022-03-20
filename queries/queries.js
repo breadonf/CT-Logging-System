@@ -138,6 +138,49 @@ const ExamDetailsByID = `
     }
 `;
 
+const ExamsRecordBySearch = `
+    #graphql
+    query ExamsRecordBySearch( $key: String!) {
+      CT (search:$key, sort: ["sort", "-count"]) {
+        Date
+        Date_func {
+          year
+          month
+          day
+        }
+        count
+        remark
+        rate
+        volume
+        kV_a
+        sedation
+        injectionSite
+        circumference
+        urgent
+        directPostContrast
+        handInjection
+        mixedContrast
+        keywords
+        PID
+        radiographers
+        radiologists
+        nurses
+        protocol
+        pitch
+        height
+        weight
+        ttp
+        age
+        inPatient
+        kV_b
+        delays
+        contrastType
+        ctdi
+        examType
+  }
+}
+`;
+
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
     variables: { page: page },
@@ -167,5 +210,12 @@ export const getExamDetailsByID = async (ctByIdId) => {
     variables: { ctByIdId: ctByIdId },
   });
 
+  return data.data;
+};
+export const getExamsRecordBySearch = async (key) => {
+  const data = await fetchData(ExamsRecordBySearch, {
+    variables: { key: key },
+  });
+  console.log(data);
   return data.data;
 };

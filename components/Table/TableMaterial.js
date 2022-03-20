@@ -7,6 +7,8 @@ import CustomPagination from "./CustomPagination";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import Link from "next/link";
 import PageviewIcon from "@mui/icons-material/Pageview";
+import Filters from "./Filters";
+import SearchIcon from "@mui/icons-material/Search";
 export default function TableMaterial({
   rowCount,
   setPageNumber,
@@ -15,6 +17,7 @@ export default function TableMaterial({
   pageNumber,
   isStale,
   isPreviousData,
+  paginationMode,
 }) {
   const headers = useMemo(
     () => [
@@ -114,13 +117,18 @@ export default function TableMaterial({
       {
         field: "actions",
         type: "actions",
-        width: 80,
+        width: 120,
         getActions: (params) => [
           <Link href={`/Exam/${params.id}`}>
             <GridActionsCellItem icon={<PageviewIcon />} label="View" />
           </Link>,
           <Link href={`/Forms/editForm/${params.id}`}>
             <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
+          </Link>,
+          <Link href={`/Search/${params.row.PID}`}>
+            <GridActionsCellItem icon={<SearchIcon />} label="Edit">
+              Look Up to this patient
+            </GridActionsCellItem>
           </Link>,
         ],
       },
@@ -166,7 +174,7 @@ export default function TableMaterial({
 
     columns: headers,
     getRowId: (row) => row.count,
-    paginationMode: "server",
+    paginationMode: paginationMode,
     onPageChange: (newPage) => {
       if (!isPreviousData) {
         setPageNumber((newPage += 1));

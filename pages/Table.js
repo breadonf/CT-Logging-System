@@ -7,7 +7,6 @@ import { Paper, Grid, Container } from "@mui/material";
 
 export default function Table() {
   const [pageNumber, setPageNumber] = useState(1);
-
   const {
     data: records,
     isSuccess,
@@ -50,6 +49,7 @@ export default function Table() {
                 isLoading={isLoading}
                 pageNumber={pageNumber}
                 isPreviousData={isPreviousData}
+                paginationMode="server"
               />
             )}
           </Paper>
