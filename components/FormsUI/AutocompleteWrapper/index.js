@@ -38,6 +38,10 @@ export default function AutocompleteWrapper({
   );
   return (
     <Autocomplete
+      sx={{
+        input: { color: "#05668D" },
+        label: { fontWeight: "bold", color: "#495371" },
+      }}
       multiple={multiple}
       id={id}
       name={name}

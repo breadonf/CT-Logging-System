@@ -32,7 +32,7 @@ export default function DateTimePicker({
 }) {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext();
-  const handledDate = prepopulatedValue.split("T")[0];
+  const handledDate = prepopulatedValue?.split("T")[0];
   const handleChange = (value) => {
     console.log(value);
     setFieldValue(name, value);
@@ -54,7 +54,15 @@ export default function DateTimePicker({
       value={field.value}
       onChange={handleChange}
       renderInput={(params) => (
-        <TextField variant="filled" fullWidth {...params} />
+        <TextField
+          variant="filled"
+          fullWidth
+          sx={{
+            input: { color: "#05668D" },
+            label: { fontWeight: "bold", color: "#495371" },
+          }}
+          {...params}
+        />
       )}
     />
   );

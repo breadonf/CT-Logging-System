@@ -20,7 +20,6 @@ const CheckboxWrapper = ({ name, label, legend, checked, ...otherProps }) => {
   const configCheckbox = {
     ...field,
     onChange: handleChange,
-    sx: { label: { fontWeight: "bold" } },
     checked: checked,
   };
 
@@ -32,10 +31,20 @@ const CheckboxWrapper = ({ name, label, legend, checked, ...otherProps }) => {
 
   return (
     <FormControl {...configFormControl}>
-      <FormLabel component="legend">{legend}</FormLabel>
+      <FormLabel
+        sx={{ fontWeight: "bold", color: "#495371" }}
+        component="legend"
+      >
+        {legend}
+      </FormLabel>
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox {...configCheckbox} />}
+          control={
+            <Checkbox
+              sx={{ fontWeight: "bold", color: "#495371" }}
+              {...configCheckbox}
+            />
+          }
           label={label}
         />
       </FormGroup>
