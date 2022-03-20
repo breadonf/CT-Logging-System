@@ -39,6 +39,7 @@ const HomepageCT = `
         delays
         contrastType
         ctdi
+        examType
       }
     }
 `;
@@ -132,6 +133,7 @@ const ExamDetailsByID = `
         delays
         contrastType
         ctdi
+        examType
       }
     }
 `;

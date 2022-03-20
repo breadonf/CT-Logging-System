@@ -7,8 +7,6 @@ const setData = async (mutation, { data, updateCtItemId }, update = false) => {
       ? { data: data, updateCtItemId: updateCtItemId }
       : { data: data },
   });
-  console.log("Query Content", data, updateCtItemId);
-  console.log("Query Content", query);
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(graphQLAPI, {
@@ -17,13 +15,12 @@ const setData = async (mutation, { data, updateCtItemId }, update = false) => {
     body: query,
   });
 
-  const json = await res.json();
+  const result = await res.json();
 
-  if (json.errors) {
-    console.log(json.errors);
+  if (result.errors) {
+    throw new Error(json.errors);
   }
-  console.log("res", json);
-  return json;
+  return result;
 };
 
 export default setData;

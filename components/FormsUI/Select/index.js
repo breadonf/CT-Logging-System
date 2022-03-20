@@ -4,7 +4,14 @@ import Select from "@mui/material/Select";
 import { useField, useFormikContext } from "formik";
 import FormControl from "@mui/material/FormControl";
 
-const SelectWrapper = ({ name, options, multiple, label, ...otherProps }) => {
+const SelectWrapper = ({
+  name,
+  options,
+  multiple,
+  label,
+  prepopulatedValue,
+  ...otherProps
+}) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -26,11 +33,9 @@ const SelectWrapper = ({ name, options, multiple, label, ...otherProps }) => {
     SelectProps: {
       multiple: multiple,
     },
-    defaultValue: [],
+    defaultValue: field.value ? field.value : [],
     label: label,
-    labelId: label,
   };
-  console.log(label);
   if (meta && meta.touched && meta.error) {
     configSelect.error = true;
     configSelect.helperText = meta.error;
@@ -46,9 +51,7 @@ const SelectWrapper = ({ name, options, multiple, label, ...otherProps }) => {
         }}
       >
         <InputLabel id={`label-${label}`}>{label}</InputLabel>
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
+
         {Object.keys(options).map((item, pos) => {
           return (
             <MenuItem key={pos} value={item}>

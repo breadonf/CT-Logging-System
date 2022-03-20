@@ -47,6 +47,10 @@ export default function DateTimePicker({
       shrink: true,
     },
   };
+  if (meta && meta.touched && meta.error) {
+    configDateTimePicker.error = true;
+    configDateTimePicker.helperText = meta.error;
+  }
 
   return (
     <DatePicker
@@ -62,6 +66,7 @@ export default function DateTimePicker({
             label: { fontWeight: "bold", color: "#495371" },
           }}
           {...params}
+          {...configDateTimePicker}
         />
       )}
     />

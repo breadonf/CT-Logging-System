@@ -17,7 +17,6 @@ export default function AutocompleteWrapper({
 
   const handleChange = (e, value) => {
     const result = value.map((option) => option);
-    console.log(result);
     setFieldValue(name, value !== null ? result : []);
   };
   const configAuto = {

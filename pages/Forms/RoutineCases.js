@@ -7,32 +7,40 @@ import { useMutation } from "react-query";
 import setData from "../../helpers/setData";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { useRouter } from "next/router";
 function RoutineCases() {
+  const router = useRouter();
   const mutation = useMutation(
-    (newFormData) => {
-      setData(createCTrecord, { data: newFormData });
+    async (newFormData) => {
+      await setData(createCTrecord, { data: newFormData });
     },
     { mutationKey: "createCTitem" }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log(values);
     const modifiedValues = preprocessor(values);
-    setTimeout(async () => {
-      await mutation.mutate(
+    console.log("modifiedValues", modifiedValues);
+    setTimeout(() => {
+      mutation.mutate(
         { ...modifiedValues },
         {
           onSuccess: async (res, variables) => {
-            console.log("onSuccess", res);
-            console.log("onSuccess", variables);
-
             alert(
-              `Success, your Ct records for ${modifiedValues.PID} is saved ${res?.count}`
+              `Success, your Ct records for ${modifiedValues.PID} is saved`
             );
+            router.push("/Table");
+          },
+          onError: async (err, varia) => {
+            console.log("onError", err, varia);
+            console.log(varia.data);
+
+            alert(`Error, Please find PACS administrator ${err}`);
           },
         }
       );
 
       setSubmitting(false);
-    }, 400);
+    }, 800);
     if (mutation.isError) {
       console.log(
         "🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
@@ -49,6 +57,9 @@ function RoutineCases() {
       </Box>;
     }
   };
+  if (mutation.isSuccess) {
+    console.log("Success", mutation);
+  }
   return <RoutineForm data={INITIAL_FORM_STATE} handleSubmit={handleSubmit} />;
 }
 
