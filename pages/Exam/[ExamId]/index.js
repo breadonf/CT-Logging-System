@@ -31,8 +31,7 @@ export default function ExamDetailsPage() {
     error,
   } = useQuery(
     ["ExamDetailsByID", ExamId],
-    async () =>
-      await getExamDetailsByID(parseInt(ExamId)).then(console.log(data)),
+    async () => await getExamDetailsByID(parseInt(ExamId)),
     { retry: true }
   );
   if (isQueryLoading || !isQuerySuccess || !data) {

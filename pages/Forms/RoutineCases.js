@@ -17,7 +17,6 @@ function RoutineCases() {
     { mutationKey: "createCTitem" }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
     const modifiedValues = preprocessor(values);
     console.log("modifiedValues", modifiedValues);
     setTimeout(() => {
