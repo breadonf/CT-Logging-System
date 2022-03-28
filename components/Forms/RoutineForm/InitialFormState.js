@@ -5,12 +5,12 @@ const INITIAL_FORM_STATE = {
   weight: undefined,
   height: undefined,
   circumference: undefined,
-  Date: undefined,
+  Date: new Date(),
   urgent: false,
   sedation: false,
   protocol: [],
-  kV_a: undefined,
-  kV_b: undefined,
+  kV_a: [],
+  kV_b: [],
   pitch: undefined,
   injectionSite: undefined,
   handInjection: undefined,
@@ -28,6 +28,7 @@ const INITIAL_FORM_STATE = {
   delays: [""],
   examType: [],
   ctdi: undefined,
+  IR: null,
 };
 
 export default INITIAL_FORM_STATE;

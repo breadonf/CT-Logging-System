@@ -1,4 +1,6 @@
-{
-  "Sn100": "Sn100",
-  "Sn150": "Sn150"
-}
+[
+  { "label": "Sn100", "value": "Sn100" },
+  { "label": "Sn150", "value": "Sn150" },
+  { "label": "Secondary Sn150", "value": "Sn150_secondary" },
+  { "label": "Secondary Sn100", "value": "Sn100_secondary" }
+]

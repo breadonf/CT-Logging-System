@@ -10,15 +10,27 @@ export default function AutocompleteWrapper({
   autocompleteOptions,
   prepopulatedValue,
   multiple,
+  groupBy,
+  disabled = false,
+  limit = 2,
   ...otherProps
 }) {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
-
+  const [disableInput, setDisabledInput] = React.useState(false);
   const handleChange = (e, value) => {
-    const result = value.map((option) => option);
-    setFieldValue(name, value !== null ? result : []);
+    if (multiple) {
+      const result = value.map((option) => option);
+      if (result.length >= limit) {
+        setDisabledInput(true);
+      } else {
+        setFieldValue(name, value !== null ? result : []);
+      }
+    } else {
+      setFieldValue(name, value);
+    }
   };
+
   const configAuto = {
     ...field,
     ...otherProps,
@@ -26,14 +38,15 @@ export default function AutocompleteWrapper({
     margin: "normal",
     label: label,
     fullWidth: true,
-    error: false,
+    error: false
   };
   if (meta && meta.touched && meta.error) {
     configAuto.error = true;
     configAuto.helperText = meta.error;
   }
+
   let flattenedAutocompleteOptions = autocompleteOptions.map(
-    ({ name }) => name
+    ({ label }) => label
   );
   return (
     <Autocomplete
@@ -42,17 +55,28 @@ export default function AutocompleteWrapper({
         label: { fontWeight: "bold", color: "#495371" },
       }}
       multiple={multiple}
+      disabled={disableInput}
       id={id}
+      filterSelectedOptions
       name={name}
       fullWidth
+      groupBy={groupBy}
       options={flattenedAutocompleteOptions}
       getOptionLabel={(option) => option}
       onChange={handleChange}
       defaultValue={prepopulatedValue}
-      isOptionEqualToValue={(option, val) => {
-        option === val;
+      renderInput={(params) => (
+        <TextField
+          sx={{
+            alignSelf: "flex-start",
+          }}
+          {...configAuto}
+          {...params}
+        />
+      )}
+      isOptionEqualToValue={(option, valu) => {
+        option == valu;
       }}
-      renderInput={(params) => <TextField {...configAuto} {...params} />}
       {...otherProps}
     />
   );

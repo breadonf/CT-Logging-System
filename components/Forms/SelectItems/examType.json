@@ -8,6 +8,5 @@
   "C": "ECG-gated cardiac",
   "U": "Upper Limb",
   "L": "Lower Limb",
-  "S": "Spine",
-  "I": "IR"
+  "S": "Spine"
 }
