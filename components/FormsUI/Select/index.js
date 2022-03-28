@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, MenuItem, InputLabel } from "@mui/material";
 import Select from "@mui/material/Select";
-import { useField, useFormikContext } from "formik";
+import { isEmptyArray, useField, useFormikContext } from "formik";
 import FormControl from "@mui/material/FormControl";
 
 const SelectWrapper = ({
@@ -10,6 +10,7 @@ const SelectWrapper = ({
   multiple,
   label,
   prepopulatedValue,
+  sx,
   ...otherProps
 }) => {
   const { setFieldValue } = useFormikContext();
@@ -40,14 +41,14 @@ const SelectWrapper = ({
     configSelect.error = true;
     configSelect.helperText = meta.error;
   }
-
   return (
     <FormControl fullWidth>
       <TextField
         {...configSelect}
         sx={{
+          ...sx,
           input: { color: "#05668D" },
-          label: { fontWeight: "bold", color: "#495371" },
+          label: { ...sx, fontWeight: "bold", color: "#495371" },
         }}
       >
         <InputLabel id={`label-${label}`}>{label}</InputLabel>

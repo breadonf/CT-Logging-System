@@ -40,6 +40,7 @@ const HomepageCT = `
         contrastType
         ctdi
         examType
+        IR
       }
     }
 `;
@@ -67,20 +68,23 @@ const HomepageData = `
     #graphql
     query HomepageData {
       radiologists: Radiologists {
-        name
+        label
+        value
         
       }
       protocol {
-        name
+        label
+        value
         
       }
       radiographers {
-        
-        name
+        label
+        value
       }
       nurses: Nurses  {
         
-        name
+        label
+        value
       }
     }
 `;
@@ -134,6 +138,7 @@ const ExamDetailsByID = `
         contrastType
         ctdi
         examType
+        IR
       }
     }
 `;
@@ -177,6 +182,7 @@ const ExamsRecordBySearch = `
         contrastType
         ctdi
         examType
+        IR
   }
 }
 `;
@@ -201,7 +207,6 @@ export const getHomepageData = async () => {
   const data = await fetchData(HomepageData, {
     variables: {},
   });
-
   return data.data;
 };
 
@@ -216,6 +221,5 @@ export const getExamsRecordBySearch = async (key) => {
   const data = await fetchData(ExamsRecordBySearch, {
     variables: { key: key },
   });
-  console.log(data);
   return data.data;
 };

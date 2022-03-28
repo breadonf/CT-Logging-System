@@ -1,6 +1,17 @@
-{
-  "L Elbow/Arm": "Left Elbow/Arm",
-  "L Hand/Wrist": "Left Hand/Wrist",
-  "R Hand/Wrist": "Right Hand/Wrist",
-  "R Elbow/Arm": "Right Elbow/Arm"
-}
+[
+  { "label": "Hickman", "value": "Hickman" },
+  { "label": "PICC", "value": "PICC" },
+  { "label": "Left Elbow/Arm", "value": "L Elbow/Arm" },
+  { "label": "Left Hand/Wrist", "value": "L Hand/Wrist" },
+  { "label": "Left Fem/Groin", "value": "L Fem/Groin" },
+  { "label": "Left Leg/Foot", "value": "L Leg/Foot" },
+  { "label": "Right Hand/Wrist", "value": "R Hand/Wrist" },
+  { "label": "Right Elbow/Arm", "value": "R Elbow/Arm" },
+  { "label": "Right Fem/Groin", "value": "R Fem/Groin" },
+  { "label": "Right Leg/Foot", "value": "R Leg/Foot" },
+  { "label": "Central Venous Catheter", "value": "CVC" },
+  { "label": "Femoral Line", "value": "Fem Line" },
+  { "label": "ECMO", "value": "ECMO" },
+  { "label": "Hemodialysis Catheter", "value": "HD" },
+  { "label": "MISC", "value": "MISC" }
+]
