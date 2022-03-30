@@ -9,7 +9,7 @@ import {
   Form,
   FieldArray,
   Field,
-  resetForm
+  resetForm,
 } from "formik";
 import {
   Container,
@@ -48,6 +48,8 @@ import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
 import kV_a from "../SelectItems/kV_a.json";
 import kV_b from "../SelectItems/kV_b.json";
+import sedatedBy from "../SelectItems/sedatedBy.json";
+import sedationMethod from "../SelectItems/sedationMethod.json";
 import FORM_VALIDATION from "./ValidationSchema";
 import examType from "../SelectItems/examType.json";
 
@@ -62,6 +64,8 @@ function RoutineForm({ data, handleSubmit }) {
     "autocompleteOptions",
     async () => await getHomepageData()
   );
+
+  const [sedation, setSedation] = React.useState(false);
   const [contrast, setContrast] = React.useState(false);
   React.useEffect(() => {
     if (data.volume) {
@@ -123,7 +127,7 @@ function RoutineForm({ data, handleSubmit }) {
                               label="Age (e.g. 3d => 3days, 5m => 5months, 12 => 12years) "
                             ></Textfield>
                           </Grid>
-                          <Grid item xs={3}>
+                          <Grid item xs={2} sx={{ml:4}}>
                             <Checkbox
                               name="inPatient"
                               legend="In patient?"
@@ -163,7 +167,7 @@ function RoutineForm({ data, handleSubmit }) {
                               Exam Details
                             </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={4}>
                             <DateTimePicker
                               name="Date"
                               label="Exam Date"
@@ -180,18 +184,41 @@ function RoutineForm({ data, handleSubmit }) {
                           <Grid item xs={2}>
                             <Checkbox
                               label="Yes"
-                              name="sedation"
-                              legend="Sedation"
-                              checked={data.sedation}
-                            />
-                          </Grid>
-                          <Grid item xs={2}>
-                            <Checkbox
-                              label="Yes"
                               name="IR"
                               legend="IR case?"
                               checked={data.IR}
                             />
+                          </Grid>
+                          <Grid item xs={4}>
+                            <Grid container>
+                              <Grid item xs={4}>
+                                <Checkbox
+                                  label="Yes"
+                                  name="sedation"
+                                  legend="Sedation"
+                                  dependable={setSedation}
+                                  checked={data.sedation}
+                                />
+                              </Grid>
+                              {sedation && (
+                                <>
+                                  <Grid item xs={4}>
+                                    <Select
+                                      name="sedatedBy"
+                                      label="by"
+                                      options={sedatedBy}
+                                    />
+                                  </Grid>
+                                  <Grid item xs={4}>
+                                    <Select
+                                      name="sedationMethod"
+                                      label="using"
+                                      options={sedationMethod}
+                                    />
+                                  </Grid>
+                                </>
+                              )}
+                            </Grid>
                           </Grid>
                           <Grid item xs={12}>
                             <AutocompleteWrapper
@@ -303,7 +330,7 @@ function RoutineForm({ data, handleSubmit }) {
                                     name="contrastType"
                                     label="Type of Contrast"
                                     options={typeOfContrast}
-                                  ></Select>
+                                  />
                                 </Grid>
                                 <Grid item xs={4}>
                                   <Textfield
@@ -337,11 +364,8 @@ function RoutineForm({ data, handleSubmit }) {
                                 <Grid item xs={5.92}>
                                   <FieldArray name="delays">
                                     {(fieldArrayProps) => {
-                                      const {
-                                        push,
-                                        remove,
-                                        form,
-                                      } = fieldArrayProps;
+                                      const { push, remove, form } =
+                                        fieldArrayProps;
                                       const { values } = form;
                                       const { delays } = values;
                                       console.log("delays", delays);
@@ -439,27 +463,6 @@ function RoutineForm({ data, handleSubmit }) {
                               </>
                             )}
                           </>
-
-                          {/* 
-                        <FieldArray name="delays">
-                          {({push, remove, }) => (
-                            <>
-                            <Grid item>
-                              <Typography variant="body2">All Phases and Delay Time</Typography>
-                            </Grid>
-                            {values.delays.map((_, index) => (
-                              <Grid container>
-                                  <Grid item sx={2}>
-                                    <Textfield name={`delays.${index}`.phase}></Textfield>
-                                  </Grid>
-                                  <Grid item sx={2}>
-                                    <Textfield name={`delays.${index}`.delayTime}></Textfield>
-                                  </Grid>
-                              </Grid>
-                            ))}
-                            </>
-                          )}
-                        </FieldArray>*/}
                         </Grid>
 
                         {/* Staff Details */}

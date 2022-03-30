@@ -43,6 +43,8 @@ import { getHomepageData } from "../../../queries/queries";
 import { normalizeErrors } from "../../../helpers/errorHelpers";
 import submitCaseContainer from "../../../queries/mutations";
 
+
+
 function ExamDetails() {
   const handleSubmit = async (
     values,

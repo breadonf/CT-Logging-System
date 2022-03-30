@@ -11,21 +11,15 @@ export default function AutocompleteWrapper({
   prepopulatedValue,
   multiple,
   groupBy,
-  disabled = false,
   limit = 2,
   ...otherProps
 }) {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
-  const [disableInput, setDisabledInput] = React.useState(false);
   const handleChange = (e, value) => {
     if (multiple) {
       const result = value.map((option) => option);
-      if (result.length >= limit) {
-        setDisabledInput(true);
-      } else {
-        setFieldValue(name, value !== null ? result : []);
-      }
+      setFieldValue(name, value !== null ? result : []);
     } else {
       setFieldValue(name, value);
     }
@@ -38,7 +32,7 @@ export default function AutocompleteWrapper({
     margin: "normal",
     label: label,
     fullWidth: true,
-    error: false
+    error: false,
   };
   if (meta && meta.touched && meta.error) {
     configAuto.error = true;
@@ -55,7 +49,6 @@ export default function AutocompleteWrapper({
         label: { fontWeight: "bold", color: "#495371" },
       }}
       multiple={multiple}
-      disabled={disableInput}
       id={id}
       filterSelectedOptions
       name={name}

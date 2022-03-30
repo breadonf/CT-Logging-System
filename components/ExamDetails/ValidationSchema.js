@@ -62,7 +62,7 @@ const FORM_VALIDATION = yup.object().shape({
   date: yup.string().required("Required"),
   urgent: yup.boolean(),
   sedation: yup.boolean(),
-  protocol: yup.array().min(1, "Required"),
+  protocol: yup.array().min(1, "Required").max(2, "You can only choose 2 protocols, please submit another form if necessary"),
   kV_A: yup.string().required("Required"),
   kV_B: yup.string(),
   pitch: yup
