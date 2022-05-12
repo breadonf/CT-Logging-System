@@ -119,13 +119,13 @@ export default function TableMaterial({
         type: "actions",
         width: 120,
         getActions: (params) => [
-          <Link href={`/Exam/${params.id}`}>
+          <Link key="1" passHref href={`/Exam/${params.id}`}>
             <GridActionsCellItem icon={<PageviewIcon />} label="View" />
           </Link>,
-          <Link href={`/Forms/editForm/${params.id}`}>
+          <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
             <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
           </Link>,
-          <Link href={`/Search/${params.row.PID}`}>
+          <Link key="3" passHref href={`/Search/${params.row.PID}`}>
             <GridActionsCellItem icon={<SearchIcon />} label="Edit">
               Look Up to this patient
             </GridActionsCellItem>

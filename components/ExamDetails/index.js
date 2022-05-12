@@ -43,8 +43,6 @@ import { getHomepageData } from "../../../queries/queries";
 import { normalizeErrors } from "../../../helpers/errorHelpers";
 import submitCaseContainer from "../../../queries/mutations";
 
-
-
 function ExamDetails() {
   const handleSubmit = async (
     values,
@@ -56,7 +54,7 @@ function ExamDetails() {
     };
     const converted = toDate(values.date);
     setTimeout(() => {
-      const errors = await props.submit(values);
+      const errors = props.submit(values);
       if (errors) {
         setErrors(normalizeErrors(errors));
       } else {
