@@ -18,7 +18,9 @@ export default function AutocompleteWrapper({
   const [field, meta] = useField(name);
   const handleChange = (e, value) => {
     if (multiple) {
+      console.log("val", value);
       const result = value.map((option) => option);
+      console.log("resul", result);
       setFieldValue(name, value !== null ? result : []);
     } else {
       setFieldValue(name, value);

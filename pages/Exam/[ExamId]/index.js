@@ -129,7 +129,12 @@ export default function ExamDetailsPage() {
                   <Typography variant="h5" color="#05668D">
                     Protocol:
                     {CT_by_id.protocol.map((protocol) => (
-                      <Chip variant="outlined" color="error" label={protocol} />
+                      <Chip
+                        key={protocol}
+                        variant="outlined"
+                        color="error"
+                        label={protocol}
+                      />
                     ))}
                   </Typography>
                 </Grid>
@@ -250,6 +255,7 @@ export default function ExamDetailsPage() {
                     Reporting Radiologist(s):
                     {CT_by_id.radiologists.map((radiologist) => (
                       <Chip
+                        key={radiologist}
                         variant="outlined"
                         color="primary"
                         label={radiologist}
@@ -293,7 +299,7 @@ export default function ExamDetailsPage() {
                 sx={{ py: 4, justifyContent: "center" }}
               >
                 <Grid item xs={2}>
-                  <Link href={`/Table`}>
+                  <Link passHref href={`/Table`}>
                     <Button variant="contained" fullWidth>
                       Back to Table
                     </Button>

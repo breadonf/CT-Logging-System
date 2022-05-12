@@ -8,6 +8,7 @@ import setData from "../../helpers/setData";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
+
 function RoutineCases() {
   const router = useRouter();
   const mutation = useMutation(
@@ -17,8 +18,8 @@ function RoutineCases() {
     { mutationKey: "createCTitem" }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log("Submission value", values);
     const modifiedValues = preprocessor(values);
-    console.log("modifiedValues", modifiedValues);
     setTimeout(() => {
       mutation.mutate(
         { ...modifiedValues },
@@ -46,10 +47,6 @@ function RoutineCases() {
         mutation.error.message
       );
     }
-    console.log(
-      "🚀 ~ file: index.js ~ line 71 ~ setTimeout ~ mutation",
-      mutation
-    );
     if (mutation.onSettled) {
       <Box sx={{ display: "flex" }}>
         <CircularProgress />
