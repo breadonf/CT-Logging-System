@@ -57,7 +57,7 @@ export default function AutocompleteWrapper({
       fullWidth
       groupBy={groupBy}
       options={flattenedAutocompleteOptions}
-      getOptionLabel={(option) => option}
+      getOptionLabel={(option) => (option ? option : "")}
       onChange={handleChange}
       defaultValue={prepopulatedValue}
       renderInput={(params) => (

@@ -127,7 +127,7 @@ function RoutineForm({ data, handleSubmit }) {
                               label="Age (e.g. 3d => 3days, 5m => 5months, 12 => 12years) "
                             ></Textfield>
                           </Grid>
-                          <Grid item xs={2} sx={{ml:4}}>
+                          <Grid item xs={2} sx={{ ml: 4 }}>
                             <Checkbox
                               name="inPatient"
                               legend="In patient?"
@@ -230,7 +230,7 @@ function RoutineForm({ data, handleSubmit }) {
                               autocompleteOptions={
                                 isSuccess
                                   ? autocompleteOptions?.protocol ?? []
-                                  : []
+                                  : ""
                               }
                             ></AutocompleteWrapper>
                           </Grid>
@@ -364,8 +364,11 @@ function RoutineForm({ data, handleSubmit }) {
                                 <Grid item xs={5.92}>
                                   <FieldArray name="delays">
                                     {(fieldArrayProps) => {
-                                      const { push, remove, form } =
-                                        fieldArrayProps;
+                                      const {
+                                        push,
+                                        remove,
+                                        form,
+                                      } = fieldArrayProps;
                                       const { values } = form;
                                       const { delays } = values;
                                       console.log("delays", delays);

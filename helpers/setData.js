@@ -18,7 +18,8 @@ const setData = async (mutation, { data, updateCtItemId }, update = false) => {
   const result = await res.json();
 
   if (result.errors) {
-    throw new Error(result);
+    console.log(result.errors);
+    throw new Error(result.errors);
   }
   return result;
 };
