@@ -358,7 +358,7 @@ function RoutineForm({ data, handleSubmit }) {
                                     color="#05668D"
                                   >
                                     Delay Time (s): 0 = Start of Contrast
-                                    Injection
+                                    Injection (Maximum 5 input)
                                   </Typography>
                                 </Grid>
                                 <Grid item xs={5.92}>
@@ -371,7 +371,6 @@ function RoutineForm({ data, handleSubmit }) {
                                       } = fieldArrayProps;
                                       const { values } = form;
                                       const { delays } = values;
-                                      console.log("delays", delays);
                                       return (
                                         <div>
                                           {delays?.map((delay, index) => (
@@ -392,20 +391,8 @@ function RoutineForm({ data, handleSubmit }) {
                                                     }`}
                                                   />
                                                 </Grid>
-                                                <Grid
-                                                  item
-                                                  xs={2}
-                                                  sx={{ pb: 2 }}
-                                                >
-                                                  <Button
-                                                    type="button"
-                                                    onClick={() => push(index)}
-                                                  >
-                                                    <AddCircleOutlinedIcon />
-                                                  </Button>
-                                                </Grid>
                                                 <>
-                                                  {delays.length > 1 && (
+                                                  {delays.length < 5 ? (
                                                     <Grid
                                                       item
                                                       xs={2}
@@ -413,6 +400,57 @@ function RoutineForm({ data, handleSubmit }) {
                                                     >
                                                       <Button
                                                         type="button"
+                                                        onClick={() =>
+                                                          push(index)
+                                                        }
+                                                      >
+                                                        <AddCircleOutlinedIcon />
+                                                      </Button>
+                                                    </Grid>
+                                                  ) : (
+                                                    <Grid
+                                                      item
+                                                      xs={2}
+                                                      sx={{ pb: 2 }}
+                                                    >
+                                                      <Button
+                                                        type="button"
+                                                        disabled
+                                                        onClick={() =>
+                                                          push(index)
+                                                        }
+                                                      >
+                                                        <AddCircleOutlinedIcon />
+                                                      </Button>
+                                                    </Grid>
+                                                  )}
+                                                </>
+
+                                                <>
+                                                  {delays.length > 1 ? (
+                                                    <Grid
+                                                      item
+                                                      xs={2}
+                                                      sx={{ pb: 2 }}
+                                                    >
+                                                      <Button
+                                                        type="button"
+                                                        onClick={() =>
+                                                          remove(index)
+                                                        }
+                                                      >
+                                                        <RemoveCircleOutlinedIcon />
+                                                      </Button>
+                                                    </Grid>
+                                                  ) : (
+                                                    <Grid
+                                                      item
+                                                      xs={2}
+                                                      sx={{ pb: 2 }}
+                                                    >
+                                                      <Button
+                                                        type="button"
+                                                        disabled
                                                         onClick={() =>
                                                           remove(index)
                                                         }
