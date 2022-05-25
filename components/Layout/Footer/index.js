@@ -21,7 +21,6 @@ function Copyright() {
 export default function StickyFooter() {
   return (
     <>
-      <CssBaseline />
       <Box
         component="footer"
         sx={{

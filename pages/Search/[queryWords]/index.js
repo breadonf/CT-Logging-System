@@ -41,10 +41,7 @@ export default function SearchTable() {
 
         <Grid item xs={12}>
           <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
-            <Paper
-              elevation={12}
-              sx={{ px: 3, py: 5, bgcolor: "#F0F3BD", minHeight: "90" }}
-            >
+            <Paper elevation={12} sx={{ px: 3, py: 5, bgcolor: "#F0F3BD" }}>
               <Filters />
               <TableMaterial
                 setPageNumber={setPageNumber}
