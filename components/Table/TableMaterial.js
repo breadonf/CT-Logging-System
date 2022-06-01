@@ -9,6 +9,8 @@ import Link from "next/link";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import Filters from "./Filters";
 import SearchIcon from "@mui/icons-material/Search";
+import Toolbar from "./Toolbar";
+
 export default function TableMaterial({
   rowCount,
   setPageNumber,
@@ -115,6 +117,7 @@ export default function TableMaterial({
         },
       },
       {
+        headerName: "Actions items",
         field: "actions",
         type: "actions",
         width: 120,
@@ -184,6 +187,9 @@ export default function TableMaterial({
     components: { Toolbar: GridToolbar, Pagination: CustomPagination },
     loading: isLoading,
     pageSize: 25,
+    components: {
+      Toolbar: Toolbar,
+    },
   };
   return (
     <>

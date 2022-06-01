@@ -7,36 +7,13 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps, router }) {
   return (
-    <AnimatePresence>
-      <motion.div
-        key={router.route}
-        initial="pageInitial"
-        animate="pageAnimate"
-        exit="pageExit"
-        variants={{
-          pageInitial: {
-            opacity: 0,
-            duration: 0.1,
-          },
-          pageAnimate: {
-            opacity: 1,
-            duration: 0.1,
-          },
-          pageExit: {
-            opacity: 0,
-            duration: 0.1,
-          },
-        }}
-      >
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </Hydrate>
-        </QueryClientProvider>
-      </motion.div>
-    </AnimatePresence>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 
