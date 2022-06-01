@@ -14,15 +14,15 @@ const preprocessor = (values) => {
   } else {
     computedAge = values.age;
   }
-  // Value parsing for compliance of the server
-  const { height, weight, volume, ttp, rate, pitch, ctdi } = values;
+
+  const { height, weight, volume, ttp, rate, circumference, PID } = values;
   const convertedHeight = parseFloat(height);
   const convertedWeight = parseFloat(weight);
+  const convertedCircumference = parseFloat(circumference);
   const convertedVolume = parseFloat(volume);
   const convertedTtp = parseFloat(ttp);
   const convertedRate = parseFloat(rate);
-  const convertedPitch = parseFloat(pitch);
-  const convertedCtdi = parseFloat(ctdi);
+  const convertedPID = PID.toUpperCase();
 
   const modifiedValues = { ...values };
 
@@ -35,8 +35,8 @@ const preprocessor = (values) => {
   modifiedValues.ttp = convertedTtp;
   modifiedValues.rate = convertedRate;
   modifiedValues.age = computedAge;
-  modifiedValues.pitch = convertedPitch;
-  modifiedValues.ctdi = convertedCtdi;
+  modifiedValues.circumference = convertedCircumference;
+  modifiedValues.PID = convertedPID;
   console.log("ending preprocessor now");
   return modifiedValues;
 };
