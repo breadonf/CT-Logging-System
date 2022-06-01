@@ -16,15 +16,15 @@ function MyApp({ Component, pageProps, router }) {
         variants={{
           pageInitial: {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.1,
           },
           pageAnimate: {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.1,
           },
           pageExit: {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.1,
           },
         }}
       >

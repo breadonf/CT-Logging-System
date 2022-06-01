@@ -23,14 +23,26 @@ const preprocessor = (values) => {
     console.log("4");
   }
 
-  const { height, weight, volume, ttp, rate, pitch, ctdi } = values;
+  const {
+    height,
+    weight,
+    volume,
+    ttp,
+    rate,
+    pitch,
+    ctdi,
+    circumference,
+    PID,
+  } = values;
   const convertedHeight = parseFloat(height);
   const convertedWeight = parseFloat(weight);
+  const convertedCircumference = parseFloat(circumference);
   const convertedVolume = parseFloat(volume);
   const convertedTtp = parseFloat(ttp);
   const convertedRate = parseFloat(rate);
   const convertedPitch = parseFloat(pitch);
   const convertedCtdi = parseFloat(ctdi);
+  const covertedPID = PID.toUpperCase();
   // console.log("inside preprocessor now", values.Date);
   // const convertedDate = toDate(values.Date);
   // console.log("inside preprocessor now");
@@ -40,7 +52,6 @@ const preprocessor = (values) => {
 
   console.log(modifiedValues?.count);
   modifiedValues.count && delete modifiedValues.count;
-
   modifiedValues.Date_func && delete modifiedValues.Date_func;
 
   // modifiedValues.Date = convertedDate;
@@ -52,6 +63,7 @@ const preprocessor = (values) => {
   modifiedValues.age = computedAge;
   modifiedValues.pitch = convertedPitch;
   modifiedValues.ctdi = convertedCtdi;
+  modifiedValues.circumference = convertedCircumference;
   console.log("ending preprocessor now");
   return modifiedValues;
 };
