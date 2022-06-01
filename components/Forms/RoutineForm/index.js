@@ -230,7 +230,7 @@ function RoutineForm({ data, handleSubmit }) {
                               multiple={true}
                               id="protocol"
                               name="protocol"
-                              label="Protocol"
+                              label="Protocol (Maximum 2 protcols can be selected)"
                               prepopulatedValue={data?.protocol ?? []}
                               autocompleteOptions={
                                 isSuccess
