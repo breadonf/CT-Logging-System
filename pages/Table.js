@@ -38,7 +38,7 @@ export default function Table() {
         <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
           <Paper
             elevation={12}
-            sx={{ px: 3, py: 5, bgcolor: "#F0F3BD", minHeight: "90" }}
+            sx={{ p: 3, bgcolor: "#F0F3BD", height: "85vh" }}
           >
             {isSuccess && isRowCountSuccess && (
               <TableMaterial

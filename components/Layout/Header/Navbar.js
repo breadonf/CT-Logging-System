@@ -13,7 +13,10 @@ const pages = ["Forms", "Table", "Search"];
 
 const Navbar = () => {
   return (
-    <AppBar position="static" style={{ background: "#001011" }}>
+    <AppBar
+      position="static"
+      style={{ minHeight: "5vh", background: "#001011" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href={"/"} passHref>

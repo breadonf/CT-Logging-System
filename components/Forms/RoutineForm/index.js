@@ -91,7 +91,12 @@ function RoutineForm({ data, handleSubmit }) {
                     <Grid item xs={12}>
                       <Paper
                         elevation={12}
-                        sx={{ px: 3, py: 5, bgcolor: "#F0F3BD" }}
+                        sx={{
+                          p: 3,
+                          height: "85vh",
+                          bgcolor: "#F0F3BD",
+                          overflowY: "auto",
+                        }}
                       >
                         <Grid item xs={12}>
                           <Typography

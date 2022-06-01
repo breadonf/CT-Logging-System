@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docker": "docker-compose -f docker-compose.yml up"
+    "docker": "docker-compose -f docker-compose.yml -p Frontend up --no-start && docker save -o frontend.tar Frontend"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
