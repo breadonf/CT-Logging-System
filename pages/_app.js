@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import { QueryClientProvider, QueryClient, Hydrate } from "react-query";
 import Layout from "../components/Layout";
-import { motion, AnimatePresence } from "framer-motion";
 
 const queryClient = new QueryClient();
 

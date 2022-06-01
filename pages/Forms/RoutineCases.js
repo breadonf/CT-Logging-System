@@ -8,6 +8,7 @@ import setData from "../../helpers/setData";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function RoutineCases() {
   const router = useRouter();
@@ -56,7 +57,16 @@ function RoutineCases() {
   if (mutation.isSuccess) {
     console.log("Success", mutation);
   }
-  return <RoutineForm data={INITIAL_FORM_STATE} handleSubmit={handleSubmit} />;
+  return (
+    <>
+      <Head>
+        <title>CT record</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <RoutineForm data={INITIAL_FORM_STATE} handleSubmit={handleSubmit} />
+    </>
+  );
 }
 
 export default RoutineCases;

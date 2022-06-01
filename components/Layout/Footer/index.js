@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
 
 function Copyright() {
   return (
@@ -20,24 +21,41 @@ function Copyright() {
 
 export default function StickyFooter() {
   return (
-    <>
-      <Box
-        component="footer"
-        sx={{
-          py: 3,
-          px: 2,
-          mt: "auto",
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[700]
-              : theme.palette.grey[800],
-        }}
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      spacing={2}
+      sx={{
+        position: "absolute",
+        bottom: 0,
+      }}
+    >
+      <Grid
+        sx={{ minWidth: "100%" }}
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
+        container
+        item
+        xs={12}
       >
-        <Container maxWidth="sm">
-          <Typography variant="body1"></Typography>
-          <Copyright />
-        </Container>
-      </Box>
-    </>
+        <Box
+          pt={10}
+          sx={{
+            backgroundColor: "#000001",
+            minHeight: "5vh",
+            minWidth: "100%",
+            padding: 0,
+            justifyContent: "center",
+          }}
+        >
+          <Grid item>
+            <Copyright />
+          </Grid>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
