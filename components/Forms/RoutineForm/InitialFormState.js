@@ -4,7 +4,7 @@ const INITIAL_FORM_STATE = {
   age: "",
   weight: "",
   height: "",
-  circumference: 0,
+  circumference: undefined,
   Date: new Date(),
   urgent: false,
   sedation: false,

@@ -3,7 +3,7 @@ import * as yup from "yup";
 const FORM_VALIDATION = yup.object().shape({
   PID: yup.string().required(),
   inPatient: yup.boolean(),
-  age: yup.string.required,
+  age: yup.string().required(),
   weight: yup
     .number()
     .typeError("Please enter a valid weight in kg")
@@ -15,7 +15,8 @@ const FORM_VALIDATION = yup.object().shape({
   circumference: yup
     .number()
     .typeError("Please enter a valid circumference in cm")
-    .min(0, "Invalid Input"),
+    .min(0, "Invalid Input")
+    .nullable(),
   Date: yup.string().required("Required"),
   urgent: yup.boolean(),
   sedation: yup.boolean(),
@@ -27,9 +28,9 @@ const FORM_VALIDATION = yup.object().shape({
       2,
       "You can only choose 2 protocols, please submit another form if necessary"
     ),
-  kV_A: yup.array().min(1, "Required"),
+  kV_A: yup.array().min(1, "Required").required(),
   kV_B: yup.array(),
-  pitch: yup.string(),
+  pitch: yup.string().required(),
   route: yup.string(),
   handInjection: yup.boolean(),
   mixedContrast: yup.boolean(),
@@ -47,7 +48,7 @@ const FORM_VALIDATION = yup.object().shape({
   radiologists: yup.array(),
   nurses: yup.array(),
   remark: yup.string(),
-  ctdi: yup.number(),
+  ctdi: yup.number().required(),
   IR: yup.boolean(),
 });
 
