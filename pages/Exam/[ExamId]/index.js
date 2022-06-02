@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import {
   Paper,
   Grid,
+  Box,
   Container,
   Typography,
   Divider,
@@ -14,6 +15,7 @@ import {
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import CancelIcon from "@mui/icons-material/Cancel";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
@@ -52,185 +54,249 @@ export default function ExamDetailsPage() {
         <Grid item xs={12}>
           <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
             <Paper
-              elevation={12}
-              sx={{ px: 3, py: 5, bgcolor: "#F0F3BD", minHeight: "90" }}
+              elevation={8}
+              sx={{ px: 3, py: 5, bgcolor: "#FFF1B2", minHeight: "90" }}
             >
-              <Grid item xs={12}>
-                <Typography variant="h3" align="center" color="#093A3E">
-                  Record
-                </Typography>
-              </Grid>
-              {/* Patient Details */}
-              <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-                <Grid item xs={12}>
-                  <Typography variant="h5" color="#05668D">
-                    <SickIcon sx={{ mr: 1 }} /> Patient Details
-                  </Typography>
+              {/* Heading */}
+              <Box sx={{ backgroundColor: "#333333" }}>
+                <Grid container spacing={2} sx={{ px: 2, py: 2 }}>
+                  <Grid item xs={6}>
+                    <Typography variant="h5" color="#FFFFFF" align="left">
+                      {CT_by_id.PID} | {CT_by_id.protocol}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography variant="h5" color="#FFFFFF" align="right">
+                      {CT_by_id.Date_func.year}-{CT_by_id.Date_func.month}-
+                      {CT_by_id.Date_func.day}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Patient ID: {CT_by_id.PID}
-                  </Typography>
-                </Grid>
-                <Grid item xs={5}>
-                  <Typography variant="h5" color="#05668D">
-                    Age: {CT_by_id.age}
-                  </Typography>
-                </Grid>
+              </Box>
 
-                <Grid item xs={3}>
-                  <Typography variant="h5" color="#05668D">
-                    In patient? :
-                    {CT_by_id.inPatient ? <CheckRoundedIcon /> : <></>}
+              {/* Patient Details */}
+              <Grid container spacing={1} component={"div"} sx={{ py: 5 }}>
+                <Grid item xs={2} sx={{ pr: 2 }}>
+                  <Typography variant="h5" color="#265B67">
+                    <SickIcon sx={{ mr: 1 }} />
+                    Patient
                   </Typography>
                 </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Height: {CT_by_id.height} cm
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Weight: {CT_by_id.weight}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Circumference: {CT_by_id.circumference}
-                  </Typography>
+                <Grid
+                  container
+                  xs={10}
+                  spacing={1}
+                  sx={{
+                    border: 1,
+                    borderRadius: 1,
+                    backgroundColor: "#EEEEEE",
+                    py: 1,
+                  }}
+                >
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      ID: {CT_by_id.PID}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Age: {CT_by_id.age} y
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      In patient?:
+                      {CT_by_id.inPatient ? (
+                        <CheckRoundedIcon sx={{ ml: 1 }} />
+                      ) : (
+                        <CancelIcon sx={{ ml: 1 }} />
+                      )}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Height: {CT_by_id.height} cm
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Weight: {CT_by_id.weight} kg
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Circumference: {CT_by_id.circumference} cm
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Divider />
+
               {/* Exam Details */}
               <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-                <Grid item xs={12}>
-                  <Typography variant="h5" color="#05668D">
+                <Grid item xs={2} sx={{ pr: 2 }}>
+                  <Typography variant="h5" color="#265B67">
                     <ImageSearchIcon sx={{ mr: 1 }} />
-                    Exam Details
+                    Exam
                   </Typography>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography variant="h5" color="#05668D">
-                    Exam Date: {CT_by_id.Date_func.year}-
-                    {CT_by_id.Date_func.month}-{CT_by_id.Date_func.day}
-                  </Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <Typography variant="h5" color="#05668D">
-                    Urgent?:{CT_by_id.urgent ? <CheckRoundedIcon /> : <></>}
-                  </Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <Typography variant="h5" color="#05668D">
-                    Sedation?:{CT_by_id.sedation ? <CheckRoundedIcon /> : <></>}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography variant="h5" color="#05668D">
-                    Protocol:
-                    {CT_by_id.protocol.map((protocol) => (
-                      <Chip
-                        key={protocol}
-                        variant="outlined"
-                        color="error"
-                        label={protocol}
-                      />
-                    ))}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    kV (Tube A):{CT_by_id.kV_a}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  {CT_by_id.kV_b && (
-                    <Typography variant="h5" color="#05668D">
-                      kV (Tube B):{CT_by_id.kV_b}
+                <Grid
+                  container
+                  xs={10}
+                  spacing={1}
+                  sx={{
+                    border: 1,
+                    borderRadius: 1,
+                    backgroundColor: "#EEEEEE",
+                    py: 1,
+                  }}
+                >
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Date: {CT_by_id.Date_func.year}-{CT_by_id.Date_func.month}
+                      -{CT_by_id.Date_func.day}
                     </Typography>
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Pitch:{CT_by_id.pitch}
-                  </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Urgent?:
+                      {CT_by_id.urgent ? (
+                        <CheckRoundedIcon sx={{ ml: 1 }} />
+                      ) : (
+                        <CancelIcon sx={{ ml: 1 }} />
+                      )}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Sedation?:
+                      {CT_by_id.sedation ? (
+                        <CheckRoundedIcon sx={{ ml: 1 }} />
+                      ) : (
+                        <CancelIcon sx={{ ml: 1 }} />
+                      )}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h6" color="#333333">
+                      Protocol:
+                      {CT_by_id.protocol.map((protocol) => (
+                        <Chip
+                          key={protocol}
+                          variant="outlined"
+                          color="error"
+                          label={protocol}
+                          sx={{ ml: 2 }}
+                        />
+                      ))}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      kV (Tube A):{CT_by_id.kV_a}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    {CT_by_id.kV_b && (
+                      <Typography variant="h6" color="#333333">
+                        kV (Tube B):{CT_by_id.kV_b}
+                      </Typography>
+                    )}
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography variant="h6" color="#333333">
+                      Pitch:{CT_by_id.pitch}
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Divider />
+
               {/* Contrast Details */}
               {CT_by_id.volume ? (
                 <>
                   <Grid container spacing={2} component={"div"} sx={{ py: 4 }}>
-                    <Grid item xs={12}>
-                      <Typography variant="h5" color="#05668D">
+                    <Grid item xs={2} sx={{ pr: 2 }}>
+                      <Typography variant="h5" color="#265B67">
                         <ShutterSpeedIcon sx={{ mr: 1 }} />
                         Contrast Details
                       </Typography>
                     </Grid>
-                    <>
+                    <Grid
+                      container
+                      xs={10}
+                      spacing={1}
+                      sx={{
+                        border: 1,
+                        borderRadius: 1,
+                        backgroundColor: "#EEEEEE",
+                        py: 1,
+                      }}
+                    >
                       <Grid item xs={6}>
-                        <Typography variant="h5" color="#05668D">
+                        <Typography variant="h6" color="#333333">
                           {" "}
                           Injection Site: {CT_by_id.injectionSite}
                         </Typography>
                       </Grid>
                       <Grid item xs={3}>
-                        <Typography variant="h5" color="#05668D">
+                        <Typography variant="h6" color="#333333">
                           Hand Injection:
                           {CT_by_id.handInjection ? (
-                            <CheckRoundedIcon />
+                            <CheckRoundedIcon sx={{ ml: 1 }} />
                           ) : (
-                            <></>
+                            <CancelIcon sx={{ ml: 1 }} />
                           )}
                         </Typography>
                       </Grid>
                       <Grid item xs={3}>
-                        <Typography variant="h5" color="#05668D">
-                          Mixed Contrast Scheme?:
+                        <Typography variant="h6" color="#333333">
+                          Mixed Contrast:
                           {CT_by_id.mixedContrast ? (
-                            <CheckRoundedIcon />
+                            <CheckRoundedIcon sx={{ ml: 1 }} />
                           ) : (
-                            <></>
+                            <CancelIcon sx={{ ml: 1 }} />
                           )}
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
-                        <Typography variant="h5" color="#05668D">
-                          Type of Contrast:{CT_by_id.contrastType}
+                        <Typography variant="h6" color="#333333">
+                          Contrast Agent: {CT_by_id.contrastType}
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
-                        <Typography variant="h5" color="#05668D">
-                          Rate:{CT_by_id.rate}
+                        <Typography variant="h6" color="#333333">
+                          Rate: {CT_by_id.rate} ml/s
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
-                        <Typography variant="h5" color="#05668D">
-                          Contrast Volume:{CT_by_id.volume}
+                        <Typography variant="h6" color="#333333">
+                          Volume: {CT_by_id.volume} ml
                         </Typography>
                       </Grid>
 
                       <Grid item xs={4}>
-                        <Typography variant="h5" color="#05668D">
-                          Direct Post Contrast?:
+                        <Typography variant="h6" color="#333333">
+                          Direct Post Con?:
                           {CT_by_id.directPostContrast ? (
-                            <CheckRoundedIcon />
+                            <CheckRoundedIcon sx={{ ml: 1 }} />
                           ) : (
-                            <></>
+                            <CancelIcon sx={{ ml: 1 }} />
                           )}
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
-                        <Typography variant="h5" color="#05668D">
-                          Time to peak: {CT_by_id.ttp}
+                        <Typography variant="h6" color="#333333">
+                          Time to peak: {CT_by_id.ttp} s
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
-                        <Typography variant="h5" color="#05668D">
-                          Delays:{CT_by_id.delays}
+                        <Typography variant="h6" color="#333333">
+                          Delays:{CT_by_id.delays} s
                         </Typography>
                       </Grid>
-                    </>
+                    </Grid>
                   </Grid>
                   <Divider />
                 </>
@@ -239,66 +305,97 @@ export default function ExamDetailsPage() {
               )}
               {/* Staff Details */}
               <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-                <Grid item xs={12}>
-                  <Typography variant="h5" color="#05668D">
+                <Grid item xs={2}>
+                  <Typography variant="h5" color="#265B67">
                     <AirlineSeatReclineExtraIcon sx={{ mr: 1 }} />
-                    Staff Details
+                    Staff
                   </Typography>
                 </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Performing Radiographer(s): {CT_by_id.radiographer}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Reporting Radiologist(s):
-                    {CT_by_id.radiologists.map((radiologist) => (
-                      <Chip
-                        key={radiologist}
-                        variant="outlined"
-                        color="primary"
-                        label={radiologist}
-                      />
-                    ))}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="h5" color="#05668D">
-                    Performing Nurse(s): {CT_by_id.nurses}
-                  </Typography>
+                <Grid
+                  container
+                  xs={10}
+                  spacing={1}
+                  sx={{
+                    border: 1,
+                    borderRadius: 1,
+                    backgroundColor: "#EEEEEE",
+                    py: 1,
+                  }}
+                >
+                  <Grid item xs={12}>
+                    <Typography variant="p" color="#333333">
+                      Radiographer(s): {CT_by_id.radiographer}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="p" color="#333333">
+                      Radiologist(s):
+                      {CT_by_id.radiologists.map((radiologist) => (
+                        <Chip
+                          key={radiologist}
+                          variant="outlined"
+                          color="primary"
+                          label={radiologist}
+                          sx={{ ml: 1 }}
+                        />
+                      ))}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="p" color="#333333">
+                      Performing Nurse(s): {CT_by_id.nurses}
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
 
+              <Divider />
               {/* Remarks */}
-              <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-                <Grid item>
-                  <Typography variant="h5" color="#05668D">
-                    <BorderColorIcon sx={{ mr: 1 }} />
-                    Keywords
-                  </Typography>
+              <Grid container spacing={2} component={"div"} sx={{ py: 3 }}>
+                <Grid container sx={{ py: 2, px: 2 }}>
+                  <Grid item xs={2} sx={{ pb: 2 }}>
+                    <Typography variant="h6" color="#265B67">
+                      <BorderColorIcon sx={{ mr: 1 }} />
+                      Keywords
+                    </Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={10}
+                    sx={{ border: 1, borderRadius: 2, bgcolor: "#FFFFFF" }}
+                  >
+                    {CT_by_id.keywords}
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  {CT_by_id.keywords}
-                </Grid>
-                <Grid item>
-                  <Typography variant="h5" color="#05668D">
+                <Grid item xs={12} sx={{ pb: 2 }}>
+                  <Typography variant="h6" color="#265B67">
                     <BorderColorIcon sx={{ mr: 1 }} />
                     Remarks
                   </Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    py: 3,
+                    mx: 2,
+                    border: 1,
+                    borderRadius: 2,
+                    bgcolor: "#FFFFFF",
+                  }}
+                >
                   {CT_by_id.remark}
                 </Grid>
               </Grid>
+
               {/* Buttons */}
               <Grid
                 container
-                spacing={2}
+                spacing={1}
                 component={"div"}
-                sx={{ py: 4, justifyContent: "center" }}
+                sx={{ pt: 4, justifyContent: "center" }}
               >
-                <Grid item xs={2}>
+                <Grid item xs={6}>
                   <Link passHref href={`/Table`}>
                     <Button variant="contained" fullWidth>
                       Back to Table
