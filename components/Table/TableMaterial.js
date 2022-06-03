@@ -86,12 +86,66 @@ export default function TableMaterial({
       },
       { headerName: "Weight", field: "weight" },
       { headerName: "Height", field: "height" },
-      { headerName: "kV (Tube A)", field: "kV_a" },
+      {
+        headerName: "kV (Tube A)",
+        field: "kV_a",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVA) => (
+                <Chip
+                  key={`kVA-${kVA}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVA}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
+      },
       {
         headerName: "kV (Tube B)",
         field: "kV_b",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVB) => (
+                <Chip
+                  key={`kVB-${kVB}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVB}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
       },
-      { headerName: "CTDI", field: "ctdi" },
+      {
+        headerName: "CTDI",
+        field: "ctdi",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((CTDI) => (
+                <Chip
+                  key={`ctdi-${CTDI}`}
+                  variant="outlined"
+                  color="error"
+                  label={CTDI}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
+      },
       { headerName: "Site", field: "injectionSite" },
       { headerName: "Rate", field: "rate" },
       { headerName: "Volume", field: "volume" },
