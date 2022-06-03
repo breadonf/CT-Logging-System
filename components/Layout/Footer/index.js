@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="white">
+    <Typography variant="body2" color="white" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         CT IntelliTimer
@@ -23,17 +23,17 @@ export default function StickyFooter() {
   return (
     <Grid
       container
-      spacing={2}
       sx={{
-        position: "fix",
+        position: "fixed",
+        bgcolor:"black",
       }}
     >
       <Grid item sx={{ minWidth: "100%" }} xs={12}>
         <Box
           sx={{
-            backgroundColor: "#000001",
-            minHeight: "3vh",
+            minHeight: "2vh",
             minWidth: "100%",
+            mt: 2
           }}
         >
           <Copyright />
