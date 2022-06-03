@@ -60,12 +60,12 @@ export default function ExamDetailsPage() {
               {/* Heading */}
               <Box sx={{ backgroundColor: "#333333" }}>
                 <Grid container spacing={2} sx={{ px: 2, py: 2 }}>
-                  <Grid item xs={6}>
+                  <Grid item xs={8}>
                     <Typography variant="h5" color="#FFFFFF" align="left">
                       {CT_by_id.PID} | {CT_by_id.protocol}
                     </Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={4}>
                     <Typography variant="h5" color="#FFFFFF" align="right">
                       {CT_by_id.Date_func.year}-{CT_by_id.Date_func.month}-
                       {CT_by_id.Date_func.day}
@@ -220,7 +220,7 @@ export default function ExamDetailsPage() {
                     <Grid item xs={2} sx={{ pr: 2 }}>
                       <Typography variant="h5" color="#265B67">
                         <ShutterSpeedIcon sx={{ mr: 1 }} />
-                        Contrast Details
+                        Contrast
                       </Typography>
                     </Grid>
                     <Grid
@@ -234,13 +234,13 @@ export default function ExamDetailsPage() {
                         py: 1,
                       }}
                     >
-                      <Grid item xs={6}>
+                      <Grid item xs={4}>
                         <Typography variant="h6" color="#333333">
                           {" "}
                           Injection Site: {CT_by_id.injectionSite}
                         </Typography>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={4}>
                         <Typography variant="h6" color="#333333">
                           Hand Injection:
                           {CT_by_id.handInjection ? (
@@ -250,7 +250,7 @@ export default function ExamDetailsPage() {
                           )}
                         </Typography>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={4}>
                         <Typography variant="h6" color="#333333">
                           Mixed Contrast:
                           {CT_by_id.mixedContrast ? (
