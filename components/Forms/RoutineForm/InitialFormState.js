@@ -29,7 +29,7 @@ const INITIAL_FORM_STATE = {
   remark: "",
   delays: [""],
   examType: [],
-  ctdi: "",
+  ctdi: [],
   IR: false,
 };
 
