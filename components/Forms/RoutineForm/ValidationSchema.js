@@ -67,26 +67,7 @@ const FORM_VALIDATION = yup.object().shape({
     ),
   kV_A: yup.array().min(1, "Required").required(),
   kV_B: yup.array(),
-  pitch: yup.string().required(),
-  route: yup.string(),
-  handInjection: yup.boolean(),
-  mixedContrast: yup.boolean(),
-  type: yup.string(),
-  rate: yup
-    .number()
-    .typeError("Please enter a valid rate")
-    .min(0, "Invalid Input")
-    .max(10),
-  volume: yup.number().typeError("Please enter a volume"),
-  pre: yup.boolean(),
-  ttp: yup.number().typeError("Please enter a valid ttp in s"),
-  delays: yup.array(),
-  radiographers: yup.array(),
-  radiologists: yup.array(),
-  nurses: yup.array(),
-  remark: yup.string(),
-  ctdi: yup.number().required(),
-  IR: yup.boolean(),
+  
 });
 
 export default FORM_VALIDATION;
