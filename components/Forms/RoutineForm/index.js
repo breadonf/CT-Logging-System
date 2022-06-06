@@ -20,6 +20,7 @@ import {
   FormLabel,
   Switch,
   Divider,
+  Box,
 } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
@@ -29,6 +30,7 @@ import TagIcon from "@mui/icons-material/Tag";
 import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useQuery, useMutation } from "react-query";
 /**
  * FormUI component Import
@@ -60,7 +62,7 @@ import { getHomepageData } from "../../../queries/queries";
 import { createCTrecord } from "../../../queries/mutations";
 
 function RoutineForm({ data, handleSubmit }) {
-  const { data: autocompleteOptions, isSuccess } = useQuery(
+  const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
     "autocompleteOptions",
     async () => await getHomepageData()
   );
@@ -82,6 +84,38 @@ function RoutineForm({ data, handleSubmit }) {
   const handleSwitch = (e) => {
     setContrast(e.target.checked);
   };
+  if (isLoading) {
+    return (
+      <Grid container>
+        <Grid item xs={12}>
+          <Container maxWidth="lg">
+            <Paper
+              elevation={12}
+              sx={{
+                p: 3,
+                height: "85vh",
+                bgcolor: "#F0F3BD",
+                overflowY: "auto",
+              }}
+            >
+              <Grid
+                container
+                spacing={2}
+                sx={{ py: 5 }}
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <CircularProgress size="25vh" />
+                </Grid>
+              </Grid>
+            </Paper>
+          </Container>
+        </Grid>
+      </Grid>
+    );
+  }
   if (isSuccess) {
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
