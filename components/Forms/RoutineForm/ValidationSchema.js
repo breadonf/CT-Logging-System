@@ -65,9 +65,8 @@ const FORM_VALIDATION = yup.object().shape({
       2,
       "You can only choose 2 protocols, please submit another form if necessary"
     ),
-  kV_A: yup.array().min(1, "Required").required(),
-  kV_B: yup.array(),
-  
+  kV_a: yup.array().min(1, "Required").required(),
+  kV_b: yup.array(),
 });
 
 export default FORM_VALIDATION;
