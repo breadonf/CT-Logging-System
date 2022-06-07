@@ -367,11 +367,11 @@ function RoutineForm({ data, handleSubmit }) {
                                       setNumberOfProtocol((prev) => prev - 1);
                                       formik.setFieldValue(
                                         "ctdi",
-                                        formik.values.ctdi.slice(1, -1)
+                                        formik.values.ctdi.splice(-1)
                                       );
                                       formik.setFieldValue(
                                         "pitch",
-                                        formik.values.pitch.slice(1, -1)
+                                        formik.values.pitch.splice(-1)
                                       );
                                     }}
                                   >

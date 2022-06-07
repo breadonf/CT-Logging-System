@@ -78,7 +78,6 @@ export default function TableMaterial({
         headerName: "CTDI",
         field: "ctdi",
         renderCell: (ctdi) => {
-          console.log(ctdi);
           return ctdi.value ? (
             <div>
               {ctdi.value.map((protocol) => (
@@ -151,7 +150,6 @@ export default function TableMaterial({
     );
 
     setData(records);
-    console.log(records);
 
     wait(0);
     setIsLoading(false);
