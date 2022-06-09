@@ -22,27 +22,24 @@ function RoutineCases() {
   const handleSubmit = async (values, { setSubmitting }) => {
     console.log("Submission value", values);
     const modifiedValues = preprocessor(values);
-    setTimeout(() => {
-      mutation.mutate(
-        { ...modifiedValues },
-        {
-          onSuccess: async (res, variables) => {
-            alert(
-              `Success, your Ct records for ${modifiedValues.PID} is saved`
-            );
-            router.push("/Table");
-          },
-          onError: async (err, varia) => {
-            console.log("onError", err, varia);
-            console.log(varia.data);
+    await new Promise((r) => setTimeout(r, 750));
+    mutation.mutate(
+      { ...modifiedValues },
+      {
+        onSuccess: async (res, variables) => {
+          alert(`Success, your Ct records for ${modifiedValues.PID} is saved`);
+          router.push("/Table");
+        },
+        onError: async (err, varia) => {
+          console.log("onError", err, varia);
+          console.log(varia.data);
 
-            alert(`Error, Please find PACS administrator ${err}`);
-          },
-        }
-      );
+          alert(`Error, Please find PACS administrator ${err}`);
+        },
+      }
+    );
 
-      setSubmitting(false);
-    }, 800);
+    setSubmitting(false); 
     if (mutation.isError) {
       console.log(
         "🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",

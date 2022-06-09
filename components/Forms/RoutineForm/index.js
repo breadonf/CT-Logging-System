@@ -129,6 +129,7 @@ function RoutineForm({ data, handleSubmit }) {
               >
                 {(formik) => (
                   <Form>
+                    {console.log(formik)}
                     <Grid container spacing={2} sx={{ py: 5 }}>
                       <Grid item xs={12}>
                         <Paper
@@ -365,14 +366,11 @@ function RoutineForm({ data, handleSubmit }) {
                                     type="button"
                                     onClick={() => {
                                       setNumberOfProtocol((prev) => prev - 1);
-                                      formik.setFieldValue(
-                                        "ctdi",
-                                        formik.values.ctdi.splice(-1)
-                                      );
-                                      formik.setFieldValue(
-                                        "pitch",
-                                        formik.values.pitch.splice(-1)
-                                      );
+                                      if (formik.values.ctdi.length === 1) {
+                                        return;
+                                      }
+                                      formik.values.ctdi.pop();
+                                      formik.values.pitch.pop();
                                     }}
                                   >
                                     Cancel
@@ -723,6 +721,7 @@ function RoutineForm({ data, handleSubmit }) {
                                 type="submit"
                                 value="Submit"
                                 fullWidth
+                                disabled={formik.isSubmitting}
                               >
                                 Submit
                               </Button>

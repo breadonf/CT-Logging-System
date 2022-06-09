@@ -40,26 +40,25 @@ export default function EditRoutineForm() {
     },
     { mutationKey: "updateCTitem", onSuccess: (data) => console.log(data) }
   );
-  const handleUpdate = async (values, { setSubmitting }) => {
+  const handleUpdate = async (values, actions) => {
     const modifiedValues = preprocessor(values);
-    setTimeout(() => {
-      mutation.mutate(
-        { data: modifiedValues, updateCtItemId: values.count },
-        {
-          onSuccess: async (res) => {
-            alert(
-              `Success, your Ct records for ${modifiedValues.PID} is updated`
-            );
-            router.push("/Table");
-          },
-          onError: async (err, varia) => {
-            console.log("onError", err, varia);
-            console.log(varia.data);
-          },
-        }
-      );
-      setSubmitting(false);
-    }, 400);
+    await new Promise((r) => setTimeout(r, 750));
+
+    mutation.mutate(
+      { data: modifiedValues, updateCtItemId: values.count },
+      {
+        onSuccess: async (res) => {
+          alert(
+            `Success, your Ct records for ${modifiedValues.PID} is updated`
+          );
+          router.push("/Table");
+        },
+        onError: async (err, varia) => {
+          console.log("onError", err, varia);
+          console.log(varia.data);
+        },
+      }
+    );
     if (mutation.isError) {
       console.log("Error", mutation.error.message);
     }
