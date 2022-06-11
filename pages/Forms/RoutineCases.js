@@ -20,33 +20,27 @@ function RoutineCases() {
     { mutationKey: "createCTitem" }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log("Submission value", values);
     const modifiedValues = preprocessor(values);
-    setTimeout(() => {
-      mutation.mutate(
-        { ...modifiedValues },
-        {
-          onSuccess: async (res, variables) => {
-            alert(
-              `Success, your Ct records for ${modifiedValues.PID} is saved`
-            );
-            router.push("/Table");
-          },
-          onError: async (err, varia) => {
-            console.log("onError", err, varia);
-            console.log(varia.data);
+    await new Promise((r) => setTimeout(r, 750));
 
-            alert(`Error, Please find PACS administrator ${err}`);
-          },
-        }
-      );
-
-      setSubmitting(false);
-    }, 800);
+    mutation.mutate(
+      { data: modifiedValues },
+      {
+        onSuccess: async (res) => {
+          alert(
+            `Success, your Ct records for ${modifiedValues.PID} at ${modifiedValues.Date} is updated`
+          );
+          router.push("/Table");
+        },
+        onError: async (err, varia) => {
+          console.log("onError", varia);
+        },
+      }
+    );
     if (mutation.isError) {
       console.log(
-        "🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
-        mutation.error.message
+        "Fail,🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
+        mutation.error
       );
     }
     if (mutation.onSettled) {

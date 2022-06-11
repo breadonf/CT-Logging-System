@@ -9,7 +9,7 @@ const INITIAL_FORM_STATE = {
   urgent: false,
   sedation: false,
   sedatedBy: "",
-  sedationMethod: "",
+  sedationMethod: [],
   protocol: [],
   kV_a: [],
   kV_b: [],

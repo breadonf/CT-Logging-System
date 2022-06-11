@@ -723,6 +723,7 @@ function RoutineForm({ data, handleSubmit }) {
                                 type="submit"
                                 value="Submit"
                                 fullWidth
+                                disabled={formik.isSubmitting}
                               >
                                 Submit
                               </Button>

@@ -26,7 +26,6 @@ const preprocessor = (values) => {
 
   const modifiedValues = { ...values };
 
-  modifiedValues.count && delete modifiedValues.count;
   modifiedValues.Date_func && delete modifiedValues.Date_func;
 
   modifiedValues.height = convertedHeight;
@@ -37,7 +36,10 @@ const preprocessor = (values) => {
   modifiedValues.age = computedAge;
   modifiedValues.circumference = convertedCircumference;
   modifiedValues.PID = convertedPID;
-  console.log("ending preprocessor now");
+  console.log(
+    "Modified value use this for debugging in submission",
+    modifiedValues
+  );
   return modifiedValues;
 };
 
