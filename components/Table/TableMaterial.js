@@ -22,6 +22,25 @@ export default function TableMaterial({
 }) {
   const headers = useMemo(
     () => [
+      {
+        headerName: "Actions items",
+        field: "actions",
+        type: "actions",
+        width: 120,
+        getActions: (params) => [
+          <Link key="1" passHref href={`/Exam/${params.id}`}>
+            <GridActionsCellItem icon={<PageviewIcon />} label="View" />
+          </Link>,
+          <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
+            <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
+          </Link>,
+          <Link key="3" passHref href={`/Search/${params.row.PID}`}>
+            <GridActionsCellItem icon={<SearchIcon />} label="Edit">
+              Look Up to this patient
+            </GridActionsCellItem>
+          </Link>,
+        ],
+      },
       { field: "count", headerName: "Entry id" },
       {
         field: "Date",
@@ -94,6 +113,48 @@ export default function TableMaterial({
           );
         },
       },
+      { headerName: "Weight", field: "weight" },
+      { headerName: "Height", field: "height" },
+      {
+        headerName: "kV (Tube A)",
+        field: "kV_a",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVA) => (
+                <Chip
+                  key={`kVA-${kVA}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVA}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
+      },
+      {
+        headerName: "kV (Tube B)",
+        field: "kV_b",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVB) => (
+                <Chip
+                  key={`kVB-${kVB}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVB}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
+      },
       { headerName: "Site", field: "injectionSite" },
       { headerName: "Rate", field: "rate" },
       { headerName: "Volume", field: "volume" },
@@ -117,25 +178,6 @@ export default function TableMaterial({
             <></>
           );
         },
-      },
-      {
-        headerName: "Actions items",
-        field: "actions",
-        type: "actions",
-        width: 120,
-        getActions: (params) => [
-          <Link key="1" passHref href={`/Exam/${params.id}`}>
-            <GridActionsCellItem icon={<PageviewIcon />} label="View" />
-          </Link>,
-          <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
-            <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
-          </Link>,
-          <Link key="3" passHref href={`/Search/${params.row.PID}`}>
-            <GridActionsCellItem icon={<SearchIcon />} label="Edit">
-              Look Up to this patient
-            </GridActionsCellItem>
-          </Link>,
-        ],
       },
     ],
     [] //dep list
