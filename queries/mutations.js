@@ -3,12 +3,14 @@
 export const createCTrecord = `
   mutation Mutation($data: create_CT_input!) {
     create_CT_item(data: $data) {
-      count
       PID
-      protocol
-      status
+    Date_func {
+      year
+      month
+      day
     }
   }
+}
 `;
 
 export const updateCTRecordById = `

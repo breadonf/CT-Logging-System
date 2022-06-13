@@ -55,8 +55,6 @@ const FORM_VALIDATION = yup.object().shape({
     .min(0, "Invalid Input")
     .nullable(),
   Date: yup.string().required("Required"),
-  urgent: yup.boolean(),
-  sedation: yup.boolean(),
   protocol: yup
     .array()
     .typeError("Not an array")
@@ -65,28 +63,8 @@ const FORM_VALIDATION = yup.object().shape({
       2,
       "You can only choose 2 protocols, please submit another form if necessary"
     ),
-  kV_A: yup.array().min(1, "Required").required(),
-  kV_B: yup.array(),
-  pitch: yup.string().required(),
-  route: yup.string(),
-  handInjection: yup.boolean(),
-  mixedContrast: yup.boolean(),
-  type: yup.string(),
-  rate: yup
-    .number()
-    .typeError("Please enter a valid rate")
-    .min(0, "Invalid Input")
-    .max(10),
-  volume: yup.number().typeError("Please enter a volume"),
-  pre: yup.boolean(),
-  ttp: yup.number().typeError("Please enter a valid ttp in s"),
-  delays: yup.array(),
-  radiographers: yup.array(),
-  radiologists: yup.array(),
-  nurses: yup.array(),
-  remark: yup.string(),
-  ctdi: yup.number().required(),
-  IR: yup.boolean(),
+  kV_a: yup.array().min(1, "Required").required(),
+  kV_b: yup.array(),
 });
 
 export default FORM_VALIDATION;

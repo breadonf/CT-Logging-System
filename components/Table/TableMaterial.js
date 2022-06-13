@@ -7,9 +7,10 @@ import CustomPagination from "./CustomPagination";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import Link from "next/link";
 import PageviewIcon from "@mui/icons-material/Pageview";
-import Filters from "./Filters";
 import SearchIcon from "@mui/icons-material/Search";
 import Toolbar from "./Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Search from "@mui/icons-material/Search";
 
 export default function TableMaterial({
   rowCount,
@@ -23,6 +24,46 @@ export default function TableMaterial({
 }) {
   const headers = useMemo(
     () => [
+      {
+        headerName: "",
+        field: "actions",
+        type: "actions",
+        width: 120,
+        getActions: (params) => [
+          <Link key="1" passHref href={`/Exam/${params.id}`}>
+            <GridActionsCellItem
+              icon={
+                <Tooltip title="View exam detail">
+                  <PageviewIcon />
+                </Tooltip>
+              }
+              label="View"
+            />
+          </Link>,
+          <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
+            <GridActionsCellItem
+              icon={
+                <Tooltip title="Edit exam">
+                  <ModeEditIcon />
+                </Tooltip>
+              }
+              label="Edit"
+            />
+          </Link>,
+          <Link key="3" passHref href={`/Search/${params.row.PID}`}>
+            <GridActionsCellItem
+              icon={
+                <Tooltip title="Search previous exam(s)">
+                  <SearchIcon />
+                </Tooltip>
+              }
+              label="Edit"
+            >
+              Look Up to this patient
+            </GridActionsCellItem>
+          </Link>,
+        ],
+      },
       { field: "count", headerName: "Entry id" },
       {
         field: "Date",
@@ -67,12 +108,23 @@ export default function TableMaterial({
         headerName: "Protocol",
         field: "protocol",
         width: 400,
-        renderCell: (protocols) => {
-          return protocols.value ? (
+      },
+      { headerName: "Weight", field: "weight" },
+      { headerName: "Height", field: "height" },
+      { headerName: "kV (Tube A)", field: "kV_a" },
+      {
+        headerName: "kV (Tube B)",
+        field: "kV_b",
+      },
+      {
+        headerName: "CTDI",
+        field: "ctdi",
+        renderCell: (ctdi) => {
+          return ctdi.value ? (
             <div>
-              {protocols.formattedValue.map((protocol) => (
+              {ctdi.value.map((protocol) => (
                 <Chip
-                  key={`protocolid-${protocol}`}
+                  key={`ctdi-${protocol}`}
                   variant="outlined"
                   color="error"
                   label={protocol}
@@ -86,12 +138,46 @@ export default function TableMaterial({
       },
       { headerName: "Weight", field: "weight" },
       { headerName: "Height", field: "height" },
-      { headerName: "kV (Tube A)", field: "kV_a" },
+      {
+        headerName: "kV (Tube A)",
+        field: "kV_a",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVA) => (
+                <Chip
+                  key={`kVA-${kVA}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVA}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
+      },
       {
         headerName: "kV (Tube B)",
         field: "kV_b",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVB) => (
+                <Chip
+                  key={`kVB-${kVB}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVB}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
       },
-      { headerName: "CTDI", field: "ctdi" },
       { headerName: "Site", field: "injectionSite" },
       { headerName: "Rate", field: "rate" },
       { headerName: "Volume", field: "volume" },
@@ -115,25 +201,6 @@ export default function TableMaterial({
             <></>
           );
         },
-      },
-      {
-        headerName: "Actions items",
-        field: "actions",
-        type: "actions",
-        width: 120,
-        getActions: (params) => [
-          <Link key="1" passHref href={`/Exam/${params.id}`}>
-            <GridActionsCellItem icon={<PageviewIcon />} label="View" />
-          </Link>,
-          <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
-            <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
-          </Link>,
-          <Link key="3" passHref href={`/Search/${params.row.PID}`}>
-            <GridActionsCellItem icon={<SearchIcon />} label="Edit">
-              Look Up to this patient
-            </GridActionsCellItem>
-          </Link>,
-        ],
       },
     ],
     [] //dep list

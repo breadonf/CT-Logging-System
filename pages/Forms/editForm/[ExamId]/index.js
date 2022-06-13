@@ -21,7 +21,11 @@ export default function EditRoutineForm() {
   } = useQuery(
     ["ExamDetailsByID", ExamId],
     async () => await getExamDetailsByID(parseInt(ExamId)),
-    { retry: true }
+    {
+      retry: true,
+      refetchOnMount: "always",
+      cacheTime: 1,
+    }
   );
   const mutation = useMutation(
     (newFormData) => {
@@ -34,7 +38,7 @@ export default function EditRoutineForm() {
         true
       );
     },
-    { mutationKey: "updateCTitem" }
+    { mutationKey: "updateCTitem", onSuccess: (data) => console.log(data) }
   );
   const handleUpdate = async (values, { setSubmitting }) => {
     const modifiedValues = preprocessor(values);
@@ -44,7 +48,7 @@ export default function EditRoutineForm() {
         {
           onSuccess: async (res) => {
             alert(
-              `Success, your Ct records for ${modifiedValues.PID} is updated ${res?.count}`
+              `Success, your Ct records for ${modifiedValues.PID} is updated`
             );
             router.push("/Table");
           },
