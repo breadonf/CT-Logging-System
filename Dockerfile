@@ -1,21 +1,14 @@
-FROM node:12
+FROM mhart/alpine-node:12 AS builder
 
-ENV PORT 3000
+WORKDIR /app
+COPY package*.json ./
+RUN yarn install
+COPY . .
+RUN yarn build
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+FROM mhart/alpine-node:12
 
-# Installing dependencies
-COPY package*.json /usr/src/app/
-RUN npm install
-
-# Copying source files
-COPY . /usr/src/app
-
-# Building app
-RUN npm run build
+WORKDIR /app
+COPY --from=builder /app .
 EXPOSE 3000
-
-# Running the app
-CMD "npm" "start"
+CMD [ "yarn", "start" ]
