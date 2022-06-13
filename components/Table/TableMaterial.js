@@ -9,6 +9,8 @@ import Link from "next/link";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
 import Toolbar from "./Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Search from "@mui/icons-material/Search";
 
 export default function TableMaterial({
   rowCount,
@@ -23,19 +25,40 @@ export default function TableMaterial({
   const headers = useMemo(
     () => [
       {
-        headerName: "Actions items",
+        headerName: "",
         field: "actions",
         type: "actions",
         width: 120,
         getActions: (params) => [
           <Link key="1" passHref href={`/Exam/${params.id}`}>
-            <GridActionsCellItem icon={<PageviewIcon />} label="View" />
+            <GridActionsCellItem
+              icon={
+                <Tooltip title="View exam detail">
+                  <PageviewIcon />
+                </Tooltip>
+              }
+              label="View"
+            />
           </Link>,
           <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
-            <GridActionsCellItem icon={<ModeEditIcon />} label="Edit" />
+            <GridActionsCellItem
+              icon={
+                <Tooltip title="Edit exam">
+                  <ModeEditIcon />
+                </Tooltip>
+              }
+              label="Edit"
+            />
           </Link>,
           <Link key="3" passHref href={`/Search/${params.row.PID}`}>
-            <GridActionsCellItem icon={<SearchIcon />} label="Edit">
+            <GridActionsCellItem
+              icon={
+                <Tooltip title="Search previous exam(s)">
+                  <SearchIcon />
+                </Tooltip>
+              }
+              label="Edit"
+            >
               Look Up to this patient
             </GridActionsCellItem>
           </Link>,

@@ -305,7 +305,6 @@ function RoutineForm({ data, handleSubmit }) {
                                 multiple
                                 autocompleteOptions={kV_a}
                                 prepopulatedValue={data?.kV_a ?? []}
-                                groupBy={(option) => option.group}
                               />
                             </Grid>
                             <Grid item xs={4}>
