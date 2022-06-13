@@ -7,7 +7,6 @@ import CustomPagination from "./CustomPagination";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import Link from "next/link";
 import PageviewIcon from "@mui/icons-material/Pageview";
-import Filters from "./Filters";
 import SearchIcon from "@mui/icons-material/Search";
 import Toolbar from "./Toolbar";
 
@@ -67,12 +66,23 @@ export default function TableMaterial({
         headerName: "Protocol",
         field: "protocol",
         width: 400,
-        renderCell: (protocols) => {
-          return protocols.value ? (
+      },
+      { headerName: "Weight", field: "weight" },
+      { headerName: "Height", field: "height" },
+      { headerName: "kV (Tube A)", field: "kV_a" },
+      {
+        headerName: "kV (Tube B)",
+        field: "kV_b",
+      },
+      {
+        headerName: "CTDI",
+        field: "ctdi",
+        renderCell: (ctdi) => {
+          return ctdi.value ? (
             <div>
-              {protocols.formattedValue.map((protocol) => (
+              {ctdi.value.map((protocol) => (
                 <Chip
-                  key={`protocolid-${protocol}`}
+                  key={`ctdi-${protocol}`}
                   variant="outlined"
                   color="error"
                   label={protocol}
@@ -84,14 +94,6 @@ export default function TableMaterial({
           );
         },
       },
-      { headerName: "Weight", field: "weight" },
-      { headerName: "Height", field: "height" },
-      { headerName: "kV (Tube A)", field: "kV_a" },
-      {
-        headerName: "kV (Tube B)",
-        field: "kV_b",
-      },
-      { headerName: "CTDI", field: "ctdi" },
       { headerName: "Site", field: "injectionSite" },
       { headerName: "Rate", field: "rate" },
       { headerName: "Volume", field: "volume" },
