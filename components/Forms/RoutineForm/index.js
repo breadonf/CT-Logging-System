@@ -66,10 +66,11 @@ function RoutineForm({ data, handleSubmit }) {
     "autocompleteOptions",
     async () => await getHomepageData()
   );
-
+  console.log(useFormikContext());
   const [sedation, setSedation] = React.useState(false);
   const [contrast, setContrast] = React.useState(false);
   const [numberOfProtocol, setNumberOfProtocol] = React.useState(1);
+
   React.useEffect(() => {
     if (data.volume) {
       setContrast(true);
@@ -80,7 +81,7 @@ function RoutineForm({ data, handleSubmit }) {
     if (data.pitch.length > 1) {
       setNumberOfProtocol(data.pitch.length);
     }
-  }, []);
+  }, [sedation]);
   const handleSwitch = (e) => {
     setContrast(e.target.checked);
   };
@@ -251,16 +252,22 @@ function RoutineForm({ data, handleSubmit }) {
                                   <>
                                     <Grid item xs={4}>
                                       <Select
+                                        sx={{ pt: 2 }}
                                         name="sedatedBy"
                                         label="by"
+                                        prepopulatedValue={data?.sedatedBy}
                                         options={sedatedBy}
                                       />
                                     </Grid>
                                     <Grid item xs={4}>
-                                      <Select
+                                      <AutocompleteWrapper
+                                        sx={{ p: 0 }}
                                         name="sedationMethod"
                                         label="using"
-                                        options={sedationMethod}
+                                        autocompleteOptions={sedationMethod}
+                                        prepopulatedValue={
+                                          data?.sedationMethod ?? []
+                                        }
                                       />
                                     </Grid>
                                   </>
@@ -269,7 +276,7 @@ function RoutineForm({ data, handleSubmit }) {
                             </Grid>
                             <Grid item xs={12}>
                               <AutocompleteWrapper
-                                multiple={true}
+                                multiple
                                 id="protocol"
                                 name="protocol"
                                 label="Protocol (Maximum 2 protcols can be selected)"
@@ -603,14 +610,14 @@ function RoutineForm({ data, handleSubmit }) {
                                         }}
                                         color="#05668D"
                                       >
-                                        Please Enter Time to Peak * 100 HU * for
+                                        Please Enter Time to Peak * 150 HU * for
                                         Bolus Tracking/Timing Bolus cases
                                       </Typography>
                                     </Grid>
                                     <Grid item xs={8}>
                                       <Textfield
                                         name="ttp"
-                                        label="Time to 100 HU(s)"
+                                        label="Time to 150 HU(s)"
                                       ></Textfield>
                                     </Grid>
                                   </Grid>

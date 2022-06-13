@@ -24,7 +24,7 @@ function RoutineCases() {
     await new Promise((r) => setTimeout(r, 750));
 
     mutation.mutate(
-     modifiedValues ,
+      { ...modifiedValues },
       {
         onSuccess: async (res) => {
           alert(

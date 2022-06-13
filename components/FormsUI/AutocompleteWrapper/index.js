@@ -12,13 +12,14 @@ export default function AutocompleteWrapper({
   multiple,
   groupBy,
   limit = 2,
+  sx,
   ...otherProps
 }) {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
   const handleChange = (e, value) => {
     if (multiple) {
-      const result = value.map((option) => option);
+      const result = value?.map((option) => option);
       setFieldValue(name, value !== null ? result : []);
     } else {
       setFieldValue(name, value);
@@ -45,6 +46,8 @@ export default function AutocompleteWrapper({
   return (
     <Autocomplete
       sx={{
+        ...sx,
+        alignItems: "center",
         input: { color: "#05668D" },
         label: { fontWeight: "bold", color: "#495371" },
       }}
@@ -59,16 +62,10 @@ export default function AutocompleteWrapper({
       onChange={handleChange}
       defaultValue={prepopulatedValue}
       renderInput={(params) => (
-        <TextField
-          sx={{
-            alignSelf: "flex-start",
-          }}
-          {...configAuto}
-          {...params}
-        />
+        <TextField sx={{}} {...configAuto} {...params} />
       )}
-      isOptionEqualToValue={(option, valu) => {
-        option == valu;
+      isOptionEqualToValue={(option, value) => {
+        option == value;
       }}
       {...otherProps}
     />

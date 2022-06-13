@@ -1,9 +1,9 @@
-{
-  "IV": "IV",
-  "Nasal": "Nasal",
-  "GA": "GA",
-  "Oral": "Oral",
-  "Intubated": "Intubated",
-  "tryNoSedation": "try no sedation",
-  "Others": "Others"
-}
+[
+  { "label": "IV", "value": "IV" },
+  { "label": "Nasal", "value": "Nasal" },
+  { "label": "GA", "value": "GA" },
+  { "label": "Oral", "value": "Oral" },
+  { "label": "Intubated", "value": "Intubated" },
+  { "label": "tryNoSedation", "value": "try no sedation" },
+  { "label": "Others", "value": "Others" }
+]
