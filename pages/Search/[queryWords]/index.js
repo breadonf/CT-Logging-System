@@ -6,7 +6,6 @@ import TableMaterial from "../../../components/Table/TableMaterial";
 import { Paper, Grid, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import Filters from "../../../components/Table/Filters";
-import { Filter } from "@mui/icons-material";
 
 export default function SearchTable() {
   const router = useRouter();

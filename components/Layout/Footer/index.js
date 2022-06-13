@@ -10,7 +10,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="white" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         CT IntelliTimer
       </Link>{" "}
       {new Date().getFullYear()}
@@ -25,15 +25,18 @@ export default function StickyFooter() {
       container
       sx={{
         position: "fixed",
-        bgcolor:"black",
+        bgcolor: "black",
+        minHeight: "5vh",
+        maxHeight: "5vh",
       }}
     >
       <Grid item sx={{ minWidth: "100%" }} xs={12}>
         <Box
           sx={{
-            minHeight: "2vh",
+            minHeight: "5vh",
+            maxHeight: "5vh",
             minWidth: "100%",
-            mt: 2
+            mt: 2,
           }}
         >
           <Copyright />

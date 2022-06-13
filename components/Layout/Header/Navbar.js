@@ -46,7 +46,6 @@ const Navbar = () => {
                   sx={{
                     my: 2,
                     mx: 1,
-                    color: "white",
                     display: "block",
                     color: "#F0F3BD",
                   }}

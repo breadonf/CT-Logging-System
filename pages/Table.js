@@ -28,7 +28,7 @@ export default function Table() {
     }
   );
   return (
-    <Grid spacing={2} sx={{ py: 5 }} container>
+    <Grid spacing={2} sx={{ py: 4 }} container>
       <Head>
         <title>CT record</title>
         <link rel="icon" href="/favicon.ico" />

@@ -17,7 +17,12 @@ function RoutineCases() {
     async (newFormData) => {
       await setData(createCTrecord, { data: newFormData });
     },
-    { mutationKey: "createCTitem" }
+    {
+      mutationKey: "createCTitem",
+      onSuccess: (data, variables, context) => {
+        console.log("onSucces", data, variables);
+      },
+    }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
     const modifiedValues = preprocessor(values);
@@ -28,7 +33,7 @@ function RoutineCases() {
       {
         onSuccess: async (res) => {
           alert(
-            `Success, your Ct records for ${modifiedValues.PID} at ${modifiedValues.Date} is updated`
+            `Success, your Ct records for ${modifiedValues.PID} at ${modifiedValues.Date} is created`
           );
           router.push("/Table");
         },
@@ -50,7 +55,6 @@ function RoutineCases() {
     }
   };
   if (mutation.isSuccess) {
-    console.log("Success", mutation);
   }
   return (
     <>

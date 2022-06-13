@@ -18,9 +18,7 @@ const SelectWrapper = ({
 
   const handleChange = (e) => {
     const { value } = e.target;
-    const result = [];
-    result.push(value);
-    console.log(result);
+    console.log(value);
     setFieldValue(name, value);
   };
 

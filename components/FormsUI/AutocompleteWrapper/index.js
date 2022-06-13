@@ -33,7 +33,6 @@ export default function AutocompleteWrapper({
     margin: "normal",
     label: label,
     fullWidth: true,
-    error: false,
   };
   if (meta && meta.touched && meta.error) {
     configAuto.error = true;

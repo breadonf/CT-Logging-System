@@ -55,7 +55,7 @@ export default function ExamDetailsPage() {
           <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
             <Paper
               elevation={8}
-              sx={{ px: 3, py: 5, bgcolor: "#FFF1B2", minHeight: "90" }}
+              sx={{ px: 3, py: 5, bgcolor: "#FFF1B2", minHeight: "85vh" }}
             >
               {/* Heading */}
               <Box sx={{ backgroundColor: "#333333" }}>

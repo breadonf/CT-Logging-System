@@ -15,7 +15,7 @@ export default function FormSelection() {
           <Box
             sx={{
               display: "flex",
-              height: "90vh",
+              minHeight: "90vh",
               bgcolor: "#00A896",
               alignItems: "center",
               justifyContent: "center",
@@ -35,7 +35,7 @@ export default function FormSelection() {
           <Box
             sx={{
               display: "flex",
-              height: "90vh",
+              minHeight: "90vh",
               bgcolor: "#093A3E",
               alignItems: "center",
               justifyContent: "center",

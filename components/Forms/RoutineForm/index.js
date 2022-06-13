@@ -66,7 +66,6 @@ function RoutineForm({ data, handleSubmit }) {
     "autocompleteOptions",
     async () => await getHomepageData()
   );
-  console.log(useFormikContext());
   const [sedation, setSedation] = React.useState(false);
   const [contrast, setContrast] = React.useState(false);
   const [numberOfProtocol, setNumberOfProtocol] = React.useState(1);
@@ -81,7 +80,7 @@ function RoutineForm({ data, handleSubmit }) {
     if (data.pitch.length > 1) {
       setNumberOfProtocol(data.pitch.length);
     }
-  }, [sedation]);
+  }, []);
   const handleSwitch = (e) => {
     setContrast(e.target.checked);
   };
@@ -130,7 +129,7 @@ function RoutineForm({ data, handleSubmit }) {
               >
                 {(formik) => (
                   <Form>
-                    <Grid container spacing={2} sx={{ py: 5 }}>
+                    <Grid container spacing={2} sx={{ height: "90vh", py: 3 }}>
                       <Grid item xs={12}>
                         <Paper
                           elevation={12}
@@ -318,20 +317,26 @@ function RoutineForm({ data, handleSubmit }) {
                             </Grid>
 
                             {[...Array(numberOfProtocol)].map((x, i) => (
-                              <>
-                                <Grid item xs={2} sx={{ mt: 2 }}>
+                              <Grid
+                                container
+                                spacing={1}
+                                item
+                                xs={4}
+                                key={`$numberOfProtocol-${i}`}
+                              >
+                                <Grid item xs={6} sx={{ mt: 2 }}>
                                   <Textfield
                                     name={`pitch[${i}]`}
                                     label="Pitch"
                                   ></Textfield>
                                 </Grid>
-                                <Grid item xs={2} sx={{ mt: 2 }}>
+                                <Grid item xs={6} sx={{ mt: 2 }}>
                                   <Textfield
                                     name={`ctdi[${i}]`}
                                     label="CTDI"
                                   ></Textfield>
                                 </Grid>
-                              </>
+                              </Grid>
                             ))}
                             {numberOfProtocol < 2 ? (
                               <Grid

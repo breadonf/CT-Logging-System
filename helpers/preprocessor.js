@@ -1,5 +1,6 @@
 const preprocessor = (values) => {
   // Age computing as written on form
+
   let re = /([0-9|.]{1,5})(M|D|m|d|Y|y{0,1})/;
   let matchedGrp = values.age.toString().match(re);
   const computedAge = 0;
@@ -36,6 +37,11 @@ const preprocessor = (values) => {
   modifiedValues.age = computedAge;
   modifiedValues.circumference = convertedCircumference;
   modifiedValues.PID = convertedPID;
+  if (values.kV_b == "") {
+    modifiedValues.kV_b = [];
+    // bug prevention: 13/6/2022 Winnie encounter sudden error that prevent her from POSTing the record
+    // with kVb is empty string instead of array
+  }
   console.log(
     "Modified value use this for debugging in submission",
     modifiedValues
