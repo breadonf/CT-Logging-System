@@ -18,6 +18,7 @@ export default function AutocompleteWrapper({
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
   const handleChange = (e, value) => {
+    console.log(value);
     if (multiple) {
       const result = value?.map((option) => option);
       setFieldValue(name, value !== null ? result : []);
@@ -57,7 +58,7 @@ export default function AutocompleteWrapper({
       fullWidth
       groupBy={groupBy}
       options={flattenedAutocompleteOptions}
-      getOptionLabel={(option) => (option ? option : "")}
+      getOptionLabel={(option) => option ?? ""}
       onChange={handleChange}
       defaultValue={prepopulatedValue}
       renderInput={(params) => (

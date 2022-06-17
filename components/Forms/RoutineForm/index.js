@@ -263,6 +263,7 @@ function RoutineForm({ data, handleSubmit }) {
                                         sx={{ p: 0 }}
                                         name="sedationMethod"
                                         label="using"
+                                        multiple
                                         autocompleteOptions={sedationMethod}
                                         prepopulatedValue={
                                           data?.sedationMethod ?? []
