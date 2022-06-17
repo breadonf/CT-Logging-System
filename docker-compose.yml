@@ -5,7 +5,7 @@ services:
     ports:
       - 3000:3000
     build:
-      context: ../excel-ct
+      context: ../CT-Logging-System
       dockerfile: Dockerfile
     volumes:
       - ../excel-ct:/usr/src/app

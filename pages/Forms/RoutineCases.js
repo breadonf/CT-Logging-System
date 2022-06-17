@@ -9,7 +9,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Typography } from "@mui/material";
 
 function RoutineCases() {
   const router = useRouter();
