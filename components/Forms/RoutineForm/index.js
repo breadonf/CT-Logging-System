@@ -7,10 +7,10 @@ import { useQuery } from "react-query";
 
 import PatientDetail from "./PatientDetail";
 import ExamDetail from "./ExamDetail";
-import ContrastDetail from "./contrastDetail";
-import StaffDetail from "./staffDetail";
-import Remarks from "./remarks";
-import BottomButton from "./bottomButton";
+import ContrastDetail from "./ContrastDetail";
+import StaffDetail from "./StaffDetail";
+import Remarks from "./Remarks";
+import BottomButton from "./BottomButton";
 
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
