@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import "../styles/textEditor.css";
+import "../styles/textEditorForm.css";
 import { QueryClientProvider, QueryClient, Hydrate } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Layout from "../components/Layout";
