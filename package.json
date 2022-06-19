@@ -1,13 +1,16 @@
 {
-  "name": "ct-log",
+  "name": "ct-logging-system-frontend",
   "private": true,
+  "version": "1.03",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docker": "docker-compose -f docker-compose.yml -p frontend up",
-    "docker-output": "docker save -o frontend.tar frontend_nextjs_1"
+    "docker": "cross-conf-env docker-compose -f docker-compose.yml up --no-start",
+    "docker-output": "cross-conf-env docker save -o ../frontend-%npm_package_version%.tar frontend-%npm_package_version%",
+    "check-env": "node -e 'console.log(process.env)' | grep npm",
+    "var:win": "cross-conf-env echo %npm_package_name% %npm_package_version%"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -16,6 +19,7 @@
     "@mui/lab": "^5.0.0-alpha.66",
     "@mui/material": "^5.3.1",
     "@mui/x-data-grid": "^5.3.0",
+    "cross-conf-env": "^1.2.1",
     "formik": "^2.2.9",
     "next": "12.0.7",
     "react": "17.0.2",
