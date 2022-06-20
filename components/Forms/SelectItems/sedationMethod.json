@@ -4,6 +4,6 @@
   { "label": "GA", "value": "GA" },
   { "label": "Oral", "value": "Oral" },
   { "label": "Intubated", "value": "Intubated" },
-  { "label": "tryNoSedation", "value": "try no sedation" },
+  { "label": "try no sedation", "value": "tryNoSedation" },
   { "label": "Others", "value": "Others" }
 ]
