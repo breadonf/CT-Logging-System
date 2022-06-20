@@ -9,16 +9,16 @@ import * as yup from "yup";
 const formikEnhancer = withFormik({
   mapPropsToValues: (props) => ({
     editorState: EditorState.createEmpty(),
-    email: "",
+    user: "",
+    HTMLMessage: "",
   }),
-  validationSchema: yup.object().shape({
-    email: yup.string().email("That's not an email").required("Required!"),
-  }),
+
   handleSubmit: (values, { setSubmitting }) => {
     setTimeout(() => {
       const content = convertToHTML(values.editorState.getCurrentContent());
       // you probably want to transform draftjs state to something else, but I'll leave that to you.
       alert(JSON.stringify(values, null, 2));
+      console.log(values);
       console.log(content);
       setSubmitting(false);
     }, 1000);
@@ -38,32 +38,20 @@ const LogbookForm = ({
   setFieldValue,
   isSubmitting,
 }) => (
-  <Grid container spacing={2} sx={{justifyContent: "center"}}>
+  <Grid container spacing={2} sx={{ justifyContent: "center" }}>
     <Grid item xs={10}>
-      <Paper sx={{px:3, py:3, minHeight: "90vh", my:2}}>
+      <Paper sx={{ px: 3, py: 3, minHeight: "40vh", my: 2 }}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email" style={{ display: "block" }}>
-            Email
-          </label>
+          <label style={{ display: "block" }}>Name</label>
           <input
-            id="email"
-            placeholder="Enter your email"
-            type="email"
-            value={values.email}
+            id="user"
+            placeholder="Your Name..."
+            type="text"
+            value={values.user}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.email && touched.email && (
-            <div style={{ color: "red", marginTop: ".5rem" }}>
-              {errors.email}
-            </div>
-          )}
-          <label
-            htmlFor="email"
-            style={{ display: "block", marginTop: ".5rem" }}
-          >
-            Story
-          </label>
+          <label style={{ display: "block", marginTop: ".5rem" }}>Story</label>
           <TextEditor
             editorState={values.editorState}
             onChange={setFieldValue}
@@ -81,10 +69,6 @@ const LogbookForm = ({
             Submit
           </button>
         </form>
-        <Divider />
-        <Grid item xs={10}>
-            <Typography variant="h2">History</Typography>
-        </Grid>
       </Paper>
     </Grid>
   </Grid>
