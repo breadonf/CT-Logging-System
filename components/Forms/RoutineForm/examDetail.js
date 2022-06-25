@@ -121,7 +121,7 @@ function ExamDetail({
       </Grid>
 
       {[...Array(numberOfProtocol)].map((x, i) => (
-        <Grid container spacing={1} item xs={4} key={`$numberOfProtocol-${i}`}>
+        <Grid container spacing={1} item xs={4} key={`numberOfProtocol-${i}`}>
           <Grid item xs={6} sx={{ mt: 2 }}>
             <Textfield name={`pitch[${i}]`} label="Pitch"></Textfield>
           </Grid>
@@ -168,8 +168,8 @@ function ExamDetail({
               type="button"
               onClick={() => {
                 setNumberOfProtocol((prev) => prev - 1);
-                formik.setFieldValue("ctdi", formik.values.ctdi.splice(-1));
-                formik.setFieldValue("pitch", formik.values.pitch.splice(-1));
+                formik.values.ctdi.pop();
+                formik.values.pitch.pop(); // pop method to remove the last value
               }}
             >
               Cancel

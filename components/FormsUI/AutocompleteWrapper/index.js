@@ -18,9 +18,9 @@ export default function AutocompleteWrapper({
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
   const handleChange = (e, value) => {
-    console.log(value);
     if (multiple) {
       const result = value?.map((option) => option);
+      console.log("result", result);
       setFieldValue(name, value !== null ? result : []);
     } else {
       setFieldValue(name, value);
@@ -34,6 +34,16 @@ export default function AutocompleteWrapper({
     margin: "normal",
     label: label,
     fullWidth: true,
+    onKeyDown: (event) => {
+      if (event.key === "Enter") {
+        // Prevent's default 'Enter' behavior.
+        event.defaultMuiPrevented = true;
+        event.preventDefault();
+        // your handler code
+        // Temp fixes
+        // For preventing pressing enter when in autocomplete to prevent inputting string value to the field without processing to array
+      }
+    },
   };
   if (meta && meta.touched && meta.error) {
     configAuto.error = true;
