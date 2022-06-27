@@ -1,7 +1,8 @@
-version: "3.3"
+version: "3"
 
 services:
   nextjs:
+    image: "frontend-${TAG}"
     ports:
       - 3000:3000
     build:
