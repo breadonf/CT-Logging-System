@@ -18,7 +18,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           multiple={true}
           id="radiographers"
           name="radiographers"
-          label="Radiographer"
+          label="Radiographer(s)"
           prepopulatedValue={data.radiographers ?? []}
           autocompleteOptions={
             isSuccess ? autocompleteOptions.radiographers : []
@@ -30,7 +30,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           multiple={true}
           id="radiologists"
           name="radiologists"
-          label="Radiologist"
+          label="Radiologist(s)"
           prepopulatedValue={data.radiologists ?? []}
           autocompleteOptions={
             isSuccess ? autocompleteOptions.radiologists : []
@@ -42,7 +42,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           multiple={true}
           id="nurses"
           name="nurses"
-          label="Nurses"
+          label="Nurse(s)"
           prepopulatedValue={data.nurses ?? []}
           autocompleteOptions={isSuccess ? autocompleteOptions.nurses : []}
         ></AutocompleteWrapper>

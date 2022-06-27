@@ -65,6 +65,15 @@ const FORM_VALIDATION = yup.object().shape({
     ),
   kV_a: yup.array().typeError("Not an array").min(1, "Required").required(),
   kV_b: yup.array().typeError("Not an array"),
+  radiographers: yup
+    .array()
+    .transform((currentValue) => {
+      console.log(currentValue);
+      currentValue === "" ? (currentValue = []) : currentValue;
+    })
+    .typeError("Not an array"),
+  radiologists: yup.array().typeError("Not an array"),
+  nurses: yup.array().typeError("Not an array"),
 });
 
 export default FORM_VALIDATION;

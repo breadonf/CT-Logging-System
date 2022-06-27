@@ -10,6 +10,8 @@ import Select from "../../FormsUI/Select";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
 import Textfield from "../../FormsUI/Textfield";
+import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 function ContrastDetail({ data, contrast, handleSwitch }) {
   return (
@@ -43,7 +45,9 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
               <Checkbox
                 name="directPostContrast"
                 label="Yes"
-                legend="Direct post contrast study?"
+                legend="Pre Contrast Done?"
+                icon={<CheckCircleOutlineOutlinedIcon />} // Swapped Icon for frontend usage only
+                checkedIcon={<CancelOutlinedIcon sx={{ color: "red" }} />}
               />
             </Grid>
             <Grid item xs={3}>

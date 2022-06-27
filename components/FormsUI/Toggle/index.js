@@ -5,39 +5,23 @@ import {
   FormControlLabel,
   FormGroup,
   FormLabel,
+  Switch,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-const CheckboxWrapper = ({
-  name,
-  label,
-  legend,
-  checked,
-  dependable,
-  checkedIcon,
-  icon,
-  ...otherProps
-}) => {
+const ToggleWrapper = ({ name, label, legend, checked, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
   const handleChange = (e) => {
     const { checked } = e.target;
-    if (dependable) {
-      dependable(checked);
-      setFieldValue("sedationMethod", []);
-      setFieldValue("sedatedBy", "");
-    } else {
-      setFieldValue(name, checked);
-    }
+    setFieldValue(name, checked);
   };
 
-  const configCheckbox = {
+  const configToggle = {
     ...field,
     onChange: handleChange,
     checked: checked ? checked : field.value,
-    checkedIcon: checkedIcon,
-    icon: icon,
   };
 
   const configFormControl = {};
@@ -57,7 +41,7 @@ const CheckboxWrapper = ({
       <FormGroup>
         <FormControlLabel
           control={
-            <Checkbox
+            <Switch
               sx={{ fontWeight: "bold", color: "#495371" }}
               {...configCheckbox}
             />
@@ -69,4 +53,4 @@ const CheckboxWrapper = ({
   );
 };
 
-export default CheckboxWrapper;
+export default ToggleWrapper;

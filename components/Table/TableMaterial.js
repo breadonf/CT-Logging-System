@@ -67,7 +67,7 @@ export default function TableMaterial({
       { field: "count", headerName: "Entry id" },
       {
         field: "Date",
-        headerName: "Date of Exam",
+        headerName: "Exam Date",
         type: "dateTime",
         width: 100,
         valueGetter: ({ value }) => value && new Date(value),
@@ -83,17 +83,9 @@ export default function TableMaterial({
       },
       { field: "PID", headerName: "Patient ID", width: 100 },
       {
-        field: "inPatient",
-        headerName: "Inpatient",
-        width: 100,
-        renderCell: (isInpatient) => {
-          return isInpatient.value ? <CheckRoundedIcon /> : <></>;
-        },
-      },
-      {
         field: "sedation",
         headerName: "Sedation",
-        width: 100,
+        width: 90,
         renderCell: (isSedation) => {
           return isSedation.value ? <CheckRoundedIcon /> : <></>;
         },
@@ -107,26 +99,17 @@ export default function TableMaterial({
       {
         headerName: "Protocol",
         field: "protocol",
-        width: 400,
-      },
-      { headerName: "Weight", field: "weight" },
-      { headerName: "Height", field: "height" },
-      { headerName: "kV (Tube A)", field: "kV_a" },
-      {
-        headerName: "kV (Tube B)",
-        field: "kV_b",
-      },
-      {
-        headerName: "CTDI",
-        field: "ctdi",
-        renderCell: (ctdi) => {
-          return ctdi.value ? (
+        flex: true,
+        maxWidth: 300,
+        minWidth: 100,
+        renderCell: (protocol) => {
+          return protocol.value ? (
             <div>
-              {ctdi.value.map((protocol) => (
+              {protocol.value.map((protocol) => (
                 <Chip
                   key={`ctdi-${protocol}`}
                   variant="outlined"
-                  color="error"
+                  color="primary"
                   label={protocol}
                 />
               ))}
@@ -136,8 +119,17 @@ export default function TableMaterial({
           );
         },
       },
-      { headerName: "Weight", field: "weight" },
-      { headerName: "Height", field: "height" },
+      {
+        headerName: "Pre Contrast done?",
+        field: "directPostContrast",
+        renderCell: (isDirectPostContrast) => {
+          return isDirectPostContrast.value ? <CheckRoundedIcon /> : <></>;
+        },
+        align: "center",
+      },
+      { headerName: "Site", field: "injectionSite" },
+      { headerName: "Rate", field: "rate" },
+      { headerName: "Volume", field: "volume" },
       {
         headerName: "kV (Tube A)",
         field: "kV_a",
@@ -178,9 +170,26 @@ export default function TableMaterial({
           );
         },
       },
-      { headerName: "Site", field: "injectionSite" },
-      { headerName: "Rate", field: "rate" },
-      { headerName: "Volume", field: "volume" },
+      {
+        headerName: "kV (Tube B)",
+        field: "kV_b",
+        renderCell: (items) => {
+          return items.value ? (
+            <div>
+              {items.formattedValue.map((kVB) => (
+                <Chip
+                  key={`kVB-${kVB}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVB}
+                />
+              ))}
+            </div>
+          ) : (
+            <></>
+          );
+        },
+      },
       {
         headerName: "Reporting Radiologists",
         field: "radiologists",
