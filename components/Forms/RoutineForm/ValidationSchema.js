@@ -74,6 +74,7 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Not an array"),
   radiologists: yup.array().typeError("Not an array"),
   nurses: yup.array().typeError("Not an array"),
+  directPostContrast: yup.boolean().required(),
 });
 
 export default FORM_VALIDATION;

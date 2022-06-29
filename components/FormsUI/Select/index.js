@@ -49,7 +49,9 @@ const SelectWrapper = ({
           label: { ...sx, fontWeight: "bold", color: "#495371" },
         }}
       >
-        <InputLabel id={`label-${label}`}>{label}</InputLabel>
+        <InputLabel disabled component="label" id={`label-${label}`}>
+          {label}
+        </InputLabel>
 
         {Object.keys(options).map((item, pos) => {
           return (

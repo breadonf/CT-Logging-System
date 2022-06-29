@@ -7,6 +7,7 @@ import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
 import Select from "../../FormsUI/Select";
+import RadioGroup from "../../FormsUI/RadioGroup";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
 import Textfield from "../../FormsUI/Textfield";
@@ -41,13 +42,23 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
                 legend="Hand Injection"
               />
             </Grid>
-            <Grid item xs={3}>
+           {/* <Grid item xs={3}>
               <Checkbox
                 name="directPostContrast"
                 label="Yes"
                 legend="Pre Contrast Done?"
                 icon={<CheckCircleOutlineOutlinedIcon />} // Swapped Icon for frontend usage only
                 checkedIcon={<CancelOutlinedIcon sx={{ color: "red" }} />}
+              />
+            </Grid> */}
+            <Grid item xs={3}>
+              <RadioGroup
+                name="directPostContrast"
+                legend="Pre Contrast Done"
+                options={[
+                  { label: "Yes", value: false },
+                  { label: "No", value: true },
+                ]}
               />
             </Grid>
             <Grid item xs={3}>
