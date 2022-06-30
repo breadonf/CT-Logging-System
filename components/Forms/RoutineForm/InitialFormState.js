@@ -20,7 +20,7 @@ const INITIAL_FORM_STATE = {
   contrastType: "",
   rate: "",
   volume: "",
-  directPostContrast: false,
+  directPostContrast: null,
   ttp: "",
   radiographers: [],
   radiologists: [],

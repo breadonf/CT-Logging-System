@@ -20,14 +20,15 @@ const RadioGroupWrapper = ({ name, legend, options, ...otherProps }) => {
     ...otherProps,
     onChange: handleChange,
   };
-
+  const configFormLabel = {};
   if (meta && meta.touched && meta.error) {
-    configRadioGroup.error = true;
-    configRadioGroup.helperText = meta.error;
+    configFormLabel.error = true;
+    configFormLabel.helperText = meta.error;
   }
   return (
     <FormControl>
       <FormLabel
+        {...configFormLabel}
         component="legend"
         sx={{ fontWeight: "bold", color: "#495371" }}
       >
@@ -45,7 +46,13 @@ const RadioGroupWrapper = ({ name, legend, options, ...otherProps }) => {
           );
         })}
       </RadioGroup>
-      <FormHelperText> Please select</FormHelperText>
+      {meta && meta.touched && meta.error ? (
+        <FormHelperText error required>
+          Required
+        </FormHelperText>
+      ) : (
+        <></>
+      )}
     </FormControl>
   );
 };

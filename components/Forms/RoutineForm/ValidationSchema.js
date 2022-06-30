@@ -38,9 +38,9 @@ const FORM_VALIDATION = yup.object().shape({
   PID: yup
     .string()
     .test("is-HKID", "Not a valid HKID", (value, context) => IsHKID(value))
-    .required(),
+    .required("Required"),
   inPatient: yup.boolean(),
-  age: yup.string().required(),
+  age: yup.string().required("Required"),
   weight: yup
     .number()
     .typeError("Please enter a valid weight in kg")
@@ -68,13 +68,23 @@ const FORM_VALIDATION = yup.object().shape({
   radiographers: yup
     .array()
     .transform((currentValue) => {
-      console.log(currentValue);
       currentValue === "" ? (currentValue = []) : currentValue;
     })
     .typeError("Not an array"),
   radiologists: yup.array().typeError("Not an array"),
   nurses: yup.array().typeError("Not an array"),
-  directPostContrast: yup.boolean().required(),
+  contrastType: yup.string().typeError("Please select type of contrast"),
+  rate: yup.number().typeError("Not an number"),
+  directPostContrast: yup
+    .boolean()
+    .nullable()
+    .when("contrastType", {
+      is: (contrastType) => {
+        console.log(contrastType !== undefined, contrastType);
+        return contrastType !== undefined;
+      },
+      then: (schema) => schema.required("Required"),
+    }),
 });
 
 export default FORM_VALIDATION;
