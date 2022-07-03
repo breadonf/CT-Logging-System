@@ -1,6 +1,5 @@
 import React from "react";
 import { TextField, MenuItem, InputLabel } from "@mui/material";
-import Select from "@mui/material/Select";
 import { isEmptyArray, useField, useFormikContext } from "formik";
 import FormControl from "@mui/material/FormControl";
 
@@ -18,7 +17,6 @@ const SelectWrapper = ({
 
   const handleChange = (e) => {
     const { value } = e.target;
-    console.log(value);
     setFieldValue(name, value);
   };
 

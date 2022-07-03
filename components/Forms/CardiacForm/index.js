@@ -9,6 +9,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import FORM_VALIDATION from "./ValidationSchema";
 import PatientDetail from "./patientDetail";
+import CardiacSetup from "./CardiacSetup";
 
 import { getHomepageData } from "../../../queries/queries";
 
@@ -17,6 +18,7 @@ function CardiacForm({ data, handleSubmit }) {
     "autocompleteOptions",
     async () => await getHomepageData()
   );
+  const [numberOfSites, setNumberOfSites] = React.useState(1);
 
   if (isLoading) {
     return (
@@ -61,34 +63,46 @@ function CardiacForm({ data, handleSubmit }) {
                 validationSchema={FORM_VALIDATION}
                 onSubmit={handleSubmit}
               >
-                {(formik) => (
-                  <Form>
-                    <Grid container spacing={2} sx={{ height: "90vh", py: 3 }}>
-                      <Grid item xs={12}>
-                        <Paper
-                          elevation={12}
-                          sx={{
-                            p: 3,
-                            height: "85vh",
-                            bgcolor: "#F0F3BD",
-                            overflowY: "auto",
-                          }}
-                        >
-                          <Grid item xs={12}>
-                            <Typography
-                              variant="h3"
-                              align="center"
-                              color="#093A3E"
-                            >
-                              Cardiac Case Setup Log Form
-                            </Typography>
-                          </Grid>
-                          <PatientDetail />
-                        </Paper>
+                {(formik) => {
+                  console.log(formik.values);
+                  return (
+                    <Form>
+                      <Grid
+                        container
+                        spacing={2}
+                        sx={{ height: "90vh", py: 3 }}
+                      >
+                        <Grid item xs={12}>
+                          <Paper
+                            elevation={12}
+                            sx={{
+                              p: 3,
+                              height: "85vh",
+                              bgcolor: "#F0F3BD",
+                              overflowY: "auto",
+                            }}
+                          >
+                            <Grid item xs={12}>
+                              <Typography
+                                variant="h3"
+                                align="center"
+                                color="#093A3E"
+                              >
+                                Cardiac Case Setup Log Form
+                              </Typography>
+                            </Grid>
+                            <PatientDetail />
+                            <CardiacSetup
+                              formik={formik}
+                              numberOfSites={numberOfSites}
+                              setNumberOfSites={setNumberOfSites}
+                            />
+                          </Paper>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </Form>
-                )}
+                    </Form>
+                  );
+                }}
               </Formik>
             </Container>
           </Grid>

@@ -43,7 +43,7 @@ const ToggleWrapper = ({ name, label, legend, checked, ...otherProps }) => {
           control={
             <Switch
               sx={{ fontWeight: "bold", color: "#495371" }}
-              {...configCheckbox}
+              {...configToggle}
             />
           }
           label={label}
