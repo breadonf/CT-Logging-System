@@ -7,6 +7,8 @@ const INITIAL_FORM_STATE = {
   sedation: [],
   breathingControl: [],
   IVSite: [{ location: [], side: [], Diffusics: false }],
+  targetHR: "",
+  scanMode:{ HRDependent: "", Flash:""}
 };
 
 export default INITIAL_FORM_STATE;

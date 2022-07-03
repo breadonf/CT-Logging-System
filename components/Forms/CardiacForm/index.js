@@ -10,6 +10,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import FORM_VALIDATION from "./ValidationSchema";
 import PatientDetail from "./patientDetail";
 import CardiacSetup from "./CardiacSetup";
+import ScanMode from "./scanMode";
 
 import { getHomepageData } from "../../../queries/queries";
 
@@ -97,6 +98,7 @@ function CardiacForm({ data, handleSubmit }) {
                               numberOfSites={numberOfSites}
                               setNumberOfSites={setNumberOfSites}
                             />
+                            <ScanMode formik={formik} />
                           </Paper>
                         </Grid>
                       </Grid>

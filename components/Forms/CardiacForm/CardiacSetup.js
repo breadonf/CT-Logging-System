@@ -1,5 +1,5 @@
 import React from "react";
-import SickIcon from "@mui/icons-material/Sick";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { Grid, Typography, Chip, Button } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
@@ -14,7 +14,7 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Grid item xs={12}>
         <Typography variant="h5" color="#05668D">
-          <SickIcon sx={{ mr: 1 }} /> Setup
+          <SettingsIcon sx={{ mr: 1 }} /> Setup
         </Typography>
       </Grid>
       <Grid item xs={4}>
@@ -49,6 +49,10 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
           ]}
         />
       </Grid>
+      <Grid item xs={4}>
+        <Textfield name="targetHR" label="Target heart rate" />
+      </Grid>
+
       {[...Array(numberOfSites)].map((x, i) => (
         <Grid
           container

@@ -1,15 +1,22 @@
 import React from "react";
 import {
-  Checkbox,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
   Switch,
+  FormHelperText,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
-const ToggleWrapper = ({ name, label, legend, checked, ...otherProps }) => {
+const ToggleWrapper = ({
+  name,
+  label,
+  legend,
+  checked,
+  helperText,
+  ...otherProps
+}) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -26,8 +33,8 @@ const ToggleWrapper = ({ name, label, legend, checked, ...otherProps }) => {
 
   const configFormControl = {};
   if (meta && meta.touched && meta.error) {
-    configCheckbox.error = true;
-    configCheckbox.helperText = meta.error;
+    configToggle.error = true;
+    configToggle.helperText = meta.error;
   }
 
   return (
@@ -49,6 +56,9 @@ const ToggleWrapper = ({ name, label, legend, checked, ...otherProps }) => {
           label={label}
         />
       </FormGroup>
+      <FormHelperText filled sx={{ fontSize: "large" }}>
+        {helperText}
+      </FormHelperText>
     </FormControl>
   );
 };
