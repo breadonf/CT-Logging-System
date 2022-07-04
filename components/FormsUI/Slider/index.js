@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider, FormControl, InputLabel, Input } from "@mui/material";
+import { Slider, FormControl, InputLabel, Input, Grid } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 import useDebounceInput from "../../../hooks/useDebounce.js";
 
@@ -12,15 +12,14 @@ const SlideWrapper = ({
   sx,
   ...otherProps
 }) => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
   const [field, meta] = useField(name);
-
   const handleChange = (e, valueFromDefault) => {
     setFieldValue(name, valueFromDefault);
   };
-  const handleInputChange = (e, valueFromDefault) => {
-    console.log(Number(e.target.value));
-    setFieldValue(name, valueFromDefault);
+  const handleInputChange = (e) => {
+    
+    setFieldValue(name, e.target.value);
   };
 
   const configSlider = {
@@ -31,44 +30,51 @@ const SlideWrapper = ({
     SelectProps: {
       multiple: multiple,
     },
-    defaultValue: field.value ? field.value : [10, 90],
+    defaultValue: field.value ? field.value : [0, 0],
     label: label,
+    step: 5,
   };
   if (meta && meta.touched && meta.error) {
     configSlider.error = true;
     configSlider.helperText = meta.error;
   }
   return (
-    <FormControl fullWidth>
-      <InputLabel disabled component="label" id={`label-${label}`}>
-        {label}
-      </InputLabel>
-      <Slider valueLabelDisplay="auto" {...configSlider} />
-      <Input
-        value={field.value[0]}
-        size="small"
-        onChange={handleInputChange}
-        inputProps={{
-          step: 10,
-          min: 0,
-          max: 100,
-          type: "number",
-          "aria-labelledby": "input-slider",
-        }}
-      />
-      <Input
-        value={field.value[1]}
-        size="small"
-        onChange={handleInputChange}
-        inputProps={{
-          step: 10,
-          min: 0,
-          max: 100,
-          type: "number",
-          "aria-labelledby": "input-slider",
-        }}
-      />
-    </FormControl>
+    <Grid container>
+      <Grid item xs={12} spacing={1}>
+        <InputLabel component="label" id={`label-${label}`}>
+          {label}
+        </InputLabel>
+      </Grid>
+      <Grid item xs={8}>
+        <Slider valueLabelDisplay="auto" {...configSlider} />
+      </Grid>
+      <Grid item xs={2}>
+        <Input
+          value={values.scanMode.ss.range[0]}
+          size="small"
+          onChange={handleInputChange}
+          inputProps={{
+            step: 5,
+            min: 0,
+            max: 100,
+            type: "number",
+          }}
+        />
+      </Grid>
+      <Grid item xs={2}>
+        <Input
+          value={values.scanMode.ss.range[1]}
+          size="small"
+          onChange={handleInputChange}
+          inputProps={{
+            step: 5,
+            min: 0,
+            max: 100,
+            type: "number",
+          }}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

@@ -52,14 +52,7 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
       </Grid>
       {formik.values.scanMode.ss ? (
         <Grid item xs={4}>
-          <Slider
-            name="scanMode.ss.range"
-            legend="Range"
-            options={[
-              { label: "30%", value: "30%" },
-              { label: "65%", value: "65%" },
-            ]}
-          />
+          <Slider label="SS range" name="scanMode.ss.range" legend="Range" />
         </Grid>
       ) : (
         <></>
