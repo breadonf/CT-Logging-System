@@ -8,7 +8,7 @@ const INITIAL_FORM_STATE = {
   breathingControl: [],
   IVSite: [{ location: [], side: [], Diffusics: false }],
   targetHR: "",
-  scanMode:{ HRDependent: "", Flash:""}
+  scanMode: { HRDependent: "", Flash: "", ss: { range: [10, 90] } },
 };
 
 export default INITIAL_FORM_STATE;

@@ -8,7 +8,7 @@ import Checkbox from "../../FormsUI/Checkbox";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import Toggle from "../../FormsUI/Toggle";
 import TimerIcon from "@mui/icons-material/Timer";
-
+import Slider from "../../FormsUI/Slider";
 function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
@@ -52,7 +52,7 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
       </Grid>
       {formik.values.scanMode.ss ? (
         <Grid item xs={4}>
-          <RadioGroup
+          <Slider
             name="scanMode.ss.range"
             legend="Range"
             options={[

@@ -65,7 +65,6 @@ function CardiacForm({ data, handleSubmit }) {
                 onSubmit={handleSubmit}
               >
                 {(formik) => {
-                  console.log(formik.values);
                   return (
                     <Form>
                       <Grid
