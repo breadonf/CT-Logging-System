@@ -1,13 +1,16 @@
 import React from "react";
 import { Grid } from "@mui/material";
+import mockLogbookData from "./mockLogbookData.json"
 
-function boxArray(data) {
+function BoxArray() {
   return (
     <Grid comtainer spacing={1}>
-      {data.map((message) => {
+      {mockLogbookData.map((item) => {
         return (
-          <Grid item key={message}>
-            <Box></Box>
+          <Grid item>
+            <Box>
+
+            </Box>
           </Grid>
         );
       })}
@@ -15,4 +18,4 @@ function boxArray(data) {
   );
 }
 
-export default boxArray;
+export default BoxArray;

@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Button } from "@mui/material";
-function BottomButton({ formik }) {
+
+function ButtonWrapper({ formik }) {
   return (
     <Grid
       container
@@ -34,4 +35,4 @@ function BottomButton({ formik }) {
   );
 }
 
-export default BottomButton;
+export default ButtonWrapper;

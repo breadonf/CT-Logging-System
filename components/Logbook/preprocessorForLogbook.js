@@ -1,8 +1,8 @@
-import { convertFromHTML } from "draft-convert";
+import { convertToHTML } from "draft-convert";
 
 const preprocessorForLogBook = (values) => {
   const { editorState } = values;
-  const HTMLMessage = convertFromHTML(editorState.getCurrentContent());
+  const HTMLMessage = convertToHTML(editorState.getCurrentContent());
 
   const modifiedValues = { ...values };
   modifiedValues.HTMLMessage = HTMLMessage;

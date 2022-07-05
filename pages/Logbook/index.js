@@ -1,6 +1,8 @@
 import React from "react";
 import LogbookHistory from "../../components/Logbook/History/logbookHistory";
 import EnhancedLogbookForm from "../../components/Logbook/LogbookForm";
+import NotebookForm from "../../components/Logbook/LogbookForm/newIndex";
+import {convertToHTML} from "draft-convert";
 
 function Logbook() {
   const handleSubmit = (values, { setSubmitting }) => {
@@ -15,10 +17,11 @@ function Logbook() {
 
   return (
     <>
-      <EnhancedLogbookForm handleSubmit={handleSubmit} />
+      <EnhancedLogbookForm />
+      {/*<NotebookForm handleSubmit={handleSubmit} />*/}
       <LogbookHistory />
     </>
   );
-}
+} 
 
 export default Logbook;

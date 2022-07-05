@@ -1,25 +1,30 @@
 import React from "react";
-import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import { withFormik } from "formik";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import { TextEditor } from "../TextEditor";
-import * as yup from "yup";
+import Select from "../../FormsUI/Select";
+import categories from "./categories.json";
+import preprocessorForLogBook from "../preprocessorForLogbook";
 
 const formikEnhancer = withFormik({
   mapPropsToValues: (props) => ({
     editorState: EditorState.createEmpty(),
     user: "",
-    HTMLMessage: "",
+    category: "",
+    HTMLMessage: ""
   }),
 
   handleSubmit: (values, { setSubmitting }) => {
+    const modifiedValues = preprocessorForLogBook(values);
+
     setTimeout(() => {
       const content = convertToHTML(values.editorState.getCurrentContent());
       // you probably want to transform draftjs state to something else, but I'll leave that to you.
       alert(JSON.stringify(values, null, 2));
       console.log(values);
-      console.log(content);
+      console.log(modifiedValues);
       setSubmitting(false);
     }, 1000);
   },
@@ -51,7 +56,13 @@ const LogbookForm = ({
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <label style={{ display: "block", marginTop: ".5rem" }}>Story</label>
+          <label style={{ display: "block" }}>Category</label>
+          <Select
+            name="category"
+            label="category"
+            options={categories}
+          />
+          <label style={{ display: "block", marginTop: ".5rem" }}>Note</label>
           <TextEditor
             editorState={values.editorState}
             onChange={setFieldValue}
