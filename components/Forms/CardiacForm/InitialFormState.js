@@ -15,9 +15,9 @@ const INITIAL_FORM_STATE = {
   },
   phase: [
     { name: "Plain", scanRange: "", processing: { caScore: false } },
-    { name: [], scanRange: "", processing: { caScore: false } },
-    { name: [], scanRange: "", processing: { caScore: false } },
-    { name: [], scanRange: "", processing: { caScore: false } },
+    { name: [], scanRange: "", processing: [] },
+    { name: [], scanRange: "", processing: [] },
+    { name: [], scanRange: "", processing: [] },
   ],
 };
 

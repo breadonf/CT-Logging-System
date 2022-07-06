@@ -96,7 +96,7 @@ function ExamDetail({
           sx={{ pt: 2 }}
           name="examType"
           label="Body region"
-          multiple
+          SelectProps={{ multiple: true }}
           prepopulatedValue={data?.examType}
           options={examType}
         />
