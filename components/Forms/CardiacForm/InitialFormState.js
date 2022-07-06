@@ -8,7 +8,17 @@ const INITIAL_FORM_STATE = {
   breathingControl: [],
   IVSite: [{ location: [], side: [], Diffusics: false }],
   targetHR: "",
-  scanMode: { HRDependent: "", Flash: "", ss: { range: ["", ""] } },
+  scanMode: {
+    HRDependent: "",
+    Flash: "",
+    ss: { status: false, range: ["", ""] },
+  },
+  phase: [
+    { name: "Plain", scanRange: "", processing: { caScore: false } },
+    { name: [], scanRange: "", processing: { caScore: false } },
+    { name: [], scanRange: "", processing: { caScore: false } },
+    { name: [], scanRange: "", processing: { caScore: false } },
+  ],
 };
 
 export default INITIAL_FORM_STATE;

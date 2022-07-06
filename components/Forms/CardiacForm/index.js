@@ -11,6 +11,7 @@ import FORM_VALIDATION from "./ValidationSchema";
 import PatientDetail from "./patientDetail";
 import CardiacSetup from "./CardiacSetup";
 import ScanMode from "./scanMode";
+import PhaseDetail from "./PhaseDetail";
 
 import { getHomepageData } from "../../../queries/queries";
 
@@ -98,6 +99,7 @@ function CardiacForm({ data, handleSubmit }) {
                               setNumberOfSites={setNumberOfSites}
                             />
                             <ScanMode formik={formik} />
+                            <PhaseDetail formik={formik} />
                           </Paper>
                         </Grid>
                       </Grid>

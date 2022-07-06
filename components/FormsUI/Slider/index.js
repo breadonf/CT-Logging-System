@@ -2,6 +2,7 @@ import React from "react";
 import { Slider, FormControl, InputLabel, Input, Grid } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 import useDebounceInput from "../../../hooks/useDebounce.js";
+import TextField from "../Textfield";
 
 const SlideWrapper = ({
   name,
@@ -17,21 +18,12 @@ const SlideWrapper = ({
   const handleChange = (e, valueFromDefault) => {
     setFieldValue(name, valueFromDefault);
   };
-  const handleInputChange = (e) => {
-    
-    setFieldValue(name, e.target.value);
-  };
 
   const configSlider = {
     ...field,
     ...otherProps,
-    fullWidth: true,
     onChangeCommitted: handleChange,
-    SelectProps: {
-      multiple: multiple,
-    },
     defaultValue: field.value ? field.value : [0, 0],
-    label: label,
     step: 5,
   };
   if (meta && meta.touched && meta.error) {
@@ -39,20 +31,16 @@ const SlideWrapper = ({
     configSlider.helperText = meta.error;
   }
   return (
-    <Grid container>
+    <Grid spacing={1} container alignItems="center" justifyContent="center">
       <Grid item xs={12} spacing={1}>
         <InputLabel component="label" id={`label-${label}`}>
           {label}
         </InputLabel>
       </Grid>
-      <Grid item xs={8}>
-        <Slider valueLabelDisplay="auto" {...configSlider} />
-      </Grid>
-      <Grid item xs={2}>
-        <Input
-          value={values.scanMode.ss.range[0]}
+      <Grid item xs={3}>
+        <TextField
+          name={`${name}[0]`}
           size="small"
-          onChange={handleInputChange}
           inputProps={{
             step: 5,
             min: 0,
@@ -61,11 +49,13 @@ const SlideWrapper = ({
           }}
         />
       </Grid>
-      <Grid item xs={2}>
-        <Input
-          value={values.scanMode.ss.range[1]}
+      <Grid item xs={6}>
+        <Slider valueLabelDisplay="auto" {...configSlider} />
+      </Grid>
+      <Grid item xs={3}>
+        <TextField
+          name={`${name}[1]`}
           size="small"
-          onChange={handleInputChange}
           inputProps={{
             step: 5,
             min: 0,

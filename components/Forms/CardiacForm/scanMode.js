@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Chip, Button, Divider } from "@mui/material";
+import { Grid, Typography, Chip, Button, Divider, Radio } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import Textfield from "../../FormsUI/Textfield";
@@ -48,15 +48,29 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
         <></>
       )}
       <Grid item xs={2} sx={{ mt: 2 }}>
-        <Toggle name="scanMode.ss" label="SS?" />
+        <Toggle name="scanMode.ss.status" label="SS?" />
       </Grid>
-      {formik.values.scanMode.ss ? (
-        <Grid item xs={4}>
+      {formik.values.scanMode.ss.status ? (
+        <Grid item xs={4} sx={{ mt: 2 }}>
           <Slider label="SS range" name="scanMode.ss.range" legend="Range" />
         </Grid>
       ) : (
         <></>
       )}
+      <Grid item xs={2} sx={{ mt: 2 }}>
+        <RadioGroup
+          name="scanMode.monitoringMethod"
+          legend="Monitoring Method"
+          options={[
+            { label: "Manual", value: "Manual" },
+            { label: "Auto", value: "Auto" },
+            { label: "Test Bolus", value: "TestBolus" },
+          ]}
+        />
+      </Grid>
+      <Grid item xs={2} sx={{ mt: 2 }}>
+        <Textfield name="scanMode.ROI" label="ROI" />
+      </Grid>
     </Grid>
   );
 }
