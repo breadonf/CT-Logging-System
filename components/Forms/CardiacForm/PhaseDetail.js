@@ -1,7 +1,5 @@
 import React from "react";
 import { Grid, Typography, Chip, Button, Divider, Box } from "@mui/material";
-import AddCirCenterline probingeIcon from "@mui/icons-material/AddCirCenterline probinge";
-import RemoveCirCenterline probingeIcon from "@mui/icons-material/RemoveCirCenterline probinge";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
 import Checkbox from "../../FormsUI/Checkbox";
@@ -12,8 +10,15 @@ import Slider from "../../FormsUI/Slider";
 
 function PhaseDetail({ formik }) {
   return (
-    <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-      <Grid item container xs={12}>
+    <Grid
+      alignItems="center"
+      justifyContent="center"
+      container
+      spacing={2}
+      component={"div"}
+      sx={{ py: 5 }}
+    >
+      <Grid alignItems="center" justifyContent="center" item container xs={12}>
         <Grid item xs={12}>
           <Typography variant="h5" color="#05668D">
             <TimerIcon sx={{ mr: 1 }} /> Phase Detail
@@ -55,13 +60,22 @@ function PhaseDetail({ formik }) {
             }}
           />
         </Grid>
+        <Grid item xs={3} sx={{ mt: 2 }}>
+          <Textfield name="phase[0].scanRange" label="Remark" />
+        </Grid>
       </Grid>
       {[...Array(3)].map((values, i) => (
-        <Grid item container xs={12}>
+        <Grid
+          item
+          alignItems="center"
+          justifyContent="center"
+          container
+          xs={12}
+        >
           <Grid item xs={1} sx={{ mt: 2 }}>
             <Chip label={i + 2} />
           </Grid>
-          <Grid item xs={4} sx={{ mt: 2 }}>
+          <Grid item xs={2} sx={{ mt: 2 }}>
             <Select
               name={`phase[${i + 1}].name`}
               label="Phase"
@@ -104,6 +118,9 @@ function PhaseDetail({ formik }) {
               label="Scan Range"
               options={SCAN_RANGE_OPTIONS}
             />
+          </Grid>
+          <Grid item xs={3} sx={{ mt: 2 }}>
+            <Textfield name={`phase[${i + 1}].scanRange`} label="Remark" />
           </Grid>
         </Grid>
       ))}
