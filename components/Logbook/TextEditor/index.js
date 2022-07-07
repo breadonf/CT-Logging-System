@@ -35,6 +35,7 @@ const TextEditor = ({ value, setFieldValue }) => {
           editorState={editorState}
           wrapperClassName="custom-wrapper"
           editorClassName="custom-editor"
+          toolbarClassName="toolbarClassName"
           onEditorStateChange={onEditorStateChange}
         />
       </div>
