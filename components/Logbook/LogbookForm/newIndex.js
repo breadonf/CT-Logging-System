@@ -1,42 +1,63 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import NOTE_VALIDATION from "./ValidationSchema";
-import { Grid } from "@mui/material";
-import { Formik, withFormik, Form } from "formik";
+import { Grid, Paper, Typography } from "@mui/material";
+import { Formik, Form } from "formik";
 import Textfield from "../../FormsUI/Textfield";
+import Select from "../../FormsUI/Select";
+import categories from "./categories.json";
 import ButtonWrapper from "./buttonWrapper";
-import { TextEditor } from "../TextEditor";
-import { EditorState } from "draft-js";
+const NewTextEditor = dynamic(() => import("../TextEditor/NewTextEditor"), {
+  ssr: false,
+});
 
 const INITIAL_FORM_STATE = {
-  editorState: EditorState.createEmpty(),
-  user: "",
+  username: "",
   category: "",
   HTMLMessage: "",
+  message: "",
 };
 
 function NotebookForm(props) {
   return (
-    <Grid container>
+    <Grid container spacing={2} sx={{ justifyContent: "center" }}>
       <Grid item xs={10}>
-        <Formik
-          validationSchema={NOTE_VALIDATION}
-          onSubmit={props.handleSubmit}
-          initialValues={INITIAL_FORM_STATE}
-        >
-          {(formik) => (
-            <Form>
-              <Textfield name="username" label="Your Name" />
-              <TextEditor
-                editorState={formik.values.editorState}
-                onChange={formik.setFieldValue}
-                onBlur={formik.handleBlur}
-              />
-              <Grid container>
+        <Paper sx={{ px: 3, py: 3, minHeight: "40vh", my: 2 }}>
+          <Formik
+            validationSchema={NOTE_VALIDATION}
+            onSubmit={props.handleSubmit}
+            initialValues={INITIAL_FORM_STATE}
+          >
+            {(formik) => (
+              <Form>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <Textfield name="username" label="Your Name" />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Select
+                      name="category"
+                      label="category"
+                      options={categories}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} sx={{ py: 2 }}>
+                  <Typography component="label" sx={{ pb: 1 }}>
+                    Message
+                  </Typography>
+                  <NewTextEditor
+                    setFieldValue={(val) =>
+                      formik.setFieldValue("message", val)
+                    }
+                    value={formik.values.message}
+                  />
+                </Grid>
                 <ButtonWrapper formik={formik} />
-              </Grid>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </Paper>
       </Grid>
     </Grid>
   );

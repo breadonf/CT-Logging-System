@@ -7,7 +7,9 @@ function ButtonWrapper({ formik }) {
       container
       spacing={2}
       component={"div"}
-      sx={{ py: 4, justifyContent: "center" }}
+      justifyContent="center"
+      alignContent="center"
+      sx={{ py: 4 }}
     >
       <Grid item xs={4}>
         <Button
