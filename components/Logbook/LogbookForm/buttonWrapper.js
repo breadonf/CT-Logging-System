@@ -1,12 +1,15 @@
 import React from "react";
 import { Grid, Button } from "@mui/material";
-function BottomButton({ formik }) {
+
+function ButtonWrapper({ formik }) {
   return (
     <Grid
       container
       spacing={2}
       component={"div"}
-      sx={{ py: 4, justifyContent: "center" }}
+      justifyContent="center"
+      alignContent="center"
+      sx={{ py: 4 }}
     >
       <Grid item xs={4}>
         <Button
@@ -34,4 +37,4 @@ function BottomButton({ formik }) {
   );
 }
 
-export default BottomButton;
+export default ButtonWrapper;
