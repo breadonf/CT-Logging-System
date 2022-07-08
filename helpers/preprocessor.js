@@ -16,13 +16,23 @@ const preprocessor = (values) => {
     computedAge = values.age;
   }
 
-  const { height, weight, volume, ttp, rate, circumference, PID } = values;
+  const {
+    height,
+    weight,
+    volume,
+    ttp,
+    rate,
+    circumference,
+    PID,
+    directPostContrast,
+  } = values;
   const convertedHeight = parseFloat(height);
   const convertedWeight = parseFloat(weight);
   const convertedCircumference = parseFloat(circumference);
   const convertedVolume = parseFloat(volume);
   const convertedTtp = parseFloat(ttp);
   const convertedRate = parseFloat(rate);
+  const convertedDirectPostContrast = directPostContrast === "true";
   const convertedPID = PID.toUpperCase();
 
   const modifiedValues = { ...values };
@@ -37,6 +47,7 @@ const preprocessor = (values) => {
   modifiedValues.age = computedAge;
   modifiedValues.circumference = convertedCircumference;
   modifiedValues.PID = convertedPID;
+  modifiedValues.directPostContrast = convertedDirectPostContrast;
   if (values.kV_b == "") {
     modifiedValues.kV_b = [];
     // bug prevention: 13/6/2022 Winnie encounter sudden error that prevent her from POSTing the record

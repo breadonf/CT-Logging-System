@@ -120,7 +120,7 @@ export default function TableMaterial({
         },
       },
       {
-        headerName: "Pre Contrast done?",
+        headerName: "Direct Post Contrast",
         field: "directPostContrast",
         renderCell: (isDirectPostContrast) => {
           return isDirectPostContrast.value ? <CheckRoundedIcon /> : <></>;

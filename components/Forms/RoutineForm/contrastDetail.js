@@ -42,15 +42,6 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
                 legend="Hand Injection"
               />
             </Grid>
-           {/* <Grid item xs={3}>
-              <Checkbox
-                name="directPostContrast"
-                label="Yes"
-                legend="Pre Contrast Done?"
-                icon={<CheckCircleOutlineOutlinedIcon />} // Swapped Icon for frontend usage only
-                checkedIcon={<CancelOutlinedIcon sx={{ color: "red" }} />}
-              />
-            </Grid> */}
             <Grid item xs={3}>
               <RadioGroup
                 name="directPostContrast"

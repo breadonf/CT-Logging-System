@@ -19,13 +19,13 @@ function RoutineCases() {
     {
       mutationKey: "createCTitem",
       onSuccess: (data, variables, context) => {
-        console.log("onSucces", data, variables);
+        console.log("onSuccess", data, variables);
       },
     }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
     const modifiedValues = preprocessor(values);
-    await new Promise((r) => setTimeout(r, 750));
+    await new Promise((r) => setTimeout(r, 500));
 
     mutation.mutate(
       { ...modifiedValues },

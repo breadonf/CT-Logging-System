@@ -3,7 +3,7 @@ import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import { Grid, Typography } from "@mui/material";
 import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
 import Textfield from "../../FormsUI/Textfield";
-
+import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
 function StaffDetail({ isSuccess, autocompleteOptions, data }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 3 }}>
@@ -21,7 +21,11 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           label="Radiographer(s)"
           prepopulatedValue={data.radiographers ?? []}
           autocompleteOptions={
-            isSuccess ? autocompleteOptions.radiographers : []
+            isSuccess
+              ? autocompleteOptions.radiographers.sort((a, b) =>
+                  alphabeticalSort(a, b)
+                )
+              : []
           }
         ></AutocompleteWrapper>
       </Grid>
@@ -33,7 +37,11 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           label="Radiologist(s)"
           prepopulatedValue={data.radiologists ?? []}
           autocompleteOptions={
-            isSuccess ? autocompleteOptions.radiologists : []
+            isSuccess
+              ? autocompleteOptions.radiologists.sort((a, b) =>
+                  alphabeticalSort(a, b)
+                )
+              : []
           }
         ></AutocompleteWrapper>
       </Grid>
@@ -44,7 +52,13 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           name="nurses"
           label="Nurse(s)"
           prepopulatedValue={data.nurses ?? []}
-          autocompleteOptions={isSuccess ? autocompleteOptions.nurses : []}
+          autocompleteOptions={
+            isSuccess
+              ? autocompleteOptions.nurses.sort((a, b) =>
+                  alphabeticalSort(a, b)
+                )
+              : []
+          }
         ></AutocompleteWrapper>
       </Grid>
     </Grid>

@@ -5,7 +5,7 @@ import sedatedBy from "../SelectItems/sedatedBy.json";
 import sedationMethod from "../SelectItems/sedationMethod.json";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography, Button, Box, Chip } from "@mui/material";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import Checkbox from "../../FormsUI/Checkbox";
 import Select from "../../FormsUI/Select";
@@ -110,12 +110,29 @@ function ExamDetail({
           prepopulatedValue={data?.kV_a ?? []}
         />
       </Grid>
-      <Grid item xs={4}>
-        <AutocompleteWrapper
+      <Grid item xs={4} sx={{ mt: 2 }}>
+        <Select
           name="kV_b"
           label="kV (Tube B)"
-          multiple
-          autocompleteOptions={kV_b}
+          SelectProps={{
+            multiple: true,
+            renderValue: (selected) => (
+              <Box
+                sx={{
+                  maxHeight: "100%",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 0.5,
+                }}
+              >
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
+            ),
+          }}
+          grouped
+          options={kV_b}
           prepopulatedValue={data?.kV_b ?? []}
         />
       </Grid>

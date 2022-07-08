@@ -1,6 +1,30 @@
 [
-  { "label": "Sn100", "value": "Sn100" },
-  { "label": "Sn150", "value": "Sn150" },
-  { "label": "Secondary Sn150", "value": "Sn150_secondary" },
-  { "label": "Secondary Sn100", "value": "Sn100_secondary" }
+  {
+    "groupId": 1,
+    "name": "1st Protocol",
+    "roi": [
+      {
+        "id": "Sn100",
+        "name": "Sn100"
+      },
+      {
+        "id": "Sn150",
+        "name": "Sn150"
+      }
+    ]
+  },
+  {
+    "groupId": 2,
+    "name": "2nd Protocol",
+    "roi": [
+      {
+        "id": "Sn100_secondary",
+        "name": "Sn100"
+      },
+      {
+        "id": "Sn150_secondary",
+        "name": "Sn150"
+      }
+    ]
+  }
 ]

@@ -10,8 +10,9 @@ import { useField, useFormikContext } from "formik";
 const RadioGroupWrapper = ({ name, legend, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
-
+  console.log(options);
   const handleChange = (e) => {
+    console.log(e.target.value);
     setFieldValue(name, e.target.value);
   };
 
