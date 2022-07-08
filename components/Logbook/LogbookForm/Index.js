@@ -1,13 +1,13 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import NOTE_VALIDATION from "./ValidationSchema";
+import LOG_VALIDATION from "./ValidationSchema";
 import { Grid, Paper, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
 import categories from "./categories.json";
 import ButtonWrapper from "./buttonWrapper";
-const NewTextEditor = dynamic(() => import("../TextEditor/NewTextEditor"), {
+const TextEditor = dynamic(() => import("../TextEditor"), {
   ssr: false,
 });
 
@@ -18,13 +18,13 @@ const INITIAL_FORM_STATE = {
   message: "",
 };
 
-function NotebookForm(props) {
+function LogbookForm(props) {
   return (
     <Grid container spacing={2} sx={{ justifyContent: "center" }}>
       <Grid item xs={10}>
         <Paper sx={{ px: 3, py: 3, minHeight: "40vh", my: 2 }}>
           <Formik
-            validationSchema={NOTE_VALIDATION}
+            validationSchema={LOG_VALIDATION}
             onSubmit={props.handleSubmit}
             initialValues={INITIAL_FORM_STATE}
           >
@@ -46,7 +46,7 @@ function NotebookForm(props) {
                   <Typography component="label" sx={{ pb: 1 }}>
                     Message
                   </Typography>
-                  <NewTextEditor
+                  <TextEditor
                     setFieldValue={(val) =>
                       formik.setFieldValue("message", val)
                     }
@@ -63,4 +63,4 @@ function NotebookForm(props) {
   );
 }
 
-export default NotebookForm;
+export default LogbookForm;

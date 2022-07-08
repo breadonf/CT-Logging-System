@@ -1,8 +1,9 @@
 import React from "react";
+import Head from "next/head";
 import dynamic from "next/dynamic";
 import LogbookHistory from "../../components/Logbook/History/logbookHistory";
-const NotebookForm = dynamic(
-  () => import("../../components/Logbook/LogbookForm/newIndex"),
+const LogbookForm = dynamic(
+  () => import("../../components/Logbook/LogbookForm"),
   { ssr: false }
 );
 
@@ -18,7 +19,12 @@ function Logbook() {
 
   return (
     <>
-      <NotebookForm handleSubmit={handleSubmit} />
+      <Head>
+        <title>CT Logbook</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <LogbookForm handleSubmit={handleSubmit} />
       <LogbookHistory />
     </>
   );
