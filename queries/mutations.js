@@ -12,6 +12,14 @@ export const createCTrecord = `
   }
 }
 `;
+export const createCardiacCTrecord = `
+mutation Mutation($data: create_cardiacCT_input!) {
+  create_cardiacCT_item(data: $data) {
+    id
+    PID
+  }
+}
+`;
 
 export const updateCTRecordById = `
   mutation Mutation($updateCtItemId: ID!, $data: update_CT_input!) {

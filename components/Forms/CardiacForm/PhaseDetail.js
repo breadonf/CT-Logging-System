@@ -61,7 +61,7 @@ function PhaseDetail({ formik }) {
           />
         </Grid>
         <Grid item xs={3} sx={{ mt: 2 }}>
-          <Textfield name="phase[0].scanRange" label="Remark" />
+          <Textfield name="phase[0].remark" label="Remark" />
         </Grid>
       </Grid>
       {[...Array(3)].map((values, i) => (
@@ -91,7 +91,6 @@ function PhaseDetail({ formik }) {
               SelectProps={{
                 multiple: true,
                 renderValue: (selected) => {
-                  console.log(selected);
                   return (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                       {selected.map((value) => (
@@ -120,7 +119,7 @@ function PhaseDetail({ formik }) {
             />
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Textfield name={`phase[${i + 1}].scanRange`} label="Remark" />
+            <Textfield name={`phase[${i + 1}].remark`} label="Remark" />
           </Grid>
         </Grid>
       ))}

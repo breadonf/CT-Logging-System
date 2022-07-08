@@ -1,8 +1,8 @@
 import React from "react";
 import CardiacForm from "../../components/Forms/CardiacForm";
 import INITIAL_FORM_STATE from "../../components/Forms/CardiacForm/InitialFormState";
-import preprocessor from "../../helpers/preprocessor";
-import { createCTrecord } from "../../queries/mutations";
+import preprocessor from "../../helpers/preprocessorCardiacForm";
+import { createCardiacCTrecord } from "../../queries/mutations";
 import { useMutation } from "react-query";
 import setData from "../../helpers/setData";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -14,7 +14,7 @@ function CardiacCases() {
   const router = useRouter();
   const mutation = useMutation(
     async (newFormData) => {
-      await setData(createCTrecord, { data: newFormData });
+      await setData(createCardiacCTrecord, { data: newFormData });
     },
     {
       mutationKey: "createCTitem",
@@ -24,39 +24,35 @@ function CardiacCases() {
     }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
-    //   const modifiedValues = preprocessor(values);
-    //   await new Promise((r) => setTimeout(r, 750));
-
-    //   mutation.mutate(
-    //     { ...modifiedValues },
-    //     {
-    //       onSuccess: async (res) => {
-    //         alert(
-    //           `Success, your Ct records for ${modifiedValues.PID} at ${modifiedValues.Date} is created`
-    //         );
-    //         router.push("/Table");
-    //       },
-    //       onError: async (err, varia) => {
-    //         console.log("onError", varia);
-    //       },
-    //     }
-    //   );
-    //   if (mutation.isError) {
-    //     console.log(
-    //       "Fail,🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
-    //       mutation.error
-    //     );
-    //   }
-    //   if (mutation.onSettled) {
-    //     <Box sx={{ display: "flex" }}>
-    //       <CircularProgress />
-    //     </Box>;
-    //   }
-    // };
-    // if (mutation.isSuccess) {
-    // }
+    const modifiedValues = preprocessor(values);
+    await new Promise((r) => setTimeout(r, 750));
+    mutation.mutate(
+      { ...modifiedValues },
+      {
+        onSuccess: async (res) => {
+          alert(
+            `Success, your Cardiac CT protocol for ${modifiedValues.PID} is created`
+          );
+          router.push("/Table");
+        },
+        onError: async (err, varia) => {
+          console.log("onError", varia);
+        },
+      }
+    );
+    if (mutation.isError) {
+      console.log(
+        "Fail,🚀 ~ file: index.js ~ line 74 ~ RoutineForm ~ mutation",
+        mutation.error
+      );
+    }
+    if (mutation.onSettled) {
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>;
+    }
   };
+
   return (
     <>
       <Head>

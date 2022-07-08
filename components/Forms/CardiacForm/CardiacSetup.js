@@ -57,6 +57,7 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
         <Grid
           container
           alignItems="center"
+          justifyContent="center"
           spacing={1}
           item
           xs={12}
@@ -86,7 +87,7 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
               }}
             />
           </Grid>
-          <Grid item xs={2} sx={{ mt: 2 }}>
+          <Grid item xs={2} sx={{ ml: 4, mt: 2 }}>
             <Toggle name={`IVSite[${i}].Diffusics`} label="Diffusics?" />
           </Grid>
           <Grid item xs={1}>

@@ -18,37 +18,50 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
           <TimerIcon sx={{ mr: 1 }} /> ECG-gated Scan Mode
         </Typography>
       </Grid>
-      <Grid item xs={2} sx={{ mt: 2 }}>
-        <Toggle name="scanMode.HRDependent" label="Heart Rate Dependent?" />
-      </Grid>
-      {formik.values.scanMode.HRDependent ? (
-        <Grid item xs={4} sx={{ mt: 2 }}>
+      <Grid item xs={12} sx={{ mt: 2 }}>
+        <Toggle
+          name="scanMode.HRDependent"
+          legend="Heart Rate Dependent?"
+          label=""
+        />
+        {formik.values.scanMode.HRDependent ? (
           <Typography variant="body1" color="#05668D">
             Priority (Flash => SS => Retro)
           </Typography>
-        </Grid>
-      ) : (
-        <></>
-      )}
-      <Grid item xs={2} sx={{ mt: 2 }}>
-        <Toggle name="scanMode.flash" label="Flash(Single/Dual)" />
+        ) : (
+          <></>
+        )}
       </Grid>
-      {formik.values.scanMode.flash ? (
+
+      <Grid container item xs={12} sx={{ mt: 2 }}>
         <Grid item xs={4}>
           <RadioGroup
-            name="scanMode.flash.trigger"
-            legend="Trigger"
+            name="scanMode.flash"
+            legend="Flash(Single/Dual)"
             options={[
-              { label: "30%", value: "30%" },
-              { label: "65%", value: "65%" },
+              { label: "Single", value: "single" },
+              { label: "Dual", value: "dual" },
             ]}
           />
         </Grid>
-      ) : (
-        <></>
-      )}
-      <Grid item xs={2} sx={{ mt: 2 }}>
-        <Toggle name="scanMode.ss.status" label="SS?" />
+        <Grid item xs={4}>
+          {formik.values.scanMode.flash === "single" ? (
+            <RadioGroup
+              name="scanMode.flash.trigger"
+              legend="Trigger"
+              options={[
+                { label: "30%", value: "30%" },
+                { label: "65%", value: "65%" },
+              ]}
+            />
+          ) : (
+            <></>
+          )}
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12} sx={{ mt: 2 }}>
+        <Toggle name="scanMode.ss.status" legend="SS" label="" />
       </Grid>
       {formik.values.scanMode.ss.status ? (
         <Grid item xs={4} sx={{ mt: 2 }}>
@@ -57,19 +70,21 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
       ) : (
         <></>
       )}
-      <Grid item xs={2} sx={{ mt: 2 }}>
-        <RadioGroup
-          name="scanMode.monitoringMethod"
-          legend="Monitoring Method"
-          options={[
-            { label: "Manual", value: "Manual" },
-            { label: "Auto", value: "Auto" },
-            { label: "Test Bolus", value: "TestBolus" },
-          ]}
-        />
-      </Grid>
-      <Grid item xs={2} sx={{ mt: 2 }}>
-        <Textfield name="scanMode.ROI" label="ROI" />
+      <Grid container item xs={12} sx={{ mt: 2 }}>
+        <Grid item xs={4}>
+          <RadioGroup
+            name="scanMode.monitoringMethod"
+            legend="Monitoring Method"
+            options={[
+              { label: "Manual", value: "Manual" },
+              { label: "Auto", value: "Auto" },
+              { label: "Test Bolus", value: "TestBolus" },
+            ]}
+          />
+        </Grid>
+        <Grid item xs={2} sx={{ mt: 2 }}>
+          <Textfield name="scanMode.ROI" label="ROI" />
+        </Grid>
       </Grid>
     </Grid>
   );

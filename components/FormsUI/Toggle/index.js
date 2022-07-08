@@ -40,20 +40,17 @@ const ToggleWrapper = ({
   return (
     <FormControl {...configFormControl}>
       <FormLabel
-        sx={{ fontWeight: "bold", color: "#495371" }}
         component="legend"
+        sx={{ fontWeight: "bold", color: "#495371" }}
       >
         {legend}
       </FormLabel>
       <FormGroup>
         <FormControlLabel
-          control={
-            <Switch
-              sx={{ fontWeight: "bold", color: "#495371" }}
-              {...configToggle}
-            />
-          }
+          control={<Switch {...configToggle} />}
           label={label}
+          sx={{ fontWeight: "bold", color: "#495371" }}
+          {...otherProps}
         />
       </FormGroup>
       <FormHelperText filled sx={{ fontSize: "large" }}>

@@ -30,9 +30,6 @@ function PatientDetail() {
       <Grid item xs={4}>
         <Textfield name="weight" label="Weight(kg)"></Textfield>
       </Grid>
-      <Grid item xs={4}>
-        <Textfield name="circumference" label="Circumference(cm)"></Textfield>
-      </Grid>
     </Grid>
   );
 }

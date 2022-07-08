@@ -14,6 +14,7 @@ import ScanMode from "./scanMode";
 import PhaseDetail from "./PhaseDetail";
 
 import { getHomepageData } from "../../../queries/queries";
+import BottomButton from "../RoutineForm/bottomButton";
 
 function CardiacForm({ data, handleSubmit }) {
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
@@ -101,6 +102,7 @@ function CardiacForm({ data, handleSubmit }) {
                             />
                             <ScanMode formik={formik} />
                             <PhaseDetail formik={formik} />
+                            <BottomButton formik={formik} />
                           </Paper>
                         </Grid>
                       </Grid>
