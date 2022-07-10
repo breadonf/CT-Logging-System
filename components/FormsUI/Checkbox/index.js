@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-} from "@mui/material";
+import { FormControl } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import { CheckboxWrapping } from "./CheckboxWrapping";
+import { Label } from "./Label";
 
 const CheckboxWrapper = ({
   name,
@@ -20,7 +16,6 @@ const CheckboxWrapper = ({
 }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
-
   const handleChange = (e) => {
     const { checked } = e.target;
     if (dependable) {
@@ -48,23 +43,11 @@ const CheckboxWrapper = ({
 
   return (
     <FormControl {...configFormControl}>
-      <FormLabel
-        sx={{ fontWeight: "bold", color: "#495371" }}
-        component="legend"
-      >
-        {legend}
-      </FormLabel>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Checkbox
-              sx={{ fontWeight: "bold", color: "#495371" }}
-              {...configCheckbox}
-            />
-          }
-          label={label}
-        />
-      </FormGroup>
+      <Label legend={legend}></Label>
+      <CheckboxWrapping
+        configCheckbox={configCheckbox}
+        label={label}
+      ></CheckboxWrapping>
     </FormControl>
   );
 };

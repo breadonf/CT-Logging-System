@@ -39,6 +39,7 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
             name="scanMode.flash"
             legend="Flash(Single/Dual)"
             options={[
+              { label: "", value: "" },
               { label: "Single", value: "single" },
               { label: "Dual", value: "dual" },
             ]}

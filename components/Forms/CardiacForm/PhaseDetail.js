@@ -2,11 +2,8 @@ import React from "react";
 import { Grid, Typography, Chip, Button, Divider, Box } from "@mui/material";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
-import Checkbox from "../../FormsUI/Checkbox";
-import RadioGroup from "../../FormsUI/RadioGroup";
 import Toggle from "../../FormsUI/Toggle";
 import TimerIcon from "@mui/icons-material/Timer";
-import Slider from "../../FormsUI/Slider";
 
 function PhaseDetail({ formik }) {
   return (
@@ -66,6 +63,7 @@ function PhaseDetail({ formik }) {
       </Grid>
       {[...Array(3)].map((values, i) => (
         <Grid
+          key={i}
           item
           alignItems="center"
           justifyContent="center"

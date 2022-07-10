@@ -24,7 +24,9 @@ function CardiacCases() {
     }
   );
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log("handle", values);
     const modifiedValues = preprocessor(values);
+    console.log(modifiedValues);
     await new Promise((r) => setTimeout(r, 750));
     mutation.mutate(
       { ...modifiedValues },
@@ -33,7 +35,7 @@ function CardiacCases() {
           alert(
             `Success, your Cardiac CT protocol for ${modifiedValues.PID} is created`
           );
-          router.push("/Table");
+          router.push("/cardiac/1");
         },
         onError: async (err, varia) => {
           console.log("onError", varia);
@@ -52,7 +54,6 @@ function CardiacCases() {
       </Box>;
     }
   };
-
   return (
     <>
       <Head>

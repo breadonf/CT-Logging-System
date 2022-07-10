@@ -89,16 +89,6 @@ const HomepageData = `
     }
 `;
 
-const HomepageFilteredRecord = `
-    #graphql
-    query HomepageFilteredRecord($protocols: [Float]) {
-      CT(filter: { protocols: {protocol_id: {id: {_in: 156}}}}) {
-        name
-        id
-      }
-    }
-`;
-
 const ExamDetailsByID = `
     #graphql
     query ExamDetailsByID($ctByIdId: ID!) {
@@ -139,6 +129,30 @@ const ExamDetailsByID = `
         ctdi
         examType
         IR
+      }
+    }
+`;
+
+const CardiacSetupByID = `
+    #graphql
+    query CardiacSetupByID($cardiacCtByIdId: ID!) {
+      cardiacCT_by_id(id: $cardiacCtByIdId) {
+        id
+        PID
+        radiologistInCharge
+        IVSite
+        sedation
+        breathingControl
+        targetHR
+        scanMode
+        phase
+        name
+        date
+        date_func {
+          year
+          day
+          month
+        }
       }
     }
 `;
@@ -213,6 +227,13 @@ export const getHomepageData = async () => {
 export const getExamDetailsByID = async (ctByIdId) => {
   const data = await fetchData(ExamDetailsByID, {
     variables: { ctByIdId: ctByIdId },
+  });
+
+  return data.data;
+};
+export const getCardiacSetupByID = async (cardiacCtByIdId) => {
+  const data = await fetchData(CardiacSetupByID, {
+    variables: { cardiacCtByIdId: cardiacCtByIdId },
   });
 
   return data.data;

@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Form } from "formik";
 import { Container, Paper, Grid, Typography } from "@mui/material";
 
-import CircularProgress from "@mui/material/CircularProgress";
 import { useQuery } from "react-query";
 
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -14,7 +13,8 @@ import ScanMode from "./scanMode";
 import PhaseDetail from "./PhaseDetail";
 
 import { getHomepageData } from "../../../queries/queries";
-import BottomButton from "../RoutineForm/bottomButton";
+import BottomButton from "./bottomButton";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 function CardiacForm({ data, handleSubmit }) {
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
@@ -24,36 +24,7 @@ function CardiacForm({ data, handleSubmit }) {
   const [numberOfSites, setNumberOfSites] = React.useState(1);
 
   if (isLoading) {
-    return (
-      <Grid container>
-        <Grid item xs={12}>
-          <Container maxWidth="lg">
-            <Paper
-              elevation={12}
-              sx={{
-                p: 3,
-                height: "85vh",
-                bgcolor: "#F0F3BD",
-                overflowY: "auto",
-              }}
-            >
-              <Grid
-                container
-                spacing={2}
-                sx={{ py: 5 }}
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Grid item xs={12}>
-                  <CircularProgress size="25vh" />
-                </Grid>
-              </Grid>
-            </Paper>
-          </Container>
-        </Grid>
-      </Grid>
-    );
+    return <LoadingSpinner></LoadingSpinner>;
   }
   if (isSuccess) {
     return (
@@ -61,13 +32,11 @@ function CardiacForm({ data, handleSubmit }) {
         <Grid container>
           <Grid item xs={12}>
             <Container maxWidth="lg">
-              <Formik
-                initialValues={data}
-                validationSchema={FORM_VALIDATION}
-                onSubmit={handleSubmit}
-              >
+              <Formik initialValues={data} onSubmit={handleSubmit}>
                 {(formik) => {
-                  //console.log(formik.values.phase);
+                  console.log(formik.values);
+                  console.log("Submitting", formik.isSubmitting);
+                  console.log("Validating", formik.isValidating);
                   return (
                     <Form>
                       <Grid

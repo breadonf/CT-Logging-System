@@ -32,7 +32,7 @@ const SlideWrapper = ({
   }
   return (
     <Grid spacing={1} container alignItems="center" justifyContent="center">
-      <Grid item xs={12} spacing={1}>
+      <Grid item xs={12}>
         <InputLabel component="label" id={`label-${label}`}>
           {label}
         </InputLabel>

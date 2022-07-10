@@ -2,29 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 import DatePicker from "@mui/lab/DatePicker";
-// const DateTimePicker = ({ name, prepopulatedValue, ...otherProps }) => {
-//   const [field, meta] = useField(name);
-//   const handledDate = prepopulatedValue.split("T")[0];
-//   const configDateTimePicker = {
-//     ...field,
-//     ...otherProps,
-//     type: "date",
-//     variant: "filled",
-//     fullWidth: true,
-//     InputLabelProps: {
-//       shrink: true,
-//     },
-//     defaultValue: handledDate,
-//   };
-//   if (meta && meta.touched && meta.error) {
-//     configDateTimePicker.error = true;
-//     configDateTimePicker.helperText = meta.error;
-//   }
 
-//   return <TextField {...configDateTimePicker} />;
-// };
-
-// export default DateTimePicker;
 export default function DateTimePicker({
   name,
   prepopulatedValue,
@@ -40,7 +18,6 @@ export default function DateTimePicker({
   const configDateTimePicker = {
     ...field,
     ...otherProps,
-
     variant: "filled",
     fullWidth: true,
     InputLabelProps: {
@@ -54,8 +31,8 @@ export default function DateTimePicker({
 
   return (
     <DatePicker
+      {...field}
       label="Exam Date"
-      value={field.value}
       onChange={handleChange}
       renderInput={(params) => (
         <TextField

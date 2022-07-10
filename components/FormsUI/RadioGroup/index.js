@@ -34,16 +34,18 @@ const RadioGroupWrapper = ({ name, legend, options, ...otherProps }) => {
         {legend}
       </FormLabel>
       <RadioGroup {...configRadioGroup}>
-        {options.map((option) => {
-          return (
-            <FormControlLabel
-              label={option.label}
-              key={`${option.value}-${option.index}`}
-              value={option.value}
-              control={<Radio />}
-            />
-          );
-        })}
+        {options
+          .filter((option) => option.value !== "") // HACK To hide empty value option
+          .map((option) => {
+            return (
+              <FormControlLabel
+                label={option.label}
+                key={`${option.value}-${option.index}`}
+                value={option.value}
+                control={<Radio />}
+              />
+            );
+          })}
       </RadioGroup>
       {meta && meta.touched && meta.error ? (
         <FormHelperText error required>

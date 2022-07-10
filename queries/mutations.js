@@ -31,3 +31,12 @@ export const updateCTRecordById = `
     }
   }
 `;
+
+export const updateCardiacCTSetupById = `
+  mutation Mutation($updateCardiacCtItemId: ID!, $data: update_cardiacCT_input!) {
+    update_cardiacCT_item(id: $updateCardiacCtItemId, data: $data) {
+      id
+      PID
+    }
+  }
+`;
