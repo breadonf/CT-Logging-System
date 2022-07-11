@@ -13,7 +13,7 @@ import {
   Divider,
 } from "@mui/material";
 import { PatientDetail } from "./PatientDetail";
-import { ExamDetail } from "./ExamDetail";
+import { CardiacSetup } from "./CardiacSetup";
 import { ContrastDetail } from "./ContrastDetail";
 import { StaffDetail } from "./StaffDetail";
 import { Remark } from "./Remark";
@@ -22,7 +22,7 @@ import { LoadingSpinner } from "../../../components/Forms/CardiacForm/LoadingSpi
 
 export default function CardiacSetupViewer() {
   const router = useRouter();
-  const { ExamId } = router.query;
+  const { queryWord } = router.query;
   const {
     data,
     isLoading: isQueryLoading,
@@ -30,8 +30,8 @@ export default function CardiacSetupViewer() {
     isError,
     error,
   } = useQuery(
-    ["CardiacSetupByID", ExamId],
-    async () => await getCardiacSetupByID(parseInt(ExamId)),
+    ["CardiacSetupByID", queryWord],
+    async () => await getCardiacSetupByID(queryWord),
     { retry: true }
   );
   console.log(data);
@@ -61,7 +61,13 @@ export default function CardiacSetupViewer() {
             >
               {/* Heading */}
               <Box sx={{ backgroundColor: "#333333" }}>
-                <Grid container spacing={2} sx={{ px: 2, py: 2 }}>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="space-evenly"
+                  spacing={2}
+                  sx={{ px: 2, py: 2 }}
+                >
                   <Grid item xs={8}>
                     <Typography variant="h5" color="#FFFFFF" align="left">
                       {cardiacCT_by_id.PID}
@@ -77,8 +83,9 @@ export default function CardiacSetupViewer() {
                 </Grid>
               </Box>
 
-              {PatientDetail(cardiacCT_by_id)}
+              <PatientDetail CT_by_id={cardiacCT_by_id} />
               <Divider />
+              <CardiacSetup cardiacCT_by_id={cardiacCT_by_id} />
             </Paper>
           </Container>
         </Grid>

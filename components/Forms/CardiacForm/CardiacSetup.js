@@ -22,7 +22,7 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
           name="sedation"
           legend="Sedation"
           options={[
-            { label: "Not required", value: "NA" },
+            { label: "Not required", value: "Not required" },
             { label: "MAC", value: "MAC" },
             {
               label: "GA with Breathing Suspension",
@@ -71,8 +71,8 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
               name={`IVSite[${i}].location`}
               label="Location"
               options={{
-                LL: "Lower Limb",
-                UL: "Upper Limb",
+                "Lower Limb": "Lower Limb",
+                "Upper Limb": "Upper Limb",
               }}
             />
           </Grid>
@@ -82,8 +82,8 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
               label="Side"
               options={{
                 Any: "Any",
-                Rt: "Right",
-                Lt: "Left",
+                Right: "Right",
+                Left: "Left",
               }}
             />
           </Grid>

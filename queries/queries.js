@@ -200,6 +200,16 @@ const ExamsRecordBySearch = `
   }
 }
 `;
+const CardiacSetupRecordBySearch = `
+    #graphql
+    query CardiacSetupRecordBySearch($key: String) {
+      cardiacCT(search: $key, sort: ["sort", "-id"]) {
+        id
+        user_created
+        user_updated
+      }
+    }
+`;
 
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
@@ -240,6 +250,13 @@ export const getCardiacSetupByID = async (cardiacCtByIdId) => {
 };
 export const getExamsRecordBySearch = async (key) => {
   const data = await fetchData(ExamsRecordBySearch, {
+    variables: { key: key },
+  });
+  return data.data;
+};
+
+export const getCardiacSetupRecordBySearch = async (key) => {
+  const data = await fetchData(CardiacSetupRecordBySearch, {
     variables: { key: key },
   });
   return data.data;

@@ -17,14 +17,13 @@ import BottomButton from "./bottomButton";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 function CardiacForm({ data, handleSubmit }) {
+  const [numberOfSites, setNumberOfSites] = React.useState(1);
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
     "autocompleteOptions",
     async () => await getHomepageData()
   );
-  const [numberOfSites, setNumberOfSites] = React.useState(1);
-
   if (isLoading) {
-    return <LoadingSpinner></LoadingSpinner>;
+    return <LoadingSpinner />;
   }
   if (isSuccess) {
     return (
@@ -34,9 +33,7 @@ function CardiacForm({ data, handleSubmit }) {
             <Container maxWidth="lg">
               <Formik initialValues={data} onSubmit={handleSubmit}>
                 {(formik) => {
-                  console.log(formik.values);
-                  console.log("Submitting", formik.isSubmitting);
-                  console.log("Validating", formik.isValidating);
+                  // HACK check form value using console.log(formik.values)
                   return (
                     <Form>
                       <Grid
@@ -63,7 +60,10 @@ function CardiacForm({ data, handleSubmit }) {
                                 Cardiac Case Setup Log Form
                               </Typography>
                             </Grid>
-                            <PatientDetail />
+                            <PatientDetail
+                              autocompleteOptions={autocompleteOptions}
+                              isSuccess={isSuccess}
+                            />
                             <CardiacSetup
                               formik={formik}
                               numberOfSites={numberOfSites}
@@ -83,12 +83,6 @@ function CardiacForm({ data, handleSubmit }) {
           </Grid>
         </Grid>
       </LocalizationProvider>
-    );
-  } else {
-    return (
-      <>
-        <div>not loading or success</div>
-      </>
     );
   }
 }

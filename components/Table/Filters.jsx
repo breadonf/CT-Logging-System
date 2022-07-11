@@ -12,10 +12,10 @@ import {
 } from "formik";
 import { useRouter } from "next/router";
 
-export default function Filters() {
+export default function Filters({ endpoint }) {
   const router = useRouter();
   const handleSearch = async (values, { setSubmitting }) => {
-    router.push(`/Search/${values?.search}`);
+    router.push(`/${endpoint}/${values?.search}`);
   };
   const ini_value = {
     search: "",

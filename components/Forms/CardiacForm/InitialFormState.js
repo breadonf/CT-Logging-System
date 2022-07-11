@@ -2,19 +2,18 @@ const INITIAL_FORM_STATE = {
   PID: "",
   name: "",
   date: new Date(),
-  radiologistInCharge: "",
+  radiologistInCharge: [],
   sedation: "",
   breathingControl: [],
   IVSite: [{ location: [], side: [], Diffusics: false }],
   targetHR: "",
   scanMode: {
     HRDependent: false,
-    flash: "",
+    flash: { mode: "", trigger: "" },
     ss: { status: false, range: [0, 0] },
     monitoringMethod: "",
     ROI: "",
   },
-
   phase: [
     {
       name: "Plain",

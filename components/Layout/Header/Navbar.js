@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import AirlineSeatFlatIcon from "@mui/icons-material/AirlineSeatFlat";
 import Brightness1TwoToneIcon from "@mui/icons-material/Brightness1TwoTone";
 
-const pages = ["Forms", "Table", "Search", "Logbook"];
+const pages = ["Forms", "Table", "Search", "Logbook", "cardiac"];
 
 const Navbar = () => {
   return (

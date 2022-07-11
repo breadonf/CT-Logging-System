@@ -19,6 +19,7 @@ const CheckboxWrapper = ({
   const handleChange = (e) => {
     const { checked } = e.target;
     if (dependable) {
+      setFieldValue(name, checked);
       dependable(checked);
       setFieldValue("sedationMethod", []);
       setFieldValue("sedatedBy", "");

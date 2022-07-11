@@ -36,7 +36,7 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
       <Grid container item xs={12} sx={{ mt: 2 }}>
         <Grid item xs={4}>
           <RadioGroup
-            name="scanMode.flash"
+            name="scanMode.flash.mode"
             legend="Flash(Single/Dual)"
             options={[
               { label: "", value: "" },
@@ -46,7 +46,7 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
           />
         </Grid>
         <Grid item xs={4}>
-          {formik.values.scanMode.flash === "single" ? (
+          {formik.values.scanMode.flash.mode === "single" ? (
             <RadioGroup
               name="scanMode.flash.trigger"
               legend="Trigger"

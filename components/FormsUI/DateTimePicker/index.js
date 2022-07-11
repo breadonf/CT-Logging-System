@@ -10,9 +10,7 @@ export default function DateTimePicker({
 }) {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext();
-  // const handledDate = prepopulatedValue?.split("T")[0];
   const handleChange = (value) => {
-    console.log(value);
     setFieldValue(name, value);
   };
   const configDateTimePicker = {

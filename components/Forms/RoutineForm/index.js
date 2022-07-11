@@ -18,6 +18,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import FORM_VALIDATION from "./ValidationSchema";
 
 import { getHomepageData } from "../../../queries/queries";
+import { LoadingSpinner } from "../CardiacForm/LoadingSpinner";
 
 function RoutineForm({ data, handleSubmit }) {
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
@@ -43,36 +44,7 @@ function RoutineForm({ data, handleSubmit }) {
     setContrast(e.target.checked);
   };
   if (isLoading) {
-    return (
-      <Grid container>
-        <Grid item xs={12}>
-          <Container maxWidth="lg">
-            <Paper
-              elevation={12}
-              sx={{
-                p: 3,
-                height: "85vh",
-                bgcolor: "#F0F3BD",
-                overflowY: "auto",
-              }}
-            >
-              <Grid
-                container
-                spacing={2}
-                sx={{ py: 5 }}
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Grid item xs={12}>
-                  <CircularProgress size="25vh" />
-                </Grid>
-              </Grid>
-            </Paper>
-          </Container>
-        </Grid>
-      </Grid>
-    );
+    return <LoadingSpinner />;
   }
   if (isSuccess) {
     return (

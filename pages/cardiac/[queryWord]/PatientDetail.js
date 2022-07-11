@@ -4,19 +4,28 @@ import SickIcon from "@mui/icons-material/Sick";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-export function PatientDetail(CT_by_id) {
+export function PatientDetail({ CT_by_id }) {
   return (
-    <Grid container spacing={1} component={"div"} sx={{ py: 5 }}>
-      <Grid item xs={2} sx={{ pr: 2 }}>
+    <Grid
+      justifyContent="center"
+      alignItems="center"
+      container
+      spacing={1}
+      component={"div"}
+      sx={{ py: 5 }}
+    >
+      <Grid item xs={3} sx={{ pr: 2 }}>
         <Typography variant="h5" color="#265B67">
           <SickIcon sx={{ mr: 1 }} />
-          Patient
+          Patient Detail
         </Typography>
       </Grid>
       <Grid
         container
-        xs={10}
+        xs={9}
         spacing={1}
+        justifyContent="center"
+        alignItems="center"
         sx={{
           border: 1,
           borderRadius: 1,
