@@ -1,19 +1,17 @@
 import React from "react";
 import Head from "next/head";
-import LogbookHistory from "../../components/Logbook/History/logbookHistory";
 
-function Logbook() {
-
+function EditLog() {
   return (
     <>
       <Head>
-        <title>CT Logbook</title>
+        <title>CT Edit Log</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <LogbookHistory />
+      <></>
     </>
   );
 }
 
-export default Logbook;
+export default EditLog;

@@ -1,5 +1,7 @@
 import React from "react";
-import { Grid, Typography, Divider, Box, Paper } from "@mui/material";
+import { Grid, Divider, Paper } from "@mui/material";
+import LogHistoryHeading from "./heading";
+import MessageBox from "./messageBox";
 
 function LogbookHistory({ data }) {
   return (
@@ -9,17 +11,20 @@ function LogbookHistory({ data }) {
       sx={{ minHeight: "45vh", justifyContent: "center" }}
     >
       <Grid item xs={10} sx={{ m: 2 }}>
-        <Paper sx={{ px: 2, py: 2 }}>
-          <Grid item xs={12}>
-            <Typography variant="h2" textAlign={"center"}>
-              History
-            </Typography>
-            <Divider />
-          </Grid>
-          <Grid item xs={12} sx={{ py: 2 }}>
-            <Box sx={{ border: 2, borderRadius: 2 }}>
-              <Typography>some words</Typography>
-            </Box>
+        <Paper sx={{ px: 2, py: 2, mt:2 }}>
+          <LogHistoryHeading />
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              justifyContent: "center",
+              py: 2,
+              pr:2,
+              height: "70vh",
+              overflowY: "auto",
+            }}
+          >
+            <MessageBox />
           </Grid>
         </Paper>
       </Grid>
