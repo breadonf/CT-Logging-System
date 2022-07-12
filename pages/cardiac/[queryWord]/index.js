@@ -86,6 +86,7 @@ export default function CardiacSetupViewer() {
               <PatientDetail CT_by_id={cardiacCT_by_id} />
               <Divider />
               <CardiacSetup cardiacCT_by_id={cardiacCT_by_id} />
+              <Buttons cardiacCT_by_id={cardiacCT_by_id} />
             </Paper>
           </Container>
         </Grid>
