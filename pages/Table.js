@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useQuery } from "react-query";
 import { getHomepageCT, getHomepageCTNumber } from "../queries/queries";
 import TableMaterial from "../components/Table/TableMaterial";
-import { Paper, Grid, Container } from "@mui/material";
+import { Paper, Grid, Container, Box } from "@mui/material";
 
 export default function Table() {
   const [pageNumber, setPageNumber] = useState(1);

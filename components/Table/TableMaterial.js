@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Toolbar from "./Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Search from "@mui/icons-material/Search";
+import Box from "@mui/material/Box";
 
 export default function TableMaterial({
   rowCount,

@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { Container, Paper, Grid, Typography } from "@mui/material";
+import { Container, Paper, Grid, Typography, Box } from "@mui/material";
 
 import { useQuery } from "react-query";
 
@@ -36,11 +36,7 @@ function CardiacForm({ data, handleSubmit }) {
                   // HACK check form value using console.log(formik.values)
                   return (
                     <Form>
-                      <Grid
-                        container
-                        spacing={2}
-                        sx={{ height: "90vh", py: 3 }}
-                      >
+                      <Box container spacing={2} sx={{ height: "90vh", py: 3 }}>
                         <Grid item xs={12}>
                           <Paper
                             elevation={12}
@@ -74,7 +70,7 @@ function CardiacForm({ data, handleSubmit }) {
                             <BottomButton formik={formik} />
                           </Paper>
                         </Grid>
-                      </Grid>
+                      </Box>
                     </Form>
                   );
                 }}

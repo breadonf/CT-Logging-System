@@ -51,7 +51,12 @@ function RoutineForm({ data, handleSubmit }) {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Grid container>
           <Grid item xs={12}>
-            <Container maxWidth="lg">
+            <Container
+              maxWidth="lg"
+              sx={{
+                height: "90vh",
+              }}
+            >
               <Formik
                 initialValues={data}
                 validationSchema={FORM_VALIDATION}
