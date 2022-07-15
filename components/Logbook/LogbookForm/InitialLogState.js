@@ -7,7 +7,7 @@ const INITIAL_LOG_STATE = {
   important: false,
   active: true,
   messageEditorState: "",
-  htmlMessage: "",
+  htmlMessage: {},
   comments: "",
 };
 

@@ -419,7 +419,7 @@ const mockData = {
             ]
         }
     },
-    "htmlMessage": "<p>slkfnlkjsfnfsljndslfsdfsdfklasasmlkasdjoiaeo</p>",
+    "htmlMessage": "<p>slkfnlkjsfnfsljndslfsdfsdfklasasmlkasdjoiaeo</p><code>codeblock</code>",
     "comments": "sldkfnsldfk"
 }
 

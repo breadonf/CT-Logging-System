@@ -8,6 +8,9 @@ import {
   Grid,
   Divider,
 } from "@mui/material";
+import parse from 'html-react-parser';
+
+import mockData from "../LogbookForm/mockData";
 
 const MessageBox = (props) => {
   return (
@@ -19,14 +22,15 @@ const MessageBox = (props) => {
               <Grid container spacing={2}>
                 <Grid
                   item
+                  component="div"
                   xs={2}
                   sx={{
                     borderRight: 1,
                     mt: 2,
                   }}
                 >
-                  <Typography variant="h6" sx={{ fontWeight: "Bold" }}>
-                    Category
+                  <Typography variant="h6" sx={{ fontWeight: "Bold" }} noWrap>
+                    {mockData.category}
                   </Typography>
                 </Grid>
                 <Grid item xs={10}>
@@ -47,29 +51,12 @@ const MessageBox = (props) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />
-                      <h1>Message from editor</h1>
-                      <p>Testing</p>
-                      <ul>
-                        <li>unodered list</li>
-                        <li>unodered list</li>
-                      </ul>
-                      <p>Testing</p>
-                      <ol>
-                        <li>ordered</li>
-                        <li>ordered</li>
-                      </ol>
-                      <p>
-                        <code>
-                          <p>Codeblock</p>
-                          <p>TestingCodeblock</p>
-                        </code>
-                      </p>
-                      <p>Testing</p>
+                      {parse(mockData.htmlMessage)}
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />
                       <Typography>Follow Up Comments:</Typography>
-                      <Typography>Good  </Typography>
+                      <Typography>Good </Typography>
                     </Grid>
                   </Grid>
                 </Grid>
