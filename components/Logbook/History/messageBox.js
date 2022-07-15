@@ -6,13 +6,14 @@ import {
   CardActionArea,
   Typography,
   Grid,
+  Divider,
 } from "@mui/material";
 
 const MessageBox = (props) => {
   return (
     <Grid item xs={12}>
       <Link href={"/Logbook"}>
-        <Card>
+        <Card raised>
           <CardActionArea>
             <CardContent>
               <Grid container spacing={2}>
@@ -24,7 +25,9 @@ const MessageBox = (props) => {
                     mt: 2,
                   }}
                 >
-                  <Typography variant="h6">Category</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: "Bold" }}>
+                    Category
+                  </Typography>
                 </Grid>
                 <Grid item xs={10}>
                   <Grid container>
@@ -43,6 +46,7 @@ const MessageBox = (props) => {
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
+                      <Divider />
                       <h1>Message from editor</h1>
                       <p>Testing</p>
                       <ul>
@@ -61,6 +65,11 @@ const MessageBox = (props) => {
                         </code>
                       </p>
                       <p>Testing</p>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Divider />
+                      <Typography>Follow Up Comments:</Typography>
+                      <Typography>Good  </Typography>
                     </Grid>
                   </Grid>
                 </Grid>

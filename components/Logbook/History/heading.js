@@ -6,9 +6,9 @@ import CreateIcon from "@mui/icons-material/Create";
 
 export default function LogHistoryHeading() {
   return (
-    <Grid container sx={{ borderBottom: 2, py: 2, mb: 2 }}>
+    <Grid container sx={{ borderBottom: '2px solid White', py: 2, mb: 2 }}>
       <Grid item xs={10} sx={{ pl: 4 }}>
-        <Typography variant="h4">
+        <Typography variant="h4" color="White">
           <HistoryEduIcon fontSize="string" sx={{ mr: 2 }} />
           Logbook
         </Typography>

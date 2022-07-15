@@ -1,12 +1,14 @@
 import React from "react";
 import Head from "next/head";
 import LogbookForm from "../../../components/Logbook/LogbookForm";
+import preprocessorForLogbook from "../../../components/Logbook/preprocessorForLogbook";
 
 function LogbookFormPage() {
   const handleSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      console.log(values);
+      const processedValues = preprocessorForLogbook(values);
+      alert(JSON.stringify(processedValues, null, 2));
+      console.log(processedValues);
       setSubmitting(false);
     }, 1000);
   };

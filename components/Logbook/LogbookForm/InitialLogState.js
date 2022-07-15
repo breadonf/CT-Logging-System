@@ -1,10 +1,13 @@
 const INITIAL_LOG_STATE = {
   inputDate: new Date(),
   effectiveDate: new Date(),
+  category: "",
   inputUser: "",
   originatedBy: "",
-  category: "",
+  important: false,
+  active: true,
   messageEditorState: "",
+  htmlMessage: "",
   comments: "",
 };
 

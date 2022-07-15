@@ -1,9 +1,10 @@
 import { convertToHTML } from "draft-convert";
 
 const preprocessorForLogBook = (values) => {
-  const editorStateValue = values.editorState;
+  const editorStateValue = values.messageEditorState;
   const htmlMessage = convertToHTML(editorStateValue.getCurrentContent());
-  return htmlMessage;
+  const processedValues = {...values, htmlMessage};
+  return processedValues;
 };
 
 export default preprocessorForLogBook;
