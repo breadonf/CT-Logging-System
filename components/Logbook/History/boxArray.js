@@ -1,20 +1,18 @@
 import React from "react";
-import { Grid } from "@mui/material";
-import mockLogbookData from "./mockLogbookData.json"
+import MessageCard from "./MessageCard";
+import mockData2 from "../LogbookForm/mockData2";
 
 function BoxArray() {
   return (
-    <Grid comtainer spacing={1}>
-      {mockLogbookData.map((item) => {
+    <>
+      {Object.values(mockData2).map((value, index) => {
         return (
-          <Grid item>
-            <Box>
-
-            </Box>
-          </Grid>
+          <div key={index}>
+            <MessageCard messageDetail={value} />
+          </div>
         );
       })}
-    </Grid>
+    </>
   );
 }
 

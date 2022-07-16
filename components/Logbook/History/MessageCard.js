@@ -11,13 +11,11 @@ import {
 import FmdBadIcon from "@mui/icons-material/FmdBad";
 import parse from "html-react-parser";
 
-import mockData from "../LogbookForm/mockData";
-
-const MessageBox = (props) => {
+const MessageCard = ({ messageDetail }) => {
   return (
     <>
-      {mockData.active ? (
-        <Grid item xs={12} sx={{ py: 2 }}>
+      {messageDetail.active ? (
+        <Grid item xs={12}>
           <Link href={"/Logbook"}>
             <Card raised>
               <CardActionArea>
@@ -31,8 +29,8 @@ const MessageBox = (props) => {
                         mt: 2,
                       }}
                     >
-                      <Typography>{mockData.category}</Typography>
-                      {mockData.important ? (
+                      <Typography>{messageDetail.category}</Typography>
+                      {messageDetail.important ? (
                         <Typography variant="h1" align="center" color="#8b0000">
                           <FmdBadIcon fontSize="string" />
                         </Typography>
@@ -44,32 +42,32 @@ const MessageBox = (props) => {
                       <Grid container>
                         <Grid item xs={3}>
                           <Typography>
-                            Created at: {mockData.inputDate}
+                            Created at: {messageDetail.inputDate}
                           </Typography>
                         </Grid>
                         <Grid item xs={3}>
                           <Typography>
-                            Effective from: {mockData.effectiveDate}
+                            Effective from: {messageDetail.effectiveDate}
                           </Typography>
                         </Grid>
                         <Grid item xs={3}>
                           <Typography align="right">
-                            Message from: {mockData.inputUser}
+                            Message from: {messageDetail.inputUser}
                           </Typography>
                         </Grid>
                         <Grid item xs={3}>
                           <Typography align="right">
-                            Originated by: {mockData.originatedBy}
+                            Originated by: {messageDetail.originatedBy}
                           </Typography>
                         </Grid>
                         <Grid item xs={12}>
                           <Divider />
-                          {parse(mockData.htmlMessage)}
+                          {parse(messageDetail.htmlMessage)}
                         </Grid>
                         <Grid item xs={12}>
                           <Divider />
                           <Typography>
-                            Follow Up Comments: {mockData.comments}
+                            Follow Up Comments: {messageDetail.comments}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -87,4 +85,4 @@ const MessageBox = (props) => {
   );
 };
 
-export default MessageBox;
+export default MessageCard;

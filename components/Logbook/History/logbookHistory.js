@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Paper } from "@mui/material";
 import LogHistoryHeading from "./heading";
 import MessageBox from "./messageBox";
+import BoxArray from "./boxArray";
 
 function LogbookHistory({ data }) {
   return (
@@ -18,14 +19,13 @@ function LogbookHistory({ data }) {
             spacing={2}
             sx={{
               justifyContent: "center",
-              py: 2,
-              pr: 2,
+              p: 2,
               height: "70vh",
               overflowY: "auto",
             }}
-          > 
-          {/* should be Box array, message box for testing only */}
-            <MessageBox />
+          >
+            {/* should be Box array, message box for testing only */}
+            <BoxArray />
           </Grid>
         </Paper>
       </Grid>
