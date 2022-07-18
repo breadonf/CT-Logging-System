@@ -11,6 +11,17 @@ export const createCTrecord = `
     }
   }
 }
+`;export const createMessage = `
+mutation Mutation($data: create_message_input!) {
+  create_message_item(data: $data) {
+    id
+  Date_func {
+    year
+    month
+    day
+  }
+}
+}
 `;
 export const createCardiacCTrecord = `
 mutation Mutation($data: create_cardiacCT_input!) {

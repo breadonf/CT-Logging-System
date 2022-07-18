@@ -14,7 +14,7 @@ import parse from "html-react-parser";
 const MessageCard = ({ messageDetail }) => {
   return (
     <Grid item xs={12}>
-      <Link href={"/Logbook"}>
+      <Link href={"/Message"}>
         <Card raised>
           <CardActionArea>
             <CardContent>

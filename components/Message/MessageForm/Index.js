@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import INITIAL_LOG_STATE from "./InitialLogState";
-import LOG_VALIDATION from "./ValidationSchema";
+import INITIAL_MESSAGE_STATE from "./InitialMessageState";
+import MESSAGE_VALIDATION from "./ValidationSchema";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { Grid, Paper, Typography } from "@mui/material";
@@ -20,9 +20,9 @@ function LogbookForm(props) {
         <Grid item xs={10}>
           <Paper sx={{ px: 3, py: 3, minHeight: "40vh", my: 2 }}>
             <Formik
-              validationSchema={LOG_VALIDATION}
+              validationSchema={MESSAGE_VALIDATION}
               onSubmit={props.handleSubmit}
-              initialValues={INITIAL_LOG_STATE}
+              initialValues={INITIAL_MESSAGE_STATE}
             >
               {(formik) => (
                 <Form>

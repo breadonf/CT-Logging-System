@@ -1,4 +1,4 @@
-const INITIAL_LOG_STATE = {
+const INITIAL_MESSAGE_STATE = {
   inputDate: new Date(),
   effectiveDate: new Date(),
   category: "",
@@ -11,4 +11,4 @@ const INITIAL_LOG_STATE = {
   comments: "",
 };
 
-export default INITIAL_LOG_STATE;
+export default INITIAL_MESSAGE_STATE;

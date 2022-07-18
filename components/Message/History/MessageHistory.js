@@ -1,10 +1,9 @@
 import React from "react";
 import { Grid, Paper } from "@mui/material";
-import LogHistoryHeading from "./heading";
-import MessageBox from "./messageBox";
+import MessageHistoryHeading from "./heading";
 import BoxArray from "./boxArray";
 
-function LogbookHistory({ data }) {
+function MessageHistory({ data }) {
   return (
     <Grid
       container
@@ -13,7 +12,7 @@ function LogbookHistory({ data }) {
     >
       <Grid item xs={10} sx={{ m: 2 }}>
         <Paper sx={{ Height: "85vh", px: 2, py: 2, mt: 2, bgcolor: "#222222" }}>
-          <LogHistoryHeading />
+          <MessageHistoryHeading />
           <Grid
             container
             spacing={2}
@@ -24,7 +23,6 @@ function LogbookHistory({ data }) {
               overflowY: "auto",
             }}
           >
-            {/* should be Box array, message box for testing only */}
             <BoxArray />
           </Grid>
         </Paper>
@@ -33,4 +31,4 @@ function LogbookHistory({ data }) {
   );
 }
 
-export default LogbookHistory;
+export default MessageHistory;

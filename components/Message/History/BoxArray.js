@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import MessageCard from "./MessageCard";
-import mockData2 from "../LogbookForm/mockData2";
+import mockData2 from "../MessageForm/mockData2";
 
 function BoxArray() {
   return (
