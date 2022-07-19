@@ -122,6 +122,8 @@ export default function TableMaterial({
       },
       {
         headerName: "Direct Post Contrast",
+        // TODO Fix header size/dimension, refer to documentation and make the column responsive
+        width: 160,
         field: "directPostContrast",
         renderCell: (isDirectPostContrast) => {
           return isDirectPostContrast.value ? <CheckRoundedIcon /> : <></>;
@@ -272,7 +274,15 @@ export default function TableMaterial({
     <>
       {isSuccess && (
         <div style={{ height: "80vh" }}>
-          <DataGrid {...configDataGrid} />
+          <DataGrid
+            sx={{
+              boxShadow: 4,
+              "& .MuiDataGrid-cell:hover": {
+                color: "primary.main",
+              },
+            }}
+            {...configDataGrid}
+          />
         </div>
       )}
     </>
