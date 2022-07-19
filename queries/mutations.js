@@ -10,28 +10,19 @@ export const createCTrecord = `
       day
     }
   }
-}
-`;export const createMessage = `
+};`;
+export const createMessage = `
 mutation Mutation($data: create_message_input!) {
   create_message_item(data: $data) {
     id
-  Date_func {
+    Date_func {
     year
     month
     day
-  }
-}
-}
-`;
-export const createCardiacCTrecord = `
-mutation Mutation($data: create_cardiacCT_input!) {
-  create_cardiacCT_item(data: $data) {
-    id
-    PID
+    }
   }
 }
 `;
-
 export const updateCTRecordById = `
   mutation Mutation($updateCtItemId: ID!, $data: update_CT_input!) {
     update_CT_item(id: $updateCtItemId, data: $data) {
@@ -41,6 +32,14 @@ export const updateCTRecordById = `
       status
     }
   }
+`;
+export const createCardiacCTrecord = `
+mutation Mutation($data: create_cardiacCT_input!) {
+  create_cardiacCT_item(data: $data) {
+    id
+    PID
+  }
+}
 `;
 
 export const updateCardiacCTSetupById = `
