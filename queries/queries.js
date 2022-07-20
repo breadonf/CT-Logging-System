@@ -156,6 +156,29 @@ const CardiacSetupByID = `
     }
 `;
 
+const MessageByID = `
+    #graphql
+    query MessageByID($MessageByIdId: ID!) {
+      Message_by_id(id: $MessageByIdId) {
+        id
+        inputDate
+        effectiveDate
+        date_func {
+          year
+          day
+          month
+        }
+        category
+        inputUser
+        originatedBy
+        important
+        active
+        htmlMessage
+        comments
+      }
+    }
+`;
+
 const ExamsRecordBySearch = `
     #graphql
     query ExamsRecordBySearch( $key: String!) {
@@ -243,6 +266,13 @@ export const getExamDetailsByID = async (ctByIdId) => {
 export const getCardiacSetupByID = async (cardiacCtByIdId) => {
   const data = await fetchData(CardiacSetupByID, {
     variables: { cardiacCtByIdId: cardiacCtByIdId },
+  });
+
+  return data.data;
+};
+export const getMessageByID = async (MessageByIdId) => {
+  const data = await fetchData(MessageByID, {
+    variables: { MessageByIdId: MessageByIdId },
   });
 
   return data.data;

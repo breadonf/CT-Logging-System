@@ -1,13 +1,14 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import INITIAL_LOG_STATE from "./InitialLogState";
-import LOG_VALIDATION from "./ValidationSchema";
+import INITIAL_MESSAGE_STATE from "./InitialMessageState";
+import MESSAGE_VALIDATION from "./ValidationSchema";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { Grid, Paper, Typography } from "@mui/material";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
+import Checkbox from "../../FormsUI/Checkbox";
 import categories from "./categories.json";
 import ButtonWrapper from "./buttonWrapper";
 import TextEditor from "../TextEditor";
@@ -19,9 +20,9 @@ function LogbookForm(props) {
         <Grid item xs={10}>
           <Paper sx={{ px: 3, py: 3, minHeight: "40vh", my: 2 }}>
             <Formik
-              validationSchema={LOG_VALIDATION}
+              validationSchema={MESSAGE_VALIDATION}
               onSubmit={props.handleSubmit}
-              initialValues={INITIAL_LOG_STATE}
+              initialValues={INITIAL_MESSAGE_STATE}
             >
               {(formik) => (
                 <Form>
@@ -30,7 +31,10 @@ function LogbookForm(props) {
                       <DateTimePicker name="inputDate" label="Input Date" />
                     </Grid>
                     <Grid item xs={4}>
-                      <DateTimePicker name="effectiveDate" label="Effective Date" />
+                      <DateTimePicker
+                        name="effectiveDate"
+                        label="Effective Date"
+                      />
                     </Grid>
                     <Grid item xs={4}>
                       <Select
@@ -39,11 +43,17 @@ function LogbookForm(props) {
                         options={categories}
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <Textfield name="inputUser" label="Your Name" />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <Textfield name="originatedBy" label="Originated By" />
+                    </Grid>
+                    <Grid item xs={2}>
+                      <Checkbox name="important" label="Important" />
+                    </Grid>
+                    <Grid item xs={2}>
+                      <Checkbox name="active" label="Active" />
                     </Grid>
                   </Grid>
                   <Grid item xs={12} sx={{ py: 3 }}>

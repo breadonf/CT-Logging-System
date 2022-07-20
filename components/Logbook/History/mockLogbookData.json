@@ -1,4 +1,0 @@
-[
-  { "user": "John", "category":"Reminder" , "HTMLMessage": "<p>msg1</p>" },
-  { "user": "Tom", "category":"Protocol" , "HTMLMessage": "<h1>msg2</h1>" }
-]
