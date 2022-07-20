@@ -1,11 +1,9 @@
 import React from "react";
 import { Divider, Grid, Typography } from "@mui/material";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelIcon from "@mui/icons-material/Cancel";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Chip from "@mui/material/Chip";
 
-export function CardiacSetup({ cardiacCT_by_id }) {
+export default function CardiacSetup({ cardiacCT_by_id }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Grid item xs={3} sx={{ pr: 2 }}>

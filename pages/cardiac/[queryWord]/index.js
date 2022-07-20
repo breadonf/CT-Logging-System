@@ -1,9 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { getCardiacSetupByID } from "../../../queries/queries";
-import { useState, useEffect } from "react";
 import {
   Paper,
   Grid,
@@ -12,12 +11,9 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { PatientDetail } from "./PatientDetail";
-import { CardiacSetup } from "./CardiacSetup";
-import { ContrastDetail } from "./ContrastDetail";
-import { StaffDetail } from "./StaffDetail";
-import { Remark } from "./Remark";
-import { Buttons } from "./Buttons";
+import PatientDetail from "../../../components/CardiacForm/PatientDetail";
+import CardiacSetup from "../../../components/CardiacForm/CardiacSetup";
+import Buttons from "../../../components/CardiacForm/Buttons";
 import { LoadingSpinner } from "../../../components/Forms/CardiacForm/LoadingSpinner";
 
 export default function CardiacSetupViewer() {
@@ -82,8 +78,7 @@ export default function CardiacSetupViewer() {
                   </Grid>
                 </Grid>
               </Box>
-
-              <PatientDetail CT_by_id={cardiacCT_by_id} />
+              <PatientDetail cardiacCT_by_id={cardiacCT_by_id} />
               <Divider />
               <CardiacSetup cardiacCT_by_id={cardiacCT_by_id} />
               <Buttons cardiacCT_by_id={cardiacCT_by_id} />
