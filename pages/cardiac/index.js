@@ -15,7 +15,7 @@ export default function searchIndex() {
               overflowY: "auto",
             }}
           >
-            <Filters endpoint="cardiac" />
+            <Filters endpoint="cardiac/protocol" />
           </Paper>
         </Container>
       </Grid>

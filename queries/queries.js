@@ -229,6 +229,16 @@ const CardiacSetupRecordBySearch = `
         id
         user_created
         user_updated
+        PID
+        name
+        date
+        radiologistInCharge
+        sedation
+        breathingControl
+        IVSite
+        scanMode
+        phase
+        targetHR
       }
     }
 `;

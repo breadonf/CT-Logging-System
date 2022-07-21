@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
-import { getCardiacSetupByID } from "../../../queries/queries";
+import { getCardiacSetupByID } from "../../../../queries/queries";
 import {
   Paper,
   Grid,
@@ -11,10 +11,10 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import PatientDetail from "../../../components/CardiacForm/PatientDetail";
-import CardiacSetup from "../../../components/CardiacForm/CardiacSetup";
-import Buttons from "../../../components/CardiacForm/Buttons";
-import { LoadingSpinner } from "../../../components/Forms/CardiacForm/LoadingSpinner";
+import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
+import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
+import Buttons from "../../../../components/CardiacForm/Buttons";
+import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
 
 export default function CardiacSetupViewer() {
   const router = useRouter();

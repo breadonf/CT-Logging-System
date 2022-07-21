@@ -1,43 +1,54 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
-import { getExamsRecordBySearch } from "../../../queries/queries";
-import TableMaterial from "../../../components/Table/TableMaterial";
-import { Paper, Grid, Container } from "@mui/material";
 import { useRouter } from "next/router";
-import Filters from "../../../components/Table/Filters";
+import { getCardiacSetupByID } from "../../../../queries/queries";
+import {
+  Paper,
+  Grid,
+  Box,
+  Container,
+  Typography,
+  Divider,
+} from "@mui/material";
+import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
+import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
+import Buttons from "../../../../components/CardiacForm/Buttons";
+import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
 
-export default function SearchTable() {
+export default function CardiacSetupViewer() {
   const router = useRouter();
-  const { queryWords } = router.query;
-  const [pageNumber, setPageNumber] = useState(1);
-
+  const { queryWord } = router.query;
   const {
-    data: records,
+    data,
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
-    isFetching,
     isError,
-    isPreviousData,
+    error,
   } = useQuery(
-    ["record", queryWords],
-    async () => await getExamsRecordBySearch(queryWords)
+    ["CardiacSetupByID", queryWord],
+    async () => await getCardiacSetupRecordBySearch(queryWord),
+    { retry: true }
   );
-  if (isQueryLoading || !isQuerySuccess || !records) {
-    return <h2>Loading</h2>;
+  console.log(data);
+  if (isQueryLoading || !isQuerySuccess || !data) {
+    return <LoadingSpinner />;
   }
   if (isError) {
     return <></>;
   }
-  if (isQuerySuccess && records) {
+  if (isQuerySuccess && data) {
+    const { cardiacCT_by_id } = data;
+    if (cardiacCT_by_id === null) {
+      return <h2>No such exam</h2>;
+    }
     return (
       <Grid spacing={2} sx={{ py: 5 }} container>
         <Head>
-          <title>CT record</title>
+          <title>{`Records of ${cardiacCT_by_id?.PID} at ${cardiacCT_by_id.date_func.year}-${cardiacCT_by_id.date_func.month}-${cardiacCT_by_id.date_func.day}`}</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
-
         <Grid item xs={12}>
           <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
             <Paper

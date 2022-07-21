@@ -3,7 +3,8 @@ import Head from "next/head";
 import { useQuery } from "react-query";
 import { getHomepageCT, getHomepageCTNumber } from "../queries/queries";
 import TableMaterial from "../components/Table/TableMaterial";
-import { Paper, Grid, Container, Box } from "@mui/material";
+import { Paper, Grid, Container } from "@mui/material";
+import { RecordTableHeaders } from "../components/Table/RoutineRecordTableHeader";
 
 export default function Table() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -49,6 +50,7 @@ export default function Table() {
                 isLoading={isLoading}
                 pageNumber={pageNumber}
                 isPreviousData={isPreviousData}
+                columnHeaders={RecordTableHeaders}
                 paginationMode="server"
               />
             )}
