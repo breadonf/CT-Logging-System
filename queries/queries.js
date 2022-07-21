@@ -70,9 +70,8 @@ const HomepageData = `
       radiologists: Radiologists {
         label
         value
-        
       }
-      protocol {
+      protocol(limit: -1) {
         label
         value
         
@@ -157,6 +156,29 @@ const CardiacSetupByID = `
     }
 `;
 
+const MessageByID = `
+    #graphql
+    query MessageByID($MessageByIdId: ID!) {
+      Message_by_id(id: $MessageByIdId) {
+        id
+        inputDate
+        effectiveDate
+        date_func {
+          year
+          day
+          month
+        }
+        category
+        inputUser
+        originatedBy
+        important
+        active
+        htmlMessage
+        comments
+      }
+    }
+`;
+
 const ExamsRecordBySearch = `
     #graphql
     query ExamsRecordBySearch( $key: String!) {
@@ -207,6 +229,16 @@ const CardiacSetupRecordBySearch = `
         id
         user_created
         user_updated
+        PID
+        name
+        date
+        radiologistInCharge
+        sedation
+        breathingControl
+        IVSite
+        scanMode
+        phase
+        targetHR
       }
     }
 `;
@@ -248,10 +280,18 @@ export const getCardiacSetupByID = async (cardiacCtByIdId) => {
 
   return data.data;
 };
+export const getMessageByID = async (MessageByIdId) => {
+  const data = await fetchData(MessageByID, {
+    variables: { MessageByIdId: MessageByIdId },
+  });
+
+  return data.data;
+};
 export const getExamsRecordBySearch = async (key) => {
   const data = await fetchData(ExamsRecordBySearch, {
     variables: { key: key },
   });
+  console.log("in queries", data);
   return data.data;
 };
 

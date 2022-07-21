@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Button } from "@mui/material";
 import Link from "next/link";
 
-export function Buttons({ cardiacCT_by_id }) {
+export default function Buttons({ cardiacCT_by_id }) {
   return (
     <Grid
       container

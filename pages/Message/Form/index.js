@@ -31,8 +31,8 @@ function MessageFormPage() {
           onSuccess: async (res) => {
             router.push("/Message");
           },
-          onError: async (err, variables) => {
-            console.log("onError", err, variables)
+          onError: async (err, varia) => {
+            console.log("onError", err, varia)
           }
         }
       );
@@ -55,7 +55,7 @@ function MessageFormPage() {
   return (
     <>
       <Head>
-        <title>CT Add Log</title>
+        <title>CT Add Message</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>

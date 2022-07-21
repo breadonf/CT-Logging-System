@@ -22,11 +22,6 @@ export default function Filters({ endpoint }) {
   };
   return (
     <Grid spacing={2} sx={{ py: 5 }} container>
-      <Head>
-        <title>CT record search</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
       <Grid item xs={12}>
         <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
           <Paper

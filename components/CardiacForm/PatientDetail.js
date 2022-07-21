@@ -1,10 +1,8 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelIcon from "@mui/icons-material/Cancel";
 
-export function PatientDetail({ CT_by_id }) {
+export default function PatientDetail({ cardiacCT_by_id }) {
   return (
     <Grid
       justifyContent="center"
@@ -35,18 +33,18 @@ export function PatientDetail({ CT_by_id }) {
       >
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            Patient name: {CT_by_id.name}
+            Patient name: {cardiacCT_by_id.name}
           </Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            ID: {CT_by_id.PID}
+            ID: {cardiacCT_by_id.PID}
           </Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            Exam Date: {CT_by_id.date_func.year}-{CT_by_id.date_func.month}-
-            {CT_by_id.date_func.day}
+            Exam Date: {cardiacCT_by_id.date_func.year}-
+            {cardiacCT_by_id.date_func.month}-{cardiacCT_by_id.date_func.day}
           </Typography>
         </Grid>
       </Grid>

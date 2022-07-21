@@ -1,44 +1,48 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
-import { getExamsRecordBySearch } from "../../../queries/queries";
-import TableMaterial from "../../../components/Table/TableMaterial";
-import { Paper, Grid, Container } from "@mui/material";
 import { useRouter } from "next/router";
-import Filters from "../../../components/Table/Filters";
-import { RecordTableHeaders } from "../../../components/Table/RoutineRecordTableHeader";
-
-export default function SearchTable() {
+import { getCardiacSetupRecordBySearch } from "../../../../queries/queries";
+import { Paper, Grid, Container } from "@mui/material";
+import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
+import { RecordTableHeaders } from "../../../../components/Table/CardiacRecordTableHeader";
+import Filters from "../../../../components/Table/Filters";
+import TableMaterial from "../../../../components/Table/TableMaterial";
+export default function CardiacSetupTable() {
   const router = useRouter();
-  const { queryWords } = router.query;
+  const { queryWord } = router.query;
   const [pageNumber, setPageNumber] = useState(1);
-  console.log(queryWords);
   const {
     data: records,
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
-    isFetching,
     isError,
+    error,
     isPreviousData,
   } = useQuery(
-    ["record", queryWords],
-    async () => await getExamsRecordBySearch(queryWords)
+    ["CardiacSetupRecordBySearch", queryWord],
+    async () => await getCardiacSetupRecordBySearch(queryWord),
+    { retry: true }
   );
+  console.log(records);
   if (isQueryLoading || !isQuerySuccess || !records) {
-    return <h2>Loading</h2>;
+    return <LoadingSpinner />;
   }
   if (isError) {
     return <></>;
   }
   if (isQuerySuccess && records) {
+    const { cardiacCT_by_id } = records;
+    if (cardiacCT_by_id === null) {
+      return <h2>No such exam</h2>;
+    }
     return (
       <Grid spacing={2} sx={{ py: 5 }} container>
         <Head>
-          <title>CT record</title>
+          <title>{`Records of ${cardiacCT_by_id?.PID}`}</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
-
         <Grid item xs={12}>
           <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
             <Paper
@@ -53,14 +57,13 @@ export default function SearchTable() {
               <Filters />
               <TableMaterial
                 setPageNumber={setPageNumber}
-                records={records.CT}
+                records={records.cardiacCT}
                 isSuccess={isQuerySuccess}
                 isLoading={isQueryLoading}
-                columnHeaders={RecordTableHeaders}
                 pageNumber={pageNumber}
                 isPreviousData={isPreviousData}
+                columnHeaders={RecordTableHeaders}
                 paginationMode="client"
-                getRowId={(row) => row.count}
               />
             </Paper>
           </Container>

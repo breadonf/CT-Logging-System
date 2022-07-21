@@ -15,7 +15,7 @@ export default function searchIndex() {
               overflowY: "auto",
             }}
           >
-            <Filters endpoint="Search"/>
+            <Filters endpoint="Search" />
           </Paper>
         </Container>
       </Grid>
