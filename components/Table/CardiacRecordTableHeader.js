@@ -4,6 +4,7 @@ import Link from "next/link";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
 import { GridActionsCellItem } from "@mui/x-data-grid";
+import { Chip } from "@mui/material";
 
 export const RecordTableHeaders = [
   {
@@ -47,26 +48,54 @@ export const RecordTableHeaders = [
     ],
   },
   { field: "id", headerName: "Protocol id" },
+  { field: "PID", headerName: "Patient ID", width: 100 },
+  { field: "name", headerName: "Patient Name", width: 100 },
   {
-    field: "date",
+    field: "date_func",
     headerName: "Exam Date",
-    type: "dateTime",
     width: 100,
-    valueGetter: ({ value }) => value && new Date(value),
-    valueFormatter: ({ value }) => {
-      const valueFormatted =
-        value.getFullYear().toString() +
-        "-" +
-        (value.getMonth() + 1).toString() +
-        "-" +
-        value.getDate().toString();
-      return valueFormatted;
+    valueFormatter: (params) => {
+      if (
+        typeof params.values?.year === "undefined" ||
+        params.values?.year === null
+      ) {
+        return "";
+      }
+      console.log(params);
+      return `${params.values.year}-${params.values.month}-${params.values.day} `;
     },
   },
-  { field: "PID", headerName: "Patient ID", width: 100 },
   {
     field: "sedation",
     headerName: "Sedation",
     width: 90,
+  },
+  {
+    field: "radiologistInCharge",
+    headerName: "Reporting Radiologist",
+    width: 100,
+  },
+  {
+    headerName: "Reporting Radiologists",
+    field: "radiologistInCharge",
+    width: 150,
+    renderCell: (radiologists) => {
+      return radiologists.value ? (
+        <div>
+          {radiologists.formattedValue.map((radiologist) => {
+            return (
+              <Chip
+                key={`radiologistid-${radiologist}`}
+                variant="outlined"
+                color="primary"
+                label={radiologist.match(/(.*) (\(.*\))/)[1]}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      );
+    },
   },
 ];

@@ -18,6 +18,8 @@ export default function TableMaterial({
   paginationMode,
   columnHeaders,
   getRowId,
+  height = "80vh",
+  pageSize = 25,
 }) {
   const headers = useMemo(
     () => columnHeaders,
@@ -71,7 +73,7 @@ export default function TableMaterial({
     rowCount: rowCount,
     components: { Toolbar: GridToolbar, Pagination: CustomPagination },
     loading: isLoading,
-    pageSize: 25,
+    pageSize: pageSize,
     components: {
       Toolbar: Toolbar,
     },
@@ -79,7 +81,7 @@ export default function TableMaterial({
   return (
     <>
       {isSuccess && (
-        <div style={{ height: "80vh" }}>
+        <div style={{ height: height }}>
           <DataGrid sx={{ boxShadow: 5 }} {...configDataGrid} />
         </div>
       )}

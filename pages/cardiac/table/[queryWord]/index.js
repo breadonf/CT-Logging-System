@@ -8,6 +8,7 @@ import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/Loading
 import { RecordTableHeaders } from "../../../../components/Table/CardiacRecordTableHeader";
 import Filters from "../../../../components/Table/Filters";
 import TableMaterial from "../../../../components/Table/TableMaterial";
+
 export default function CardiacSetupTable() {
   const router = useRouter();
   const { queryWord } = router.query;
@@ -54,7 +55,7 @@ export default function CardiacSetupTable() {
                 overflowY: "auto",
               }}
             >
-              <Filters />
+              <Filters endpoint="cardiac/table" />
               <TableMaterial
                 setPageNumber={setPageNumber}
                 records={records.cardiacCT}
@@ -64,6 +65,8 @@ export default function CardiacSetupTable() {
                 isPreviousData={isPreviousData}
                 columnHeaders={RecordTableHeaders}
                 paginationMode="client"
+                height="60vh"
+                pageSize={10}
               />
             </Paper>
           </Container>

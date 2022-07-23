@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useQuery, useMutation } from "react-query";
 import { getCardiacSetupByID } from "../../../../queries/queries";
 import { updateCardiacCTSetupById } from "../../../../queries/mutations";
-import preprocessor from "../../../../helpers/preprocessor";
+import preprocessor from "../../../../helpers/preprocessorCardiacForm";
 import setData from "../../../../helpers/setData";
 import CardiacForm from "../../../../components/Forms/CardiacForm";
 
@@ -32,9 +32,10 @@ export default function EditRoutineForm() {
         updateCardiacCTSetupById,
         {
           data: newFormData.data,
-          updateCardiacCtItemId: newFormData.updateCardiacCtItemId,
+          updateCtItemId: newFormData.updateCardiacCtItemId,
         },
-        true
+        true,
+        1
       );
     },
     {
@@ -46,16 +47,15 @@ export default function EditRoutineForm() {
     const modifiedValues = preprocessor(values);
     setTimeout(() => {
       mutation.mutate(
-        { data: modifiedValues, updateCardiacCtItemId: values.id },
+        { data: modifiedValues, updateCardiacCtItemId: modifiedValues.id },
         {
           onSuccess: async (res) => {
             alert(
-              `Success, your Ct records for ${modifiedValues.PID} is updated`
+              `Success, your Cardiac Protocol records for ${modifiedValues.PID} is updated`
             );
-            router.push("/Table");
+            router.push(`/cardiac/table/${modifiedValues.PID}`);
           },
           onError: async (err, varia) => {
-            console.log("onError", err, varia);
             console.log(varia.data);
           },
         }

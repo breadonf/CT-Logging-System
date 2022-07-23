@@ -231,7 +231,11 @@ const CardiacSetupRecordBySearch = `
         user_updated
         PID
         name
-        date
+        date_func {
+          year
+          month
+          day
+        }
         radiologistInCharge
         sedation
         breathingControl

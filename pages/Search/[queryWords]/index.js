@@ -50,7 +50,7 @@ export default function SearchTable() {
                 overflowY: "auto",
               }}
             >
-              <Filters />
+              <Filters endpoint="Search" />
               <TableMaterial
                 setPageNumber={setPageNumber}
                 records={records.CT}
@@ -61,6 +61,8 @@ export default function SearchTable() {
                 isPreviousData={isPreviousData}
                 paginationMode="client"
                 getRowId={(row) => row.count}
+                height="60vh"
+                pageSize={10}
               />
             </Paper>
           </Container>
