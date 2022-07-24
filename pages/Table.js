@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
 import { getHomepageCT, getHomepageCTNumber } from "../queries/queries";
@@ -12,7 +12,7 @@ export default function Table() {
     data: records,
     isSuccess,
     isLoading,
-    isFetching,
+    
     isPreviousData,
   } = useQuery(
     ["record", pageNumber],

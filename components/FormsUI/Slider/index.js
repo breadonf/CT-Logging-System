@@ -1,19 +1,10 @@
 import React from "react";
-import { Slider, FormControl, InputLabel, Input, Grid } from "@mui/material";
+import { Slider, InputLabel, Grid } from "@mui/material";
 import { useField, useFormikContext } from "formik";
-import useDebounceInput from "../../../hooks/useDebounce.js";
 import TextField from "../Textfield";
 
-const SlideWrapper = ({
-  name,
-  options,
-  multiple,
-  label,
-  prepopulatedValue,
-  sx,
-  ...otherProps
-}) => {
-  const { setFieldValue, values } = useFormikContext();
+const SlideWrapper = ({ name, label, ...otherProps }) => {
+  const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
   const handleChange = (e, valueFromDefault) => {
     setFieldValue(name, valueFromDefault);

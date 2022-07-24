@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
+import { toast } from "react-hot-toast";
 function CardiacCases() {
   const router = useRouter();
   const mutation = useMutation(
@@ -18,12 +18,12 @@ function CardiacCases() {
     },
     {
       mutationKey: "createCTitem",
-      onSuccess: (data, variables, context) => {
+      onSuccess: (data, variables) => {
         console.log("onSucces", data, variables);
       },
     }
   );
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values) => {
     console.log("handle", values);
     const modifiedValues = preprocessor(values);
     console.log(modifiedValues);
@@ -31,11 +31,20 @@ function CardiacCases() {
     mutation.mutate(
       { ...modifiedValues },
       {
-        onSuccess: async (res) => {
-          alert(
-            `Success, your Cardiac CT protocol for ${modifiedValues.PID} is created`
+        onSuccess: async (_res) => {
+          toast.success(
+            `Your Cardiac Protocol records for ${modifiedValues.PID} is created`,
+            {
+              style: {
+                border: "1px solid #713200",
+                padding: "40px",
+                color: "#713200",
+                fontSize: "1.5rem",
+                minWidth: "20%",
+              },
+            }
           );
-          router.push("/cardiac/1");
+          router.push(`/cardiac/table/${modifiedValues.PID}`);
         },
         onError: async (err, varia) => {
           console.log("onError", varia);

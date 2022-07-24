@@ -24,7 +24,6 @@ export default function CardiacSetupViewer() {
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isError,
-    error,
   } = useQuery(
     ["CardiacSetupByID", queryWord],
     async () => await getCardiacSetupByID(queryWord),

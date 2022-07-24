@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, MenuItem } from "@mui/material";
+import { TextField } from "@mui/material";
 import { Autocomplete } from "@mui/material";
 import { useField, useFormikContext } from "formik";
 
@@ -11,7 +11,6 @@ export default function AutocompleteWrapper({
   prepopulatedValue,
   multiple,
   groupBy,
-  limit = 2,
   sx,
   ...otherProps
 }) {

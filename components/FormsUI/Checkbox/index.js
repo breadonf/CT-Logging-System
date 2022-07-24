@@ -12,7 +12,6 @@ const CheckboxWrapper = ({
   dependable,
   checkedIcon,
   icon,
-  ...otherProps
 }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);

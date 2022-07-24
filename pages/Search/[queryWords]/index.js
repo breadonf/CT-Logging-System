@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
 import { getExamsRecordBySearch } from "../../../queries/queries";
@@ -17,7 +17,6 @@ export default function SearchTable() {
     data: records,
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
-    isFetching,
     isError,
     isPreviousData,
   } = useQuery(

@@ -37,7 +37,7 @@ function IsHKID(str) {
 const FORM_VALIDATION = yup.object().shape({
   PID: yup
     .string()
-    .test("is-HKID", "Not a valid HKID", (value, context) => IsHKID(value))
+    .test("is-HKID", "Not a valid HKID", (value) => IsHKID(value))
     .required("Required"),
   inPatient: yup.boolean(),
   age: yup.string().required("Required"),

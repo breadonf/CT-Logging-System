@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
+import { toast } from "react-hot-toast";
 function RoutineCases() {
   const router = useRouter();
   const mutation = useMutation(
@@ -18,26 +18,43 @@ function RoutineCases() {
     },
     {
       mutationKey: "createCTitem",
-      onSuccess: (data, variables, context) => {
+      onSuccess: (data, variables) => {
         console.log("onSuccess", data, variables);
       },
     }
   );
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values) => {
     const modifiedValues = preprocessor(values);
     await new Promise((r) => setTimeout(r, 500));
 
     mutation.mutate(
       { ...modifiedValues },
       {
-        onSuccess: async (res) => {
-          alert(
-            `Success, your Ct records for ${modifiedValues.PID} at ${modifiedValues.Date} is created`
+        onSuccess: async (_res) => {
+          toast.success(
+            `Your CT records for ${modifiedValues.PID} at ${modifiedValues.Date} is created`,
+            {
+              style: {
+                border: "1px solid #713200",
+                padding: "40px",
+                color: "#713200",
+                fontSize: "1.5rem",
+                minWidth: "20%",
+              },
+            }
           );
           router.push("/Table");
         },
         onError: async (err, varia) => {
-          console.log("onError", varia);
+          toast.error(`Input failed. Error: ${varia}`, {
+            style: {
+              border: "1px solid #713200",
+              padding: "40px",
+              color: "#713200",
+              fontSize: "1.5rem",
+              minWidth: "20%",
+            },
+          });
         },
       }
     );

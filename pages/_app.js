@@ -7,14 +7,14 @@ import Layout from "../components/Layout";
 
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools initialIsOpen={false} /> 
       </Hydrate>
     </QueryClientProvider>
   );

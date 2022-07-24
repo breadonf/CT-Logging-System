@@ -1,20 +1,13 @@
 import React from "react";
 import TextfieldWrapper from "../FormsUI/Textfield";
 import { Grid, Container, Button, Paper } from "@mui/material";
-import Head from "next/head";
-import {
-  useField,
-  useFormikContext,
-  Formik,
-  Form,
-  FieldArray,
-  Field,
-} from "formik";
+
+import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 
 export default function Filters({ endpoint }) {
   const router = useRouter();
-  const handleSearch = async (values, { setSubmitting }) => {
+  const handleSearch = async (values) => {
     router.push(`/${endpoint}/${values?.search}`);
   };
   const ini_value = {

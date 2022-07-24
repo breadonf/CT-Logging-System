@@ -11,8 +11,6 @@ import RadioGroup from "../../FormsUI/RadioGroup";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 import injectionSites from "../SelectItems/injectionSites.json";
 import Textfield from "../../FormsUI/Textfield";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 function ContrastDetail({ data, contrast, handleSwitch }) {
   return (

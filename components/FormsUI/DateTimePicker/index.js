@@ -5,7 +5,7 @@ import DatePicker from "@mui/lab/DatePicker";
 
 export default function DateTimePicker({
   name,
-  prepopulatedValue,
+  
   ...otherProps
 }) {
   const [field, meta] = useField(name);

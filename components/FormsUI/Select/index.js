@@ -1,14 +1,14 @@
 import React from "react";
 import { TextField, MenuItem, InputLabel, ListSubheader } from "@mui/material";
-import { isEmptyArray, useField, useFormikContext } from "formik";
+import { useField, useFormikContext } from "formik";
 import FormControl from "@mui/material/FormControl";
 
 const SelectWrapper = ({
   name,
   options,
-  multiple,
+
   label,
-  prepopulatedValue,
+
   sx,
   grouped,
   ...otherProps

@@ -1,15 +1,12 @@
 import React from "react";
-import { Grid, Typography, Chip, Button, Divider, Radio } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Grid, Typography, Divider } from "@mui/material";
 import Textfield from "../../FormsUI/Textfield";
-import Select from "../../FormsUI/Select";
-import Checkbox from "../../FormsUI/Checkbox";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import Toggle from "../../FormsUI/Toggle";
 import TimerIcon from "@mui/icons-material/Timer";
 import Slider from "../../FormsUI/Slider";
-function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
+
+function ScanMode({ formik }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Divider />
@@ -26,7 +23,7 @@ function ScanMode({ formik, numberOfSites, setNumberOfSites }) {
         />
         {formik.values.scanMode.HRDependent ? (
           <Typography variant="body1" color="#05668D">
-            Priority (Flash => SS => Retro)
+            Priority (Flash =&gt SS =&gt Retro)
           </Typography>
         ) : (
           <></>

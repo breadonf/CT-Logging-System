@@ -1,6 +1,4 @@
 import React from "react";
-import Head from "next/head";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "react-query";
 import RoutineForm from "../../../../components/Forms/RoutineForm";
@@ -8,6 +6,7 @@ import { getExamDetailsByID } from "../../../../queries/queries";
 import { updateCTRecordById } from "../../../../queries/mutations";
 import preprocessor from "../../../../helpers/preprocessor";
 import setData from "../../../../helpers/setData";
+import { toast } from "react-hot-toast";
 
 export default function EditRoutineForm() {
   const router = useRouter();
@@ -17,7 +16,6 @@ export default function EditRoutineForm() {
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isError,
-    error,
   } = useQuery(
     ["ExamDetailsByID", ExamId],
     async () => await getExamDetailsByID(parseInt(ExamId)),
@@ -46,9 +44,18 @@ export default function EditRoutineForm() {
       mutation.mutate(
         { data: modifiedValues, updateCtItemId: values.count },
         {
-          onSuccess: async (res) => {
-            alert(
-              `Success, your Ct records for ${modifiedValues.PID} is updated`
+          onSuccess: async (_res) => {
+            toast.success(
+              `Success, your CT records for ${modifiedValues.PID} is updated`,
+              {
+                style: {
+                  border: "1px solid #713200",
+                  padding: "40px",
+                  color: "#713200",
+                  fontSize: "1.5rem",
+                  minWidth: "20%",
+                },
+              }
             );
             router.push("/Table");
           },

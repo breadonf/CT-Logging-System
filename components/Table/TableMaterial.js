@@ -13,7 +13,6 @@ export default function TableMaterial({
   records,
   isSuccess,
   pageNumber,
-  isStale,
   isPreviousData,
   paginationMode,
   columnHeaders,
@@ -23,7 +22,7 @@ export default function TableMaterial({
 }) {
   const headers = useMemo(
     () => columnHeaders,
-    [] //dep list
+    [columnHeaders] //dep list
   );
   const [rowCountState, setRowCountState] = useState(rowCount || 0);
   const [isLoading, setIsLoading] = useState(false);

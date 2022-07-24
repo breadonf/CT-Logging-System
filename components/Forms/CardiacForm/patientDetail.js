@@ -5,7 +5,7 @@ import Textfield from "../../FormsUI/Textfield";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import Autocomplete from "../../FormsUI/AutocompleteWrapper";
 import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
-
+import FastTextField from "/components/FormsUI/FastTextField";
 function PatientDetail({ isSuccess, autocompleteOptions, data }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
@@ -15,6 +15,7 @@ function PatientDetail({ isSuccess, autocompleteOptions, data }) {
           id="radiologistInCharge"
           name="radiologistInCharge"
           label="Reporting radiologist(s)"
+          prepopulatedValue={data.radiologistInCharge ?? []}
           autocompleteOptions={
             isSuccess
               ? autocompleteOptions.radiologists.sort((a, b) =>
@@ -30,7 +31,10 @@ function PatientDetail({ isSuccess, autocompleteOptions, data }) {
         </Typography>
       </Grid>
       <Grid item xs={4}>
-        <Textfield name="PID" label="Patient ID (e.g. A1234567)"></Textfield>
+        <FastTextField
+          name="PID"
+          label="Patient ID (e.g. A1234567)"
+        ></FastTextField>
       </Grid>
       <Grid item xs={4}>
         <Textfield name="name" label="Patient Name"></Textfield>

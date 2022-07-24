@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -26,7 +25,6 @@ export default function Dropdown({
   protocols,
   getSelectedProtocols,
 }) {
-  const theme = useTheme();
   const [selectedProtocols, setSelectedProtocols] = React.useState([]);
   const handleChange = (event) => {
     getSelectedProtocols(event.target.value);
