@@ -88,6 +88,24 @@ const HomepageData = `
     }
 `;
 
+const MessageData = `
+    #graphql
+    query MessageData {
+      message {
+        inputDate
+        effectiveDate
+        category
+        inputUser
+        originatedBy
+        important
+        active
+        messageEditorState
+        htmlMessage
+        comments
+      }
+    }
+`;
+
 const ExamDetailsByID = `
     #graphql
     query ExamDetailsByID($ctByIdId: ID!) {
@@ -268,6 +286,13 @@ export const getHomepageData = async () => {
     variables: {},
   });
   return data.data;
+};
+
+export const getMessageData = async () => {
+  const data = await fetchData(MessageData, {
+    variables: {},
+  });
+  return data.data.message;
 };
 
 export const getExamDetailsByID = async (ctByIdId) => {

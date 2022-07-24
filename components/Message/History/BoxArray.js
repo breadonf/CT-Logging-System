@@ -1,12 +1,11 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import MessageCard from "./MessageCard";
-import mockData2 from "../MessageForm/mockData2";
 
-function BoxArray() {
+function BoxArray({ data }) {
   return (
     <>
-      {Object.values(mockData2).map((value, index) => {
+      {Object.values(data).map((value, index) => {
         return (
           <div key={index}>
             {value.active ? (

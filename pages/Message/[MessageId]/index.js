@@ -9,7 +9,7 @@ import { updateMessageById } from "/queries/mutations";
 import { getMessageByID } from "/queries/queries";
 
 function MessageEditPage() {
-  const router = useRouter;
+  const router = useRouter();
   const { MessageId } = router.query;
   const {
     data: fetchedData,
