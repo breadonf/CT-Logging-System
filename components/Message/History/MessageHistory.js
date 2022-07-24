@@ -8,7 +8,7 @@ function MessageHistory({ _data }) {
     <Grid
       container
       spacing={2}
-      sx={{ height: "90vh", justifyContent: "center" }} // HACK height attribute in sx props should be in lowercase i.e X Height -> height
+      sx={{ height: "90vh", justifyContent: "center" }}
     >
       <Grid item xs={12} sx={{ m: 2 }}>
         <Container
@@ -41,7 +41,7 @@ function MessageHistory({ _data }) {
                     overflowY: "auto",
                   }}
                 >
-                  <BoxArray />
+                  <BoxArray data={data}/>
                 </Grid>
               </Paper>
             </Grid>

@@ -10,7 +10,7 @@ import Box from "@mui/material";
 import { CircularProgress } from "@mui/material";
 
 function MessageFormPage() {
-  const router = useRouter;
+  const router = useRouter();
   const mutation = useMutation(
     async (newFormData) => {
       await setData(createMessage, { data: newFormData });
