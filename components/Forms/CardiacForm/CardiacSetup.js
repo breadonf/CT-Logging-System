@@ -5,7 +5,6 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
-import Checkbox from "../../FormsUI/Checkbox";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import Toggle from "../../FormsUI/Toggle";
 

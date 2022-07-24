@@ -3,4 +3,7 @@ module.exports = {
   experimental: {
     outputStandalone: true,
   },
+  future: {
+    webpack5: true,
+  },
 };

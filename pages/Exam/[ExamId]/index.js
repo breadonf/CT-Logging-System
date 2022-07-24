@@ -1,9 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { getExamDetailsByID } from "../../../queries/queries";
-import { useState, useEffect } from "react";
 import {
   Paper,
   Grid,
@@ -22,6 +21,7 @@ import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineE
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import Chip from "@mui/material/Chip";
 import Link from "next/link";
+
 export default function ExamDetailsPage() {
   const router = useRouter();
   const { ExamId } = router.query;
@@ -30,7 +30,6 @@ export default function ExamDetailsPage() {
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isError,
-    error,
   } = useQuery(
     ["ExamDetailsByID", ExamId],
     async () => await getExamDetailsByID(parseInt(ExamId)),

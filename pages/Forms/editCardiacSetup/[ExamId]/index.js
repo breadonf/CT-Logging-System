@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "react-query";
 import { getCardiacSetupByID } from "../../../../queries/queries";
@@ -7,6 +6,7 @@ import { updateCardiacCTSetupById } from "../../../../queries/mutations";
 import preprocessor from "../../../../helpers/preprocessorCardiacForm";
 import setData from "../../../../helpers/setData";
 import CardiacForm from "../../../../components/Forms/CardiacForm";
+import toast from "react-hot-toast";
 
 export default function EditRoutineForm() {
   const router = useRouter();
@@ -16,7 +16,6 @@ export default function EditRoutineForm() {
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isError,
-    error,
   } = useQuery(
     ["CardiacSetupByID", ExamId],
     async () => await getCardiacSetupByID(parseInt(ExamId)),
@@ -49,9 +48,18 @@ export default function EditRoutineForm() {
       mutation.mutate(
         { data: modifiedValues, updateCardiacCtItemId: modifiedValues.id },
         {
-          onSuccess: async (res) => {
-            alert(
-              `Success, your Cardiac Protocol records for ${modifiedValues.PID} is updated`
+          onSuccess: async (_res) => {
+            toast.success(
+              `Your Cardiac Protocol records for ${modifiedValues.PID} is updated`,
+              {
+                style: {
+                  border: "1px solid #713200",
+                  padding: "40px",
+                  color: "#713200",
+                  fontSize: "1.5rem",
+                  minWidth: "20%",
+                },
+              }
             );
             router.push(`/cardiac/table/${modifiedValues.PID}`);
           },

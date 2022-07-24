@@ -13,44 +13,42 @@ function MessageFormPage() {
   const router = useRouter;
   const mutation = useMutation(
     async (newFormData) => {
-      await setData(createMessage, {data: newFormData});
+      await setData(createMessage, { data: newFormData });
     },
-    {mutationKey: "createMessage",
-    onSuccess: (data, variables, context) => {
-      console.log("onSuccess", data, variables);
+    {
+      mutationKey: "createMessage",
+      onSuccess: (data, variables) => {
+        console.log("onSuccess", data, variables);
+      },
     }
-  }
   );
-  const handleSubmit = (values, { setSubmitting }) => {
-      const modifiedValues = preprocessorMessage(values);
-      await new Promise((r) => setTimeout(r, 500));
+  const handleSubmit = async (values) => {
+    const modifiedValues = preprocessorMessage(values);
+    await new Promise((r) => setTimeout(r, 500));
 
-      mutation.mutate(
-        {...modifiedValues},
-        {
-          onSuccess: async (res) => {
-            router.push("/Message");
-          },
-          onError: async (err, varia) => {
-            console.log("onError", err, varia)
-          }
-        }
-      );
+    mutation.mutate(
+      { ...modifiedValues },
+      {
+        onSuccess: async (_res) => {
+          router.push("/Message");
+        },
+        onError: async (err, varia) => {
+          console.log("onError", err, varia);
+        },
+      }
+    );
 
-      if (mutation.isError) {
-        console.log(
-          "failed",
-          mutation.error
-        );
-      }
-      if (mutation.onSettled) {
-        <Box sx={{ display: "flex" }}>
-          <CircularProgress />
-        </Box>;
-      }
+    if (mutation.isError) {
+      console.log("failed", mutation.error);
+    }
+    if (mutation.onSettled) {
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>;
+    }
   };
   if (mutation.isSuccess) {
-  };
+  }
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
@@ -18,7 +18,7 @@ export default function CardiacSetupTable() {
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isError,
-    error,
+
     isPreviousData,
   } = useQuery(
     ["CardiacSetupRecordBySearch", queryWord],
@@ -40,7 +40,7 @@ export default function CardiacSetupTable() {
     return (
       <Grid spacing={2} sx={{ py: 5 }} container>
         <Head>
-          <title>{`Records of ${cardiacCT_by_id?.PID}`}</title>
+          <title>{`Search result of ${queryWord}`}</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>

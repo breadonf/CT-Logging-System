@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid, Typography, Chip, Button, Divider, Box } from "@mui/material";
+import { Grid, Typography, Chip, Box } from "@mui/material";
 import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
 import Toggle from "../../FormsUI/Toggle";
 import TimerIcon from "@mui/icons-material/Timer";
 
-function PhaseDetail({ formik }) {
+function PhaseDetail({ _formik }) {
   return (
     <Grid
       alignItems="center"

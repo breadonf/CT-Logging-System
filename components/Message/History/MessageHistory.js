@@ -3,7 +3,7 @@ import { Grid, Paper, Container } from "@mui/material";
 import MessageHistoryHeading from "./heading";
 import BoxArray from "./boxArray";
 
-function MessageHistory({ data }) {
+function MessageHistory({ _data }) {
   return (
     <Grid
       container

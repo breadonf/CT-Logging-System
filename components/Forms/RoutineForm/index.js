@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Form } from "formik";
 import { Container, Paper, Grid, Typography } from "@mui/material";
 
-import CircularProgress from "@mui/material/CircularProgress";
 import { useQuery } from "react-query";
 
 import PatientDetail from "./patientDetail";
@@ -39,7 +38,7 @@ function RoutineForm({ data, handleSubmit }) {
     if (data.pitch.length > 1) {
       setNumberOfProtocol(data.pitch.length);
     }
-  }, []);
+  }, [data.volume, data.ctdi.length, data.pitch.length]);
   const handleSwitch = (e) => {
     setContrast(e.target.checked);
   };

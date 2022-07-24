@@ -6,7 +6,6 @@ import { useQuery } from "react-query";
 
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import FORM_VALIDATION from "./ValidationSchema";
 import PatientDetail from "./patientDetail";
 import CardiacSetup from "./CardiacSetup";
 import ScanMode from "./scanMode";
@@ -59,6 +58,7 @@ function CardiacForm({ data, handleSubmit }) {
                             <PatientDetail
                               autocompleteOptions={autocompleteOptions}
                               isSuccess={isSuccess}
+                              data={data}
                             />
                             <CardiacSetup
                               formik={formik}
