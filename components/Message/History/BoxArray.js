@@ -9,7 +9,7 @@ function BoxArray({ data }) {
         return (
           <div key={index}>
             {value.active ? (
-              <Grid item xs={12} sx={{ pb: 1 }}>
+              <Grid item xs={12} sx={{  pb: 1 }}>
                 <MessageCard messageDetail={value} />
               </Grid>
             ) : (

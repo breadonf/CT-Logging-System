@@ -12,10 +12,9 @@ function MessageHistory({ data }) {
     >
       <Grid item xs={12} sx={{ m: 2 }}>
         <Container
-          maxWidth={false}
           sx={{
             height: "90vh",
-            maxWidth: "80%",
+            minWidth: "70%",
           }}
         >
           <Grid container spacing={2}>
@@ -36,12 +35,13 @@ function MessageHistory({ data }) {
                   spacing={2}
                   sx={{
                     justifyContent: "center",
+                    alignContent: "flex-start",
                     p: 2,
                     height: "70vh",
                     overflowY: "auto",
                   }}
                 >
-                  <BoxArray data={data}/>
+                  <BoxArray data={data} />
                 </Grid>
               </Paper>
             </Grid>
