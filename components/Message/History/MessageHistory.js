@@ -3,7 +3,7 @@ import { Grid, Paper, Container } from "@mui/material";
 import MessageHistoryHeading from "./heading";
 import BoxArray from "./boxArray";
 
-function MessageHistory({ _data }) {
+function MessageHistory({ data }) {
   return (
     <Grid
       container
@@ -41,7 +41,11 @@ function MessageHistory({ _data }) {
                     overflowY: "auto",
                   }}
                 >
-                  <BoxArray data={data} />
+                  <Grid item xs={12}>
+                    // HACK need to place a grid before box array to allow it to
+                    expand to xs=12
+                    <BoxArray data={data} />
+                  </Grid>
                 </Grid>
               </Paper>
             </Grid>

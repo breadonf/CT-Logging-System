@@ -8,7 +8,8 @@ import { useRouter } from "next/router";
 export default function Filters({ endpoint }) {
   const router = useRouter();
   const handleSearch = async (values) => {
-    router.push(`/${endpoint}/${values?.search}`);
+    const keywords = values?.search ?? "";
+    router.push(`/${endpoint}/${keywords}`);
   };
   const ini_value = {
     search: "",
@@ -24,11 +25,13 @@ export default function Filters({ endpoint }) {
             <Grid container>
               <Grid item xs={12}>
                 <Formik initialValues={ini_value} onSubmit={handleSearch}>
+                  {/* TODO validation on empty value */}
+
                   <Form>
                     <Grid
                       container
                       spacing={1}
-                      component={"div"}
+                      component={"div"} 
                       sx={{
                         py: 4,
                         justifyContent: "center",
