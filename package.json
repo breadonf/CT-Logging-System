@@ -10,7 +10,8 @@
     "docker": "docker-compose up --no-start",
     "docker-output": "cross-conf-env docker save -o ../frontend-%npm_package_version%.tar frontend-%npm_package_version%",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "var:win": "cross-conf-env echo %npm_package_name% %npm_package_version%"
+    "var:win": "cross-conf-env echo %npm_package_name% %npm_package_version%",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -19,7 +20,9 @@
     "@mui/lab": "^5.0.0-alpha.66",
     "@mui/material": "^5.3.1",
     "@mui/x-data-grid": "^5.3.0",
+    "@next/bundle-analyzer": "^12.2.3",
     "cross-conf-env": "^1.2.1",
+    "cross-env": "^7.0.3",
     "draft-convert": "^2.1.12",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
