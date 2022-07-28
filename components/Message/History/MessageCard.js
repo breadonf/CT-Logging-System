@@ -39,12 +39,12 @@ const MessageCard = ({ messageDetail }) => {
                 <Grid container>
                   <Grid item xs={3}>
                     <Typography>
-                      Created at: {messageDetail.inputDate}
+                      Created at: {messageDetail.inputDate_func.day} - {messageDetail.inputDate_func.month} - {messageDetail.inputDate_func.year}
                     </Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography>
-                      Effective from: {messageDetail.effectiveDate}
+                      Effective from: {messageDetail.effectiveDate_func.day} - {messageDetail.effectiveDate_func.month} - {messageDetail.effectiveDate_func.year}
                     </Typography>
                   </Grid>
                   <Grid item xs={3}>

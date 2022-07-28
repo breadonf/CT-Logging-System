@@ -93,7 +93,17 @@ const MessageData = `
     query MessageData {
       message {
         inputDate
+        inputDate_func {
+          year
+          month
+          day
+        }
         effectiveDate
+        effectiveDate {
+          year
+          month
+          day
+        }
         category
         inputUser
         originatedBy
@@ -122,6 +132,8 @@ const ExamDetailsByID = `
         volume
         kV_a
         sedation
+        sedatedBy
+        sedationMethod
         injectionSite
         circumference
         urgent
