@@ -13,11 +13,11 @@ import parse from "html-react-parser";
 
 const MessageCard = ({ messageDetail }) => {
   return (
-    <Link href={"/Message"}>
+    <Link href={"/Message"} passHref>
       <Card raised>
         <CardActionArea>
           <CardContent>
-            <Grid container xs={12} spacing={2}>
+            <Grid container spacing={2}>
               <Grid
                 item
                 xs={2}
@@ -39,12 +39,16 @@ const MessageCard = ({ messageDetail }) => {
                 <Grid container>
                   <Grid item xs={3}>
                     <Typography>
-                      Created at: {messageDetail.inputDate_func.day} - {messageDetail.inputDate_func.month} - {messageDetail.inputDate_func.year}
+                      Created at: {messageDetail.inputDate_func.day} -
+                      {messageDetail.inputDate_func.month} -
+                      {messageDetail.inputDate_func.year}
                     </Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography>
-                      Effective from: {messageDetail.effectiveDate_func.day} - {messageDetail.effectiveDate_func.month} - {messageDetail.effectiveDate_func.year}
+                      Effective from: {messageDetail.effectiveDate_func.day} -
+                      {messageDetail.effectiveDate_func.month} -
+                      {messageDetail.effectiveDate_func.year}
                     </Typography>
                   </Grid>
                   <Grid item xs={3}>

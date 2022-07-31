@@ -1,8 +1,6 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Chip } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelIcon from "@mui/icons-material/Cancel";
 
 function PatientDetail({ data }) {
   return (
@@ -37,29 +35,32 @@ function PatientDetail({ data }) {
 
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            In patient?:
             {data.inPatient ? (
-              <CheckRoundedIcon sx={{ ml: 1 }} />
+              <Chip color="primary" label="In-Patient" />
             ) : (
-              <CancelIcon sx={{ ml: 1 }} />
+              <Chip variant="outlined" color="primary" label="Out-Patient" />
             )}
           </Typography>
         </Grid>
+
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            Height: {data.height} cm
+            Height: {data.height ? <>{data.height} cm </> : <>No Record</>}
           </Typography>
         </Grid>
+
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            Weight: {data.weight} kg
+            Weight: {data.weight ? <>{data.weight} kg </> : <>No Record</>}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
-          <Typography variant="h6" color="#333333">
-            Circumference: {data.circumference} cm
-          </Typography>
-        </Grid>
+        {data.circumference && (
+          <Grid item xs={4}>
+            <Typography variant="h6" color="#333333">
+              Circumference: {data.circumference} cm
+            </Typography>
+          </Grid>
+        )}
       </Grid>
     </Grid>
   );

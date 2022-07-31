@@ -14,7 +14,7 @@ export default function MessageHistoryHeading() {
         </Typography>
       </Grid>
       <Grid item xs={4} sx={{ alignSelf: "center", direction: "rtl", pr: 4 }}>
-        <Link href={"/Message/Form"}>
+        <Link href={"/Message/Form"} passHref>
           <Button variant="contained">
             Leave a Message
             <CreateIcon />

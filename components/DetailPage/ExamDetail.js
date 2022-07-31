@@ -1,8 +1,8 @@
 import React from "react";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import { Grid, Typography, Chip } from "@mui/material";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelIcon from "@mui/icons-material/Cancel";
+import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
 function ExamDetail({ data }) {
   return (
@@ -32,20 +32,28 @@ function ExamDetail({ data }) {
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            Urgent?:
             {data.urgent ? (
-              <CheckRoundedIcon sx={{ ml: 1 }} />
+              <Chip
+                variant="filed"
+                color="warning"
+                icon={<PriorityHighIcon />}
+                label="Urgent case"
+              />
             ) : (
-              <CancelIcon sx={{ ml: 1 }} />
+              <Chip
+                variant="filed"
+                color="success"
+                icon={<CalendarTodayIcon />}
+                label="Routine case"
+              />
             )}
           </Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
-            Sedation?:
             {data.sedation ? (
               <>
-                <CheckRoundedIcon sx={{ ml: 1 }} />
+                <Chip variant="filled" color="success" label="Sedation" />
                 {data.sedatedBy ? <>by: {data.sedatedBy}</> : <></>}
 
                 {data.sedationMethod ? (
@@ -55,8 +63,22 @@ function ExamDetail({ data }) {
                 )}
               </>
             ) : (
-              <CancelIcon sx={{ ml: 1 }} />
+              <Chip variant="outlined" color="primary" label="Non-Sedation" />
             )}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" color="#333333">
+            Region:
+            {data.examType.map((examType) => (
+              <Chip
+                key={examType}
+                variant="outlined"
+                color="primary"
+                label={examType}
+                sx={{ mx: 1 }}
+              />
+            ))}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -65,10 +87,9 @@ function ExamDetail({ data }) {
             {data.protocol.map((protocol) => (
               <Chip
                 key={protocol}
-                variant="outlined"
-                color="error"
+                color="success"
                 label={protocol}
-                sx={{ ml: 2 }}
+                sx={{ mx: 1 }}
               />
             ))}
           </Typography>
@@ -77,30 +98,20 @@ function ExamDetail({ data }) {
           <Typography variant="h6" color="#333333">
             kV (Tube A):
             {data.kV_a.map((kV) => (
-              <Chip
-                key={kV}
-                variant="outlined"
-                color="error"
-                label={kV}
-                sx={{ ml: 2 }}
-              />
+              <Chip key={kV} color="info" label={kV} sx={{ mx: 1 }} />
             ))}
           </Typography>
         </Grid>
         <Grid item xs={4}>
-          {data.kV_b && (
+          {data.kV_b && data.kV_b.length ? (
             <Typography variant="h6" color="#333333">
               kV (Tube B):
               {data.kV_b.map((kV) => (
-                <Chip
-                  key={kV}
-                  variant="outlined"
-                  color="error"
-                  label={kV}
-                  sx={{ ml: 2 }}
-                />
+                <Chip key={kV} color="error" label={kV} sx={{ mx: 1 }} />
               ))}
             </Typography>
+          ) : (
+            <></>
           )}
         </Grid>
         <Grid item xs={4}>
@@ -109,8 +120,8 @@ function ExamDetail({ data }) {
             {data.pitch.map((pitch) => (
               <Chip
                 key={pitch}
+                color="secondary"
                 variant="outlined"
-                color="error"
                 label={pitch}
                 sx={{ ml: 2 }}
               />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Grid, Container, Divider } from "@mui/material";
+import { Paper, Grid, Container, Divider, Typography } from "@mui/material";
 import Heading from "./Heading";
 import PatientDetail from "./PatientDetail";
 import ExamDetail from "./ExamDetail";
@@ -25,7 +25,14 @@ function DetailPage({ data }) {
             <ExamDetail data={data} />
             <Divider />
 
-            <ContrastDetail data={data} />
+            {data.volume ? (
+              <ContrastDetail data={data} />
+            ) : (
+              <>
+                <Typography align="center">No Contrast Injection Record</Typography>
+                <Divider />
+              </>
+            )}
 
             <StaffDetail data={data} />
             <Divider />
