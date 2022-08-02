@@ -42,8 +42,7 @@ function MessageHistory({ data }) {
                   }}
                 >
                   <Grid item xs={12}>
-                    // HACK need to place a grid before box array to allow it to
-                    expand to xs=12
+                    {/**HACK need to place a grid before box array to allow it to */ }
                     <BoxArray data={data} />
                   </Grid>
                 </Grid>

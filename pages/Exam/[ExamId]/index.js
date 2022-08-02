@@ -3,24 +3,8 @@ import Head from "next/head";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { getExamDetailsByID } from "../../../queries/queries";
-import {
-  Paper,
-  Grid,
-  Box,
-  Container,
-  Typography,
-  Divider,
-  Button,
-} from "@mui/material";
-import SickIcon from "@mui/icons-material/Sick";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelIcon from "@mui/icons-material/Cancel";
-import ImageSearchIcon from "@mui/icons-material/ImageSearch";
-import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
-import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import Chip from "@mui/material/Chip";
-import Link from "next/link";
+
+
 import DetailPage from "../../../components/DetailPage";
 
 export default function ExamDetailsPage() {
