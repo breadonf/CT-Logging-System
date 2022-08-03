@@ -1,11 +1,16 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import { Container, Paper, Grid, Typography, Box } from "@mui/material";
+
 import { useQuery } from "react-query";
+
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import PatientDetail from "./patientDetail";
+import CardiacSetup from "./CardiacSetup";
 import ScanMode from "./scanMode";
+import PhaseDetail from "./PhaseDetail";
+
 import { getHomepageData } from "../../../queries/queries";
 import BottomButton from "./bottomButton";
 import { LoadingSpinner } from "./LoadingSpinner";
@@ -47,7 +52,7 @@ function CardiacForm({ data, handleSubmit }) {
                                 align="center"
                                 color="#093A3E"
                               >
-                                Cardiac CT Record Log Form
+                                Cardiac Case Setup Log Form
                               </Typography>
                             </Grid>
                             <PatientDetail
@@ -55,12 +60,13 @@ function CardiacForm({ data, handleSubmit }) {
                               isSuccess={isSuccess}
                               data={data}
                             />
-                            <ScanMode
-                              autocompleteOptions={autocompleteOptions}
+                            <CardiacSetup
                               formik={formik}
-                              isSuccess={isSuccess}
-                              data={data}
+                              numberOfSites={numberOfSites}
+                              setNumberOfSites={setNumberOfSites}
                             />
+                            <ScanMode formik={formik} />
+                            <PhaseDetail formik={formik} />
                             <BottomButton formik={formik} />
                           </Paper>
                         </Grid>

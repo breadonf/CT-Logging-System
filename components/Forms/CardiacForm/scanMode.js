@@ -5,83 +5,117 @@ import RadioGroup from "../../FormsUI/RadioGroup";
 import Toggle from "../../FormsUI/Toggle";
 import TimerIcon from "@mui/icons-material/Timer";
 import Slider from "../../FormsUI/Slider";
+import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
+import RatingWrapper from "../../FormsUI/Rating";
 
-function ScanMode({ formik }) {
+function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-      <Divider />
       <Grid item xs={12}>
         <Typography variant="h5" color="#05668D">
-          <TimerIcon sx={{ mr: 1 }} /> ECG-gated Scan Mode
+          <TimerIcon sx={{ mr: 1 }} />
+          Contrast and Scan Detail
         </Typography>
+        <Divider />
       </Grid>
-      <Grid item xs={12} sx={{ mt: 2 }}>
-        <Toggle
-          name="scanMode.HRDependent"
-          legend="Heart Rate Dependent?"
-          label=""
+      <Grid item xs={12}>
+        <AutocompleteWrapper
+          multiple
+          id="protocol"
+          name="protocol"
+          label="Protocol (Maximum 2 protcols can be selected)"
+          prepopulatedValue={data?.protocol ?? []}
+          autocompleteOptions={
+            isSuccess ? autocompleteOptions?.protocol ?? [] : ""
+          }
         />
-        {formik.values.scanMode.HRDependent ? (
-          <Typography variant="body1" color="#05668D">
-            Priority (Flash =&gt SS =&gt Retro)
+      </Grid>
+      <Grid item xs={12}>
+        <Textfield name="contrastRegime" label="Contrast Regime" />
+        {/** Need to discuss for better UI */}
+      </Grid>
+      <Grid item xs={4}>
+        <Textfield name="studyDose" label="Study Dose(mSv)" />
+      </Grid>
+      <Grid item xs={4}>
+        <Textfield name="seriesDose" label="Series Dose(mSv)" />
+      </Grid>
+      <Grid item xs={4}>
+        <Textfield name="seriesCTDI" label="Series CTDI" />
+      </Grid>
+      <Grid container item spacing={1} xs={12}>
+        <Grid item xs={12}>
+          <Typography sx={{}} variant="h6" color="#05668D">
+            Heart Rate
           </Typography>
-        ) : (
-          <></>
-        )}
+          <Divider />
+        </Grid>
+        <Grid item xs={3}>
+          <Textfield name="hearRate.min" label="Min" />
+        </Grid>
+        <Grid item xs={3}>
+          <Textfield name="hearRate.max" label="Max" />
+        </Grid>
+        <Grid item xs={3}>
+          <Textfield name="hearRate.average" label="Average" />
+        </Grid>
+        <Grid item xs={3}>
+          <Textfield name="hearRate.variance" label="Variance" />
+        </Grid>
+        <Grid item xs={12}>
+          <Divider />
+        </Grid>
       </Grid>
 
-      <Grid container item xs={12} sx={{ mt: 2 }}>
-        <Grid item xs={4}>
+      <Grid container item xs={12} spacing={2} sx={{ mt: 2 }}>
+        <Grid item xs={6}>
           <RadioGroup
-            name="scanMode.flash.mode"
-            legend="Flash(Single/Dual)"
+            name="scanTechnique"
+            legend="Scan Technique"
             options={[
-              { label: "", value: "" },
-              { label: "Single", value: "single" },
-              { label: "Dual", value: "dual" },
+              { label: "Flash", value: "Flash" },
+              { label: "Double Flash", value: "DoubleFlash" },
+              { label: "Prospective", value: "Prospective" },
+              { label: "Retrospective", value: "Retrospective" },
             ]}
           />
         </Grid>
-        <Grid item xs={4}>
-          {formik.values.scanMode.flash.mode === "single" ? (
-            <RadioGroup
-              name="scanMode.flash.trigger"
-              legend="Trigger"
-              options={[
-                { label: "30%", value: "30%" },
-                { label: "65%", value: "65%" },
-              ]}
-            />
-          ) : (
-            <></>
-          )}
-        </Grid>
-      </Grid>
-
-      <Grid item xs={12} sx={{ mt: 2 }}>
-        <Toggle name="scanMode.ss.status" legend="SS" label="" />
-      </Grid>
-      {formik.values.scanMode.ss.status ? (
-        <Grid item xs={4} sx={{ mt: 2 }}>
-          <Slider label="SS range" name="scanMode.ss.range" legend="Range" />
-        </Grid>
-      ) : (
-        <></>
-      )}
-      <Grid container item xs={12} sx={{ mt: 2 }}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <RadioGroup
-            name="scanMode.monitoringMethod"
-            legend="Monitoring Method"
+            name="breathingControl"
+            legend="Breathing Control"
             options={[
               { label: "Manual", value: "Manual" },
+              { label: "Free", value: "Free" },
               { label: "Auto", value: "Auto" },
-              { label: "Test Bolus", value: "TestBolus" },
+              { label: "GA", value: "GA" },
             ]}
           />
         </Grid>
-        <Grid item xs={2} sx={{ mt: 2 }}>
-          <Textfield name="scanMode.ROI" label="ROI" />
+
+        <Grid item xs={4}>
+          <Textfield
+            name="depictionOfROI"
+            label="Depiction Structures of Interest"
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Textfield
+            name="depictionOfROI"
+            label="Depiction Structures of Interest"
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <RatingWrapper name="satisfaction" legend="Satisfaction Level" />
+        </Grid>
+        <Grid item xs={4}>
+          <Textfield name="artefact" label="Artefact" />
+        </Grid>
+        <Grid item xs={4}>
+          <Textfield name="remarks" label="Remarks" />
+        </Grid>
+        <Grid item xs={4}>
+          <Textfield name="delayTime" label="Delay Time" />
         </Grid>
       </Grid>
     </Grid>

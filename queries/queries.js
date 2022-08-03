@@ -5,7 +5,7 @@ import fetchData from "../helpers/fetchData";
  *  @query 
 
 */
-
+// Home Page
 const HomepageCT = `
     #graphql
     query HomePageCT($page: Int!) {
@@ -55,15 +55,6 @@ const HomepageCTNumber = `
       }
     }
 `;
-
-// const HomepageCT = `
-// query HomePageCT {
-//   CT (offset:20, limit: 10, sort: ["sort", "-Date"]) {
-//     count
-//     remark
-
-//   }
-// }`;
 const HomepageData = `
     #graphql
     query HomepageData {
@@ -87,7 +78,7 @@ const HomepageData = `
       }
     }
 `;
-
+// Message
 const MessageData = `
     #graphql
     query MessageData {
@@ -115,7 +106,29 @@ const MessageData = `
       }
     }
 `;
-
+const MessageByID = `
+    #graphql
+    query MessageByID($MessageByIdId: ID!) {
+      Message_by_id(id: $MessageByIdId) {
+        id
+        inputDate
+        effectiveDate
+        date_func {
+          year
+          day
+          month
+        }
+        category
+        inputUser
+        originatedBy
+        important
+        active
+        htmlMessage
+        comments
+      }
+    }
+`;
+//Exam Detail
 const ExamDetailsByID = `
     #graphql
     query ExamDetailsByID($ctByIdId: ID!) {
@@ -161,54 +174,6 @@ const ExamDetailsByID = `
       }
     }
 `;
-
-const CardiacSetupByID = `
-    #graphql
-    query CardiacSetupByID($cardiacCtByIdId: ID!) {
-      cardiacCT_by_id(id: $cardiacCtByIdId) {
-        id
-        PID
-        radiologistInCharge
-        IVSite
-        sedation
-        breathingControl
-        targetHR
-        scanMode
-        phase
-        name
-        date
-        date_func {
-          year
-          day
-          month
-        }
-      }
-    }
-`;
-
-const MessageByID = `
-    #graphql
-    query MessageByID($MessageByIdId: ID!) {
-      Message_by_id(id: $MessageByIdId) {
-        id
-        inputDate
-        effectiveDate
-        date_func {
-          year
-          day
-          month
-        }
-        category
-        inputUser
-        originatedBy
-        important
-        active
-        htmlMessage
-        comments
-      }
-    }
-`;
-
 const ExamsRecordBySearch = `
     #graphql
     query ExamsRecordBySearch( $key: String!) {
@@ -252,6 +217,30 @@ const ExamsRecordBySearch = `
   }
 }
 `;
+//Cardiac Protocol
+const CardiacSetupByID = `
+    #graphql
+    query CardiacSetupByID($cardiacCtByIdId: ID!) {
+      cardiacCT_by_id(id: $cardiacCtByIdId) {
+        id
+        PID
+        radiologistInCharge
+        IVSite
+        sedation
+        breathingControl
+        targetHR
+        scanMode
+        phase
+        name
+        date
+        date_func {
+          year
+          day
+          month
+        }
+      }
+    }
+`;
 const CardiacSetupRecordBySearch = `
     #graphql
     query CardiacSetupRecordBySearch($key: String) {
@@ -276,7 +265,7 @@ const CardiacSetupRecordBySearch = `
       }
     }
 `;
-
+//Home Page
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
     variables: { page: page },
@@ -299,31 +288,24 @@ export const getHomepageData = async () => {
   });
   return data.data;
 };
-
+//Message
 export const getMessageData = async () => {
   const data = await fetchData(MessageData, {
     variables: {},
   });
   return data.data.message;
 };
-
-export const getExamDetailsByID = async (ctByIdId) => {
-  const data = await fetchData(ExamDetailsByID, {
-    variables: { ctByIdId: ctByIdId },
-  });
-
-  return data.data;
-};
-export const getCardiacSetupByID = async (cardiacCtByIdId) => {
-  const data = await fetchData(CardiacSetupByID, {
-    variables: { cardiacCtByIdId: cardiacCtByIdId },
-  });
-
-  return data.data;
-};
 export const getMessageByID = async (MessageByIdId) => {
   const data = await fetchData(MessageByID, {
     variables: { MessageByIdId: MessageByIdId },
+  });
+
+  return data.data;
+};
+//Exam Detail
+export const getExamDetailsByID = async (ctByIdId) => {
+  const data = await fetchData(ExamDetailsByID, {
+    variables: { ctByIdId: ctByIdId },
   });
 
   return data.data;
@@ -335,7 +317,14 @@ export const getExamsRecordBySearch = async (key) => {
   console.log("in queries", data);
   return data.data;
 };
+//Cardiac Protocol
+export const getCardiacSetupByID = async (cardiacCtByIdId) => {
+  const data = await fetchData(CardiacSetupByID, {
+    variables: { cardiacCtByIdId: cardiacCtByIdId },
+  });
 
+  return data.data;
+};
 export const getCardiacSetupRecordBySearch = async (key) => {
   const data = await fetchData(CardiacSetupRecordBySearch, {
     variables: { key: key },

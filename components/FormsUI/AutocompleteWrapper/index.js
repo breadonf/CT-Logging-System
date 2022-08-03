@@ -30,7 +30,6 @@ export default function AutocompleteWrapper({
     ...field,
     ...otherProps,
     variant: "filled",
-    margin: "normal",
     label: label,
     fullWidth: true,
     onKeyDown: (event) => {

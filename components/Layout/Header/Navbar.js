@@ -9,7 +9,14 @@ import Button from "@mui/material/Button";
 import AirlineSeatFlatIcon from "@mui/icons-material/AirlineSeatFlat";
 import Brightness1TwoToneIcon from "@mui/icons-material/Brightness1TwoTone";
 
-const pages = ["Forms", "Table", "Search", "Message", "cardiac"];
+const pages = [
+  ["Forms", "Form"],
+  ["Table", "Table"],
+  ["Search", "Search"],
+  ["Message", "Message"],
+  ["cardiac", "cardiac"],
+  ["cardiac/protocol/setup", "Cardiac Protocoling"],
+];
 
 const Navbar = () => {
   return (
@@ -40,9 +47,9 @@ const Navbar = () => {
             }}
           >
             {pages.map((page) => (
-              <Link href={`/${page}`} passHref key={page}>
+              <Link href={`/${page[0]}`} passHref key={page}>
                 <Button
-                  key={page}
+                  key={page[1]}
                   sx={{
                     my: 2,
                     mx: 1,
@@ -50,7 +57,7 @@ const Navbar = () => {
                     color: "#F0F3BD",
                   }}
                 >
-                  {page}
+                  {page[1]}
                 </Button>
               </Link>
             ))}

@@ -9,10 +9,17 @@ const TextfieldWrapper = ({ name, ...otherProps }) => {
     variant: "filled",
   };
   return (
-    <FastField name={name} placeholder="F">
+    <FastField name={name}>
       {({ field, _form, meta }) => (
         <>
-          <TextField {...field} {...configTextfield} />
+          <TextField
+            {...field}
+            {...configTextfield}
+            sx={{
+              input: { color: "#05668D" },
+              label: { fontWeight: "bold", color: "#495371" },
+            }}
+          />
           {meta.touched ? meta.error : null}
         </>
       )}

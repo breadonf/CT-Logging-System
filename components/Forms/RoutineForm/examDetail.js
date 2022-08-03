@@ -101,7 +101,7 @@ function ExamDetail({
           options={examType}
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={4} sx={{ mt: 2 }}>
         <AutocompleteWrapper
           name="kV_a"
           label="kV (Tube A)"

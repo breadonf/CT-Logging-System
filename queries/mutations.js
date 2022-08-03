@@ -22,7 +22,8 @@ export const updateCTRecordById = `
     }
   }
 `;
-export const createCardiacCTrecord = `
+// Cardiac Setup Protocol
+export const createCardiacCTSetupRecord = `
 mutation Mutation($data: create_cardiacCT_input!) {
   create_cardiacCT_item(data: $data) {
     id
@@ -30,7 +31,6 @@ mutation Mutation($data: create_cardiacCT_input!) {
   }
 }
 `;
-
 export const updateCardiacCTSetupById = `
   mutation Mutation($updateCardiacCtItemId: ID!, $data: update_cardiacCT_input!) {
     update_cardiacCT_item(id: $updateCardiacCtItemId, data: $data) {
@@ -39,7 +39,7 @@ export const updateCardiacCTSetupById = `
     }
   }
 `;
-
+//Message
 export const createMessage = `
 mutation Mutation($data: create_message_input!) {
   create_message_item(data: $data) {

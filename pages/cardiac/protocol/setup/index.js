@@ -1,10 +1,10 @@
 import React from "react";
-import CardiacForm from "../../components/Forms/CardiacForm";
-import INITIAL_FORM_STATE from "../../components/Forms/CardiacForm/InitialFormState";
-import preprocessor from "../../helpers/preprocessorCardiacForm";
-import { createCardiacCTSetupRecord } from "../../queries/mutations";
+import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import INITIAL_FORM_STATE from "/components/Forms/CardiacForm/InitialFormState";
+import preprocessor from "/helpers/preprocessorCardiacForm";
+import { createCardiacCTrecord } from "/queries/mutations";
 import { useMutation } from "react-query";
-import setData from "../../helpers/setData";
+import setData from "/helpers/setData";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
@@ -15,7 +15,7 @@ function CardiacCases() {
   const router = useRouter();
   const mutation = useMutation(
     async (newFormData) => {
-      await setData(createCardiacCTSetupRecord, { data: newFormData });
+      await setData(createCardiacCTrecord, { data: newFormData });
     },
     {
       mutationKey: "createCTitem",
@@ -67,11 +67,14 @@ function CardiacCases() {
   return (
     <>
       <Head>
-        <title>CT Cardiac record</title>
+        <title>CT Cardiac Setup</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <CardiacForm data={INITIAL_FORM_STATE} handleSubmit={handleSubmit} />
+      <CardiacProtocolForm
+        data={INITIAL_FORM_STATE}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 }
