@@ -1,7 +1,6 @@
-import React from "react";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelIcon from "@mui/icons-material/Cancel";
+import React from "react";s
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
+import SwipeUpIcon from "@mui/icons-material/SwipeUp";
 import { Grid, Typography, Divider, Chip } from "@mui/material";
 
 function ContrastDetail({ data }) {
@@ -33,7 +32,11 @@ function ContrastDetail({ data }) {
           <Grid item xs={4}>
             <Typography variant="h6" color="#333333">
               {data.handInjection ? (
-                <Chip label="Hand Injection" color="error" />
+                <Chip
+                  label="Hand Injection"
+                  color="error"
+                  icon={<SwipeUpIcon />}
+                />
               ) : (
                 <></>
               )}
@@ -67,20 +70,23 @@ function ContrastDetail({ data }) {
 
           <Grid item xs={4}>
             <Typography variant="h6" color="#333333">
-              Direct Post Con?:
               {data.directPostContrast ? (
-                <CheckRoundedIcon sx={{ ml: 1 }} />
+                <Chip label="Direct Post Contrast" color="success" />
               ) : (
-                <CancelIcon sx={{ ml: 1 }} />
+                <Chip label="With Plain Scan" color="primary" />
               )}
             </Typography>
           </Grid>
-          <Grid item xs={4}>
-            <Typography variant="h6" color="#333333">
-              Time to peak:
-              {data.ttp ? <>{data.ttp} s</> : <> N/A</>}
-            </Typography>
-          </Grid>
+          {data.ttp ? (
+            <Grid item xs={4}>
+              <Typography variant="h6" color="#333333">
+                Time to peak: {data.ttp} s
+              </Typography>
+            </Grid>
+          ) : (
+            <></>
+          )}
+
           <Grid item xs={4}>
             <Typography variant="h6" color="#333333">
               Delays:

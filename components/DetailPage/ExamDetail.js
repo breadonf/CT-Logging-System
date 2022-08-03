@@ -1,8 +1,9 @@
 import React from "react";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
-import { Grid, Typography, Chip } from "@mui/material";
+import { Grid, Typography, Chip, Avatar } from "@mui/material";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import MedicationLiquidIcon from "@mui/icons-material/MedicationLiquid";
 
 function ExamDetail({ data }) {
   return (
@@ -53,7 +54,12 @@ function ExamDetail({ data }) {
           <Typography variant="h6" color="#333333">
             {data.sedation ? (
               <>
-                <Chip variant="filled" color="success" label="Sedation" />
+                <Chip
+                  variant="filled"
+                  color="success"
+                  label="Sedation"
+                  icon={<MedicationLiquidIcon />}
+                />
                 {data.sedatedBy ? <>by: {data.sedatedBy}</> : <></>}
 
                 {data.sedationMethod ? (
@@ -94,25 +100,28 @@ function ExamDetail({ data }) {
             ))}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={8}>
           <Typography variant="h6" color="#333333">
-            kV (Tube A):
+            kV:
             {data.kV_a.map((kV) => (
-              <Chip key={kV} color="info" label={kV} sx={{ mx: 1 }} />
+              <Chip
+                key={kV}
+                label={kV}
+                sx={{ mx: 1 }}
+                avatar={<Avatar>A</Avatar>}
+                variant="outlined"
+              />
+            ))}
+            {data.kV_b.map((kV) => (
+              <Chip
+                key={kV}
+                label={kV}
+                sx={{ mx: 1 }}
+                avatar={<Avatar>B</Avatar>}
+                variant="outlined"
+              />
             ))}
           </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          {data.kV_b && data.kV_b.length ? (
-            <Typography variant="h6" color="#333333">
-              kV (Tube B):
-              {data.kV_b.map((kV) => (
-                <Chip key={kV} color="error" label={kV} sx={{ mx: 1 }} />
-              ))}
-            </Typography>
-          ) : (
-            <></>
-          )}
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">

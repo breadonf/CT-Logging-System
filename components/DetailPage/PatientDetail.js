@@ -1,6 +1,8 @@
 import React from "react";
 import { Grid, Typography, Chip } from "@mui/material";
 import SickIcon from "@mui/icons-material/Sick";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import AirlineSeatFlatIcon from "@mui/icons-material/AirlineSeatFlat";
 
 function PatientDetail({ data }) {
   return (
@@ -36,9 +38,19 @@ function PatientDetail({ data }) {
         <Grid item xs={4}>
           <Typography variant="h6" color="#333333">
             {data.inPatient ? (
-              <Chip color="primary" label="In-Patient" />
+              <Chip
+                variant="outlined"
+                color="primary"
+                label="In-Patient"
+                icon={<AirlineSeatFlatIcon />}
+              />
             ) : (
-              <Chip variant="outlined" color="primary" label="Out-Patient" />
+              <Chip
+                variant="outlined"
+                color="primary"
+                label="Out-Patient"
+                icon={<DirectionsRunIcon />}
+              />
             )}
           </Typography>
         </Grid>
