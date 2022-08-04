@@ -1,24 +1,24 @@
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-hot-toast";
+import { useMutation } from "react-query";
 import CardiacForm from "../../components/Forms/CardiacForm";
 import INITIAL_FORM_STATE from "../../components/Forms/CardiacForm/InitialFormState";
-import preprocessor from "../../helpers/preprocessorCardiacForm";
-import { createCardiacCTSetupRecord } from "../../queries/mutations";
-import { useMutation } from "react-query";
+import preprocessor from "../../helpers/preprocessorCardiacCase";
 import setData from "../../helpers/setData";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
-import Head from "next/head";
-import { toast } from "react-hot-toast";
+import { createCardiacCTCaseRecord } from "../../queries/mutations";
 
 function CardiacCases() {
   const router = useRouter();
   const mutation = useMutation(
     async (newFormData) => {
-      await setData(createCardiacCTSetupRecord, { data: newFormData });
+      await setData(createCardiacCTCaseRecord, { data: newFormData });
     },
     {
-      mutationKey: "createCTitem",
+      mutationKey: "createCardiacCTCaseRecord",
       onSuccess: (data, variables) => {
         console.log("onSucces", data, variables);
       },
@@ -34,7 +34,7 @@ function CardiacCases() {
       {
         onSuccess: async (_res) => {
           toast.success(
-            `Your Cardiac Protocol records for ${modifiedValues.PID} is created`,
+            `Your Cardiac Case records for ${modifiedValues.PID} is created`,
             {
               style: {
                 border: "1px solid #713200",
@@ -45,7 +45,7 @@ function CardiacCases() {
               },
             }
           );
-          router.push(`/cardiac/table/${modifiedValues.PID}`);
+          router.push(`/`);
         },
         onError: async (err, varia) => {
           console.log("onError", varia);

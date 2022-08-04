@@ -265,6 +265,57 @@ const CardiacSetupRecordBySearch = `
       }
     }
 `;
+//Cardiac Case
+const CardiacCaseRecordByID = `
+    #graphql
+    query CardiacCaseRecordByID($cardiacCtRecordByIdId: ID!) {
+      Cardiac_CT_Record_by_id(id: $cardiacCtRecordByIdId) {
+        id
+        PID
+        age
+        date
+        protocol
+        contrastRegime
+        studyDose
+        seriesDose
+        seriesCTDI
+        heartRate
+        scanTechnique
+        breathingControl
+        depictionOfROI
+        satisfaction
+        artefact
+        remarks
+        delayTime
+      }
+    }
+    
+`;
+const CardiacCaseRecordBySearch = `
+    #graphql
+    query CardiacCaseRecordBySearch($key: String) {
+      Cardiac_CT_Record(search: $key, sort: ["sort", "-id"]) {
+        id
+        PID
+        age
+        date
+        protocol
+        contrastRegime
+        studyDose
+        seriesDose
+        seriesCTDI
+        heartRate
+        scanTechnique
+        breathingControl
+        depictionOfROI
+        satisfaction
+        artefact
+        remarks
+        delayTime
+      }
+    }
+    
+`;
 //Home Page
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
@@ -327,6 +378,20 @@ export const getCardiacSetupByID = async (cardiacCtByIdId) => {
 };
 export const getCardiacSetupRecordBySearch = async (key) => {
   const data = await fetchData(CardiacSetupRecordBySearch, {
+    variables: { key: key },
+  });
+  return data.data;
+};
+//Cardiac Case Record
+export const getCardiacCaseRecordByID = async (ExamId) => {
+  const data = await fetchData(CardiacCaseRecordByID, {
+    variables: { cardiacCtRecordByIdId: ExamId },
+  });
+
+  return data.data;
+};
+export const getCardiacCaseRecordBySearch = async (key) => {
+  const data = await fetchData(CardiacCaseRecordBySearch, {
     variables: { key: key },
   });
   return data.data;

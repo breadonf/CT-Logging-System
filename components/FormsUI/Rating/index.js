@@ -1,6 +1,6 @@
-import React from "react";
-import { Rating, FormLabel, Box } from "@mui/material";
+import { Box, FormLabel, Rating } from "@mui/material";
 import { useField } from "formik";
+import React from "react";
 
 const labels = {
   0.5: "Need to discuss",
@@ -25,7 +25,6 @@ const RatingWrapper = ({ legend, name, ...otherProps }) => {
   const configRating = {
     ...field,
     ...otherProps,
-    fullWidth: true,
     variant: "filled",
     precision: 0.5,
     getLabelText: getLabelText,
@@ -33,7 +32,6 @@ const RatingWrapper = ({ legend, name, ...otherProps }) => {
       setHover(newHover);
     },
   };
-  console.log(field);
   const configFormLabel = {};
   if (meta && meta.touched && meta.error) {
     configFormLabel.error = true;

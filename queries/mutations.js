@@ -39,6 +39,30 @@ export const updateCardiacCTSetupById = `
     }
   }
 `;
+
+// Cardiac Case Record
+export const createCardiacCTCaseRecord = `
+mutation Mutation($data: create_Cardiac_CT_Record_input!) {
+  create_Cardiac_CT_Record_item(data: $data) {
+    id
+    PID
+    protocol
+    date
+  }
+}
+`;
+export const updateCardiacCTCaseById = `
+mutation Mutation($updateCardiacCtRecordItemId: ID!, $data: update_Cardiac_CT_Record_input!) {
+  update_Cardiac_CT_Record_item(id: $updateCardiacCtRecordItemId, data: $data) {
+    id
+    PID
+    date
+    protocol
+  }
+}
+
+`;
+
 //Message
 export const createMessage = `
 mutation Mutation($data: create_message_input!) {

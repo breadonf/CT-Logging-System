@@ -22,6 +22,14 @@ const setData = async (
         : { data: data },
     });
   }
+  if (condition == 2) {
+    var query = JSON.stringify({
+      query: mutation,
+      variables: update
+        ? { data: data, updateCardiacCtRecordItemId: updateCtItemId }
+        : { data: data },
+    });
+  }
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(graphQLAPI, {

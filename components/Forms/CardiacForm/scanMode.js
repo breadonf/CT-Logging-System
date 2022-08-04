@@ -1,12 +1,12 @@
-import React from "react";
-import { Grid, Typography, Divider } from "@mui/material";
-import Textfield from "../../FormsUI/Textfield";
-import RadioGroup from "../../FormsUI/RadioGroup";
-import Toggle from "../../FormsUI/Toggle";
 import TimerIcon from "@mui/icons-material/Timer";
-import Slider from "../../FormsUI/Slider";
-import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
+import { Divider, Grid, Typography } from "@mui/material";
+import React from "react";
+import RadioGroup from "../../FormsUI/RadioGroup";
 import RatingWrapper from "../../FormsUI/Rating";
+import Slider from "../../FormsUI/Slider";
+import Textfield from "../../FormsUI/Textfield";
+import Toggle from "../../FormsUI/Toggle";
+import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
 
 function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
   return (
@@ -51,16 +51,16 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
           <Divider />
         </Grid>
         <Grid item xs={3}>
-          <Textfield name="hearRate.min" label="Min" />
+          <Textfield name="heartRate.min" label="Min" />
         </Grid>
         <Grid item xs={3}>
-          <Textfield name="hearRate.max" label="Max" />
+          <Textfield name="heartRate.max" label="Max" />
         </Grid>
         <Grid item xs={3}>
-          <Textfield name="hearRate.average" label="Average" />
+          <Textfield name="heartRate.average" label="Average" />
         </Grid>
         <Grid item xs={3}>
-          <Textfield name="hearRate.variance" label="Variance" />
+          <Textfield name="heartRate.variance" label="Variance" />
         </Grid>
         <Grid item xs={12}>
           <Divider />
@@ -93,12 +93,6 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
           />
         </Grid>
 
-        <Grid item xs={4}>
-          <Textfield
-            name="depictionOfROI"
-            label="Depiction Structures of Interest"
-          />
-        </Grid>
         <Grid item xs={4}>
           <Textfield
             name="depictionOfROI"

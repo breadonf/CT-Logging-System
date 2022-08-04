@@ -2,11 +2,11 @@ import { useRouter } from "next/router";
 import React from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQuery } from "react-query";
-import preprocessor from "../../../../helpers/preprocessorCardiacForm";
+import preprocessor from "../../../../helpers/preprocessorCardiacCase";
 import setData from "../../../../helpers/setData";
-import { updateCardiacCTSetupById } from "../../../../queries/mutations";
-import { getCardiacSetupByID } from "../../../../queries/queries";
-import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import { updateCardiacCTCaseById } from "../../../../queries/mutations";
+import { getCardiacCaseRecordByID } from "../../../../queries/queries";
+import CardiacForm from "/components/Forms/CardiacForm";
 
 export default function EditRoutineForm() {
   const router = useRouter();
@@ -17,8 +17,8 @@ export default function EditRoutineForm() {
     isSuccess: isQuerySuccess,
     isError,
   } = useQuery(
-    ["CardiacSetupByID", ExamId],
-    async () => await getCardiacSetupByID(parseInt(ExamId)),
+    ["CardiacCaseRecordByID", ExamId],
+    async () => await getCardiacCaseRecordByID(parseInt(ExamId)),
     {
       retry: true,
       refetchOnMount: "always",
@@ -28,13 +28,13 @@ export default function EditRoutineForm() {
   const mutation = useMutation(
     (newFormData) => {
       setData(
-        updateCardiacCTSetupById,
+        updateCardiacCTCaseById,
         {
           data: newFormData.data,
-          updateCtItemId: newFormData.updateCardiacCtItemId,
+          updateCtItemId: newFormData.updateCardiacCtRecordItemId,
         },
         true,
-        1
+        2
       );
     },
     {
@@ -46,7 +46,10 @@ export default function EditRoutineForm() {
     const modifiedValues = preprocessor(values);
     setTimeout(() => {
       mutation.mutate(
-        { data: modifiedValues, updateCardiacCtItemId: modifiedValues.id },
+        {
+          data: modifiedValues,
+          updateCardiacCtRecordItemId: parseInt(modifiedValues.id),
+        },
         {
           onSuccess: async (_res) => {
             toast.success(
@@ -61,7 +64,7 @@ export default function EditRoutineForm() {
                 },
               }
             );
-            router.push(`/cardiac/table/${modifiedValues.PID}`);
+            router.push(`/`);
           },
           onError: async (err, varia) => {
             console.log(varia.data);
@@ -81,9 +84,9 @@ export default function EditRoutineForm() {
     return <></>;
   }
   if (isQuerySuccess && fetchedData) {
-    const { cardiacCT_by_id } = fetchedData;
+    const { Cardiac_CT_Record_by_id } = fetchedData;
     return (
-      <CardiacProtocolForm data={cardiacCT_by_id} handleSubmit={handleUpdate} />
+      <CardiacForm data={Cardiac_CT_Record_by_id} handleSubmit={handleUpdate} />
     );
   }
 }
