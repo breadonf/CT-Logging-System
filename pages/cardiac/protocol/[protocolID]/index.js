@@ -1,32 +1,32 @@
-import React from "react";
-import Head from "next/head";
-import { useQuery } from "react-query";
-import { useRouter } from "next/router";
-import { getCardiacSetupByID } from "../../../../queries/queries";
 import {
-  Paper,
-  Grid,
   Box,
   Container,
-  Typography,
   Divider,
+  Grid,
+  Paper,
+  Typography,
 } from "@mui/material";
-import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
-import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import React from "react";
+import { useQuery } from "react-query";
 import Buttons from "../../../../components/CardiacForm/Buttons";
+import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
+import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
 import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
+import { getCardiacSetupByID } from "../../../../queries/queries";
 
 export default function CardiacSetupViewer() {
   const router = useRouter();
-  const { queryWord } = router.query;
+  const { protocolID } = router.query;
   const {
     data,
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isError,
   } = useQuery(
-    ["CardiacSetupByID", queryWord],
-    async () => await getCardiacSetupByID(queryWord),
+    ["CardiacSetupByID", protocolID],
+    async () => await getCardiacSetupByID(protocolID),
     { retry: true }
   );
   console.log(data);

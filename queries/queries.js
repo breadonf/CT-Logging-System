@@ -232,6 +232,19 @@ const CardiacSetupByID = `
         scanMode
         phase
         name
+        protocol
+        contrastRegime
+        studyDose
+        seriesDose
+        seriesCTDI
+        heartRate
+        scanTechnique
+        breathingControl
+        depictionOfROI
+        satisfaction
+        artefact
+        remarks
+        delayTime
         date
         date_func {
           year

@@ -1,22 +1,24 @@
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Form, Formik } from "formik";
 import React from "react";
-import { Formik, Form } from "formik";
-import { Container, Paper, Grid, Typography, Box } from "@mui/material";
 
 import { useQuery } from "react-query";
 
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import PatientDetail from "./patientDetail";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import CardiacSetup from "./CardiacSetup";
-import ScanMode from "./scanMode";
+import PatientDetail from "./patientDetail";
 import PhaseDetail from "./PhaseDetail";
+import ScanMode from "./scanMode";
 
 import { getHomepageData } from "../../../queries/queries";
 import BottomButton from "./bottomButton";
+import CardiacExamRecord from "./examRecord";
 import { LoadingSpinner } from "./LoadingSpinner";
 
-function CardiacForm({ data, handleSubmit }) {
+function CardiacProtocolForm({ data, handleSubmit }) {
   const [numberOfSites, setNumberOfSites] = React.useState(1);
+  const [recordMode, setRecordMode] = React.useState(false);
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
     "autocompleteOptions",
     async () => await getHomepageData()
@@ -46,28 +48,43 @@ function CardiacForm({ data, handleSubmit }) {
                               overflowY: "auto",
                             }}
                           >
-                            <Grid item xs={12}>
-                              <Typography
-                                variant="h3"
-                                align="center"
-                                color="#093A3E"
-                              >
-                                Cardiac Case Setup Log Form
-                              </Typography>
-                            </Grid>
-                            <PatientDetail
-                              autocompleteOptions={autocompleteOptions}
-                              isSuccess={isSuccess}
-                              data={data}
-                            />
-                            <CardiacSetup
+                            {recordMode ? (
+                              <CardiacExamRecord
+                                autocompleteOptions={autocompleteOptions}
+                                isSuccess={isSuccess}
+                                data={data}
+                                formik={formik}
+                              />
+                            ) : (
+                              <>
+                                <Grid item xs={12}>
+                                  <Typography
+                                    variant="h3"
+                                    align="center"
+                                    color="#093A3E"
+                                  >
+                                    Cardiac Case Setup Log Form
+                                  </Typography>
+                                </Grid>
+                                <PatientDetail
+                                  autocompleteOptions={autocompleteOptions}
+                                  isSuccess={isSuccess}
+                                  data={data}
+                                />
+                                <CardiacSetup
+                                  formik={formik}
+                                  numberOfSites={numberOfSites}
+                                  setNumberOfSites={setNumberOfSites}
+                                />
+                                <ScanMode formik={formik} />
+                                <PhaseDetail formik={formik} />
+                              </>
+                            )}
+                            <BottomButton
                               formik={formik}
-                              numberOfSites={numberOfSites}
-                              setNumberOfSites={setNumberOfSites}
+                              setRecordMode={setRecordMode}
+                              recordMode={recordMode}
                             />
-                            <ScanMode formik={formik} />
-                            <PhaseDetail formik={formik} />
-                            <BottomButton formik={formik} />
                           </Paper>
                         </Grid>
                       </Box>
@@ -83,4 +100,4 @@ function CardiacForm({ data, handleSubmit }) {
   }
 }
 
-export default CardiacForm;
+export default CardiacProtocolForm;

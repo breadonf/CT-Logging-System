@@ -3,9 +3,8 @@ import SickIcon from "@mui/icons-material/Sick";
 import { Grid, Typography, Divider } from "@mui/material";
 import Textfield from "../../FormsUI/Textfield";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
-import Autocomplete from "../../FormsUI/AutocompleteWrapper";
-import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
 import FastTextField from "/components/FormsUI/FastTextField";
+
 function PatientDetail({ isSuccess, autocompleteOptions, data }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>

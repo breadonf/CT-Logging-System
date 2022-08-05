@@ -25,6 +25,19 @@ const INITIAL_FORM_STATE = {
     { name: [], scanRange: "", processing: [], remark: "" },
     { name: [], scanRange: "", processing: [], remark: "" },
   ],
+  protocol: [],
+  contrastRegime: "",
+  studyDose: "",
+  seriesDose: "",
+  seriesCTDI: "",
+  heartRate: { min: "", max: "", average: "", variance: "" },
+  scanTechnique: "",
+  breathingControl_record: "",
+  depictionOfROI: "",
+  satisfaction: null,
+  artefact: "",
+  remarks: "",
+  delayTime: "",
 };
 
 export default INITIAL_FORM_STATE;

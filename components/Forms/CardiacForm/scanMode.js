@@ -10,7 +10,7 @@ import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
 
 function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
   return (
-    <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
+    <Grid container spacing={2} component={"div"} sx={{ p: 2 }}>
       <Grid item xs={12}>
         <Typography variant="h5" color="#05668D">
           <TimerIcon sx={{ mr: 1 }} />
@@ -93,13 +93,13 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
           />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <Textfield
             name="depictionOfROI"
             label="Depiction Structures of Interest"
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <RatingWrapper name="satisfaction" legend="Satisfaction Level" />
         </Grid>
         <Grid item xs={4}>
