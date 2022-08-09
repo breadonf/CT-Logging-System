@@ -1,7 +1,7 @@
-import React from "react";s
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import SwipeUpIcon from "@mui/icons-material/SwipeUp";
-import { Grid, Typography, Divider, Chip } from "@mui/material";
+import { Chip, Divider, Grid, Typography } from "@mui/material";
+import React from "react";
 
 function ContrastDetail({ data }) {
   return (

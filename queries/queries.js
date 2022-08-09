@@ -90,7 +90,7 @@ const MessageData = `
           day
         }
         effectiveDate
-        effectiveDate {
+        effectiveDate_func {
           year
           month
           day
@@ -113,10 +113,10 @@ const MessageByID = `
         id
         inputDate
         effectiveDate
-        date_func {
+        effectiveDate_func {
           year
-          day
           month
+          day
         }
         category
         inputUser

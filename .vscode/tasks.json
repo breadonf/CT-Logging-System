@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "tasks": [
     {
-      "label": "Run npm run dev on startup",
+      "label": "Frontend",
       "type": "shell",
       "command": "npm run dev",
       "windows": {
