@@ -114,6 +114,11 @@ const MessageByID = `
         id
         inputDate
         effectiveDate
+        date_func {
+          year
+          day
+          month
+        }
         category
         inputUser
         originatedBy
