@@ -1,4 +1,4 @@
-import React from "react";s
+import React from "react";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import SwipeUpIcon from "@mui/icons-material/SwipeUp";
 import { Grid, Typography, Divider, Chip } from "@mui/material";

@@ -15,7 +15,7 @@ function DetailPage({ data }) {
         <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
           <Paper
             elevation={8}
-            sx={{ px: 3, py: 5, bgcolor: "#FFF1B2", minHeight: "85vh" }}
+            sx={{ px: 3, py: 5, bgcolor: "#FFF1B2", minHeight: "85vh", maxWidth:"70vw" }}
           >
             <Heading data={data} />
 
