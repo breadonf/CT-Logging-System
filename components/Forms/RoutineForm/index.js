@@ -70,7 +70,6 @@ function RoutineForm({ data, handleSubmit }) {
                           sx={{
                             p: 3,
                             height: "85vh",
-                            maxWidth: "600px",
                             bgcolor: "#F0F3BD",
                             overflowY: "auto",
                           }}

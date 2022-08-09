@@ -67,12 +67,9 @@ export const RecordTableHeaders = [
   },
   { field: "PID", headerName: "Patient ID", width: 100 },
   {
-    field: "sedation",
+    field: "sedatedBy",
     headerName: "Sedation",
     width: 90,
-    renderCell: (isSedation) => {
-      return isSedation.value ? <CheckRoundedIcon /> : <></>;
-    },
   },
 
   {
@@ -114,6 +111,8 @@ export const RecordTableHeaders = [
   { headerName: "Site", field: "injectionSite" },
   { headerName: "Rate", field: "rate" },
   { headerName: "Volume", field: "volume" },
+  
+  { field: "ctdi", headerName: "CTDI", width: 60 },
   {
     headerName: "kV (Tube A)",
     field: "kV_a",

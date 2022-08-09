@@ -12,10 +12,16 @@ function DetailPage({ data }) {
   return (
     <Grid spacing={2} sx={{ py: 5 }} container>
       <Grid item xs={12}>
-        <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
+        <Container maxWidth="lg">
           <Paper
             elevation={8}
-            sx={{ px: 3, py: 5, bgcolor: "#FFF1B2", minHeight: "85vh", maxWidth:"70vw" }}
+            sx={{
+              px: 3,
+              py: 5,
+              bgcolor: "#FFF1B2",
+              minHeight: "85vh",
+              maxWidth: "70vw",
+            }}
           >
             <Heading data={data} />
 
@@ -29,7 +35,9 @@ function DetailPage({ data }) {
               <ContrastDetail data={data} />
             ) : (
               <>
-                <Typography align="center">No Contrast Injection Record</Typography>
+                <Typography align="center">
+                  No Contrast Injection Record
+                </Typography>
                 <Divider />
               </>
             )}

@@ -17,6 +17,7 @@ const HomepageCT = `
         volume
         kV_a
         sedation
+        sedatedBy
         injectionSite
         circumference
         urgent
