@@ -5,25 +5,18 @@ import BoxArray from "./boxArray";
 
 function MessageHistory({ data }) {
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{ height: "90vh", justifyContent: "center" }}
-    >
-      <Grid item xs={12} sx={{ m: 2 }}>
-        <Container
-          sx={{
-            height: "90vh",
-            minWidth: "70%",
-          }}
-        >
+    <Container maxWidth="lg">
+      <Grid
+        container
+        sx={{ height: "90vh", justifyContent: "center" }}
+      >
+        <Grid item xs={12}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Paper
                 sx={{
                   boxShadow: 4,
                   height: "85vh",
-                  px: 2,
                   py: 2,
                   mt: 2,
                   bgcolor: "#222222",
@@ -42,16 +35,16 @@ function MessageHistory({ data }) {
                   }}
                 >
                   <Grid item xs={12}>
-                    {/**HACK need to place a grid before box array to allow it to */ }
+                    {/**HACK need to place a grid before box array to allow it to */}
                     <BoxArray data={data} />
                   </Grid>
                 </Grid>
               </Paper>
             </Grid>
           </Grid>
-        </Container>
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 }
 

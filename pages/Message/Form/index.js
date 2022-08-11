@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 import setData from "../../../helpers/setData";
 import { createMessage } from "../../../queries/mutations";
-import {Grid, Box} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 
 function MessageFormPage() {
@@ -57,9 +57,10 @@ function MessageFormPage() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <Grid container sx={{ height: "90vh" }}>
+
+      <Container maxWidth="lg" sx={{ height: "90vh" }}>
         <MessageForm handleSubmit={handleSubmit} />
-      </Grid>
+      </Container>
     </>
   );
 }
