@@ -9,7 +9,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
       <Grid item xs={12}>
         <Typography variant="h5" color="#05668D">
           <AirlineSeatReclineExtraIcon sx={{ mr: 1 }} />
-          Staff Details (Optional)
+          Staff Detail (Optional)
         </Typography>
       </Grid>
       <Grid item xs={4}>

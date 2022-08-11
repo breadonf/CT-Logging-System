@@ -25,6 +25,7 @@ const TextEditor = ({ value, setFieldValue }) => {
     setFieldValue(editorState);
     setEditorState(editorState);
   };
+
   return (
     <div>
       <Editor

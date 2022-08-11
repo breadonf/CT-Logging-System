@@ -9,7 +9,7 @@ function PatientDetail() {
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Grid item xs={12}>
         <Typography variant="h5" color="#05668D">
-          <SickIcon sx={{ mr: 1 }} /> Patient Details
+          <SickIcon sx={{ mr: 1 }} /> Patient Detail
         </Typography>
       </Grid>
       <Grid item xs={4}>

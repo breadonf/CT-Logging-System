@@ -110,6 +110,7 @@ function ExamDetail({ data }) {
                 sx={{ mx: 1 }}
                 avatar={<Avatar>A</Avatar>}
                 variant="outlined"
+                color="primary"
               />
             ))}
             {data.kV_b.map((kV) => (
@@ -119,6 +120,7 @@ function ExamDetail({ data }) {
                 sx={{ mx: 1 }}
                 avatar={<Avatar>B</Avatar>}
                 variant="outlined"
+                color="secondary"
               />
             ))}
           </Typography>
