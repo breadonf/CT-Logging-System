@@ -13,19 +13,19 @@ import categories from "./categories.json";
 import ButtonWrapper from "./buttonWrapper";
 import TextEditor from "../TextEditor";
 
-function LogbookForm(props) {
+function MessageForm(props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-        <Grid item xs={10}>
-          <Paper sx={{ px: 3, py: 3, minHeight: "40vh", my: 2 }}>
-            <Formik
-              validationSchema={MESSAGE_VALIDATION}
-              onSubmit={props.handleSubmit}
-              initialValues={INITIAL_MESSAGE_STATE}
-            >
-              {(formik) => (
-                <Form>
+        <Grid item xs={12}>
+          <Formik
+            validationSchema={MESSAGE_VALIDATION}
+            onSubmit={props.handleSubmit}
+            initialValues={INITIAL_MESSAGE_STATE}
+          >
+            {(formik) => (
+              <Form>
+                <Paper>
                   <Grid container spacing={2}>
                     <Grid item xs={4}>
                       <DateTimePicker name="inputDate" label="Input Date" />
@@ -69,6 +69,7 @@ function LogbookForm(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <Textfield
+                      multiline
                       name="comments"
                       label="Follow Up Comments"
                       rows={2}
@@ -77,14 +78,14 @@ function LogbookForm(props) {
                   <Grid item xs={12}>
                     <ButtonWrapper formik={formik} />
                   </Grid>
-                </Form>
-              )}
-            </Formik>
-          </Paper>
+                </Paper>
+              </Form>
+            )}
+          </Formik>
         </Grid>
       </Grid>
     </LocalizationProvider>
   );
 }
 
-export default LogbookForm;
+export default MessageForm;

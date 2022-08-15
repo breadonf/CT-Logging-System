@@ -9,14 +9,14 @@ function Remarks() {
       <Grid item>
         <Typography variant="h5" color="#05668D">
           <TagIcon sx={{ mr: 1 }} />
-          Keywords
+          Keyword(s)
         </Typography>
       </Grid>
       <Grid item xs={12}>
         <Textfield
           rows={4}
           name="keywords"
-          label="Keywords for your retrieval purpose"
+          label="Keyword(s) for your retrieval purpose"
         />
       </Grid>
       <Grid item>

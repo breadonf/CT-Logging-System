@@ -27,7 +27,7 @@ function ExamDetail({
       <Grid item xs={12}>
         <Typography variant="h5" color="#05668D">
           <ImageSearchIcon sx={{ mr: 1 }} />
-          Exam Details
+          Exam Detail
         </Typography>
       </Grid>
       <Grid item xs={4}>

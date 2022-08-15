@@ -145,7 +145,7 @@ const HomepageData = `
 const MessageData = `
     #graphql
     query MessageData {
-      message {
+      message (sort: ["-inputDate"]) {
         inputDate
         inputDate_func {
           year

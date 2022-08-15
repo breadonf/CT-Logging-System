@@ -6,7 +6,7 @@ import ExamDetail from "./ExamDetail";
 import ContrastDetail from "./ContrastDetail";
 import StaffDetail from "./StaffDetail";
 import Remarks from "./Remarks";
-import BackButton from "./BackButton";
+import BottomButton from "./bottomButton";
 
 function DetailPage({ data }) {
   return (
@@ -47,7 +47,7 @@ function DetailPage({ data }) {
 
             <Remarks data={data} />
 
-            <BackButton />
+            <BottomButton Id={data.count} />
           </Paper>
         </Container>
       </Grid>
