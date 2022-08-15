@@ -1,10 +1,10 @@
-import React from "react";
 import SickIcon from "@mui/icons-material/Sick";
 import { Grid, Typography } from "@mui/material";
-import Textfield from "../../FormsUI/Textfield";
+import React from "react";
 import Checkbox from "../../FormsUI/Checkbox";
+import Textfield from "../../FormsUI/Textfield";
 
-function PatientDetail() {
+function PatientDetail({ data }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Grid item xs={12}>
@@ -31,7 +31,11 @@ function PatientDetail() {
         <Textfield name="weight" label="Weight(kg)"></Textfield>
       </Grid>
       <Grid item xs={4}>
-        <Textfield name="circumference" label="Circumference(cm)"></Textfield>
+        <Textfield
+          prepopulatedValue={data?.circumference ?? ""}
+          name="circumference"
+          label="Circumference(cm)"
+        ></Textfield>
       </Grid>
     </Grid>
   );

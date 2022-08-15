@@ -1,24 +1,28 @@
-import * as React from "react";
-import Link from "next/link";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import AirlineSeatFlatIcon from "@mui/icons-material/AirlineSeatFlat";
 import Brightness1TwoToneIcon from "@mui/icons-material/Brightness1TwoTone";
-
-const pages = [
-  ["Forms", "Form"],
-  ["Table", "Table"],
-  ["Search", "Search"],
-  ["Message", "Message"],
-  ["cardiac", "cardiac"],
-  ["cardiac/protocol/setup", "Cardiac Protocoling"],
-];
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import * as React from "react";
 
 const Navbar = () => {
+  const day = new Date();
+  const [today, setToday] = React.useState(
+    day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + (day.getDate() - 1)
+  );
+  const pages = [
+    ["Forms", "Form"],
+    ["Table", "Table"],
+    ["Search", "Search"],
+    ["Message", "Message"],
+    ["cardiac", "cardiac"],
+    ["cardiac/protocol/setup", "Cardiac Protocoling"],
+    [`today/${today}`, "Today"],
+  ];
   return (
     <AppBar
       position="static"

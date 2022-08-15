@@ -1,18 +1,18 @@
+import { Container, Grid, Paper, Typography } from "@mui/material";
+import { Form, Formik } from "formik";
 import React from "react";
-import { Formik, Form } from "formik";
-import { Container, Paper, Grid, Typography } from "@mui/material";
 
 import { useQuery } from "react-query";
 
-import PatientDetail from "./patientDetail";
-import ExamDetail from "./examDetail";
-import ContrastDetail from "./contrastDetail";
-import StaffDetail from "./staffDetail";
-import Remarks from "./remarks";
 import BottomButton from "./bottomButton";
+import ContrastDetail from "./contrastDetail";
+import ExamDetail from "./examDetail";
+import PatientDetail from "./patientDetail";
+import Remarks from "./remarks";
+import StaffDetail from "./staffDetail";
 
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 import FORM_VALIDATION from "./ValidationSchema";
 

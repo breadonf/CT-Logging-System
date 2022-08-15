@@ -54,7 +54,7 @@ const FORM_VALIDATION = yup.object().shape({
     .typeError("Please enter a valid circumference in cm")
     .min(0, "Invalid Input")
     .nullable(),
-  Date: yup.string().required("Required"),
+  Date: yup.string().typeError("Select a date").required("Required"),
   protocol: yup
     .array()
     .typeError("Not an array")
@@ -77,8 +77,8 @@ const FORM_VALIDATION = yup.object().shape({
   rate: yup.string().nullable(),
   delays: yup.array().of(yup.number().nullable()),
   directPostContrast: yup
-    .boolean()
-    .nullable()
+    .boolean("Error")
+    .nullable("Error")
     .when("contrastType", {
       is: (contrastType) => {
         return contrastType !== undefined;

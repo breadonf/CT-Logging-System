@@ -1,16 +1,16 @@
+import ImageSearchIcon from "@mui/icons-material/ImageSearch";
+import { Box, Button, Chip, Grid, Typography } from "@mui/material";
 import React from "react";
+import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
+import Checkbox from "../../FormsUI/Checkbox";
+import DateTimePicker from "../../FormsUI/DateTimePicker";
+import Select from "../../FormsUI/Select";
+import Textfield from "../../FormsUI/Textfield";
+import examType from "../SelectItems/examType.json";
 import kV_a from "../SelectItems/kV_a.json";
 import kV_b from "../SelectItems/kV_b.json";
 import sedatedBy from "../SelectItems/sedatedBy.json";
 import sedationMethod from "../SelectItems/sedationMethod.json";
-import DateTimePicker from "../../FormsUI/DateTimePicker";
-import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
-import { Grid, Typography, Button, Box, Chip } from "@mui/material";
-import ImageSearchIcon from "@mui/icons-material/ImageSearch";
-import Checkbox from "../../FormsUI/Checkbox";
-import Select from "../../FormsUI/Select";
-import examType from "../SelectItems/examType.json";
-import Textfield from "../../FormsUI/Textfield";
 
 function ExamDetail({
   data,
@@ -54,11 +54,10 @@ function ExamDetail({
               checked={data.sedation}
             />
           </Grid>
-          {sedation && (
+          {formik.values.sedation && (
             <>
               <Grid item xs={4}>
                 <Select
-                  sx={{ pt: 2 }}
                   name="sedatedBy"
                   label="by"
                   prepopulatedValue={data?.sedatedBy}
@@ -67,7 +66,6 @@ function ExamDetail({
               </Grid>
               <Grid item xs={4}>
                 <AutocompleteWrapper
-                  sx={{ p: 0 }}
                   name="sedationMethod"
                   label="using"
                   multiple

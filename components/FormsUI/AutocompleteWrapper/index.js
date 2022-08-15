@@ -1,7 +1,6 @@
-import React from "react";
-import { TextField } from "@mui/material";
-import { Autocomplete } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import React from "react";
 
 export default function AutocompleteWrapper({
   id,
@@ -66,13 +65,12 @@ export default function AutocompleteWrapper({
       fullWidth
       groupBy={groupBy}
       options={flattenedAutocompleteOptions}
-      getOptionLabel={(option) => option ?? ""}
       onChange={handleChange}
       defaultValue={prepopulatedValue}
-      renderInput={(params) => (
-        <TextField sx={{}} {...configAuto} {...params} />
-      )}
+      getOptionLabel={(option) => option ?? null}
+      renderInput={(params) => <TextField {...configAuto} {...params} />}
       isOptionEqualToValue={(option, value) => {
+        console.log(option == value);
         option == value;
       }}
       {...otherProps}

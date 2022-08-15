@@ -1,7 +1,7 @@
-import React from "react";
 import { TextField } from "@mui/material";
 import { useField } from "formik";
-const TextfieldWrapper = ({ name, ...otherProps }) => {
+import React from "react";
+const TextfieldWrapper = ({ name, prepopulatedValue, ...otherProps }) => {
   const [field, meta] = useField(name);
 
   const configTextfield = {
@@ -19,6 +19,7 @@ const TextfieldWrapper = ({ name, ...otherProps }) => {
   return (
     <TextField
       {...configTextfield}
+      defaultValue={prepopulatedValue}
       sx={{
         input: { color: "#05668D" },
         label: { fontWeight: "bold", color: "#495371" },

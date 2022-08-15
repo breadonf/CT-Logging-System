@@ -1,7 +1,7 @@
-import React from "react";
-import { TextField, MenuItem, InputLabel, ListSubheader } from "@mui/material";
-import { useField, useFormikContext } from "formik";
+import { InputLabel, ListSubheader, MenuItem, TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
+import { useField, useFormikContext } from "formik";
+import React from "react";
 
 const SelectWrapper = ({
   name,
@@ -52,6 +52,7 @@ const SelectWrapper = ({
         {...configSelect}
         sx={{
           ...sx,
+          alignItems: "center",
           input: { color: "#05668D" },
           label: { ...sx, fontWeight: "bold", color: "#495371" },
         }}

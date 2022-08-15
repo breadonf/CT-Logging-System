@@ -9,7 +9,70 @@ import fetchData from "../helpers/fetchData";
 const HomepageCT = `
     #graphql
     query HomePageCT($page: Int!) {
-      CT (page:$page, limit: 25, sort: ["sort", "-count"]){
+      CT (page:$page, limit: 25, sort: ["-count"]){
+        Date
+        count
+        remark
+        rate
+        volume
+        kV_a
+        sedation
+        sedatedBy
+        injectionSite
+        circumference
+        urgent
+        directPostContrast
+        handInjection
+        mixedContrast
+        keywords
+        PID
+        radiographers
+        radiologists
+        nurses
+        protocol
+        pitch
+        height
+        weight
+        ttp
+        age
+        inPatient
+        kV_b
+        delays
+        contrastType
+        ctdi
+        examType
+        IR
+      }
+    }
+`;
+const HomepageCTToday = `
+    #graphql
+    query HomePageCTToday($year: Float!, $month: Float!, $day: Float!) {
+      CT ( limit: 25, filter: {
+        _and: [
+          {
+            Date_func: {
+              year: {
+                _eq: $year
+              }
+            }
+          },
+          {
+            Date_func: {
+              month: {
+                _eq: $month
+              }
+            }
+          },
+          {
+            Date_func: {
+              day: {
+                _eq: $day
+              }
+            }
+          },
+        ]
+      }){
         Date
         count
         remark
@@ -48,7 +111,6 @@ const HomepageCT = `
 const HomepageCTNumber = `
     #graphql
     query HomePageCT {
-
       CT_aggregated {
         countDistinct {
           count
@@ -321,6 +383,13 @@ const CardiacCaseRecordBySearch = `
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
     variables: { page: page },
+  });
+
+  return data.data.CT;
+};
+export const getHomepageCTToday = async (year, month, day) => {
+  const data = await fetchData(HomepageCTToday, {
+    variables: {year: year, month: month, day: day },
   });
 
   return data.data.CT;

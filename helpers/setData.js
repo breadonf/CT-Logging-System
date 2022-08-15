@@ -39,7 +39,7 @@ const setData = async (
   });
 
   const result = await res.json();
-
+  console.log("Mutation", result);
   if (result.errors) {
     console.log(result.errors);
     throw new Error(result.errors);
