@@ -3,9 +3,7 @@ import { Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import RatingWrapper from "../../FormsUI/Rating";
-import Slider from "../../FormsUI/Slider";
 import Textfield from "../../FormsUI/Textfield";
-import Toggle from "../../FormsUI/Toggle";
 import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
 
 function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {

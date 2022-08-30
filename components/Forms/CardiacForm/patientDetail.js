@@ -1,10 +1,8 @@
-import React from "react";
 import SickIcon from "@mui/icons-material/Sick";
-import { Grid, Typography, Divider } from "@mui/material";
-import Textfield from "../../FormsUI/Textfield";
+import { Divider, Grid, Typography } from "@mui/material";
+import React from "react";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
-import Autocomplete from "../../FormsUI/AutocompleteWrapper";
-import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
+import Textfield from "../../FormsUI/Textfield";
 import FastTextField from "/components/FormsUI/FastTextField";
 function PatientDetail({ isSuccess, autocompleteOptions, data }) {
   return (

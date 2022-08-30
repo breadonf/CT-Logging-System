@@ -1,6 +1,6 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import wait from "../../helpers/wait";
 
 import CustomPagination from "./CustomPagination";
@@ -37,7 +37,7 @@ export default function TableMaterial({
 
     wait(0);
     setIsLoading(false);
-  }, [pageNumber, records]);
+  }, [pageNumber, records, rowCount]);
   const configDataGrid = {
     rows: data,
     booleanCell: () => {

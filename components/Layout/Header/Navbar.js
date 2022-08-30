@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
@@ -26,22 +27,27 @@ const Navbar = () => {
   return (
     <AppBar
       position="static"
-      style={{ minHeight: "5vh", background: "#001011" }}
+      style={{ minHeight: "5vh", maxHeight: "5vh", background: "#001011" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href={"/"} passHref>
-            <Button>
-              <Brightness1TwoToneIcon />
-              <AirlineSeatFlatIcon fontSize="medium" sx={{ mr: 2 }} />
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { display: "flex", color: "white" } }}
-              >
-                Excel CT
-              </Typography>
+            <Button sx={{ minWidth: "250px" }}>
+              <Grid container spacing={1}>
+                <Grid item xs={2}>
+                  <img src="/favicon.ico" alt="logo" width="auto" height="35" />
+                </Grid>
+                <Grid item xs={10}>
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{ color: "white" }}
+                  >
+                    Excel CT
+                  </Typography>
+                </Grid>
+              </Grid>
             </Button>
           </Link>
           <Box

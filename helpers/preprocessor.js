@@ -28,6 +28,12 @@ const preprocessor = (values) => {
   } = values;
   const convertedHeight = parseFloat(height);
   const convertedWeight = parseFloat(weight);
+  if (height === NaN) {
+    const convertedHeight = null;
+  }
+  if (weight === NaN) {
+    const convertedWeight = null;
+  }
   const convertedCircumference = parseFloat(circumference);
   const convertedVolume = parseFloat(volume);
   const convertedTtp = parseFloat(ttp);

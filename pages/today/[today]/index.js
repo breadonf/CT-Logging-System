@@ -1,11 +1,10 @@
 import { Container, Grid, Paper } from "@mui/material";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useQuery } from "react-query";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeader";
 import TableMaterial from "/components/Table/TableMaterial";
-import { getHomepageCTNumber, getHomepageCTToday } from "/queries/queries";
+import {  getHomepageCTToday } from "/queries/queries";
 
 export default function Table() {
   const router = useRouter();
