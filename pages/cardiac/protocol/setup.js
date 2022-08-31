@@ -1,26 +1,26 @@
-import React from "react";
-import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
-import INITIAL_FORM_STATE from "/components/Forms/CardiacForm/InitialFormState";
-import preprocessor from "/helpers/preprocessorCardiacForm";
-import { createCardiacCTrecord } from "/queries/mutations";
-import { useMutation } from "react-query";
-import setData from "/helpers/setData";
-import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
+import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import React from "react";
 import { toast } from "react-hot-toast";
+import { useMutation } from "react-query";
+import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import INITIAL_FORM_STATE from "/components/Forms/CardiacProtocolForm/InitialFormState";
+import preprocessor from "/helpers/preprocessorCardiacForm";
+import setData from "/helpers/setData";
+import { createCardiacCTSetupRecord } from "/queries/mutations";
 
 function CardiacCases() {
   const router = useRouter();
   const mutation = useMutation(
     async (newFormData) => {
-      await setData(createCardiacCTrecord, { data: newFormData });
+      await setData(createCardiacCTSetupRecord, { data: newFormData });
     },
     {
-      mutationKey: "createCTitem",
+      mutationKey: "createCardiacCTSetupRecord",
       onSuccess: (data, variables) => {
-        console.log("onSucces", data, variables);
+        console.log("onSuccess", data, variables);
       },
     }
   );

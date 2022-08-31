@@ -8,7 +8,14 @@ import { updateCardiacCTSetupById } from "../../../../queries/mutations";
 import { getCardiacSetupByID } from "../../../../queries/queries";
 import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
 
-export default function EditRoutineForm() {
+const toastStyle = {
+  border: "1px solid #713200",
+  padding: "40px",
+  color: "#713200",
+  fontSize: "1.5rem",
+  minWidth: "20%",
+};
+export default function EditCardiacForm() {
   const router = useRouter();
   const { ExamId } = router.query;
   const {
@@ -52,13 +59,7 @@ export default function EditRoutineForm() {
             toast.success(
               `Your Cardiac Protocol records for ${modifiedValues.PID} is updated`,
               {
-                style: {
-                  border: "1px solid #713200",
-                  padding: "40px",
-                  color: "#713200",
-                  fontSize: "1.5rem",
-                  minWidth: "20%",
-                },
+                style: toastStyle,
               }
             );
             router.push(`/cardiac/table/${modifiedValues.PID}`);

@@ -4,6 +4,7 @@ import React from "react";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
 import Textfield from "../../FormsUI/Textfield";
 import FastTextField from "/components/FormsUI/FastTextField";
+
 function PatientDetail({ isSuccess, autocompleteOptions, data }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
