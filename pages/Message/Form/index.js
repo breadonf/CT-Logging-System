@@ -1,13 +1,12 @@
-import React from "react";
+import { Box, CircularProgress, Container } from "@mui/material";
 import Head from "next/head";
-import MessageForm from "../../../components/Message/MessageForm";
-import preprocessorMessage from "../../../components/Message/MessageForm/preprocessorMessage";
 import { useRouter } from "next/router";
+import React from "react";
 import { useMutation } from "react-query";
-import setData from "../../../helpers/setData";
-import { createMessage } from "../../../queries/mutations";
-import { Box, Container } from "@mui/material";
-import { CircularProgress } from "@mui/material";
+import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
+import MessageForm from "/components/Message/MessageForm";
+import setData from "/helpers/setData";
+import { createMessage } from "/queries/mutations";
 
 function MessageFormPage() {
   const router = useRouter();

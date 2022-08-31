@@ -5,8 +5,8 @@ import MessageHistoryHeading from "./heading";
 
 function MessageHistory({ data }) {
   return (
-    <Container maxWidth="lg">
-      <Grid container sx={{ height: "90vh", justifyContent: "center" }}>
+    <Container sx={{ pt: 1, pb: 2 }} maxWidth="lg">
+      <Grid container sx={{ minHeight: "85vh", justifyContent: "center" }}>
         <Grid item xs={12}>
           <Grid container spacing={2}>
             <Grid item xs={12}>

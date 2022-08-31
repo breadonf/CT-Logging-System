@@ -1,5 +1,3 @@
-import AirlineSeatFlatIcon from "@mui/icons-material/AirlineSeatFlat";
-import Brightness1TwoToneIcon from "@mui/icons-material/Brightness1TwoTone";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -7,9 +5,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-
 const Navbar = () => {
   const day = new Date();
   const [today, setToday] = React.useState(
@@ -29,15 +27,15 @@ const Navbar = () => {
       position="static"
       style={{ minHeight: "5vh", maxHeight: "5vh", background: "#001011" }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ alignItems: "center" }}>
         <Toolbar disableGutters>
           <Link href={"/"} passHref>
-            <Button sx={{ minWidth: "250px" }}>
-              <Grid container spacing={1}>
-                <Grid item xs={2}>
-                  <img src="/favicon.ico" alt="logo" width="auto" height="35" />
+            <Button sx={{ minWidth: "190px" }}>
+              <Grid container alignItems="center" zeroMinWidth spacing={1}>
+                <Grid item xs={2} sx={{ pt: 10 }}>
+                  <Image src="/favicon.ico" alt="logo" width={50} height={50} />
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={9}>
                   <Typography
                     variant="h6"
                     noWrap

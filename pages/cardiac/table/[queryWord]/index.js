@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { Container, Grid, Paper } from "@mui/material";
 import Head from "next/head";
-import { useQuery } from "react-query";
 import { useRouter } from "next/router";
-import { getCardiacSetupRecordBySearch } from "../../../../queries/queries";
-import { Paper, Grid, Container } from "@mui/material";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
 import { RecordTableHeaders } from "../../../../components/Table/CardiacRecordTableHeader";
 import Filters from "../../../../components/Table/Filters";
 import TableMaterial from "../../../../components/Table/TableMaterial";
+import { getCardiacSetupRecordBySearch } from "../../../../queries/queries";
 
 export default function CardiacSetupTable() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function CardiacSetupTable() {
       return <h2>No such exam</h2>;
     }
     return (
-      <Grid spacing={2} sx={{ py: 5 }} container>
+      <Grid sx={{ py: 3 }} container>
         <Head>
           <title>{`Search result of ${queryWord}`}</title>
           <link rel="icon" href="/favicon.ico" />

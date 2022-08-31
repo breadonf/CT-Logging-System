@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeader";
 import TableMaterial from "/components/Table/TableMaterial";
-import {  getHomepageCTToday } from "/queries/queries";
+import { getHomepageCTToday } from "/queries/queries";
 
 export default function Table() {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function Table() {
     );
 
     return (
-      <Grid spacing={2} sx={{ py: 4 }} container>
+      <Grid sx={{ py: 3 }} container>
         <Head>
           <title>CT record</title>
           <link rel="icon" href="/favicon.ico" />

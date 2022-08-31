@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { Container, Grid, Paper } from "@mui/material";
 import Head from "next/head";
-import { useQuery } from "react-query";
-import { getExamsRecordBySearch } from "../../../queries/queries";
-import TableMaterial from "../../../components/Table/TableMaterial";
-import { Paper, Grid, Container } from "@mui/material";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import Filters from "../../../components/Table/Filters";
 import { RecordTableHeaders } from "../../../components/Table/RoutineRecordTableHeader";
+import TableMaterial from "../../../components/Table/TableMaterial";
+import { getExamsRecordBySearch } from "../../../queries/queries";
 
 export default function SearchTable() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function SearchTable() {
   }
   if (isQuerySuccess && records) {
     return (
-      <Grid spacing={2} sx={{ py: 5 }} container>
+      <Grid sx={{ py: 3 }} container>
         <Head>
           <title>CT record</title>
           <link rel="icon" href="/favicon.ico" />

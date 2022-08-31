@@ -1,6 +1,5 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import PatientDetail from "../CardiacForm/PatientDetail";
 import ScanMode from "../CardiacForm/scanMode";
 
 function CardiacExamRecord({ data, formik, isSuccess, autocompleteOptions }) {

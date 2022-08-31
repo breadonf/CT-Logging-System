@@ -1,10 +1,10 @@
-import React from "react";
-import { Paper, Grid, Container } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
+import React from "react";
 
 export function LoadingSpinner() {
   return (
-    <Grid container>
+    <Grid sx={{ p: 3 }} container>
       <Grid item xs={12}>
         <Container maxWidth="lg">
           <Paper

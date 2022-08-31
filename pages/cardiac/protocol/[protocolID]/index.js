@@ -42,7 +42,7 @@ export default function CardiacSetupViewer() {
       return <h2>No such exam</h2>;
     }
     return (
-      <Grid spacing={2} sx={{ py: 5 }} container>
+      <Grid sx={{ py: 3 }} container>
         <Head>
           <title>{`Records of ${cardiacCT_by_id?.PID} at ${cardiacCT_by_id.date_func.year}-${cardiacCT_by_id.date_func.month}-${cardiacCT_by_id.date_func.day}`}</title>
           <link rel="icon" href="/favicon.ico" />
