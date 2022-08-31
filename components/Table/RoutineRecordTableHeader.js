@@ -70,6 +70,9 @@ export const RecordTableHeaders = [
     field: "sedatedBy",
     headerName: "Sedation",
     width: 90,
+    renderCell: (sedatedBy) => {
+      return sedatedBy.value ? <CheckRoundedIcon /> : <></>;
+    },
   },
 
   {

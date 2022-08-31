@@ -31,7 +31,7 @@ const Navbar = () => {
         <Toolbar disableGutters>
           <Link href={"/"} passHref>
             <Button sx={{ minWidth: "190px" }}>
-              <Grid container alignItems="center" zeroMinWidth spacing={1}>
+              <Grid container alignItems="center" spacing={1}>
                 <Grid item xs={2} sx={{ pt: 10 }}>
                   <Image src="/favicon.ico" alt="logo" width={50} height={50} />
                 </Grid>
