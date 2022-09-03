@@ -1,8 +1,8 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 function Copyright() {
   return (
@@ -23,7 +23,7 @@ export default function StickyFooter() {
       container
       sx={{
         position: "fixed",
-        bgcolor: "black",
+        bgcolor: "#001011",
         minHeight: "5vh",
         maxHeight: "5vh",
       }}

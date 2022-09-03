@@ -1,10 +1,11 @@
-import React from "react";
-import { Paper, Grid, Container } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
+import React from "react";
 
-export function LoadingSpinner() {
+export function LoadingSpinner({ bgColor = "#F0F3BD" }) {
+  console.log(bgColor);
   return (
-    <Grid container>
+    <Grid sx={{ py: 3 }} container>
       <Grid item xs={12}>
         <Container maxWidth="lg">
           <Paper
@@ -12,7 +13,7 @@ export function LoadingSpinner() {
             sx={{
               p: 3,
               height: "85vh",
-              bgcolor: "#F0F3BD",
+              bgcolor: bgColor,
               overflowY: "auto",
             }}
           >

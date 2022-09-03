@@ -11,7 +11,7 @@ import * as React from "react";
 const Navbar = () => {
   const day = new Date();
   const [today, setToday] = React.useState(
-    day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + (day.getDate() - 1)
+    day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate()
   );
   const pages = [
     ["Forms", "Form"],
@@ -22,9 +22,14 @@ const Navbar = () => {
     ["cardiac/protocol/setup", "Cardiac Protocoling"],
     [`today/${today}`, "Today"],
   ];
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (e) => setAnchorEl(e.currentTarget);
+  const handleClose = () => setAnchorEl(null);
   return (
     <AppBar
-      position="static"
+      position="sticky"
       style={{ minHeight: "5vh", maxHeight: "5vh", background: "#001011" }}
     >
       <Container maxWidth="xl" sx={{ alignItems: "center" }}>
@@ -54,21 +59,19 @@ const Navbar = () => {
               display: { display: "flex", justifyContent: "right" },
             }}
           >
-            {pages.map((page) => (
-              <Link href={`/${page[0]}`} passHref key={page}>
-                <Button
-                  key={page[1]}
-                  sx={{
-                    my: 2,
-                    mx: 1,
-                    display: "block",
-                    color: "#F0F3BD",
-                  }}
-                >
-                  {page[1]}
-                </Button>
-              </Link>
-            ))}
+            <Link href={} passHref key={page}>
+              <Button
+                key={page[1]}
+                sx={{
+                  my: 2,
+                  mx: 1,
+                  display: "block",
+                  color: "#F0F3BD",
+                }}
+              >
+                {page[1]}
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

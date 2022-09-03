@@ -14,7 +14,7 @@ import ScanMode from "./scanMode";
 import { getHomepageData } from "../../../queries/queries";
 import BottomButton from "./bottomButton";
 import CardiacExamRecord from "./examRecord";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 function CardiacProtocolForm({ data, handleSubmit }) {
   const [numberOfSites, setNumberOfSites] = React.useState(1);

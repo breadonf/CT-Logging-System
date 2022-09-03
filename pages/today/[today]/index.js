@@ -1,4 +1,4 @@
-import { Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper, Typography } from "@mui/material";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
@@ -9,11 +9,17 @@ import { getHomepageCTToday } from "/queries/queries";
 export default function Table() {
   const router = useRouter();
   const { today } = router.query;
-  const regex = /([0-9]{4})-([0-9]{1,2})-([0-9]{2})/g;
+  const regex = /([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})/g;
   if (today) {
     const found = [...today.matchAll(regex)];
     const [whole, year, month, day] = found[0];
-    const { data: records, isSuccess, isLoading, isPreviousData } = useQuery(
+    const {
+      data: records,
+      isSuccess,
+      isLoading,
+      isPreviousData,
+      isError,
+    } = useQuery(
       ["record", { year, month, day }],
       async () =>
         await getHomepageCTToday(
@@ -56,6 +62,9 @@ export default function Table() {
                   getRowId={(row) => row.count}
                 />
               )}
+              {isError &&
+              <Typography>Error</Typography>
+              }
             </Paper>
           </Container>
         </Grid>

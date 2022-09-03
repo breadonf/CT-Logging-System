@@ -8,7 +8,7 @@ import PatientDetail from "./patientDetail";
 import ScanMode from "./scanMode";
 import { getHomepageData } from "../../../queries/queries";
 import BottomButton from "./bottomButton";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 function CardiacForm({ data, handleSubmit }) {
   const [numberOfSites, setNumberOfSites] = React.useState(1);
