@@ -1,20 +1,19 @@
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import React from "react";
-
-import { useQuery } from "react-query";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import CardiacSetup from "./CardiacSetup";
-import PatientDetail from "./patientDetail";
-import PhaseDetail from "./PhaseDetail";
-import ScanMode from "./scanMode";
-
-import { getHomepageData } from "../../../queries/queries";
 import BottomButton from "./bottomButton";
 import CardiacExamRecord from "./examRecord";
+import CardiacSetup from "./CardiacSetup";
 import { LoadingSpinner } from "../LoadingSpinner";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import PatientDetail from "./patientDetail";
+import PhaseDetail from "./PhaseDetail";
+import React from "react";
+import ScanMode from "./scanMode";
+import { getHomepageData } from "../../../queries/queries";
+import { useQuery } from "react-query";
+import validationSchema from "./ValidationSchema";
 
 function CardiacProtocolForm({ data, handleSubmit }) {
   const [numberOfSites, setNumberOfSites] = React.useState(1);
@@ -32,7 +31,11 @@ function CardiacProtocolForm({ data, handleSubmit }) {
         <Grid container>
           <Grid item xs={12}>
             <Container maxWidth="lg">
-              <Formik initialValues={data} onSubmit={handleSubmit}>
+              <Formik
+                initialValues={data}
+                onSubmit={handleSubmit}
+                validationSchema={validationSchema}
+              >
                 {(formik) => {
                   // HACK check form value using console.log(formik.values)
                   return (
@@ -84,6 +87,7 @@ function CardiacProtocolForm({ data, handleSubmit }) {
                               formik={formik}
                               setRecordMode={setRecordMode}
                               recordMode={recordMode}
+                              readyForRecord={formik.values.readyForRecord}
                             />
                           </Paper>
                         </Grid>

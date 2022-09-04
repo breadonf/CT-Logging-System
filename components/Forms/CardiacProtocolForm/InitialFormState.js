@@ -25,6 +25,7 @@ const INITIAL_FORM_STATE = {
     { name: [], scanRange: "", processing: [], remark: "" },
     { name: [], scanRange: "", processing: [], remark: "" },
   ],
+  readyForRecord: false,
   protocol: [],
   contrastRegime: "",
   studyDose: "",

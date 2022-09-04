@@ -1,8 +1,9 @@
 import { Button, Grid } from "@mui/material";
-import { resetForm } from "formik";
-import React from "react";
 
-function BottomButton({ formik, setRecordMode, recordMode }) {
+import React from "react";
+import { resetForm } from "formik";
+
+function BottomButton({ formik, setRecordMode, recordMode, readyForRecord }) {
   function onClickRecordMode(e) {
     e.preventDefault();
     setRecordMode((curr) => !curr);
@@ -40,16 +41,20 @@ function BottomButton({ formik, setRecordMode, recordMode }) {
           Reset
         </Button>
       </Grid>
-      <Grid item xs={4}>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={onClickRecordMode}
-          fullWidth
-        >
-          {recordMode ? "Back to Protocoling" : "Go to Record Mode"}
-        </Button>
-      </Grid>
+      {readyForRecord ? (
+        <Grid item xs={4}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={onClickRecordMode}
+            fullWidth
+          >
+            {recordMode ? "Back to Protocoling" : "Go to Record Mode"}
+          </Button>
+        </Grid>
+      ) : (
+        <></>
+      )}
     </Grid>
   );
 }
