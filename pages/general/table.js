@@ -1,10 +1,11 @@
 import { Container, Grid, Paper } from "@mui/material";
+import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
+
 import Head from "next/head";
-import { useState } from "react";
+import { RecordTableHeaders } from "../../components/Table/RoutineRecordTableHeader";
+import TableMaterial from "../../components/Table/TableMaterial";
 import { useQuery } from "react-query";
-import { RecordTableHeaders } from "../components/Table/RoutineRecordTableHeader";
-import TableMaterial from "../components/Table/TableMaterial";
-import { getHomepageCT, getHomepageCTNumber } from "../queries/queries";
+import { useState } from "react";
 
 export default function Table() {
   const [pageNumber, setPageNumber] = useState(1);

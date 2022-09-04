@@ -1,12 +1,14 @@
 import { Container, Grid, Paper } from "@mui/material";
+
+import Filters from "../../../../components/Table/Filters";
 import Head from "next/head";
+import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
+import { RecordTableHeaders } from "../../../../components/Table/RoutineRecordTableHeader";
+import TableMaterial from "../../../../components/Table/TableMaterial";
+import { getExamsRecordBySearch } from "../../../../queries/queries";
+import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useQuery } from "react-query";
-import Filters from "../../../components/Table/Filters";
-import { RecordTableHeaders } from "../../../components/Table/RoutineRecordTableHeader";
-import TableMaterial from "../../../components/Table/TableMaterial";
-import { getExamsRecordBySearch } from "../../../queries/queries";
 
 export default function SearchTable() {
   const router = useRouter();
@@ -24,7 +26,7 @@ export default function SearchTable() {
     async () => await getExamsRecordBySearch(queryWords)
   );
   if (isQueryLoading || !isQuerySuccess || !records) {
-    return <h2>Loading</h2>;
+    return <LoadingSpinner />;
   }
   if (isError) {
     return <></>;
@@ -49,7 +51,7 @@ export default function SearchTable() {
                 overflowY: "auto",
               }}
             >
-              <Filters endpoint="Search" />
+              <Filters endpoint="general/search" />
               <TableMaterial
                 setPageNumber={setPageNumber}
                 records={records.CT}

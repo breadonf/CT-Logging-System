@@ -1,11 +1,12 @@
 import { Container, Grid, Paper } from "@mui/material";
-import Filters from "../../components/Table/Filters";
+
+import Filters from "../../../components/Table/Filters";
 
 export default function searchIndex() {
   return (
     <Grid sx={{ py: 3 }} container>
       <Grid item xs={12}>
-        <Container sx={{ maxWidth: "80%", height: "85vh" }} maxWidth={false}>
+        <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
           <Paper
             elevation={12}
             sx={{
@@ -15,7 +16,7 @@ export default function searchIndex() {
               overflowY: "auto",
             }}
           >
-            <Filters endpoint="Search" />
+            <Filters endpoint="cardiac/table" />
           </Paper>
         </Container>
       </Grid>

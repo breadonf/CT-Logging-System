@@ -1,8 +1,8 @@
+import { Button, Container, Grid, Paper } from "@mui/material";
+import { Form, Formik } from "formik";
+
 import React from "react";
 import TextfieldWrapper from "../FormsUI/Textfield";
-import { Grid, Container, Button, Paper } from "@mui/material";
-
-import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 
 export default function Filters({ endpoint }) {
@@ -31,7 +31,7 @@ export default function Filters({ endpoint }) {
                     <Grid
                       container
                       spacing={1}
-                      component={"div"} 
+                      component={"div"}
                       sx={{
                         py: 4,
                         justifyContent: "center",

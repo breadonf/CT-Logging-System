@@ -281,6 +281,45 @@ const ExamsRecordBySearch = `
 }
 `;
 //Cardiac Protocol
+const CardiacSetup = `
+    #graphql
+    query HomePageCT($page: Int!) {
+      CT (page:$page, limit: 25, sort: ["-count"]){
+        Date
+        count
+        remark
+        rate
+        volume
+        kV_a
+        sedation
+        sedatedBy
+        injectionSite
+        circumference
+        urgent
+        directPostContrast
+        handInjection
+        mixedContrast
+        keywords
+        PID
+        radiographers
+        radiologists
+        nurses
+        protocol
+        pitch
+        height
+        weight
+        ttp
+        age
+        inPatient
+        kV_b
+        delays
+        contrastType
+        ctdi
+        examType
+        IR
+      }
+    }
+`;
 const CardiacSetupByID = `
     #graphql
     query CardiacSetupByID($cardiacCtByIdId: ID!) {

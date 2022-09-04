@@ -1,15 +1,16 @@
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Head from "next/head";
+import INITIAL_FORM_STATE from "../../components/Forms/RoutineForm/InitialFormState";
 import React from "react";
 import RoutineForm from "../../components/Forms/RoutineForm";
-import INITIAL_FORM_STATE from "../../components/Forms/RoutineForm/InitialFormState";
-import preprocessor from "../../helpers/preprocessor";
 import { createCTrecord } from "../../queries/mutations";
-import { useMutation } from "react-query";
+import preprocessor from "../../helpers/preprocessor";
 import setData from "../../helpers/setData";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
-import Head from "next/head";
 import { toast } from "react-hot-toast";
+import { useMutation } from "react-query";
+import { useRouter } from "next/router";
+
 function RoutineCases() {
   const router = useRouter();
   const mutation = useMutation(
