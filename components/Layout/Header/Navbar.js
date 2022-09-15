@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { alpha, styled } from "@mui/material/styles";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -13,6 +15,36 @@ import { MenuList } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { maxHeight } from "@mui/system";
+
+const StyledMenu = styled((props) => <Menu elevation={1} {...props} />)(
+  ({ theme }) => ({
+    "& .MuiPaper-root": {
+      borderRadius: 6,
+      marginTop: theme.spacing(1),
+      minWidth: 150,
+      padding: 0,
+      boxShadow:
+        "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+      "& .MuiMenu-list": {
+        padding: 1,
+        color: "#001011",
+      },
+      "& .MuiMenuItem-root": {
+        "& .MuiSvgIcon-root": {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        "&:active": {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity
+          ),
+        },
+      },
+    },
+  })
+);
 
 const Navbar = () => {
   const day = new Date();
@@ -51,11 +83,17 @@ const Navbar = () => {
     display: "block",
     color: "#F0F3BD",
     background: "#001011",
+    zIndex: 1700,
   };
   const styleOfMenuList = {
-    p: 0,
+    color: "#001011",
+    background: "#001011",
   };
-  const styleOfMenu = { display: "flex", color: "#001011" };
+  const styleOfMenu = {
+    display: "block",
+    color: "#001011",
+    zIndex: 1600,
+  };
 
   return (
     <AppBar
@@ -86,7 +124,11 @@ const Navbar = () => {
           <Box
             sx={{
               flexGrow: 1,
-              display: { display: "flex", justifyContent: "right" },
+              display: {
+                display: "flex",
+                justifyContent: "right",
+                gap: "1vw",
+              },
             }}
           >
             <Button
@@ -95,7 +137,7 @@ const Navbar = () => {
               aria-controls={openGeneral ? "basic-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={openGeneral ? "true" : undefined}
-              onClick={handleClick}
+              onMouseOver={handleClick}
             >
               General CT
             </Button>
@@ -105,7 +147,7 @@ const Navbar = () => {
               aria-controls={openGeneral2 ? "basic-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={openGeneral2 ? "true" : undefined}
-              onClick={handleClick2}
+              onMouseOver={handleClick2}
             >
               Cardiac CT
             </Button>
@@ -114,15 +156,18 @@ const Navbar = () => {
                 <a>Today cases</a>
               </Link>
             </Button>
-            <Menu
+            <StyledMenu
               id="basic-menu"
               anchorEl={anchorEl}
               open={openGeneral}
               onClose={handleClose}
-              sx={styleOfMenu}
+              MenuListProps={{ onMouseLeave: handleClose }}
+              onMouseLeave={handleClose2}
+              getContentAnchorEl={null}
+              anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
               <MenuList sx={styleOfMenuList}>
-                <MenuItem sx={styleOfMenuItem}>
+                <MenuItem sx={styleOfMenuItem} disableRipple>
                   <Link href="/general/logform" passHref>
                     <a>Log Form</a>
                   </Link>
@@ -138,15 +183,18 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
               </MenuList>
-            </Menu>
-            <Menu
+            </StyledMenu>
+            <StyledMenu
               id="basic-menu2"
               anchorEl={anchorEl2}
               open={openGeneral2}
               onClose={handleClose2}
               sx={styleOfMenu}
+              MenuListProps={{ onMouseLeave: handleClose2 }}
+              getContentAnchorEl={null}
+              anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
-              <MenuList sx={styleOfMenuItem}>
+              <MenuList onMouseLeave={handleClose2} sx={styleOfMenuItem}>
                 <MenuItem sx={styleOfMenuItem}>
                   <Link href="/cardiac/protocol/setup" passHref>
                     <a>Case Setup</a>
@@ -163,7 +211,7 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
               </MenuList>
-            </Menu>
+            </StyledMenu>
           </Box>
         </Toolbar>
       </Container>
