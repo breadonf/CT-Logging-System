@@ -1,46 +1,42 @@
 import { Container, Grid, Paper } from "@mui/material";
+import { getCardiacSetup, getCardiacSetupNumber } from "/queries/queries";
 
-import Filters from "../../../../components/Table/Filters";
 import Head from "next/head";
-import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
-import { RecordTableHeaders } from "../../../../components/Table/CardiacRecordTableHeader";
-import TableMaterial from "../../../../components/Table/TableMaterial";
-import { getCardiacSetupRecordBySearch } from "../../../../queries/queries";
+import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
+import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeader";
+import TableMaterial from "/components/Table/TableMaterial";
 import { useQuery } from "react-query";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function CardiacSetupTable() {
-  const router = useRouter();
   const [pageNumber, setPageNumber] = useState(1);
   const {
     data: records,
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
-    isError,
-
     isPreviousData,
   } = useQuery(
-    ["CardiacSetupRecordBySearch", queryWord],
-    async () => await getCardiacSetupRecordBySearch(queryWord),
-    { retry: true }
+    ["CardiacSetupRecord", pageNumber],
+    async () => await getCardiacSetup(pageNumber),
+    {
+      keepPreviousData: true,
+    }
   );
-  console.log(records);
+  const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(
+    "rowNumbers",
+    async () => await getCardiacSetupNumber(),
+    {
+      staleTime: 60 * 1000,
+    }
+  );
   if (isQueryLoading || !isQuerySuccess || !records) {
     return <LoadingSpinner />;
   }
-  if (isError) {
-    return <></>;
-  }
   if (isQuerySuccess && records) {
-    const { cardiacCT_by_id } = records;
-    if (cardiacCT_by_id === null) {
-      return <h2>No such exam</h2>;
-    }
     return (
       <Grid sx={{ py: 3 }} container>
         <Head>
-          <title>{`Search result of ${queryWord}`}</title>
+          <title>Cardiac Case Table</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
@@ -55,17 +51,15 @@ export default function CardiacSetupTable() {
                 overflowY: "auto",
               }}
             >
-              <Filters endpoint="cardiac/table" />
               <TableMaterial
                 setPageNumber={setPageNumber}
-                records={records.cardiacCT}
+                records={records}
                 isSuccess={isQuerySuccess}
                 isLoading={isQueryLoading}
                 pageNumber={pageNumber}
                 isPreviousData={isPreviousData}
                 columnHeaders={RecordTableHeaders}
-                paginationMode="client"
-                height="60vh"
+                paginationMode="server"
                 pageSize={10}
               />
             </Paper>

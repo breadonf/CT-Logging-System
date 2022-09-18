@@ -1,6 +1,7 @@
+import { Button, Grid } from "@mui/material";
+
 import React from "react";
-import { resetForm } from "formik";
-import { Grid, Button } from "@mui/material";
+import { handleReset } from "formik";
 
 function BottomButton({ formik }) {
   return (
@@ -26,7 +27,7 @@ function BottomButton({ formik }) {
           variant="contained"
           type="reset"
           value="Reset"
-          onClick={resetForm}
+          onClick={handleReset}
           fullWidth
         >
           Reset

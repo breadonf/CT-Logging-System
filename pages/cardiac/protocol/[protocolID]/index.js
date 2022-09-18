@@ -6,15 +6,16 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+
+import Buttons from "/components/CardiacForm/Buttons";
+import CardiacSetup from "/components/CardiacForm/CardiacSetup";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
+import PatientDetail from "/components/CardiacForm/PatientDetail";
 import React from "react";
-import { useQuery } from "react-query";
-import Buttons from "../../../../components/CardiacForm/Buttons";
-import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
-import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
-import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
 import { getCardiacSetupByID } from "../../../../queries/queries";
+import { useQuery } from "react-query";
+import { useRouter } from "next/router";
 
 export default function CardiacSetupViewer() {
   const router = useRouter();

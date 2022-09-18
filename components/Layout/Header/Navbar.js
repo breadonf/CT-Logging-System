@@ -14,7 +14,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { MenuList } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { maxHeight } from "@mui/system";
 
 const StyledMenu = styled((props) => <Menu elevation={1} {...props} />)(
   ({ theme }) => ({
@@ -182,6 +181,11 @@ const Navbar = () => {
                     <a>Search</a>
                   </Link>
                 </MenuItem>
+                <MenuItem sx={styleOfMenuItem}>
+                  <Link href="/general/materialTable" passHref>
+                    <a>Testing Table</a>
+                  </Link>
+                </MenuItem>
               </MenuList>
             </StyledMenu>
             <StyledMenu
@@ -201,7 +205,7 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/Table" passHref>
+                  <Link href="/cardiac/table" passHref>
                     <a>Table</a>
                   </Link>
                 </MenuItem>

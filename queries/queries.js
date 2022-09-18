@@ -45,6 +45,45 @@ const HomepageCT = `
       }
     }
 `;
+const HomepageCTUnlimited = `
+    #graphql
+    query HomePageCT() {
+      CT (sort: ["-count"]){
+        Date
+        count
+        remark
+        rate
+        volume
+        kV_a
+        sedation
+        sedatedBy
+        injectionSite
+        circumference
+        urgent
+        directPostContrast
+        handInjection
+        mixedContrast
+        keywords
+        PID
+        radiographers
+        radiologists
+        nurses
+        protocol
+        pitch
+        height
+        weight
+        ttp
+        age
+        inPatient
+        kV_b
+        delays
+        contrastType
+        ctdi
+        examType
+        IR
+      }
+    }
+`;
 const HomepageCTToday = `
     #graphql
     query HomePageCTToday($year: Float!, $month: Float!, $day: Float!) {
@@ -282,41 +321,25 @@ const ExamsRecordBySearch = `
 `;
 //Cardiac Protocol
 const CardiacSetup = `
+#graphql
+query CardiacCT( $page: Int) {
+  cardiacCT(sort: ["id"], limit: 25, page: $page) {
+    sedation
+    scanMode
+    id
+    name
+    date
+    IVSite
+  }
+}
+`;
+const CardiacSetupNumber = `
     #graphql
-    query HomePageCT($page: Int!) {
-      CT (page:$page, limit: 25, sort: ["-count"]){
-        Date
-        count
-        remark
-        rate
-        volume
-        kV_a
-        sedation
-        sedatedBy
-        injectionSite
-        circumference
-        urgent
-        directPostContrast
-        handInjection
-        mixedContrast
-        keywords
-        PID
-        radiographers
-        radiologists
-        nurses
-        protocol
-        pitch
-        height
-        weight
-        ttp
-        age
-        inPatient
-        kV_b
-        delays
-        contrastType
-        ctdi
-        examType
-        IR
+    query CardiacCTNumber {
+      cardiacCT_aggregated {
+        countDistinct {
+          id
+        }
       }
     }
 `;
@@ -432,6 +455,14 @@ const CardiacCaseRecordBySearch = `
     
 `;
 //Home Page
+
+export const getHomepageCTUnlimited = async () => {
+  const data = await fetchData(HomepageCTUnlimited, {
+    variables: {},
+  });
+
+  return data.data.CT;
+};
 export const getHomepageCT = async (page) => {
   const data = await fetchData(HomepageCT, {
     variables: { page: page },
@@ -441,7 +472,7 @@ export const getHomepageCT = async (page) => {
 };
 export const getHomepageCTToday = async (year, month, day) => {
   const data = await fetchData(HomepageCTToday, {
-    variables: {year: year, month: month, day: day },
+    variables: { year: year, month: month, day: day },
   });
 
   return data.data.CT;
@@ -491,6 +522,20 @@ export const getExamsRecordBySearch = async (key) => {
   return data.data;
 };
 //Cardiac Protocol
+export const getCardiacSetup = async (page) => {
+  const data = await fetchData(CardiacSetup, {
+    variables: { page: page },
+  });
+
+  return data.data.cardiacCT;
+};
+export const getCardiacSetupNumber = async () => {
+  const data = await fetchData(CardiacSetupNumber, {
+    variables: {},
+  });
+
+  return data.data.cardiacCT_aggregated[0].countDistinct.id;
+};
 export const getCardiacSetupByID = async (cardiacCtByIdId) => {
   const data = await fetchData(CardiacSetupByID, {
     variables: { cardiacCtByIdId: cardiacCtByIdId },
