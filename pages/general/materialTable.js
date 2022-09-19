@@ -1,7 +1,7 @@
 import { Container, Grid, Paper } from "@mui/material";
 
 import Head from "next/head";
-import { RecordTableHeaders } from "/components/Table/CardiacRecordNewHeader";
+import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeaderNew";
 import TableMaterialReact from "../../components/Table/MaterialTableReact";
 import { getHomepageCTUnlimited } from "../../queries/queries";
 import { useQuery } from "react-query";
