@@ -19,6 +19,7 @@ export default function TableMaterialReact({
   const tableTheme = useMemo(
     () =>
       createTheme({
+        height: {},
         palette: {
           primary: globalTheme.palette.secondary, //swap in the secondary color as the primary for the table
           info: {
@@ -63,12 +64,15 @@ export default function TableMaterialReact({
     enableRowActions: true,
     enableRowSelection: true,
     initialState: { showColumnFilters: true },
+    muiTableContainerProps: { sx: { maxHeight: "65vh" } },
+    muiTableProps: { sx: { overflow: "auto" } },
+    enableStickyHeader: true,
   };
   return (
     <>
       {isSuccess && (
         <ThemeProvider theme={tableTheme}>
-          <div style={{ height: height }}>
+          <div style={{ maxHeight: height }}>
             <MaterialReactTable {...configDataGrid} />
           </div>
         </ThemeProvider>

@@ -16,8 +16,6 @@ export default function Table() {
     }
   );
 
-  isSuccess && console.log(records);
-  console.log(RecordTableHeaders);
   return (
     <Grid sx={{ py: 3 }} container>
       <Head>

@@ -15,10 +15,11 @@ export const RecordTableHeaders = [
   },
   { accessorKey: "PID", header: "Patient ID" },
   {
-    accessorKey: "sedatedBy",
+    accessorKey: "sedation",
     header: "Sedation",
     width: 90,
     Cell: ({ cell }) => {
+      console.log(cell);
       return cell.getValue() ? (
         <Box>
           <CheckRoundedIcon />
@@ -27,10 +28,11 @@ export const RecordTableHeaders = [
         <Box></Box>
       );
     },
-    filterFn: "equals",
+
+    filterFn: "weakEquals",
     filterSelectOptions: [
       { text: "True", value: true },
-      { text: "False", value: false },
+      { text: "False", value: null | false },
     ],
     filterVariant: "select",
   },
