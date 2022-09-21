@@ -13,7 +13,6 @@ export default function Table() {
     data: records,
     isSuccess,
     isLoading,
-
     isPreviousData,
   } = useQuery(
     ["record", pageNumber],

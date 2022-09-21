@@ -1,5 +1,4 @@
-import { createTheme, ThemeProvider, useTheme } from "@mui/material";
-import { useMemo } from "react";
+import { ThemeProvider, createTheme, useTheme } from "@mui/material";
 
 import MaterialReactTable from "material-react-table";
 import { useMemo } from "react";
@@ -8,7 +7,10 @@ export default function TableMaterialReact({
   records,
   isSuccess,
   columnHeaders,
+  setPagination,
+  pagination,
   height = "80vh",
+  ...otherProps
 }) {
   const headers = useMemo(
     () => columnHeaders,
@@ -59,6 +61,8 @@ export default function TableMaterialReact({
   const configDataGrid = {
     columns: headers,
     data: records,
+    enableClickToCopy: true,
+    enableColumnActions: true,
     enableColumnFilterModes: true,
     enableColumnOrdering: true,
     enablePinning: true,
@@ -68,6 +72,9 @@ export default function TableMaterialReact({
     muiTableContainerProps: { sx: { maxHeight: "65vh" } },
     muiTableProps: { sx: { overflow: "auto" } },
     enableStickyHeader: true,
+    onPaginationChange: setPagination,
+    state: { pagination: pagination },
+    ...otherProps,
   };
   return (
     <>

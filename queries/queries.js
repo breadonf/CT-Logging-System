@@ -8,8 +8,8 @@ import fetchData from "../helpers/fetchData";
 // Home Page
 const HomepageCT = `
     #graphql
-    query HomePageCT($page: Int!) {
-      CT (page:$page, limit: 25, sort: ["-count"]){
+    query HomePageCT($page: Int!, $pageSize: Int!) {
+      CT (page:$page, limit: $pageSize, sort: ["-count"]){
         Date
         count
         remark
@@ -463,11 +463,11 @@ export const getHomepageCTUnlimited = async () => {
 
   return data.data.CT;
 };
-export const getHomepageCT = async (page) => {
+export const getHomepageCT = async (page, pageSize = 25) => {
   const data = await fetchData(HomepageCT, {
-    variables: { page: page },
+    variables: { page: page, pageSize: pageSize },
   });
-
+  console.log(data);
   return data.data.CT;
 };
 export const getHomepageCTToday = async (year, month, day) => {

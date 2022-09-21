@@ -1,11 +1,11 @@
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import { Chip } from "@mui/material";
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
-import { Chip } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
-import { GridActionsCellItem } from "@mui/x-data-grid";
-import Link from "next/link";
 
 export const RecordTableHeaders = [
   {
@@ -128,26 +128,6 @@ export const RecordTableHeaders = [
               variant="outlined"
               color="error"
               label={kVA}
-            />
-          ))}
-        </div>
-      ) : (
-        <></>
-      );
-    },
-  },
-  {
-    headerName: "kV (Tube B)",
-    field: "kV_b",
-    renderCell: (items) => {
-      return items.value ? (
-        <div>
-          {items.formattedValue.map((kVB) => (
-            <Chip
-              key={`kVB-${kVB}`}
-              variant="outlined"
-              color="error"
-              label={kVB}
             />
           ))}
         </div>
