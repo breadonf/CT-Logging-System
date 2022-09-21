@@ -1,15 +1,17 @@
+import { Box, Chip } from "@mui/material";
+
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { Chip } from "@mui/material";
 
 export const RecordTableHeaders = [
-  { accessorKey: "id", header: "Case ID" },
+  { accessorKey: "count", header: "Case ID" },
   {
     accessorKey: "Date",
     header: "Exam Date",
   },
   { accessorKey: "PID", header: "Patient ID" },
   {
-    accessorKey: "sedatedBy",
+    accessorKey: "sedation",
     header: "Sedation",
     width: 90,
     renderCell: (sedatedBy) => {

@@ -47,7 +47,7 @@ const HomepageCT = `
 `;
 const HomepageCTUnlimited = `
     #graphql
-    query HomePageCT() {
+    query HomePageCT {
       CT (sort: ["-count"]){
         Date
         count
