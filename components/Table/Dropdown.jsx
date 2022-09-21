@@ -1,8 +1,9 @@
 import * as React from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
+
+import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
@@ -29,7 +30,6 @@ export default function Dropdown({
   const handleChange = (event) => {
     getSelectedProtocols(event.target.value);
     setSelectedProtocols(event.target.value);
-    console.log(selectedProtocols);
   };
   return (
     <div>

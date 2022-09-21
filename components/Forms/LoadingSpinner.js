@@ -4,7 +4,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import React from "react";
 
 export function LoadingSpinner({ bgColor = "#F0F3BD" }) {
-  console.log(bgColor);
   return (
     <Grid sx={{ py: 3 }} container>
       <Grid item xs={12}>

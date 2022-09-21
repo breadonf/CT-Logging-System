@@ -26,7 +26,7 @@ export default function CardiacSetupTable() {
     async () => await getCardiacSetupRecordBySearch(queryWord),
     { retry: true }
   );
-  console.log(records);
+
   if (isQueryLoading || !isQuerySuccess || !records) {
     return <LoadingSpinner />;
   }

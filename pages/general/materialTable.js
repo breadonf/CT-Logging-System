@@ -2,11 +2,11 @@ import { Container, Grid, Paper } from "@mui/material";
 
 import Head from "next/head";
 import { RecordTableHeaders } from "/components/Table/CardiacRecordNewHeader";
-import TableMaterialReact from "../../components/Table/MaterialTableReact";
+import dynamic from "next/dynamic";
 import { getHomepageCTUnlimited } from "../../queries/queries";
 import { useQuery } from "react-query";
-import { useState } from "react";
 
+const TableMaterialReact = dynamic(() => import("/components/Layout/Footer"));
 export default function Table() {
   const { data: records, isSuccess, isLoading, isPreviousData } = useQuery(
     ["record"],
@@ -15,9 +15,6 @@ export default function Table() {
       keepPreviousData: true,
     }
   );
-
-  isSuccess && console.log(records);
-  console.log(RecordTableHeaders);
   return (
     <Grid sx={{ py: 3 }} container>
       <Head>

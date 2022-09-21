@@ -30,7 +30,7 @@ export default function CardiacSetupViewer() {
     async () => await getCardiacSetupByID(protocolID),
     { retry: true }
   );
-  console.log(data);
+
   if (isQueryLoading || !isQuerySuccess || !data) {
     return <LoadingSpinner />;
   }

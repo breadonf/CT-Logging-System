@@ -1,6 +1,5 @@
-import { useMemo, useState } from "react";
-
 import MaterialReactTable from "material-react-table";
+import { useMemo } from "react";
 
 export default function TableMaterialReact({
   records,

@@ -1,10 +1,10 @@
-import Tooltip from "@mui/material/Tooltip";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { Chip } from "@mui/material";
+import { GridActionsCellItem } from "@mui/x-data-grid";
 import Link from "next/link";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
-import { GridActionsCellItem } from "@mui/x-data-grid";
-import { Chip } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 
 export const RecordTableHeaders = [
   {
@@ -61,7 +61,7 @@ export const RecordTableHeaders = [
       ) {
         return "";
       }
-      console.log(params);
+
       return `${params.values.year}-${params.values.month}-${params.values.day} `;
     },
   },
