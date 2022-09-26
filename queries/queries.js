@@ -48,7 +48,7 @@ const HomepageCT = `
 const HomepageCTUnlimited = `
     #graphql
     query HomePageCT {
-      CT (sort: ["-count"]){
+      CT (sort: ["-count"], limit: -1){
         Date
         count
         remark
@@ -467,7 +467,6 @@ export const getHomepageCT = async (page, pageSize = 25) => {
   const data = await fetchData(HomepageCT, {
     variables: { page: page, pageSize: pageSize },
   });
-  console.log(data);
   return data.data.CT;
 };
 export const getHomepageCTToday = async (year, month, day) => {

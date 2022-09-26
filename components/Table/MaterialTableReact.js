@@ -61,30 +61,29 @@ export default function TableMaterialReact({
   const configDataGrid = {
     columns: headers,
     data: records,
-    enableClickToCopy: true,
-    enableColumnActions: true,
-    enableColumnFilterModes: true,
-    enableColumnOrdering: true,
-    enablePinning: true,
-    enableRowActions: true,
-    enableRowSelection: true,
+    // enableClickToCopy: true,
+    // enableColumnActions: true,
+    // enableColumnFilterModes: true,
+    // enableColumnOrdering: true,
+    // enablePinning: true,
+    // enableRowActions: true,
+    // enableRowSelection: true,
     initialState: { showColumnFilters: true },
-    muiTableContainerProps: { sx: { maxHeight: "65vh" } },
-    muiTableProps: { sx: { overflow: "auto" } },
-    enableStickyHeader: true,
-    onPaginationChange: setPagination,
-    state: { pagination: pagination },
+    //muiTableContainerProps: { sx: { maxHeight: "65vh" } },
+    // muiTableProps: { sx: { overflow: "auto" } },
+    // onPaginationChange: setPagination,
+    // state: { pagination: pagination },
     ...otherProps,
   };
   return (
     <>
-      {isSuccess && (
+      {
         <ThemeProvider theme={tableTheme}>
           <div style={{ maxHeight: height }}>
             <MaterialReactTable {...configDataGrid} />
           </div>
         </ThemeProvider>
-      )}
+      }
     </>
   );
 }

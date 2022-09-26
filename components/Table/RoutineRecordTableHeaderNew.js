@@ -17,7 +17,12 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { Chip } from "@mui/material";
 
 export const RecordTableHeaders = [
-  { accessorKey: "count", header: "Case ID" },
+  {
+    accessorKey: "count",
+    header: "Case ID",
+    maxSize: 150,
+    enableColumnFilterModes: false,
+  },
   {
     accessorKey: "Date",
     header: "Exam Date",
@@ -36,7 +41,12 @@ export const RecordTableHeaders = [
 
   {
     accessorKey: "age",
+    accessorFn: (originalRow) => {
+      return originalRow.age ? originalRow.age : "no data";
+    },
     header: "Age",
+    filterFn: "betweenInclusive",
+    columnFilterModeOptions: ["betweenInclusive", "greaterThan", "lessThan"],
   },
   {
     header: "Protocol",
@@ -63,12 +73,26 @@ export const RecordTableHeaders = [
   {
     header: "Direct Post Contrast",
     accessorKey: "directPostContrast",
-    Cell: ({ cell }) => (cell.getValue() ? <CheckRoundedIcon /> : <></>),
+    accessorFn: (originalRow) => {
+      return originalRow.directPostContrast ? "true" : "false";
+    },
+    filterVariant: "checkbox",
+    Cell: ({ cell }) => {
+      return cell.getValue() === "true" ? <CheckRoundedIcon /> : <></>;
+    },
+    minSize: 250,
   },
   { header: "Site", accessorKey: "injectionSite" },
   { header: "Rate", accessorKey: "rate" },
   { header: "Volume", accessorKey: "volume" },
-  { header: "CTDI", accessorKey: "ctdi", width: 60 },
+  {
+    header: "CTDI",
+    accessorKey: "ctdi",
+    width: 60,
+    accessorFn: (originalRow) => {
+      return originalRow.ctdi ? originalRow.ctdi : "no data";
+    },
+  },
   {
     header: "kV (Tube A)",
     accessorKey: "kV_a",
@@ -80,7 +104,7 @@ export const RecordTableHeaders = [
               <Chip
                 key={`kV_a-${i}`}
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 label={kV}
               />
             );
@@ -114,9 +138,19 @@ export const RecordTableHeaders = [
   {
     header: "Reporting Radiologists",
     accessorKey: "radiologists",
-    width: 150,
+    accessorFn: (originalRow) => {
+      return originalRow.radiologists ? originalRow.radiologists : "no data";
+    },
+    filterFn: "equals",
+    filterSelectOptions: [
+      { text: "W P Cheung", value: "W P Cheung" },
+      { text: "E Kan, Elaine", value: "E Kan, Elaine" },
+      { text: "W K Ng, Carol", value: "W K Ng, Carol" },
+    ],
+    filterVariant: "select",
+    minSize: 250,
     Cell: ({ cell }) => {
-      return cell.getValue() ? (
+      return cell.getValue() && Array.isArray(cell.getValue()) ? (
         <div>
           {cell.getValue().map((radiologist, i) => (
             <Chip
