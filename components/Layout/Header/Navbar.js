@@ -59,19 +59,21 @@ const Navbar = () => {
               display: { display: "flex", justifyContent: "right" },
             }}
           >
-            <Link href={} passHref key={page}>
-              <Button
-                key={page[1]}
-                sx={{
-                  my: 2,
-                  mx: 1,
-                  display: "block",
-                  color: "#F0F3BD",
-                }}
-              >
-                {page[1]}
-              </Button>
-            </Link>
+            {pages.map((page) => (
+              <Link href={`${page[0]}`} passHref key={page[1]}>
+                <Button
+                  key={page[1]}
+                  sx={{
+                    my: 2,
+                    mx: 1,
+                    display: "block",
+                    color: "#F0F3BD",
+                  }}
+                >
+                  {page[1]}
+                </Button>
+              </Link>
+            ))}
           </Box>
         </Toolbar>
       </Container>
