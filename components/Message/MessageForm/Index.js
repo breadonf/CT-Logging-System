@@ -16,7 +16,7 @@ import TextEditor from "../TextEditor";
 function MessageForm(props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Grid container spacing={2} sx={{ justifyContent: "center" }}>
+      <Grid container spacing={2} sx={{ justifyContent: "center", alignContent: "center" }}>
         <Grid item xs={12}>
           <Formik
             validationSchema={MESSAGE_VALIDATION}
@@ -25,7 +25,7 @@ function MessageForm(props) {
           >
             {(formik) => (
               <Form>
-                <Paper>
+                <Paper sx={{p:2, m:2}}>
                   <Grid container spacing={2}>
                     <Grid item xs={4}>
                       <DateTimePicker name="inputDate" label="Input Date" />
