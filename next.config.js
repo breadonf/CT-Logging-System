@@ -10,4 +10,7 @@ module.exports = withBundleAnalyzer({
   future: {
     webpack5: true,
   },
+  images: {
+    deviceSizes: [1920, 2048, 3840],
+  },
 });

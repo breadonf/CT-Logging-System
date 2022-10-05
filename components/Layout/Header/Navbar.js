@@ -61,8 +61,10 @@ const Navbar = () => {
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [anchorEl3, setAnchorEl3] = React.useState(null);
   const openGeneral = Boolean(anchorEl);
   const openGeneral2 = Boolean(anchorEl2);
+  const openGeneral3 = Boolean(anchorEl3);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -77,6 +79,9 @@ const Navbar = () => {
   };
   const handleClose2 = () => {
     setAnchorEl2(null);
+  };
+  const handleClose3 = () => {
+    setAnchorEl3(null);
   };
   const styleOfMenuItem = {
     display: "block",
@@ -104,15 +109,21 @@ const Navbar = () => {
           <Link href={"/"} passHref>
             <Button sx={{ minWidth: "190px" }}>
               <Grid container alignItems="center" spacing={1}>
-                <Grid item xs={2} sx={{ pt: 10 }}>
-                  <Image src="/favicon.ico" alt="logo" width={50} height={50} />
+                <Grid item xs={3}>
+                  <Box sx={{ pt: 1 }}>
+                    <Image
+                      src="/favicon.ico"
+                      alt="logo"
+                      height="50"
+                      width="50"
+                    />
+                  </Box>
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={9} sx={{ display: "block" }}>
                   <Typography
                     variant="h6"
-                    noWrap
                     component="div"
-                    sx={{ color: "white" }}
+                    sx={{ color: "white", display: "block" }}
                   >
                     Excel CT
                   </Typography>
@@ -130,6 +141,16 @@ const Navbar = () => {
               },
             }}
           >
+            <Button
+              sx={styleOfMenuItem}
+              id="basic-button3"
+              aria-controls={openGeneral3 ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={openGeneral3 ? "true" : undefined}
+              onMouseOver={handleClick3}
+            >
+              Message
+            </Button>
             <Button
               sx={styleOfMenuItem}
               id="basic-button"
@@ -212,6 +233,29 @@ const Navbar = () => {
                 <MenuItem sx={styleOfMenuItem}>
                   <Link href="/cardiac" passHref>
                     <a>Search</a>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </StyledMenu>
+            <StyledMenu
+              id="basic-menu3"
+              anchorEl={anchorEl3}
+              open={openGeneral3}
+              onClose={handleClose3}
+              sx={styleOfMenu}
+              MenuListProps={{ onMouseLeave: handleClose3 }}
+              getContentAnchorEl={null}
+              anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+            >
+              <MenuList onMouseLeave={handleClose3} sx={styleOfMenuItem}>
+                <MenuItem sx={styleOfMenuItem}>
+                  <Link href="/message" passHref>
+                    <a>Message Board</a>
+                  </Link>
+                </MenuItem>
+                <MenuItem sx={styleOfMenuItem}>
+                  <Link href="/message/form" passHref>
+                    <a>Create New Message</a>
                   </Link>
                 </MenuItem>
               </MenuList>

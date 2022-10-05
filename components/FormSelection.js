@@ -1,17 +1,17 @@
-import React from "react";
-import Link from "next/link";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
+import Link from "next/link";
+import React from "react";
+import Typography from "@mui/material/Typography";
 
 export default function FormSelection() {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Link href={"/Forms/RoutineCases"} passHref>
+        <Link href={"/general/logform"} passHref>
           <Box
             sx={{
               display: "flex",
@@ -31,7 +31,7 @@ export default function FormSelection() {
         </Link>
       </Grid>
       <Grid item xs={6}>
-        <Link href={"/Forms/CardiacCases"} passHref>
+        <Link href={"/cardiac/protocol/setup"} passHref>
           <Box
             sx={{
               display: "flex",
