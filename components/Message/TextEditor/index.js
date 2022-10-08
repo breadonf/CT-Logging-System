@@ -29,15 +29,16 @@ const TextEditor = ({ value, setFieldValue }) => {
     ],
   });
 
-  const [editorState, setEditorState] = useState(
-    value ? value : EditorState.createWithContent(emptyContentState)
-  );
+  const [editorState, setEditorState] = useState(null);
 
   const [editor, seteditor] = useState(false);
 
   useEffect(() => {
     setTimeout(seteditor(true), 5000);
-  }, [editorState]);
+    setEditorState(
+      editorState ? value : EditorState.createWithContent(emptyContentState)
+    );
+  }, []);
 
   const onEditorStateChange = (editorState) => {
     setFieldValue(editorState);

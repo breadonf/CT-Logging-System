@@ -17,7 +17,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import FORM_VALIDATION from "./ValidationSchema";
 
 import { getHomepageData } from "../../../queries/queries";
-import { LoadingSpinner } from "../CardiacForm/LoadingSpinner";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 function RoutineForm({ data, handleSubmit }) {
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
