@@ -1,7 +1,8 @@
 import { Container, Grid, Paper } from "@mui/material";
-import React from "react";
+
 import BoxArray from "./BoxArray";
 import MessageHistoryHeading from "./heading";
+import React from "react";
 
 function MessageHistory({ data }) {
   return (

@@ -1,31 +1,74 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import INITIAL_MESSAGE_STATE from "./InitialMessageState";
-import MESSAGE_VALIDATION from "./ValidationSchema";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { Container, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Form, Formik } from "formik";
+
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { Grid, Paper, Typography } from "@mui/material";
-import DateTimePicker from "../../FormsUI/DateTimePicker";
-import Textfield from "../../FormsUI/Textfield";
-import Select from "../../FormsUI/Select";
-import Checkbox from "../../FormsUI/Checkbox";
-import categories from "./categories.json";
 import ButtonWrapper from "./buttonWrapper";
+import Checkbox from "../../FormsUI/Checkbox";
+import DateTimePicker from "../../FormsUI/DateTimePicker";
+import INITIAL_MESSAGE_STATE from "./InitialMessageState";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MESSAGE_VALIDATION from "./ValidationSchema";
+import React from "react";
+import Select from "../../FormsUI/Select";
 import TextEditor from "../TextEditor";
+import Textfield from "../../FormsUI/Textfield";
+import categories from "./categories.json";
+
+const withPaperWrapper = (Component) => (props) => {
+  return (
+    <Container sx={{ pt: 1, pb: 2 }} maxWidth="lg">
+      <Grid container sx={{ minHeight: "85vh", justifyContent: "center" }}>
+        <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Paper
+                sx={{
+                  boxShadow: 4,
+                  height: "85vh",
+                  p: 20,
+                  mt: 2,
+                  bgcolor: "#222222",
+                }}
+              >
+                <Component {...props} />
+              </Paper>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
 
 function MessageForm(props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-        <Grid item xs={12}>
-          <Formik
-            validationSchema={MESSAGE_VALIDATION}
-            onSubmit={props.handleSubmit}
-            initialValues={INITIAL_MESSAGE_STATE}
-          >
-            {(formik) => (
-              <Form>
-                <Paper>
+      <Formik
+        validationSchema={MESSAGE_VALIDATION}
+        onSubmit={props.handleSubmit}
+        initialValues={INITIAL_MESSAGE_STATE}
+      >
+        {(formik) => (
+          <Form>
+            <Grid container spacing={2} sx={{ height: "90vh", py: 3 }}>
+              <Grid item xs={12}>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    p: 3,
+                    height: "85vh",
+                    bgcolor: "#FFFFFF",
+                    overflowY: "auto",
+                  }}
+                >
+                  <Grid item xs={12}>
+                    <Typography variant="h3" align="center" color="#093A3E">
+                      New Message
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider sx={{ pt: 10 }} />
+                  </Grid>
                   <Grid container spacing={2}>
                     <Grid item xs={4}>
                       <DateTimePicker name="inputDate" label="Input Date" />
@@ -79,11 +122,11 @@ function MessageForm(props) {
                     <ButtonWrapper formik={formik} />
                   </Grid>
                 </Paper>
-              </Form>
-            )}
-          </Formik>
-        </Grid>
-      </Grid>
+              </Grid>
+            </Grid>
+          </Form>
+        )}
+      </Formik>
     </LocalizationProvider>
   );
 }

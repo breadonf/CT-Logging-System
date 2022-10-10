@@ -1,12 +1,13 @@
 import { Box, CircularProgress, Container } from "@mui/material";
+
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
-import { useMutation } from "react-query";
-import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import MessageForm from "/components/Message/MessageForm";
-import setData from "/helpers/setData";
+import React from "react";
 import { createMessage } from "/queries/mutations";
+import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
+import setData from "/helpers/setData";
+import { useMutation } from "react-query";
+import { useRouter } from "next/router";
 
 function MessageFormPage() {
   const router = useRouter();
@@ -29,7 +30,7 @@ function MessageFormPage() {
       { ...modifiedValues },
       {
         onSuccess: async (_res) => {
-          router.push("/Message");
+          router.push("/message");
         },
         onError: async (err, varia) => {
           console.log("onError", err, varia);

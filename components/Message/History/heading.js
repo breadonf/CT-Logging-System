@@ -1,8 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import { Grid, Typography, Button } from "@mui/material";
-import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import { Button, Grid, Typography } from "@mui/material";
+
 import CreateIcon from "@mui/icons-material/Create";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import Link from "next/link";
+import React from "react";
 
 export default function MessageHistoryHeading() {
   return (
@@ -14,7 +15,7 @@ export default function MessageHistoryHeading() {
         </Typography>
       </Grid>
       <Grid item xs={4} sx={{ alignSelf: "center", direction: "rtl", pr: 4 }}>
-        <Link href={"/Message/Form"} passHref>
+        <Link href={"/message/form"} passHref>
           <Button variant="contained">
             Leave a Message
             <CreateIcon />
