@@ -4,12 +4,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
-  experimental: {
-    outputStandalone: true,
-  },
-  future: {
-    webpack5: true,
-  },
   images: {
     deviceSizes: [1920, 2048, 3840],
   },

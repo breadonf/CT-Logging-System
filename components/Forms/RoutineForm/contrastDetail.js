@@ -1,16 +1,17 @@
-import React from "react";
-import { FieldArray } from "formik";
-import { Grid, Typography, Button, Switch, Divider } from "@mui/material";
+import { Button, Divider, Grid, Switch, Typography } from "@mui/material";
+
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
-import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
-import Select from "../../FormsUI/Select";
+import { FieldArray } from "formik";
 import RadioGroup from "../../FormsUI/RadioGroup";
-import typeOfContrast from "../SelectItems/typeOfContrast.json";
-import injectionSites from "../SelectItems/injectionSites.json";
+import React from "react";
+import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
+import Select from "../../FormsUI/Select";
+import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import Textfield from "../../FormsUI/Textfield";
+import injectionSites from "../SelectItems/injectionSites.json";
+import typeOfContrast from "../SelectItems/typeOfContrast.json";
 
 function ContrastDetail({ data, contrast, handleSwitch }) {
   return (
@@ -87,8 +88,8 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
               <FieldArray name="delays">
                 {(fieldArrayProps) => {
                   const { push, remove, form } = fieldArrayProps;
-                  const { values } = form;
-                  const { delays } = values;
+                  let { values } = form;
+                  let { delays } = values;
                   !delays ? (delays = [""]) : delays;
                   return (
                     <div>

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { alpha, styled } from "@mui/material/styles";
+import { signOut, useSession } from "next-auth/react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -46,6 +47,7 @@ const StyledMenu = styled((props) => <Menu elevation={1} {...props} />)(
 );
 
 const Navbar = () => {
+  const { status } = useSession();
   const day = new Date();
   const [today, setToday] = React.useState(
     day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate()
@@ -176,6 +178,21 @@ const Navbar = () => {
                 <a>Today cases</a>
               </Link>
             </Button>
+            {status === "authenticated" ? (
+              <Button
+                variant="contained"
+                id="logout-button"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Button variant="contained" onClick={(e) => e.preventDefault()}>
+                <Link href={`/sign-in`} replace>
+                  <a>Sign In</a>
+                </Link>
+              </Button>
+            )}
             <StyledMenu
               id="basic-menu"
               anchorEl={anchorEl}
@@ -253,11 +270,15 @@ const Navbar = () => {
                     <a>Message Board</a>
                   </Link>
                 </MenuItem>
-                <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/message/form" passHref>
-                    <a>Create New Message</a>
-                  </Link>
-                </MenuItem>
+                {status === "authenticated" ? (
+                  <MenuItem sx={styleOfMenuItem}>
+                    <Link href="/message/form" passHref>
+                      <a>Create New Message</a>
+                    </Link>
+                  </MenuItem>
+                ) : (
+                  <></>
+                )}
               </MenuList>
             </StyledMenu>
           </Box>

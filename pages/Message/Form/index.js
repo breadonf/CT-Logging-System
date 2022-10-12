@@ -6,11 +6,19 @@ import React from "react";
 import { createMessage } from "/queries/mutations";
 import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import setData from "/helpers/setData";
+import { toast } from "react-hot-toast";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 function MessageFormPage() {
   const router = useRouter();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/sign-in");
+    },
+  });
   const mutation = useMutation(
     async (newFormData) => {
       await setData(createMessage, { data: newFormData });
@@ -49,7 +57,7 @@ function MessageFormPage() {
   };
   if (mutation.isSuccess) {
   }
-
+  if (!session) return null;
   return (
     <>
       <Head>
