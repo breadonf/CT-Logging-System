@@ -9,7 +9,7 @@ import Container from "@mui/material/Container";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import WithPaperWrapper from "/components/Forms/WithPaperWrapper";
+import WithPaperWrapper from "../components/Forms/withPaperWrapper";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 

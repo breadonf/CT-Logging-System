@@ -5,6 +5,7 @@ import MessageHistoryHeading from "./heading";
 import React from "react";
 
 function MessageHistory({ data, status }) {
+ 
   return (
     <Container sx={{ pt: 1, pb: 2 }} maxWidth="lg">
       <Grid container sx={{ minHeight: "85vh", justifyContent: "center" }}>

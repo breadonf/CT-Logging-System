@@ -33,7 +33,6 @@ const TextEditor = ({ value, setFieldValue }) => {
   const [editorState, setEditorState] = useState(
     value ? value : EditorState.createWithContent(emptyContentState)
   );
-
   const [editor, setEditor] = useState(false);
 
   useEffect(() => {

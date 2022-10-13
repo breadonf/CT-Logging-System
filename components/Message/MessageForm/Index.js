@@ -20,7 +20,7 @@ function MessageForm(props) {
       <Formik
         validationSchema={MESSAGE_VALIDATION}
         onSubmit={props.handleSubmit}
-        initialValues={INITIAL_MESSAGE_STATE}
+        initialValues={props.data ? props.data : INITIAL_MESSAGE_STATE}
       >
         {(formik) => (
           <Form>

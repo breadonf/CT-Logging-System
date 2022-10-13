@@ -1,12 +1,13 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
 import { useMutation, useQuery } from "react-query";
+
+import Head from "next/head";
 import MessageForm from "/components/Message/MessageForm";
+import React from "react";
+import { getMessageByID } from "/queries/queries";
 import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import setData from "/helpers/setData";
 import { updateMessageById } from "/queries/mutations";
-import { getMessageByID } from "/queries/queries";
+import { useRouter } from "next/router";
 
 function MessageEditPage() {
   const router = useRouter();
@@ -18,7 +19,7 @@ function MessageEditPage() {
     isError,
   } = useQuery(
     ["MessageByID", MessageId],
-    async () => await getMessageByID(parseInt(ExamId)),
+    async () => await getMessageByID(parseInt(MessageId)),
     {
       retry: true,
       refetchOnMount: "always",
@@ -71,7 +72,9 @@ function MessageEditPage() {
     return <></>;
   }
   if (isQuerySuccess && fetchedData) {
-    const { Message_by_Id } = fetchedData;
+    const { message_by_id } = fetchedData;
+    const { messageEditorState } = message_by_id;
+
     return (
       <>
         <Head>
@@ -79,7 +82,7 @@ function MessageEditPage() {
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
-        <MessageForm data={Message_by_Id} handleSubmit={handleUpdate} />
+        <MessageForm data={message_by_id} handleSubmit={handleUpdate} />
       </>
     );
   }

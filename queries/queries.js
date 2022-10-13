@@ -185,6 +185,7 @@ const MessageData = `
     #graphql
     query MessageData {
       message (sort: ["-inputDate"]) {
+        id
         inputDate
         inputDate_func {
           year
@@ -211,14 +212,19 @@ const MessageData = `
 const MessageByID = `
     #graphql
     query MessageByID($MessageByIdId: ID!) {
-      Message_by_id(id: $MessageByIdId) {
+      message_by_id(id: $MessageByIdId) {
         id
         inputDate
-        effectiveDate
-        date_func {
+        inputDate_func {
           year
-          day
           month
+          day
+        }
+        effectiveDate
+        effectiveDate_func {
+          year
+          month
+          day
         }
         category
         inputUser
@@ -226,6 +232,7 @@ const MessageByID = `
         important
         active
         messageEditorState
+        htmlMessage
         comments
       }
     }
@@ -502,7 +509,6 @@ export const getMessageByID = async (MessageByIdId) => {
   const data = await fetchData(MessageByID, {
     variables: { MessageByIdId: MessageByIdId },
   });
-
   return data.data;
 };
 //Exam Detail
@@ -517,7 +523,6 @@ export const getExamsRecordBySearch = async (key) => {
   const data = await fetchData(ExamsRecordBySearch, {
     variables: { key: key },
   });
-  console.log("in queries", data);
   return data.data;
 };
 //Cardiac Protocol
