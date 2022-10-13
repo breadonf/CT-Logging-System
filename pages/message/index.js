@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 
 function Logbook() {
   const { status } = useSession();
-  const { data: message, isSuccess, isLoading } = useQuery(
+  const { data: message, isSuccess, isLoading, isError } = useQuery(
     "message",
     async () => await getMessageData()
   );
@@ -21,6 +21,12 @@ function Logbook() {
       </Head>
       {isLoading && <LoadingSpinner bgColor="#222222" />}
       {isSuccess && <MessageHistory data={message} status={status} />}
+      {isError && (
+        <LoadingSpinner
+          bgColor="#222222"
+          error="Data cannot be loaded, Please contact Brendon or Will."
+        />
+      )}
     </>
   );
 }

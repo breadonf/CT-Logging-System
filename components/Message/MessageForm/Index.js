@@ -1,4 +1,4 @@
-import { Container, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Divider, Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -13,32 +13,6 @@ import Select from "../../FormsUI/Select";
 import TextEditor from "../TextEditor";
 import Textfield from "../../FormsUI/Textfield";
 import categories from "./categories.json";
-
-const withPaperWrapper = (Component) => (props) => {
-  return (
-    <Container sx={{ pt: 1, pb: 2 }} maxWidth="lg">
-      <Grid container sx={{ minHeight: "85vh", justifyContent: "center" }}>
-        <Grid item xs={12}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Paper
-                sx={{
-                  boxShadow: 4,
-                  height: "85vh",
-                  p: 20,
-                  mt: 2,
-                  bgcolor: "#222222",
-                }}
-              >
-                <Component {...props} />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
-  );
-};
 
 function MessageForm(props) {
   return (

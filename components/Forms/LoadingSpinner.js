@@ -2,8 +2,9 @@ import { Container, Grid, Paper } from "@mui/material";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import React from "react";
+import { toast } from "react-hot-toast";
 
-export function LoadingSpinner({ bgColor = "#F0F3BD" }) {
+export function LoadingSpinner({ bgColor = "#F0F3BD", error = false }) {
   return (
     <Grid sx={{ py: 3 }} container>
       <Grid item xs={12}>
@@ -27,9 +28,22 @@ export function LoadingSpinner({ bgColor = "#F0F3BD" }) {
               justifyContent="center"
               alignItems="center"
             >
-              <Grid item xs={12}>
-                <CircularProgress size="25vh" />
-              </Grid>
+              {error ? (
+                toast.error(`${error}`, {
+                  style: {
+                    border: "1px solid #713200",
+                    padding: "40px",
+                    color: "#713200",
+                    fontSize: "1.5rem",
+                    minWidth: "20%",
+                  },
+                  duration: 4000,
+                })
+              ) : (
+                <Grid item xs={12}>
+                  <CircularProgress size="25vh" />
+                </Grid>
+              )}
             </Grid>
           </Paper>
         </Container>

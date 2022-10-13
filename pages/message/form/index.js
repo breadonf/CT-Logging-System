@@ -6,7 +6,6 @@ import React from "react";
 import { createMessage } from "/queries/mutations";
 import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import setData from "/helpers/setData";
-import { toast } from "react-hot-toast";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
