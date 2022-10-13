@@ -9,11 +9,13 @@ function BoxArray({ data }) {
     <>
       {Object.values(data).map((value, index) => {
         const updatedContentState = value.messageEditorState;
-        console.log("value in message history", updatedContentState);
+        if (typeof updatedContentState !== "object") {
+          const JSONContentState = JSON.parse(updatedContentState);
 
-        const contentState = convertFromRaw(updatedContentState);
-        const editorState = EditorState.createWithContent(contentState);
-        value.messageEditorState = editorState;
+          const contentState = convertFromRaw(JSONContentState);
+          const editorState = EditorState.createWithContent(contentState);
+          value.messageEditorState = editorState;
+        }
         return (
           <div key={index}>
             {value.active ? (

@@ -1,6 +1,7 @@
 import { Container, Grid, Paper } from "@mui/material";
 
-function WithPaperWrapper({ children }) {
+function WithPaperWrapper(props) {
+  const { children, bgcolor = "#F0F3BD" } = props;
   return (
     <Container sx={{ pt: 1, pb: 2 }} maxWidth="lg">
       <Grid container sx={{ minHeight: "85vh", justifyContent: "center" }}>
@@ -13,7 +14,7 @@ function WithPaperWrapper({ children }) {
                   height: "85vh",
                   p: 20,
                   mt: 2,
-                  bgcolor: "#F0F3BD",
+                  bgcolor: bgcolor,
                 }}
               >
                 {children}

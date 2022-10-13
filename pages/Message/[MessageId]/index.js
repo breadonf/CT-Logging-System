@@ -1,3 +1,4 @@
+import { EditorState, convertFromRaw } from "draft-js";
 import { useMutation, useQuery } from "react-query";
 
 import Head from "next/head";
@@ -6,6 +7,7 @@ import React from "react";
 import { getMessageByID } from "/queries/queries";
 import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import setData from "/helpers/setData";
+import { toast } from "react-hot-toast";
 import { updateMessageById } from "/queries/mutations";
 import { useRouter } from "next/router";
 
@@ -52,10 +54,18 @@ function MessageEditPage() {
         {
           onSuccess: async (_res) => {
             alert("Message uploaded!");
-            router.push("/Message");
+            router.push("/message");
           },
           onError: async (err, varia) => {
-            console.log("onError", err, varia);
+            toast.error(`Input failed. Error: ${varia}`, {
+              style: {
+                border: "1px solid #713200",
+                padding: "40px",
+                color: "#713200",
+                fontSize: "1.5rem",
+                minWidth: "20%",
+              },
+            });
           },
         }
       );
@@ -73,8 +83,15 @@ function MessageEditPage() {
   }
   if (isQuerySuccess && fetchedData) {
     const { message_by_id } = fetchedData;
-    const { messageEditorState } = message_by_id;
-
+    let { messageEditorState } = message_by_id;
+    const updatedContentState = messageEditorState;
+    if (typeof updatedContentState !== "object") {
+      const JSONContentState = JSON.parse(updatedContentState);
+      const contentState = convertFromRaw(JSONContentState);
+      const editorState = EditorState.createWithContent(contentState);
+      message_by_id.messageEditorState = editorState;
+    }
+    console.log("form", message_by_id);
     return (
       <>
         <Head>
@@ -82,7 +99,11 @@ function MessageEditPage() {
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
-        <MessageForm data={message_by_id} handleSubmit={handleUpdate} />
+        <MessageForm
+          title="Edit Message"
+          data={message_by_id}
+          handleSubmit={handleUpdate}
+        />
       </>
     );
   }
