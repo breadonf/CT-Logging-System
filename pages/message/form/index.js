@@ -1,15 +1,23 @@
 import { Box, CircularProgress, Container } from "@mui/material";
+
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
-import { useMutation } from "react-query";
-import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import MessageForm from "/components/Message/MessageForm";
-import setData from "/helpers/setData";
+import React from "react";
 import { createMessage } from "/queries/mutations";
+import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
+import setData from "/helpers/setData";
+import { useMutation } from "react-query";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 function MessageFormPage() {
   const router = useRouter();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/sign-in");
+    },
+  });
   const mutation = useMutation(
     async (newFormData) => {
       await setData(createMessage, { data: newFormData });
@@ -29,7 +37,7 @@ function MessageFormPage() {
       { ...modifiedValues },
       {
         onSuccess: async (_res) => {
-          router.push("/Message");
+          router.push("/message");
         },
         onError: async (err, varia) => {
           console.log("onError", err, varia);
@@ -48,7 +56,7 @@ function MessageFormPage() {
   };
   if (mutation.isSuccess) {
   }
-
+  if (!session) return null;
   return (
     <>
       <Head>

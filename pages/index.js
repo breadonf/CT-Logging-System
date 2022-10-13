@@ -1,7 +1,9 @@
+import FormSelection from "../components/FormSelection";
 import Head from "next/head";
 import React from "react";
-import FormSelection from "../components/FormSelection";
 
+// TODO Discuss changing
+// TODO the index page to redirecting to message board to enhance handover
 function index() {
   return (
     <>

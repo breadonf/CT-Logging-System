@@ -1,9 +1,10 @@
 import { Container, Grid, Paper } from "@mui/material";
-import React from "react";
+
 import BoxArray from "./BoxArray";
 import MessageHistoryHeading from "./heading";
+import React from "react";
 
-function MessageHistory({ data }) {
+function MessageHistory({ data, status }) {
   return (
     <Container sx={{ pt: 1, pb: 2 }} maxWidth="lg">
       <Grid container sx={{ minHeight: "85vh", justifyContent: "center" }}>
@@ -19,7 +20,7 @@ function MessageHistory({ data }) {
                   bgcolor: "#222222",
                 }}
               >
-                <MessageHistoryHeading />
+                <MessageHistoryHeading status={status} />
                 <Grid
                   container
                   spacing={2}

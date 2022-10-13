@@ -6,6 +6,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 
 import Layout from "../components/Layout";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { SessionProvider } from "next-auth/react";
 
 const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
 const queryClient = new QueryClient({
@@ -24,10 +25,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <SessionProvider>
+          <Layout>
+            <Component {...pageProps} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </Layout>
+        </SessionProvider>
       </Hydrate>
     </QueryClientProvider>
   );

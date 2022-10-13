@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { EditorState, convertFromRaw } from "draft-js";
+import React, { useEffect, useState } from "react";
+
+import dynamic from "next/dynamic";
 
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -33,10 +34,10 @@ const TextEditor = ({ value, setFieldValue }) => {
     value ? value : EditorState.createWithContent(emptyContentState)
   );
 
-  const [editor, seteditor] = useState(false);
+  const [editor, setEditor] = useState(false);
 
   useEffect(() => {
-    setTimeout(seteditor(true), 5000);
+    setTimeout(setEditor(true), 5000);
   }, [editorState]);
 
   const onEditorStateChange = (editorState) => {
