@@ -15,6 +15,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 import FORM_VALIDATION from "./ValidationSchema";
+import INITIAL_FORM_STATE from "./InitialFormState";
 
 import { getHomepageData } from "../../../queries/queries";
 import { LoadingSpinner } from "../LoadingSpinner";
@@ -57,7 +58,7 @@ function RoutineForm({ data, handleSubmit }) {
               }}
             >
               <Formik
-                initialValues={data}
+                initialValues={data ? data : INITIAL_FORM_STATE}
                 validationSchema={FORM_VALIDATION}
                 onSubmit={handleSubmit}
               >

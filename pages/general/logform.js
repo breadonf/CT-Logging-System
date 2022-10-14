@@ -44,7 +44,7 @@ function RoutineCases() {
               },
             }
           );
-          router.push("/Table");
+          router.push("/table");
         },
         onError: async (err, varia) => {
           toast.error(`Input failed. Error: ${varia}`, {

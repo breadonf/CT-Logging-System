@@ -23,7 +23,7 @@ export const RecordTableHeaders = [
           label="View"
         />
       </Link>,
-      <Link key="2" passHref href={`/Forms/editCardiacSetup/${params.id}`}>
+      <Link key="2" passHref href={`/forms/editCardiacSetup/${params.id}`}>
         <GridActionsCellItem
           icon={
             <Tooltip title="Edit exam">
