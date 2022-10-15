@@ -1,4 +1,3 @@
-import { AccountCircle, Send } from "@mui/icons-material";
 import { Container, Grid, ListItemIcon, MenuItem, Paper } from "@mui/material";
 
 import Head from "next/head";

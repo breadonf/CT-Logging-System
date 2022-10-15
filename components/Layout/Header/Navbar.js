@@ -185,7 +185,7 @@ const Navbar = () => {
               <Button
                 variant="contained"
                 id="logout-button"
-                onClick={() => signOut({ callbackUrl: "/" })}
+                onClick={() => signOut({ redirect: false })}
               >
                 Sign Out
               </Button>
