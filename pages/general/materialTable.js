@@ -1,13 +1,46 @@
-import { Container, Grid, Paper } from "@mui/material";
+import { AccountCircle, Send } from "@mui/icons-material";
+import { Container, Grid, ListItemIcon, MenuItem, Paper } from "@mui/material";
 
 import Head from "next/head";
+import Link from "next/link";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import PageviewIcon from "@mui/icons-material/Pageview";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeaderNew";
+import SearchIcon from "@mui/icons-material/Search";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
 import { getHomepageCTUnlimited } from "../../queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
 //import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
+function RowActionsItems(row) {
+  console.log(row);
+  return (
+    <>
+      <Link key="1" passHref href={`/exam/${row.id}`}>
+        <MenuItem key={0} sx={{ m: 0 }}>
+          <ListItemIcon>
+            <PageviewIcon />
+          </ListItemIcon>
+          View exam detail
+        </MenuItem>
+      </Link>
+
+      <MenuItem key={1} sx={{ m: 0 }}>
+        <ListItemIcon>
+          <ModeEditIcon />
+        </ListItemIcon>
+        Edit exam
+      </MenuItem>
+      <MenuItem key={1} sx={{ m: 0 }}>
+        <ListItemIcon>
+          <SearchIcon />
+        </ListItemIcon>
+        Search previous exam(s)
+      </MenuItem>
+    </>
+  );
+}
 
 export default function Table() {
   const [sorting, setSorting] = useState([]);
@@ -72,6 +105,7 @@ export default function Table() {
                 enablePagination={false}
                 enableRowVirtualization
                 enableColumnFilterModes
+                enableRowActions
                 muiTableContainerProps={{
                   sx: {
                     maxHeight: "75vh",
@@ -84,6 +118,37 @@ export default function Table() {
                 }}
                 virtualizerProps={{ overscan: 20 }}
                 state={{ sorting }}
+                renderRowActionMenuItems={({ closeMenu, row }) => {
+                  const { count } = row.original;
+                  return (
+                    <>
+                      <Link key="1" passHref href={`/exam/${count}`}>
+                        <MenuItem key={0} sx={{ m: 0 }}>
+                          <ListItemIcon>
+                            <PageviewIcon />
+                          </ListItemIcon>
+                          View exam detail
+                        </MenuItem>
+                      </Link>
+                      <Link key="2" passHref href={`/forms/editForm/${count}`}>
+                        <MenuItem key={1} sx={{ m: 0 }}>
+                          <ListItemIcon>
+                            <ModeEditIcon />
+                          </ListItemIcon>
+                          Edit exam
+                        </MenuItem>
+                      </Link>
+                      <Link key="3" passHref href={`/general/search/${count}`}>
+                        <MenuItem key={1} sx={{ m: 0 }}>
+                          <ListItemIcon>
+                            <SearchIcon />
+                          </ListItemIcon>
+                          Search previous exam(s)
+                        </MenuItem>
+                      </Link>
+                    </>
+                  );
+                }}
               />
             )}
           </Paper>

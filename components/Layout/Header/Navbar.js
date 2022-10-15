@@ -96,7 +96,7 @@ const Navbar = () => {
     background: "#001011",
   };
   const styleOfMenu = {
-    display: "block",
+    display: "inline",
     color: "#001011",
     zIndex: 1600,
   };
@@ -104,9 +104,12 @@ const Navbar = () => {
   return (
     <AppBar
       position="sticky"
-      style={{ minHeight: "5vh", maxHeight: "5vh", background: "#001011" }}
+      style={{ minHeight: "60px", maxHeight: "5vh", background: "#001011" }}
     >
-      <Container maxWidth="xl" sx={{ alignItems: "center" }}>
+      <Container
+        maxWidth="xl"
+        sx={{ minHeight: "5vh", maxHeight: "5vh", alignItems: "center" }}
+      >
         <Toolbar disableGutters>
           <Link href={"/"} passHref>
             <Button sx={{ minWidth: "190px" }}>

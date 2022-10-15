@@ -34,7 +34,7 @@ export const RecordTableHeaders = [
           label="Edit"
         />
       </Link>,
-      <Link key="3" passHref href={`/search/${params.row.PID}`}>
+      <Link key="3" passHref href={`/general/search/${params.row.PID}`}>
         <GridActionsCellItem
           icon={
             <Tooltip title="Search previous exam(s)">
