@@ -8,7 +8,7 @@ export default function AutocompleteWrapper({
   name,
   label,
   autocompleteOptions,
-  prepopulatedValue,
+  prepopulatedvalue,
   multiple,
   groupBy,
   sx,
@@ -67,7 +67,7 @@ export default function AutocompleteWrapper({
       groupBy={groupBy}
       options={flattenedAutocompleteOptions}
       onChange={handleChange}
-      defaultValue={prepopulatedValue}
+      defaultValue={prepopulatedvalue}
       getOptionLabel={(option) => option ?? null}
       renderInput={(params) => <TextField {...configAuto} {...params} />}
       isOptionEqualToValue={(option, value) => {

@@ -31,11 +31,7 @@ function PatientDetail({ data }) {
         <Textfield name="weight" label="Weight(kg)"></Textfield>
       </Grid>
       <Grid item xs={4}>
-        <Textfield
-          prepopulatedValue={data?.circumference ?? ""}
-          name="circumference"
-          label="Circumference(cm)"
-        ></Textfield>
+        <Textfield name="circumference" label="Circumference(cm)"></Textfield>
       </Grid>
     </Grid>
   );

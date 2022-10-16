@@ -14,7 +14,7 @@ export const RecordTableHeaders = [
     type: "actions",
     width: 120,
     getActions: (params) => [
-      <Link key="1" passHref href={`/Exam/${params.id}`}>
+      <Link key="1" passHref href={`/exam/${params.id}`}>
         <GridActionsCellItem
           icon={
             <Tooltip title="View exam detail">
@@ -24,7 +24,7 @@ export const RecordTableHeaders = [
           label="View"
         />
       </Link>,
-      <Link key="2" passHref href={`/Forms/editForm/${params.id}`}>
+      <Link key="2" passHref href={`/forms/editForm/${params.id}`}>
         <GridActionsCellItem
           icon={
             <Tooltip title="Edit exam">
@@ -34,7 +34,7 @@ export const RecordTableHeaders = [
           label="Edit"
         />
       </Link>,
-      <Link key="3" passHref href={`/Search/${params.row.PID}`}>
+      <Link key="3" passHref href={`/general/search/${params.row.PID}`}>
         <GridActionsCellItem
           icon={
             <Tooltip title="Search previous exam(s)">

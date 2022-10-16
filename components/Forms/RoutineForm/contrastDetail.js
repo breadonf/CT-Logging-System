@@ -31,7 +31,7 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
                 name="injectionSite"
                 label="Injection Site"
                 autocompleteOptions={injectionSites}
-                prepopulatedValue={data?.injectionSite ?? []}
+                prepopulatedvalue={data?.injectionSite ?? []}
               />
             </Grid>
             <Grid item xs={2}>

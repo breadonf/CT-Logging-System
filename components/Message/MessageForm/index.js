@@ -1,4 +1,4 @@
-import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { Divider, Grid, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -12,7 +12,7 @@ import React from "react";
 import Select from "../../FormsUI/Select";
 import TextEditor from "../TextEditor";
 import Textfield from "../../FormsUI/Textfield";
-import WithPaperWrapper from "/components/Forms/WithPaperWrapper";
+import WithPaperWrapper from "../../Forms/withPaperWrapper";
 import categories from "./categories.json";
 
 function MessageForm({ title = "New Message", ...otherProps }) {

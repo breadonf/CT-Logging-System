@@ -57,7 +57,7 @@ export default function EditRoutineForm() {
                 },
               }
             );
-            router.push("/Table");
+            router.push("/table");
           },
           onError: async (err, varia) => {
             console.log("onError", err, varia);

@@ -18,7 +18,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           id="radiographers"
           name="radiographers"
           label="Radiographer(s)"
-          prepopulatedValue={data.radiographers ?? []}
+          prepopulatedvalue={data.radiographers ?? []}
           autocompleteOptions={
             isSuccess
               ? autocompleteOptions.radiographers.sort((a, b) =>
@@ -34,7 +34,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           id="radiologists"
           name="radiologists"
           label="Radiologist(s)"
-          prepopulatedValue={data.radiologists ?? []}
+          prepopulatedvalue={data.radiologists ?? []}
           autocompleteOptions={
             isSuccess
               ? autocompleteOptions.radiologists.sort((a, b) =>
@@ -50,7 +50,7 @@ function StaffDetail({ isSuccess, autocompleteOptions, data }) {
           id="nurses"
           name="nurses"
           label="Nurse(s)"
-          prepopulatedValue={data.nurses ?? []}
+          prepopulatedvalue={data.nurses ?? []}
           autocompleteOptions={
             isSuccess
               ? autocompleteOptions.nurses.sort((a, b) =>
