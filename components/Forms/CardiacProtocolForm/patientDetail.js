@@ -1,11 +1,12 @@
-import SickIcon from "@mui/icons-material/Sick";
 import { Grid, Typography } from "@mui/material";
-import React from "react";
-import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
+
 import Autocomplete from "../../FormsUI/AutocompleteWrapper";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
-import Textfield from "../../FormsUI/Textfield";
 import FastTextField from "/components/FormsUI/FastTextField";
+import React from "react";
+import SickIcon from "@mui/icons-material/Sick";
+import Textfield from "../../FormsUI/Textfield";
+import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
 
 function PatientDetail({ isSuccess, autocompleteOptions, data }) {
   return (
@@ -16,7 +17,7 @@ function PatientDetail({ isSuccess, autocompleteOptions, data }) {
           id="radiologistInCharge"
           name="radiologistInCharge"
           label="Reporting radiologist(s)"
-          prepopulatedValue={data.radiologistInCharge ?? []}
+          prepopulatedvalue={data.radiologistInCharge ?? []}
           autocompleteOptions={
             isSuccess
               ? autocompleteOptions.radiologists.sort((a, b) =>

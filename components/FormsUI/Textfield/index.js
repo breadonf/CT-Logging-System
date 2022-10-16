@@ -1,6 +1,7 @@
+import React from "react";
 import { TextField } from "@mui/material";
 import { useField } from "formik";
-import React from "react";
+
 const TextfieldWrapper = ({ name, prepopulatedvalue, ...otherProps }) => {
   const [field, meta] = useField(name);
 
@@ -9,6 +10,16 @@ const TextfieldWrapper = ({ name, prepopulatedvalue, ...otherProps }) => {
     ...otherProps,
     fullWidth: true,
     variant: "filled",
+    onKeyDown: (event) => {
+      if (event.key === "Enter") {
+        // Prevent's default 'Enter' behavior.
+        event.defaultMuiPrevented = true;
+        event.preventDefault();
+        // your handler code
+        // Temp fixes
+        // For preventing pressing enter when in autocomplete to prevent inputting string value to the field without processing to array
+      }
+    },
   };
 
   if (meta && meta.touched && meta.error) {

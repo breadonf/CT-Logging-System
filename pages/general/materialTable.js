@@ -1,4 +1,12 @@
-import { Container, Grid, ListItemIcon, MenuItem, Paper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  ListItemIcon,
+  MenuItem,
+  Paper,
+} from "@mui/material";
 
 import Head from "next/head";
 import Link from "next/link";
@@ -12,31 +20,25 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 
 //import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
-function RowActionsItems(row) {
-  console.log(row);
+function RowActionsItems({ row }) {
+  const { count } = row.original;
   return (
     <>
-      <Link key="1" passHref href={`/exam/${row.id}`}>
-        <MenuItem key={0} sx={{ m: 0 }}>
-          <ListItemIcon>
-            <PageviewIcon />
-          </ListItemIcon>
-          View exam detail
-        </MenuItem>
+      <Link key="1" passHref href={`/exam/${count}`}>
+        <Button variant="text" startIcon={<PageviewIcon />}>
+          View
+        </Button>
       </Link>
-
-      <MenuItem key={1} sx={{ m: 0 }}>
-        <ListItemIcon>
-          <ModeEditIcon />
-        </ListItemIcon>
-        Edit exam
-      </MenuItem>
-      <MenuItem key={1} sx={{ m: 0 }}>
-        <ListItemIcon>
-          <SearchIcon />
-        </ListItemIcon>
-        Search previous exam(s)
-      </MenuItem>
+      <Link key="2" passHref href={`/forms/editForm/${count}`}>
+        <Button variant="text" startIcon={<ModeEditIcon />}>
+          Edit
+        </Button>
+      </Link>
+      <Link key="3" passHref href={`/general/search/${count}`}>
+        <Button variant="text" startIcon={<SearchIcon />}>
+          Search
+        </Button>
+      </Link>
     </>
   );
 }
@@ -105,6 +107,12 @@ export default function Table() {
                 enableRowVirtualization
                 enableColumnFilterModes
                 enableRowActions
+                enableClickToCopy
+                muiTableBodyCellProps={{
+                  sx: {
+                    fontSize: "1rem",
+                  },
+                }}
                 muiTableContainerProps={{
                   sx: {
                     maxHeight: "75vh",
@@ -115,39 +123,20 @@ export default function Table() {
                   density: "spacious",
                   showColumnFilters: true,
                 }}
-                virtualizerProps={{ overscan: 20 }}
-                state={{ sorting }}
-                renderRowActionMenuItems={({ closeMenu, row }) => {
-                  const { count } = row.original;
-                  return (
-                    <>
-                      <Link key="1" passHref href={`/exam/${count}`}>
-                        <MenuItem key={0} sx={{ m: 0 }}>
-                          <ListItemIcon>
-                            <PageviewIcon />
-                          </ListItemIcon>
-                          View exam detail
-                        </MenuItem>
-                      </Link>
-                      <Link key="2" passHref href={`/forms/editForm/${count}`}>
-                        <MenuItem key={1} sx={{ m: 0 }}>
-                          <ListItemIcon>
-                            <ModeEditIcon />
-                          </ListItemIcon>
-                          Edit exam
-                        </MenuItem>
-                      </Link>
-                      <Link key="3" passHref href={`/general/search/${count}`}>
-                        <MenuItem key={1} sx={{ m: 0 }}>
-                          <ListItemIcon>
-                            <SearchIcon />
-                          </ListItemIcon>
-                          Search previous exam(s)
-                        </MenuItem>
-                      </Link>
-                    </>
-                  );
+                displayColumnDefOptions={{
+                  "mrt-row-actions": {
+                    size: 350, //set custom width
+                    muiTableHeadCellProps: {
+                      align: "center", //change head cell props
+                    },
+                    muiTableBodyCellProps: {
+                      align: "center", //change head cell props
+                    },
+                  },
                 }}
+                virtualizerProps={{ overscan: 40 }}
+                state={{ sorting }}
+                renderRowActions={({ row }) => <RowActionsItems row={row} />}
               />
             )}
           </Paper>

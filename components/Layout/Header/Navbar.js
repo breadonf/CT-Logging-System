@@ -207,7 +207,7 @@ const Navbar = () => {
               anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
               <MenuList sx={styleOfMenuList}>
-                <MenuItem sx={styleOfMenuItem} disableRipple>
+                <MenuItem sx={styleOfMenuItem}>
                   <Link href="/general/logform" passHref>
                     <a>Log Form</a>
                   </Link>

@@ -1,12 +1,13 @@
-import { useRouter } from "next/router";
-import React from "react";
-import toast from "react-hot-toast";
 import { useMutation, useQuery } from "react-query";
+
+import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import React from "react";
+import { getCardiacSetupByID } from "../../../../queries/queries";
 import preprocessor from "../../../../helpers/preprocessorCardiacForm";
 import setData from "../../../../helpers/setData";
+import toast from "react-hot-toast";
 import { updateCardiacCTSetupById } from "../../../../queries/mutations";
-import { getCardiacSetupByID } from "../../../../queries/queries";
-import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import { useRouter } from "next/router";
 
 const toastStyle = {
   border: "1px solid #713200",
@@ -62,7 +63,7 @@ export default function EditCardiacForm() {
                 style: toastStyle,
               }
             );
-            router.push(`/cardiac/table/${modifiedValues.PID}`);
+            router.push(`/cardiac/table`);
           },
           onError: async (err, varia) => {
             console.log(varia.data);
