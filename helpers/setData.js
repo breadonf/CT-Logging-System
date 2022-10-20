@@ -30,6 +30,14 @@ const setData = async (
         : { data: data },
     });
   }
+  if (condition == 3) {
+    var query = JSON.stringify({
+      query: mutation,
+      variables: update
+        ? { data: data, updateMessageItemId: updateCtItemId }
+        : { data: data },
+    });
+  }
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(graphQLAPI, {
