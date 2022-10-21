@@ -4,7 +4,7 @@ const INITIAL_FORM_STATE = {
   date: new Date(),
   radiologistInCharge: [],
   sedation: "",
-  breathingControl: [],
+  breathingControl: "",
   IVSite: [{ location: [], side: [], Diffusics: false }],
   targetHR: "",
   scanMode: {

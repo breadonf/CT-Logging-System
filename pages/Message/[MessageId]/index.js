@@ -1,16 +1,16 @@
-import { EditorState, convertFromRaw } from "draft-js";
-import { useMutation, useQuery } from "react-query";
-
-import Head from "next/head";
-import MessageForm from "/components/Message/MessageForm";
 import React from "react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import { toast } from "react-hot-toast";
+import { EditorState, convertFromRaw } from "draft-js";
+
+import { useMutation, useQuery } from "react-query";
 import { getMessageByID } from "/queries/queries";
+
 import preprocessorMessage from "/components/Message/MessageForm/preprocessorMessage";
 import setData from "/helpers/setData";
-import { toast } from "react-hot-toast";
-import { updateMessageById } from "/queries/mutations";
-import { useRouter } from "next/router";
-
+import { updateMessageById } from "../../../queries/mutations";
+import MessageForm from "/components/Message/MessageForm";
 function MessageEditPage() {
   const router = useRouter();
   const { MessageId } = router.query;
@@ -34,9 +34,10 @@ function MessageEditPage() {
         updateMessageById,
         {
           data: newFormData.data,
-          updateMessageId: newFormData.updateMessageId,
+          updateCtItemId: newFormData.updateMessageItemId,
         },
-        true
+        true,
+        3
       );
     },
     {
@@ -50,11 +51,22 @@ function MessageEditPage() {
     const modifiedValues = preprocessorMessage(values);
     setTimeout(() => {
       mutation.mutate(
-        { ...modifiedValues },
+        {
+          data: modifiedValues,
+          updateMessageItemId: parseInt(modifiedValues.id),
+        },
         {
           onSuccess: async (_res) => {
-            alert("Message uploaded!");
-            router.push("/message");
+            toast.success("Success, message updated", {
+              style: {
+                border: "1px solid #713200",
+                padding: "40px",
+                color: "#713200",
+                fontSize: "1.5rem",
+                minWidth: "20%",
+              },
+            });
+            router.replace("/message");
           },
           onError: async (err, varia) => {
             toast.error(`Input failed. Error: ${varia}`, {

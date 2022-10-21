@@ -335,8 +335,10 @@ query CardiacCT( $page: Int) {
     scanMode
     id
     name
+    PID
     date
     IVSite
+    radiologistInCharge
   }
 }
 `;
@@ -391,15 +393,9 @@ const CardiacSetupRecordBySearch = `
     query CardiacSetupRecordBySearch($key: String) {
       cardiacCT(search: $key, sort: ["sort", "-id"]) {
         id
-        user_created
-        user_updated
         PID
         name
-        date_func {
-          year
-          month
-          day
-        }
+        date
         radiologistInCharge
         sedation
         breathingControl

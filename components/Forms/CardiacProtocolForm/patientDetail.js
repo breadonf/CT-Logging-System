@@ -2,7 +2,6 @@ import { Grid, Typography } from "@mui/material";
 
 import Autocomplete from "../../FormsUI/AutocompleteWrapper";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
-import FastTextField from "/components/FormsUI/FastTextField";
 import React from "react";
 import SickIcon from "@mui/icons-material/Sick";
 import Textfield from "../../FormsUI/Textfield";
@@ -33,10 +32,7 @@ function PatientDetail({ isSuccess, autocompleteOptions, data }) {
         </Typography>
       </Grid>
       <Grid item xs={4}>
-        <FastTextField
-          name="PID"
-          label="Patient ID (e.g. A1234567)"
-        ></FastTextField>
+        <Textfield name="PID" label="Patient ID (e.g. A1234567)"></Textfield>
       </Grid>
       <Grid item xs={4}>
         <Textfield name="name" label="Patient Name"></Textfield>
