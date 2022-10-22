@@ -1,13 +1,40 @@
-import { Container, Grid, Paper } from "@mui/material";
+import { Button, Container, Grid, Paper } from "@mui/material";
 
 import Head from "next/head";
+import Link from "next/link";
 import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import PageviewIcon from "@mui/icons-material/Pageview";
 import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeaderNew";
-import { RowActionsItems } from "/components/Table/RowActionsItems";
+import SearchIcon from "@mui/icons-material/Search";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
 import { getCardiacSetup } from "/queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
+
+//import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
+function RowActionsItems({ row }) {
+  const { id } = row.original;
+  return (
+    <>
+      <Link key="1" passHref href={`/cardiac/protocol/${id}`}>
+        <Button variant="text" startIcon={<PageviewIcon />}>
+          View
+        </Button>
+      </Link>
+      <Link key="2" passHref href={`/forms/editCardiacSetup/${id}`}>
+        <Button variant="text" startIcon={<ModeEditIcon />}>
+          Edit
+        </Button>
+      </Link>
+      <Link key="3" passHref href={`/cardiac/search/${id}`}>
+        <Button variant="text" startIcon={<SearchIcon />}>
+          Search
+        </Button>
+      </Link>
+    </>
+  );
+}
 
 export default function CardiacSetupTable() {
   const [pageNumber, setPageNumber] = useState(1);

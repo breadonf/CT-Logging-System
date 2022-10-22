@@ -1,5 +1,6 @@
-import React from "react";
 import { Grid, Typography } from "@mui/material";
+
+import React from "react";
 import SickIcon from "@mui/icons-material/Sick";
 
 export default function PatientDetail({ cardiacCT_by_id }) {
@@ -13,7 +14,7 @@ export default function PatientDetail({ cardiacCT_by_id }) {
       sx={{ py: 5 }}
     >
       <Grid item xs={3} sx={{ pr: 2 }}>
-        <Typography variant="h5" color="#265B67">
+        <Typography variant="h6" color="#265B67">
           <SickIcon sx={{ mr: 1 }} />
           Patient Detail
         </Typography>
@@ -31,20 +32,14 @@ export default function PatientDetail({ cardiacCT_by_id }) {
           py: 1,
         }}
       >
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <Typography variant="h6" color="#333333">
             Patient name: {cardiacCT_by_id.name}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <Typography variant="h6" color="#333333">
             ID: {cardiacCT_by_id.PID}
-          </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <Typography variant="h6" color="#333333">
-            Exam Date: {cardiacCT_by_id.date_func.year}-
-            {cardiacCT_by_id.date_func.month}-{cardiacCT_by_id.date_func.day}
           </Typography>
         </Grid>
       </Grid>

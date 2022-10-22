@@ -49,18 +49,9 @@ const StyledMenu = styled((props) => <Menu elevation={1} {...props} />)(
 const Navbar = () => {
   const { status } = useSession();
   const day = new Date();
-  const [today, setToday] = React.useState(
+  const today = React.useRef(
     day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate()
   );
-  const pages = [
-    ["Forms", "Form"],
-    ["Table", "Table"],
-    ["Search", "Search"],
-    ["Message", "Message"],
-    ["cardiac", "cardiac"],
-    ["cardiac/protocol/setup", "Cardiac Protocoling"],
-    [`today/${today}`, "Today"],
-  ];
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
   const [anchorEl3, setAnchorEl3] = React.useState(null);
@@ -176,11 +167,6 @@ const Navbar = () => {
             >
               Cardiac CT
             </Button>
-            <Button sx={styleOfMenuItem} onClick={(e) => e.preventDefault()}>
-              <Link href={`/today/${today}`} replace>
-                <a>Today cases</a>
-              </Link>
-            </Button>
             {status === "authenticated" ? (
               <Button
                 variant="contained"
@@ -226,6 +212,11 @@ const Navbar = () => {
                     <a>Testing Table</a>
                   </Link>
                 </MenuItem>
+                <MenuItem sx={styleOfMenuItem}>
+                  <Link href={`/general/today/${today.current}`} passHref>
+                    <a>Today case</a>
+                  </Link>
+                </MenuItem>
               </MenuList>
             </StyledMenu>
             <StyledMenu
@@ -249,7 +240,7 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/cardiac" passHref>
+                  <Link href="/cardiac/search" passHref>
                     <a>Search</a>
                   </Link>
                 </MenuItem>

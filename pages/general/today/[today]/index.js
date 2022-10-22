@@ -1,10 +1,11 @@
 import { Container, Grid, Paper, Typography } from "@mui/material";
+
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeader";
 import TableMaterial from "/components/Table/TableMaterial";
 import { getHomepageCTToday } from "/queries/queries";
+import { useQuery } from "react-query";
+import { useRouter } from "next/router";
 
 export default function Table() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function Table() {
     return (
       <Grid sx={{ py: 3 }} container>
         <Head>
-          <title>CT record</title>
+          <title>Today CT Record</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
@@ -62,9 +63,7 @@ export default function Table() {
                   getRowId={(row) => row.count}
                 />
               )}
-              {isError &&
-              <Typography>Error</Typography>
-              }
+              {isError && <Typography>Error</Typography>}
             </Paper>
           </Container>
         </Grid>

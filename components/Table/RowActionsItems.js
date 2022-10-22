@@ -3,13 +3,14 @@ import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
+import { ViewAgendaSharp } from "@mui/icons-material";
 
 //import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
-export function RowActionsItems({ row }) {
+export function RowActionsItems({ row, view = "/exam/" }) {
   const { count } = row.original;
   return (
     <>
-      <Link key="1" passHref href={`/exam/${count}`}>
+      <Link key="1" passHref href={`${view}${count}`}>
         <Button variant="text" startIcon={<PageviewIcon />}>
           View
         </Button>

@@ -48,7 +48,9 @@ export const RecordTableHeaders = [
     header: "Reporting Radiologists",
     accessorKey: "radiologistInCharge",
     accessorFn: (originalRow) => {
-      return originalRow.radiologists ? originalRow.radiologists : "no data";
+      return originalRow.radiologistInCharge
+        ? originalRow.radiologistInCharge
+        : "no data";
     },
     filterFn: "equals",
     filterSelectOptions: [

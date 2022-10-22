@@ -1,6 +1,7 @@
-import React from "react";
-import { Grid, Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
+
 import Link from "next/link";
+import React from "react";
 
 export default function Buttons({ cardiacCT_by_id }) {
   return (
@@ -14,14 +15,14 @@ export default function Buttons({ cardiacCT_by_id }) {
       }}
     >
       <Grid item xs={6}>
-        <Link passHref href={`/Table`}>
+        <Link passHref href={`/cardiac/table`}>
           <Button variant="contained" fullWidth>
             Back to Table
           </Button>
         </Link>
       </Grid>
       <Grid item xs={6}>
-        <Link passHref href={`/Forms/editCardiacSetup/${cardiacCT_by_id.id}`}>
+        <Link passHref href={`/forms/editCardiacSetup/${cardiacCT_by_id.id}`}>
           <Button variant="contained" fullWidth>
             Edit
           </Button>
