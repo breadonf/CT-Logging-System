@@ -4,11 +4,15 @@ import CircularProgress from "@mui/material/CircularProgress";
 import React from "react";
 import { toast } from "react-hot-toast";
 
-export function LoadingSpinner({ bgColor = "#F0F3BD", error = false }) {
+export function LoadingSpinner({
+  bgColor = "#F0F3BD",
+  error = false,
+  maxWidth = "lg",
+}) {
   return (
     <Grid sx={{ py: 3 }} container>
       <Grid item xs={12}>
-        <Container maxWidth="lg">
+        <Container sx={{ maxWidth: maxWidth }} maxWidth={false}>
           <Paper
             elevation={12}
             sx={{

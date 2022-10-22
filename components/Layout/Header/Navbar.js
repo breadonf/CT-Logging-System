@@ -203,7 +203,6 @@ const Navbar = () => {
               onClose={handleClose}
               MenuListProps={{ onMouseLeave: handleClose }}
               onMouseLeave={handleClose2}
-              getContentAnchorEl={null}
               anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
               <MenuList sx={styleOfMenuList}>
@@ -236,7 +235,6 @@ const Navbar = () => {
               onClose={handleClose2}
               sx={styleOfMenu}
               MenuListProps={{ onMouseLeave: handleClose2 }}
-              getContentAnchorEl={null}
               anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
               <MenuList onMouseLeave={handleClose2} sx={styleOfMenuItem}>
@@ -279,9 +277,7 @@ const Navbar = () => {
                       <a>Create New Message</a>
                     </Link>
                   </MenuItem>
-                ) : (
-                  <></>
-                )}
+                ) : null}
               </MenuList>
             </StyledMenu>
           </Box>

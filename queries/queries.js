@@ -329,8 +329,8 @@ const ExamsRecordBySearch = `
 //Cardiac Protocol
 const CardiacSetup = `
 #graphql
-query CardiacCT( $page: Int) {
-  cardiacCT(sort: ["id"], limit: 25, page: $page) {
+query CardiacCT {
+  cardiacCT(sort: ["-id"], limit: -1) {
     sedation
     scanMode
     id
@@ -522,9 +522,9 @@ export const getExamsRecordBySearch = async (key) => {
   return data.data;
 };
 //Cardiac Protocol
-export const getCardiacSetup = async (page) => {
+export const getCardiacSetup = async () => {
   const data = await fetchData(CardiacSetup, {
-    variables: { page: page },
+    variables: {},
   });
 
   return data.data.cardiacCT;

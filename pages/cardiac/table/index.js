@@ -1,11 +1,11 @@
 import { Container, Grid, Paper } from "@mui/material";
-import { getCardiacSetup, getCardiacSetupNumber } from "/queries/queries";
 
 import Head from "next/head";
 import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
 import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeaderNew";
 import { RowActionsItems } from "/components/Table/RowActionsItems";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
+import { getCardiacSetup } from "/queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
@@ -18,20 +18,9 @@ export default function CardiacSetupTable() {
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
     isPreviousData,
-  } = useQuery(
-    ["CardiacSetupRecord", pageNumber],
-    async () => await getCardiacSetup(pageNumber),
-    {
-      keepPreviousData: true,
-    }
-  );
-  const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(
-    "rowNumbers",
-    async () => await getCardiacSetupNumber(),
-    {
-      staleTime: 60 * 1000,
-    }
-  );
+  } = useQuery(["CardiacSetupRecord"], async () => await getCardiacSetup(), {
+    keepPreviousData: true,
+  });
   if (isQueryLoading || !isQuerySuccess || !records) {
     return <LoadingSpinner />;
   }

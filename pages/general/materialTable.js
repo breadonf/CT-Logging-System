@@ -1,6 +1,7 @@
 import { Container, Grid, Paper } from "@mui/material";
 
 import Head from "next/head";
+import { LoadingSpinner } from "../../components/Forms/LoadingSpinner";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeaderNew";
 import { RowActionsItems } from "../../components/Table/RowActionsItems";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
@@ -18,20 +19,23 @@ export default function Table() {
       keepPreviousData: true,
     }
   );
-  return (
-    <Grid sx={{ py: 3 }} container>
-      <Head>
-        <title>CT record</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <Grid item xs={12}>
-        <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
-          <Paper
-            elevation={12}
-            sx={{ p: 3, bgcolor: "#F0F3BD", height: "85vh" }}
-          >
-            {isSuccess && (
+  if (isLoading) {
+    return <LoadingSpinner maxWidth="80%" />;
+  }
+  if (isSuccess && records) {
+    return (
+      <Grid sx={{ py: 3 }} container>
+        <Head>
+          <title>CT record</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <Grid item xs={12}>
+          <Container sx={{ maxWidth: "80%" }} maxWidth={false}>
+            <Paper
+              elevation={12}
+              sx={{ p: 3, bgcolor: "#F0F3BD", height: "85vh" }}
+            >
               <TableMaterialReact
                 columnHeaders={RecordTableHeaders}
                 records={records}
@@ -71,10 +75,10 @@ export default function Table() {
                 state={{ sorting }}
                 renderRowActions={({ row }) => <RowActionsItems row={row} />}
               />
-            )}
-          </Paper>
-        </Container>
+            </Paper>
+          </Container>
+        </Grid>
       </Grid>
-    </Grid>
-  );
+    );
+  }
 }
