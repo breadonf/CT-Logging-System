@@ -41,7 +41,7 @@ function App({data}) {
     const [age, setAge] = useState('');
     const [contrast_vol, setContrastVol] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
-    const [top10, setTop10] = useState(getTop10(data, 0));
+    const [top10, setTop10] = useState(getTop10(data, 0, 0));
 
     console.log('top10:'+top10);
     return (
@@ -50,10 +50,14 @@ function App({data}) {
           <input type="text" id="age"
               value={age}
               onChange={e => { setAge(e.currentTarget.value); }}
-              onKeyUp={(event) => {setTop10(refresh(event, age, contrast_vol, data, document.getElementById('content')))}}>
+              onKeyUp={(event) => {setTop10(refresh(event, age, contrast_vol, data))}}>
           </input>
           Contrast Volume
-          <input type="text" id="contrast_vol"></input>
+          <input type="text" id="contrast_vol"
+              value={contrast_vol}
+              onChange={e => { setContrastVol(e.currentTarget.value); }}
+              onKeyUp={(event) => {setTop10(refresh(event, age, contrast_vol, data))}}>
+          </input>
           <Button
             color="primary"
             type="button"
