@@ -14,9 +14,10 @@ import React from "react";
 import Remarks from "./remarks";
 import StaffDetail from "./staffDetail";
 import { getHomepageData } from "../../../queries/queries";
+import getTop10 from "/helpers/getTop10";
 import { useQuery } from "react-query";
 
-function RoutineForm({ data, handleSubmit }) {
+function RoutineForm({ data, handleSubmit, records }) {
   const [locale, setLocale] = React.useState("zh-HK");
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
     "autocompleteOptions",
@@ -93,6 +94,9 @@ function RoutineForm({ data, handleSubmit }) {
                             setSedation={setSedation}
                           />
                           <ContrastDetail
+                            records={records}
+                            getTop10={getTop10}
+                            formik={formik}
                             data={data}
                             contrast={contrast}
                             handleSwitch={handleSwitch}
