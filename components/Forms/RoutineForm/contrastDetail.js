@@ -1,9 +1,17 @@
-import { Button, Divider, Grid, Switch, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Modal,
+  Switch,
+  Typography,
+} from "@mui/material";
+import { FieldArray, Formik } from "formik";
 
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
-import { FieldArray } from "formik";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import React from "react";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
@@ -13,7 +21,34 @@ import Textfield from "../../FormsUI/Textfield";
 import injectionSites from "../SelectItems/injectionSites.json";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 
-function ContrastDetail({ data, contrast, handleSwitch }) {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+function ContrastDetail({
+  formik,
+  data,
+  contrast,
+  handleSwitch,
+  getTop10,
+  records,
+}) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = async (formik) => {
+    const fetching = await records.refetch();
+    getTop10(records.data, formik.values.rate, formik.weight);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+  console.log(formik);
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 4 }}>
       <Grid item xs={12}>
@@ -66,6 +101,36 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
             </Grid>
             <Grid item xs={4}>
               <Textfield name="volume" label="Contrast Volume(ml)"></Textfield>
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                disabled={
+                  (formik.values.rate == "") | (formik.values.weight == "")
+                }
+                onClick={handleOpen}
+              >
+                Open modal
+              </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    Calculation
+                  </Typography>
+                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    Duis mollis, est non commodo luctus, nisi erat porttitor
+                    ligula.
+                  </Typography>
+                </Box>
+              </Modal>
             </Grid>
             <Grid
               item

@@ -1,3 +1,5 @@
+import { useMutation, useQuery } from "react-query";
+
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
@@ -5,14 +7,21 @@ import INITIAL_FORM_STATE from "../../components/Forms/RoutineForm/InitialFormSt
 import React from "react";
 import RoutineForm from "../../components/Forms/RoutineForm";
 import { createCTrecord } from "../../queries/mutations";
+import { getHomepageCTUnlimited } from "../../queries/queries";
 import preprocessor from "../../helpers/preprocessor";
 import setData from "../../helpers/setData";
 import { toast } from "react-hot-toast";
-import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 
 function RoutineCases() {
   const router = useRouter();
+  const records = useQuery(
+    ["record"],
+    async () => await getHomepageCTUnlimited(),
+    {
+      enabled: false,
+    }
+  );
   const mutation = useMutation(
     async (newFormData) => {
       await setData(createCTrecord, { data: newFormData });
@@ -80,7 +89,11 @@ function RoutineCases() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <RoutineForm data={INITIAL_FORM_STATE} handleSubmit={handleSubmit} />
+      <RoutineForm
+        data={INITIAL_FORM_STATE}
+        handleSubmit={handleSubmit}
+        records={records}
+      />
     </>
   );
 }

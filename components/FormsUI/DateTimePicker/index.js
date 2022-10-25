@@ -31,7 +31,7 @@ export default function DateTimePicker({
   return (
     <DatePicker
       {...field}
-      inputFormat="dd-MM-yyyy"
+      inputFormat="dd/MM/yyyy"
       label="Exam Date"
       onChange={handleChange}
       renderInput={(params) => (
