@@ -30,8 +30,8 @@ export default function Table() {
         ),
       {
         refetchOnWindowFocus: false,
-        refetchOnmount: false,
-        refetchOnReconnect: false,
+        refetchOnMount: false,
+        refetchOnReconnect: true,
         retry: false,
         keepPreviousData: true,
         staleTime: 60 * 1000,

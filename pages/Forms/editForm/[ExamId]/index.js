@@ -1,8 +1,11 @@
+import {
+  getExamDetailsByID,
+  getHomepageCTUnlimited,
+} from "../../../../queries/queries";
 import { useMutation, useQuery } from "react-query";
 
 import React from "react";
 import RoutineForm from "../../../../components/Forms/RoutineForm";
-import { getExamDetailsByID } from "../../../../queries/queries";
 import preprocessor from "../../../../helpers/preprocessor";
 import setData from "../../../../helpers/setData";
 import { toast } from "react-hot-toast";
@@ -12,6 +15,14 @@ import { useRouter } from "next/router";
 export default function EditRoutineForm() {
   const router = useRouter();
   const { ExamId } = router.query;
+  const records = useQuery(
+    ["record"],
+    async () => await getHomepageCTUnlimited(),
+    {
+      enabled: false,
+    }
+  );
+
   const {
     data: fetchedData,
     isLoading: isQueryLoading,
@@ -80,6 +91,12 @@ export default function EditRoutineForm() {
   }
   if (isQuerySuccess && fetchedData) {
     const { CT_by_id } = fetchedData;
-    return <RoutineForm data={CT_by_id} handleSubmit={handleUpdate} />;
+    return (
+      <RoutineForm
+        data={CT_by_id}
+        handleSubmit={handleUpdate}
+        records={records}
+      />
+    );
   }
 }

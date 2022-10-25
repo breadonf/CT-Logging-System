@@ -10,6 +10,5 @@ export default function getTop10(data, rate, weight) {
         : -1;
     })
     .slice(0, 10);
-  console.log("getTop10:" + Object.keys(top10).length);
   return top10;
 }

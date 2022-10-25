@@ -1,46 +1,22 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Modal,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, Grid, Switch, Typography } from "@mui/material";
 import { FieldArray, Formik } from "formik";
 
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
+import GetTop10Wrapper from "./GetTop10Wrapper";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import React from "react";
+import { RecordTableHeaders } from "~/components/Table/CardiacRecordNewHeader";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 import Select from "../../FormsUI/Select";
+import { SettingsInputComponent } from "@mui/icons-material";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import Textfield from "../../FormsUI/Textfield";
 import injectionSites from "../SelectItems/injectionSites.json";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
-function ContrastDetail({
-  formik,
-  data,
-  contrast,
-  handleSwitch,
-  getTop10,
-  records,
-}) {
+function ContrastDetail({ formik, data, contrast, handleSwitch, records }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 4 }}>
       <Grid item xs={12}>
@@ -53,13 +29,22 @@ function ContrastDetail({
       <>
         {contrast && (
           <>
-            <Grid item xs={4}>
-              <AutocompleteWrapper
-                name="injectionSite"
-                label="Injection Site"
-                autocompleteOptions={injectionSites}
-                prepopulatedvalue={data?.injectionSite ?? []}
-              />
+            <Grid item xs={4} container>
+              <Grid item xs={12} paddingY={1}>
+                <AutocompleteWrapper
+                  name="injectionSite"
+                  label="Injection Site"
+                  autocompleteOptions={injectionSites}
+                  prepopulatedvalue={data?.injectionSite ?? []}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Select
+                  name="contrastType"
+                  label="Type of Contrast"
+                  options={typeOfContrast}
+                />
+              </Grid>
             </Grid>
             <Grid item xs={2}>
               <Checkbox
@@ -81,48 +66,14 @@ function ContrastDetail({
             <Grid item xs={3}>
               <Checkbox label="Yes" name="mixedContrast" legend="Split Bolus" />
             </Grid>
-            <Grid item xs={4}>
-              <Select
-                name="contrastType"
-                label="Type of Contrast"
-                options={typeOfContrast}
-              />
-            </Grid>
+
             <Grid item xs={4}>
               <Textfield name="rate" label="Injection Rate(ml/s)"></Textfield>
             </Grid>
             <Grid item xs={4}>
               <Textfield name="volume" label="Contrast Volume(ml)"></Textfield>
             </Grid>
-            <Grid item xs={4}>
-              <Button
-                disabled={
-                  (formik.values.rate == "") | (formik.values.weight == "")
-                }
-                onClick={handleOpen}
-              >
-                Open modal
-              </Button>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                  >
-                    Calculation
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    {top10 ? top10 : <></>}
-                  </Typography>
-                </Box>
-              </Modal>
-            </Grid>
+            <GetTop10Wrapper formik={formik} records={records} />
             <Grid
               item
               xs={4}
