@@ -1,12 +1,13 @@
+import { useMutation, useQuery } from "react-query";
+
 import React from "react";
-import { useRouter } from "next/router";
-import { useQuery, useMutation } from "react-query";
 import RoutineForm from "../../../../components/Forms/RoutineForm";
 import { getExamDetailsByID } from "../../../../queries/queries";
-import { updateCTRecordById } from "../../../../queries/mutations";
 import preprocessor from "../../../../helpers/preprocessor";
 import setData from "../../../../helpers/setData";
 import { toast } from "react-hot-toast";
+import { updateCTRecordById } from "../../../../queries/mutations";
+import { useRouter } from "next/router";
 
 export default function EditRoutineForm() {
   const router = useRouter();
@@ -57,7 +58,7 @@ export default function EditRoutineForm() {
                 },
               }
             );
-            router.push("/table");
+            router.push("/general/table");
           },
           onError: async (err, varia) => {
             console.log("onError", err, varia);
