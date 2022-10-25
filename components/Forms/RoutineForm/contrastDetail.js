@@ -41,14 +41,6 @@ function ContrastDetail({
   getTop10,
   records,
 }) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = async (formik) => {
-    const fetching = await records.refetch();
-    getTop10(records.data, formik.values.rate, formik.weight);
-    setOpen(true);
-  };
-  const handleClose = () => setOpen(false);
-  console.log(formik);
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 4 }}>
       <Grid item xs={12}>
@@ -126,8 +118,7 @@ function ContrastDetail({
                     Calculation
                   </Typography>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor
-                    ligula.
+                    {top10 ? top10 : <></>}
                   </Typography>
                 </Box>
               </Modal>

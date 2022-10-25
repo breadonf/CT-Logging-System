@@ -1,7 +1,6 @@
 import distance from "euclidean-distance";
 
-function getTop10(data, rate, weight) {
-  console.log(data.filter((entry) => entry.ttp != null));
+export default function getTop10(data, rate, weight) {
   var top10 = data
     .filter((entry) => entry.ttp != null)
     .sort(function (a, b) {
