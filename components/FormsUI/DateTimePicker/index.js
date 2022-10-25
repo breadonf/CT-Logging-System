@@ -1,11 +1,12 @@
+import { useField, useFormikContext } from "formik";
+
+import DatePicker from "@mui/lab/DatePicker";
 import React from "react";
 import { TextField } from "@mui/material";
-import { useField, useFormikContext } from "formik";
-import DatePicker from "@mui/lab/DatePicker";
 
 export default function DateTimePicker({
   name,
-  
+
   ...otherProps
 }) {
   const [field, meta] = useField(name);
@@ -30,6 +31,7 @@ export default function DateTimePicker({
   return (
     <DatePicker
       {...field}
+      inputFormat="dd-MM-yyyy"
       label="Exam Date"
       onChange={handleChange}
       renderInput={(params) => (

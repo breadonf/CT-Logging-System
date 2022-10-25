@@ -1,26 +1,23 @@
 import { Container, Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import React from "react";
 
-import { useQuery } from "react-query";
-
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import BottomButton from "./bottomButton";
 import ContrastDetail from "./contrastDetail";
 import ExamDetail from "./examDetail";
-import PatientDetail from "./patientDetail";
-import Remarks from "./remarks";
-import StaffDetail from "./staffDetail";
-
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-
 import FORM_VALIDATION from "./ValidationSchema";
 import INITIAL_FORM_STATE from "./InitialFormState";
-
-import { getHomepageData } from "../../../queries/queries";
 import { LoadingSpinner } from "../LoadingSpinner";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import PatientDetail from "./patientDetail";
+import React from "react";
+import Remarks from "./remarks";
+import StaffDetail from "./staffDetail";
+import { getHomepageData } from "../../../queries/queries";
+import { useQuery } from "react-query";
 
 function RoutineForm({ data, handleSubmit }) {
+  const [locale, setLocale] = React.useState("zh-HK");
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
     "autocompleteOptions",
     async () => await getHomepageData()
@@ -48,7 +45,7 @@ function RoutineForm({ data, handleSubmit }) {
   }
   if (isSuccess) {
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
         <Grid container>
           <Grid item xs={12}>
             <Container

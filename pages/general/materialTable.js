@@ -5,9 +5,25 @@ import { LoadingSpinner } from "../../components/Forms/LoadingSpinner";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeaderNew";
 import { RowActionsItems } from "../../components/Table/RowActionsItems";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
+import distance from "euclidean-distance";
 import { getHomepageCTUnlimited } from "../../queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
+
+function getTop10(data, age, volume) {
+  console.log(data.filter((entry) => entry.ttp != null));
+  var top10 = data
+    .filter((entry) => entry.ttp != null)
+    .sort(function (a, b) {
+      return distance([age, volume], [a.age, a.volume]) >
+        distance([age, volume], [b.age, b.volume])
+        ? 1
+        : -1;
+    })
+    .slice(0, 10);
+  console.log("getTop10:" + Object.keys(top10).length);
+  return top10;
+}
 
 export default function Table() {
   const [sorting, setSorting] = useState([]);
@@ -19,10 +35,12 @@ export default function Table() {
       keepPreviousData: true,
     }
   );
+
   if (isLoading) {
     return <LoadingSpinner maxWidth="80%" />;
   }
   if (isSuccess && records) {
+    console.log(getTop10(records, 10, 10));
     return (
       <Grid sx={{ py: 3 }} container>
         <Head>
