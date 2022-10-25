@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import Buttons from "../../../../components/CardiacForm/Buttons";
 import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
 import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
-import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
+//import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
 import { getCardiacSetupByID } from "../../../../queries/queries";
 
 export default function CardiacSetupViewer() {
@@ -30,9 +30,6 @@ export default function CardiacSetupViewer() {
     { retry: true }
   );
   console.log(data);
-  if (isQueryLoading || !isQuerySuccess || !data) {
-    return <LoadingSpinner />;
-  }
   if (isError) {
     return <></>;
   }

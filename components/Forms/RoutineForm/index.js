@@ -5,11 +5,11 @@ import React from "react";
 import { useQuery } from "react-query";
 
 import BottomButton from "./bottomButton";
-import ContrastDetail from "./contrastDetail";
-import ExamDetail from "./examDetail";
-import PatientDetail from "./patientDetail";
+//import ContrastDetail from "./contrastDetail";
+//import ExamDetail from "./examDetail";
+//import PatientDetail from "./patientDetail";
 import Remarks from "./remarks";
-import StaffDetail from "./staffDetail";
+//import StaffDetail from "./staffDetail";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -17,7 +17,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import FORM_VALIDATION from "./ValidationSchema";
 
 import { getHomepageData } from "../../../queries/queries";
-import { LoadingSpinner } from "../CardiacForm/LoadingSpinner";
+//import { LoadingSpinner } from "../CardiacForm/LoadingSpinner";
 
 function RoutineForm({ data, handleSubmit }) {
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
@@ -42,9 +42,6 @@ function RoutineForm({ data, handleSubmit }) {
   const handleSwitch = (e) => {
     setContrast(e.target.checked);
   };
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
   if (isSuccess) {
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -83,27 +80,6 @@ function RoutineForm({ data, handleSubmit }) {
                               Routine Case Log Form
                             </Typography>
                           </Grid>
-                          <PatientDetail />
-                          <ExamDetail
-                            data={data}
-                            sedation={sedation}
-                            autocompleteOptions={autocompleteOptions}
-                            isSuccess={isSuccess}
-                            numberOfProtocol={numberOfProtocol}
-                            setNumberOfProtocol={setNumberOfProtocol}
-                            formik={formik}
-                            setSedation={setSedation}
-                          />
-                          <ContrastDetail
-                            data={data}
-                            contrast={contrast}
-                            handleSwitch={handleSwitch}
-                          />
-                          <StaffDetail
-                            data={data}
-                            autocompleteOptions={autocompleteOptions}
-                            isSuccess={isSuccess}
-                          />
                           <Remarks />
                           {/* Buttons */}
                           <BottomButton formik={formik} />

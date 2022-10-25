@@ -30,13 +30,17 @@
     "html-react-parser": "^3.0.1",
     "html-to-draftjs": "^1.5.0",
     "mui-nested-menu": "^2.1.2",
-    "next": "12.0.7",
+    "next": "^12.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
     "react-hot-toast": "^2.3.0",
     "react-query": "^3.34.12",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "euclidean-distance": "1.0.0",
+    "react-table": "7.8.0",
+    "styled-components": "^4.3.2",
+    "reactstrap": "^9.1.4"
   },
   "devDependencies": {
     "eslint": "8.5.0",

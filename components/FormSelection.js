@@ -11,7 +11,7 @@ export default function FormSelection() {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Link href={"/Forms/RoutineCases"} passHref>
+        <Link href={"/Forms/RoutineCasesTest"} passHref>
           <Box
             sx={{
               display: "flex",
