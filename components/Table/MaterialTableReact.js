@@ -1,7 +1,6 @@
 import { ThemeProvider, createTheme, useTheme } from "@mui/material";
 
 import MaterialReactTable from "material-react-table";
-import { useMemo } from "react";
 
 export default function TableMaterialReact({
   records,
@@ -12,11 +11,6 @@ export default function TableMaterialReact({
   height = "80vh",
   ...otherProps
 }) {
-  const headers = useMemo(
-    () => columnHeaders,
-    [columnHeaders] //dep list
-  );
-
   const globalTheme = useTheme(); //(optional) if you already have a theme defined in your app root, you can import here
 
   const tableTheme = useMemo(
@@ -59,7 +53,7 @@ export default function TableMaterialReact({
   );
 
   const configDataGrid = {
-    columns: headers,
+    columns: columnHeaders,
     data: records,
     // enableClickToCopy: true,
     // enableColumnActions: true,

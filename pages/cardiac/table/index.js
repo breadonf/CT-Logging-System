@@ -12,8 +12,6 @@ import { getCardiacSetup } from "/queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
-//import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
-
 function RowActionsItems({ row }) {
   const { id } = row.original;
   const { PID } = row.original;
@@ -45,10 +43,7 @@ export default function CardiacSetupTable() {
     data: records,
     isLoading: isQueryLoading,
     isSuccess: isQuerySuccess,
-    isPreviousData,
-  } = useQuery(["CardiacSetupRecord"], async () => await getCardiacSetup(), {
-    keepPreviousData: true,
-  });
+  } = useQuery(["CardiacSetupRecord"], async () => await getCardiacSetup(), {});
   if (isQueryLoading || !isQuerySuccess || !records) {
     return <LoadingSpinner />;
   }

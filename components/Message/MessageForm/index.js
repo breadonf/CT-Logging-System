@@ -12,7 +12,7 @@ import React from "react";
 import Select from "../../FormsUI/Select";
 import TextEditor from "../TextEditor";
 import Textfield from "../../FormsUI/Textfield";
-import WithPaperWrapper from "../../Forms/withPaperWrapper";
+import WithPaperWrapper from "../../Forms/WithPaperWrapper";
 import categories from "./categories.json";
 
 function MessageForm({ title = "New Message", ...otherProps }) {

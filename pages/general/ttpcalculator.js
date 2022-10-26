@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
 import Head from "next/head";
+import React from "react";
 import TTPCalculatorFrom from "../../components/Forms/TTPCalculatorForm";
 import { getHomepageCTUnlimited } from "../../queries/queries";
-import { useQuery } from "react-query";
 import getTop10 from "~/helpers/getTop10";
+import { useQuery } from "react-query";
 
 function TTPCalculator() {
   const [top10Values, setTop10Values] = React.useState(null);
