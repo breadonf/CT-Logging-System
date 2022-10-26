@@ -65,7 +65,7 @@ export default function Table() {
                 }}
                 displayColumnDefOptions={{
                   "mrt-row-actions": {
-                    size: 350, //set custom width
+                    size: 150, //set custom width
                     muiTableHeadCellProps: {
                       align: "center", //change head cell props
                     },
