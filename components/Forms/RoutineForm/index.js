@@ -14,7 +14,6 @@ import React from "react";
 import Remarks from "./remarks";
 import StaffDetail from "./staffDetail";
 import { getHomepageData } from "../../../queries/queries";
-import getTop10 from "/helpers/getTop10";
 import { useQuery } from "react-query";
 
 function RoutineForm({ data, handleSubmit, records }) {
@@ -95,7 +94,6 @@ function RoutineForm({ data, handleSubmit, records }) {
                           />
                           <ContrastDetail
                             records={records}
-                            getTop10={getTop10}
                             formik={formik}
                             data={data}
                             contrast={contrast}

@@ -59,7 +59,7 @@ export default function GetTop10Wrapper({ formik, records }) {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             The closest prediction is:
-            {records.data?.length ? top10[0].ttp : <></>}s
+            {top10.length ? top10[0].ttp : <></>}s
           </Typography>
         </Box>
       </Modal>

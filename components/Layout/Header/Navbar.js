@@ -253,7 +253,7 @@ const Navbar = () => {
               onClose={handleClose3}
               sx={styleOfMenu}
               MenuListProps={{ onMouseLeave: handleClose3 }}
-              getContentAnchorEl={null}
+
               anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
               <MenuList onMouseLeave={handleClose3} sx={styleOfMenuItem}>
