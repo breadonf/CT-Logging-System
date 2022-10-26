@@ -32,11 +32,11 @@ function Top10Display({ top10Values }) {
                   borderRadius: 5,
                 }}
               >
-                <Grid container>
-                  <Grid item xs={3}>
+                <Grid container alignItems="center" justifyContent="center">
+                  <Grid item xs={4}>
                     <Typography>Rate: {value.rate} ml/s</Typography>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={4}>
                     <Typography>Weight: {value.weight} kg</Typography>
                   </Grid>
                   <Grid item xs={4}>
@@ -45,9 +45,15 @@ function Top10Display({ top10Values }) {
                       variant="outlined"
                     ></Chip>
                   </Grid>
-                  <Grid item xs={2}>
-                    <Button variant="contained" onClick={() => Router.push(`../../exam/${value.count}`)}>
-                        Detail
+                  <Grid item xs={6}>
+                    <Typography>Discrepancy: {value.distance}</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button
+                      variant="contained"
+                      onClick={() => Router.push(`../../exam/${value.count}`)}
+                    >
+                      Detail
                     </Button>
                   </Grid>
                 </Grid>
