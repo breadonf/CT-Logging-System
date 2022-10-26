@@ -1,16 +1,14 @@
-import { Button, Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper, Tooltip } from "@mui/material";
 
 import Head from "next/head";
 import Link from "next/link";
 import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { NoEncryption } from "@mui/icons-material";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeaderNew";
 import SearchIcon from "@mui/icons-material/Search";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
 import { getCardiacSetup } from "/queries/queries";
-import { styled } from "@mui/material/styles";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
@@ -20,22 +18,27 @@ function RowActionsItems({ row }) {
   const { id } = row.original;
   const { PID } = row.original;
   return (
-    <>
+    <Grid container justifyContent="center" alignItem="center" spacing={1}>
       <Link key="1" passHref href={`/cardiac/protocol/${id}`}>
-        <PageviewIcon />
+        <Tooltip title="View record">
+          <PageviewIcon />
+        </Tooltip>
       </Link>
       <Link key="2" passHref href={`/forms/editCardiacSetup/${id}`}>
-        <ModeEditIcon />
+        <Tooltip title="Edit record">
+          <ModeEditIcon />
+        </Tooltip>
       </Link>
       <Link key="3" passHref href={`/cardiac/table/${PID}`}>
-        <SearchIcon />
+        <Tooltip title="Search related records">
+          <SearchIcon />
+        </Tooltip>
       </Link>
-    </>
+    </Grid>
   );
 }
 
 export default function CardiacSetupTable() {
-  const [pageNumber, setPageNumber] = useState(1);
   const [sorting, setSorting] = useState([]);
 
   const {

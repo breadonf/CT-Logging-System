@@ -65,15 +65,6 @@ export default function GetTop10Wrapper({ formik, records }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-<<<<<<< HEAD
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Prediction
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            The closest prediction is:
-            {top10.length ? top10[0].ttp : <></>}s
-          </Typography>
-=======
           <Grid container spacing={2} component={"div"}>
             <Grid item xs={12} sx={{ pb: 4 }} alignSelf="center">
               <Typography
@@ -121,7 +112,6 @@ export default function GetTop10Wrapper({ formik, records }) {
               )}
             </Grid>
           </Grid>
->>>>>>> b3f8c7f413ee2769c9fa3f83345f8b6d104d287e
         </Box>
       </Modal>
     </Grid>

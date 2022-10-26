@@ -1,4 +1,4 @@
-import { Button, Grid, Tooltip } from "@mui/material";
+import { Grid, Tooltip } from "@mui/material";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Link from "next/link";
