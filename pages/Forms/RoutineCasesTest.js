@@ -24,7 +24,7 @@ export function refresh(event, age, contrast_vol, data) {
     console.log(age)
     console.log(contrast_vol)
     //console.log(Object.keys(data).length);
-    var newTop10 = getTop10(data, age);
+    var newTop10 = getTop10(data, age, contrast_vol);
 
     return newTop10;
 
