@@ -9,6 +9,10 @@ export default function getTop10(data, rate, weight) {
         ? 1
         : -1;
     })
-    .slice(0, 10);
+    .slice(0, 10)
+    .map((item) => ({
+      ...item,
+      distance: Math.floor(distance([rate, weight], [item.rate, item.weight])),
+    }));
   return top10;
 }
