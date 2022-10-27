@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Container,
-  Box,
-  Button,
-  Divider,
-} from "@mui/material";
+import { Grid, Paper, Typography, Container, Divider } from "@mui/material";
 import { Formik, Form } from "formik";
-import Textfield from "~/components/FormsUI/Textfield";
+import * as yup from "yup";
+import InputFields from "./inputFields";
 import Top10Display from "./top10Display";
 
 function TTPCalculatorForm({ handleSubmit, top10Values }) {
@@ -24,6 +17,20 @@ function TTPCalculatorForm({ handleSubmit, top10Values }) {
         >
           <Formik
             initialValues={{ weight: "", rate: "" }}
+            validationSchema={yup.object().shape({
+              rate: yup
+                .number()
+                .typeError("Please enter a number")
+                .required("Required!")
+                .min(0, "Invalid input")
+                .max(10, "Impossible"),
+              weight: yup
+                .number()
+                .typeError("Please enter a number")
+                .required("Required!")
+                .min(0, "Invalid input")
+                .max(300, "Impossible"),
+            })}
             onSubmit={handleSubmit}
           >
             {(formik) => (
@@ -54,41 +61,7 @@ function TTPCalculatorForm({ handleSubmit, top10Values }) {
                     </Grid>
                     <Divider />
                     <Grid item xs={12}>
-                      <Box
-                        sx={{
-                          backgroundColor: "white",
-                          p: 2,
-                          m: 2,
-                          borderRadius: 5,
-                          border: 1,
-                        }}
-                      >
-                        <Grid container spacing={1}>
-                          <Grid item xs={4}>
-                            <Textfield
-                              name="rate"
-                              label="Injection Rate (ml/s)"
-                            ></Textfield>
-                          </Grid>
-                          <Grid item xs={4}>
-                            <Textfield
-                              name="weight"
-                              label="Weight (kg)"
-                            ></Textfield>
-                          </Grid>
-                          <Grid item xs={4} sx={{ alignSelf: "center" }}>
-                            <Button
-                              variant="contained"
-                              type="submit"
-                              value="Submit"
-                              fullWidth
-                              disabled={formik.isSubmitting}
-                            >
-                              Submit
-                            </Button>
-                          </Grid>
-                        </Grid>
-                      </Box>
+                      <InputFields formik={formik} />
                     </Grid>
                     <Grid item xs={12}>
                       {top10Values ? (
