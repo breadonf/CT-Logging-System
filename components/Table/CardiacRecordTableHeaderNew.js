@@ -1,4 +1,3 @@
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { Chip } from "@mui/material";
 
 export const RecordTableHeaders = [
