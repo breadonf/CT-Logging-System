@@ -9,7 +9,7 @@ import distance from "euclidean-distance";
 
 export async function getStaticProps() {
     const res = await
-    fetch("https://jyuz1t0v.directus.app/items/ctdelay")
+    fetch("https://jyuz1t0v.directus.app/items/ctdelay2")
     const allPostsData = await res.json();
 
     var data = allPostsData.data;
@@ -20,18 +20,18 @@ export async function getStaticProps() {
     };
 }
 
-export function refresh(event, age, contrast_vol, data) {
+export function refresh(event, age, injection_rate, data) {
     console.log(age)
-    console.log(contrast_vol)
+    console.log(injection_rate)
     //console.log(Object.keys(data).length);
-    var newTop10 = getTop10(data, age, contrast_vol);
+    var newTop10 = getTop10(data, age, injection_rate);
 
     return newTop10;
 
 }
 
-export function getTop10(data, age, contrast_vol) {
-        var top10 = data.sort(function(a, b) { return distance([age, contrast_vol], [a.age, a.contrast_vol]) > distance([age, contrast_vol], [b.age, b.contrast_vol]) ? 1 : -1; })
+export function getTop10(data, age, injection_rate) {
+        var top10 = data.sort(function(a, b) { return distance([age, injection_rate], [a.age, a.injection_rate]) > distance([age, injection_rate], [b.age, b.injection_rate]) ? 1 : -1; })
                     .slice(0, 10);
         console.log('getTop10:'+Object.keys(top10).length);
         return top10;
@@ -39,7 +39,7 @@ export function getTop10(data, age, contrast_vol) {
 
 function App({data}) {
     const [age, setAge] = useState('');
-    const [contrast_vol, setContrastVol] = useState('');
+    const [injection_rate, setInjectionRate] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const [top10, setTop10] = useState(getTop10(data, 0, 0));
 
@@ -50,13 +50,13 @@ function App({data}) {
           <input type="text" id="age"
               value={age}
               onChange={e => { setAge(e.currentTarget.value); }}
-              onKeyUp={(event) => {setTop10(refresh(event, age, contrast_vol, data))}}>
+              onKeyUp={(event) => {setTop10(refresh(event, age, injection_rate, data))}}>
           </input>
           Contrast Volume
-          <input type="text" id="contrast_vol"
-              value={contrast_vol}
-              onChange={e => { setContrastVol(e.currentTarget.value); }}
-              onKeyUp={(event) => {setTop10(refresh(event, age, contrast_vol, data))}}>
+          <input type="text" id="injection_rate"
+              value={injection_rate}
+              onChange={e => { setInjectionRate(e.currentTarget.value); }}
+              onKeyUp={(event) => {setTop10(refresh(event, age, injection_rate, data))}}>
           </input>
           <Button
             color="primary"
@@ -84,15 +84,15 @@ function App({data}) {
                    <table>
                    <tr>
                        <th>Age</th>
-                       <th>Weight</th>
                        <th>Contrast Volume</th>
+                       <th>Injection Rate</th>
                        <th>Triggered Time</th>
                    </tr>
-                     {top10.map(({age, weight, contrast_vol, triggered_time})=>(
+                     {top10.map(({age, contrast_vol, injection_rate, triggered_time})=>(
                      <tr>
                        <td>{age}</td>
-                       <td>{weight}</td>
                        <td>{contrast_vol}</td>
+                       <td>{injection_rate}</td>
                        <td>{triggered_time}</td>
                        </tr>
                      ))}
