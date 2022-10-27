@@ -3,8 +3,9 @@ import { Container, Grid, Paper } from "@mui/material";
 import Filters from "../../../../components/Table/Filters";
 import Head from "next/head";
 import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
-import { RecordTableHeaders } from "../../../../components/Table/RoutineRecordTableHeader";
-import TableMaterial from "../../../../components/Table/TableMaterial";
+import { RecordTableHeaders } from "../../../../components/Table/RoutineRecordTableHeaderNew";
+import { RowActionsItems } from "../../../../components/Table/RowActionsItems";
+import TableMaterialReact from "/components/Table/MaterialTableReact";
 import { getExamsRecordBySearch } from "../../../../queries/queries";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
@@ -13,7 +14,8 @@ import { useState } from "react";
 export default function SearchTable() {
   const router = useRouter();
   const { queryWords } = router.query;
-  const [pageNumber, setPageNumber] = useState(1);
+  const [sorting, setSorting] = useState([]);
+
   console.log(queryWords);
   const {
     data: records,
@@ -52,18 +54,44 @@ export default function SearchTable() {
               }}
             >
               <Filters endpoint="general/search" />
-              <TableMaterial
-                setPageNumber={setPageNumber}
-                records={records.CT}
-                isSuccess={isQuerySuccess}
-                isLoading={isQueryLoading}
+              <TableMaterialReact
                 columnHeaders={RecordTableHeaders}
-                pageNumber={pageNumber}
-                isPreviousData={isPreviousData}
-                paginationMode="client"
-                getRowId={(row) => row.count}
-                height="60vh"
-                pageSize={10}
+                records={records.CT}
+                enableBottomToolbar={false}
+                enablePagination={false}
+                enableRowVirtualization
+                enableColumnFilterModes
+                enableRowActions
+                enableClickToCopy
+                muiTableBodyCellProps={{
+                  sx: {
+                    fontSize: "1rem",
+                  },
+                }}
+                muiTableContainerProps={{
+                  sx: {
+                    maxHeight: "75vh",
+                  },
+                }}
+                onSortingChange={setSorting}
+                initialState={{
+                  density: "spacious",
+                  showColumnFilters: true,
+                }}
+                displayColumnDefOptions={{
+                  "mrt-row-actions": {
+                    size: 150, //set custom width
+                    muiTableHeadCellProps: {
+                      align: "center", //change head cell props
+                    },
+                    muiTableBodyCellProps: {
+                      align: "center", //change head cell props
+                    },
+                  },
+                }}
+                virtualizerProps={{ overscan: 25 }}
+                state={{ sorting }}
+                renderRowActions={({ row }) => <RowActionsItems row={row} />}
               />
             </Paper>
           </Container>

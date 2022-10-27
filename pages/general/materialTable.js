@@ -6,7 +6,6 @@ import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeaderNe
 import { RowActionsItems } from "../../components/Table/RowActionsItems";
 import TableMaterialReact from "/components/Table/MaterialTableReact";
 import { getHomepageCTUnlimited } from "../../queries/queries";
-import getTop10 from "/helpers/getTop10";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
@@ -16,16 +15,13 @@ export default function Table() {
   const { data: records, isSuccess, isLoading } = useQuery(
     ["record"],
     async () => await getHomepageCTUnlimited(),
-    {
-      keepPreviousData: true,
-    }
+    {}
   );
 
   if (isLoading) {
     return <LoadingSpinner maxWidth="80%" />;
   }
   if (isSuccess && records) {
-    console.log(getTop10(records, 10, 10));
     return (
       <Grid sx={{ py: 3 }} container>
         <Head>
@@ -74,7 +70,7 @@ export default function Table() {
                     },
                   },
                 }}
-                virtualizerProps={{ overscan: 40 }}
+                virtualizerProps={{ overscan: 25, estimateHeight: () => 150 }}
                 state={{ sorting }}
                 renderRowActions={({ row }) => <RowActionsItems row={row} />}
               />

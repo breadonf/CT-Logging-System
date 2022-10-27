@@ -16,7 +16,7 @@ import { MenuList } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-const StyledMenu = styled((props) => <Menu elevation={1} {...props} />)(
+const StyledMenu = styled((props) => <Menu elevation={100} {...props} />)(
   ({ theme }) => ({
     "& .MuiPaper-root": {
       borderRadius: 6,
@@ -85,9 +85,10 @@ const Navbar = () => {
   const styleOfMenuList = {
     color: "#001011",
     background: "#001011",
+    zIndex: 1000,
   };
   const styleOfMenu = {
-    display: "inline",
+    display: "block",
     color: "#001011",
     zIndex: 1600,
   };
@@ -198,7 +199,7 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/table" passHref>
+                  <Link href="/general/materialTable" passHref>
                     <a>Table</a>
                   </Link>
                 </MenuItem>
@@ -207,14 +208,24 @@ const Navbar = () => {
                     <a>Search</a>
                   </Link>
                 </MenuItem>
-                <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/materialTable" passHref>
-                    <a>Testing Table</a>
-                  </Link>
-                </MenuItem>
+                {status === "authenticated" ? (
+                  <MenuItem sx={styleOfMenuItem}>
+                    <Link href="/general/table" passHref>
+                      <a>Obsolete Table</a>
+                    </Link>
+                  </MenuItem>
+                ) : (
+                  <></>
+                )}
+
                 <MenuItem sx={styleOfMenuItem}>
                   <Link href={`/general/today/${today.current}`} passHref>
                     <a>Today case</a>
+                  </Link>
+                </MenuItem>
+                <MenuItem sx={styleOfMenuItem}>
+                  <Link href={`/general/ttpcalculator`} passHref>
+                    <a>TTP calculator</a>
                   </Link>
                 </MenuItem>
               </MenuList>
@@ -253,7 +264,6 @@ const Navbar = () => {
               onClose={handleClose3}
               sx={styleOfMenu}
               MenuListProps={{ onMouseLeave: handleClose3 }}
-              getContentAnchorEl={null}
               anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
             >
               <MenuList onMouseLeave={handleClose3} sx={styleOfMenuItem}>

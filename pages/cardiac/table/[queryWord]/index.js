@@ -3,8 +3,9 @@ import { Container, Grid, Paper } from "@mui/material";
 import Filters from "/components/Table/Filters";
 import Head from "next/head";
 import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
-import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeader";
-import TableMaterial from "/components/Table/TableMaterial";
+import { RecordTableHeaders } from "../../../../components/Table/CardiacRecordTableHeaderNew";
+import { RowActionsItems } from "../../../../components/Table/RowActionsItems";
+import TableMaterialReact from "/components/Table/MaterialTableReact";
 import { getCardiacSetupRecordBySearch } from "/queries/queries";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
@@ -13,7 +14,8 @@ import { useState } from "react";
 export default function CardiacSetupTable() {
   const router = useRouter();
   const { queryWord } = router.query;
-  const [pageNumber, setPageNumber] = useState(1);
+  const [sorting, setSorting] = useState([]);
+
   const {
     data: records,
     isLoading: isQueryLoading,
@@ -57,17 +59,44 @@ export default function CardiacSetupTable() {
               }}
             >
               <Filters endpoint="cardiac/table" />
-              <TableMaterial
-                setPageNumber={setPageNumber}
-                records={records.cardiacCT}
-                isSuccess={isQuerySuccess}
-                isLoading={isQueryLoading}
-                pageNumber={pageNumber}
-                isPreviousData={isPreviousData}
+              <TableMaterialReact
                 columnHeaders={RecordTableHeaders}
-                paginationMode="client"
-                height="60vh"
-                pageSize={10}
+                records={records.cardiacCT}
+                enableBottomToolbar={false}
+                enablePagination={false}
+                enableRowVirtualization
+                enableColumnFilterModes
+                enableRowActions
+                enableClickToCopy
+                muiTableBodyCellProps={{
+                  sx: {
+                    fontSize: "1rem",
+                  },
+                }}
+                muiTableContainerProps={{
+                  sx: {
+                    maxHeight: "75vh",
+                  },
+                }}
+                onSortingChange={setSorting}
+                initialState={{
+                  density: "spacious",
+                  showColumnFilters: true,
+                }}
+                displayColumnDefOptions={{
+                  "mrt-row-actions": {
+                    size: 150, //set custom width
+                    muiTableHeadCellProps: {
+                      align: "center", //change head cell props
+                    },
+                    muiTableBodyCellProps: {
+                      align: "center", //change head cell props
+                    },
+                  },
+                }}
+                virtualizerProps={{ overscan: 25 }}
+                state={{ sorting }}
+                renderRowActions={({ row }) => <RowActionsItems row={row} />}
               />
             </Paper>
           </Container>
