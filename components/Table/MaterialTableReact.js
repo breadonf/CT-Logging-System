@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme, useTheme } from "@mui/material";
 
 import MaterialReactTable from "material-react-table";
+import { useMemo } from "react";
 
 export default function TableMaterialReact({
   records,
@@ -55,18 +56,6 @@ export default function TableMaterialReact({
   const configDataGrid = {
     columns: columnHeaders,
     data: records,
-    // enableClickToCopy: true,
-    // enableColumnActions: true,
-    // enableColumnFilterModes: true,
-    // enableColumnOrdering: true,
-    // enablePinning: true,
-    // enableRowActions: true,
-    // enableRowSelection: true,
-    initialState: { showColumnFilters: true },
-    //muiTableContainerProps: { sx: { maxHeight: "65vh" } },
-    // muiTableProps: { sx: { overflow: "auto" } },
-    // onPaginationChange: setPagination,
-    // state: { pagination: pagination },
     ...otherProps,
   };
   return (

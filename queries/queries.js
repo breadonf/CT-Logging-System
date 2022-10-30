@@ -1,8 +1,8 @@
 import fetchData from "../helpers/fetchData";
 
-/** 
+/**
  *  @Description For fetching records
- *  @query 
+ *  @query
 
 */
 // Home Page
@@ -56,10 +56,10 @@ const HomepageCTUnlimited = `
         volume
         kV_a
         sedation
-        sedatedBy
+
         injectionSite
-        circumference
-        urgent
+
+
         directPostContrast
         handInjection
         mixedContrast
@@ -72,15 +72,8 @@ const HomepageCTUnlimited = `
         pitch
         height
         weight
-        ttp
-        age
-        inPatient
-        kV_b
-        delays
-        contrastType
-        ctdi
-        examType
-        IR
+
+
       }
     }
 `;
@@ -167,14 +160,14 @@ const HomepageData = `
       protocol(limit: -1) {
         label
         value
-        
+
       }
       radiographers {
         label
         value
       }
       nurses: Nurses  {
-        
+
         label
         value
       }
@@ -430,7 +423,7 @@ const CardiacCaseRecordByID = `
         delayTime
       }
     }
-    
+
 `;
 const CardiacCaseRecordBySearch = `
     #graphql
@@ -455,7 +448,7 @@ const CardiacCaseRecordBySearch = `
         delayTime
       }
     }
-    
+
 `;
 //Home Page
 
@@ -463,7 +456,7 @@ export const getHomepageCTUnlimited = async () => {
   const data = await fetchData(HomepageCTUnlimited, {
     variables: {},
   });
-
+  console.log("fetched");
   return data.data.CT;
 };
 export const getHomepageCT = async (page, pageSize = 25) => {

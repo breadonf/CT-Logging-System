@@ -1,10 +1,11 @@
-import { Container, Grid, Paper } from "@mui/material";
-
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import Head from "next/head";
 import { LoadingSpinner } from "../../components/Forms/LoadingSpinner";
+import Paper from "@mui/material/Paper";
 import { RecordTableHeaders } from "/components/Table/RoutineRecordTableHeaderNew";
 import { RowActionsItems } from "../../components/Table/RowActionsItems";
-import TableMaterialReact from "/components/Table/MaterialTableReact";
+import TableMaterialReact from "~/components/Table/MaterialTableReact";
 import { getHomepageCTUnlimited } from "../../queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
@@ -13,7 +14,7 @@ export default function Table() {
   const [sorting, setSorting] = useState([]);
 
   const { data: records, isSuccess, isLoading } = useQuery(
-    ["record"],
+    ["recordUnlimited"],
     async () => await getHomepageCTUnlimited(),
     {}
   );
@@ -62,16 +63,8 @@ export default function Table() {
                 displayColumnDefOptions={{
                   "mrt-row-actions": {
                     size: 150, //set custom width
-                    muiTableHeadCellProps: {
-                      align: "center", //change head cell props
-                    },
-                    muiTableBodyCellProps: {
-                      align: "center", //change head cell props
-                    },
                   },
                 }}
-                virtualizerProps={{ overscan: 25, estimateHeight: () => 150 }}
-                state={{ sorting }}
                 renderRowActions={({ row }) => <RowActionsItems row={row} />}
               />
             </Paper>

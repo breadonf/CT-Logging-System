@@ -1,15 +1,15 @@
-import { Grid, Tooltip } from "@mui/material";
-
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
+import Tooltip from "@mui/material/Tooltip";
 
 //import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
 export function RowActionsItems({ row, view = "/exam/" }) {
   const { count } = row.original;
   return (
-    <Grid container justifyContent="center" alignItem="center" spacing={1}>
+    <Grid container justifyContent="center" alignItems="center" spacing={1}>
       <Grid item alignSelf="center">
         <Link key="1" passHref href={`${view}${count}`}>
           <Tooltip title="View record">

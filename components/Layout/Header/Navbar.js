@@ -204,6 +204,11 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
+                  <Link href="/general/testingTable" passHref>
+                    <a>Table Testing</a>
+                  </Link>
+                </MenuItem>
+                <MenuItem sx={styleOfMenuItem}>
                   <Link href="/general/search" passHref>
                     <a>Search</a>
                   </Link>
