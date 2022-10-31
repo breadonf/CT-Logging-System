@@ -1,7 +1,6 @@
 import { Button, Grid } from "@mui/material";
 
 import React from "react";
-import { resetForm } from "formik";
 
 function BottomButton({ formik, setRecordMode, recordMode, readyForRecord }) {
   function onClickRecordMode(e) {
@@ -35,7 +34,7 @@ function BottomButton({ formik, setRecordMode, recordMode, readyForRecord }) {
           variant="contained"
           type="reset"
           value="Reset"
-          onClick={resetForm}
+          onClick={formik.resetForm()}
           fullWidth
         >
           Reset
