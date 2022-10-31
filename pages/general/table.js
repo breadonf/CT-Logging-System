@@ -1,20 +1,15 @@
 import { Container, Grid, Paper } from "@mui/material";
-import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
+import { getHomepageCT, getHomepageCTNumber } from "~/queries/queries";
 
 import Head from "next/head";
-import { RecordTableHeaders } from "../../components/Table/RoutineRecordTableHeader";
-import TableMaterial from "../../components/Table/TableMaterial";
+import { RecordTableHeaders } from "~/components/Table/RoutineRecordTableHeader";
+import TableMaterial from "~/components/Table/TableMaterial";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
 export default function Table() {
   const [pageNumber, setPageNumber] = useState(1);
-  const {
-    data: records,
-    isSuccess,
-    isLoading,
-    isPreviousData,
-  } = useQuery(
+  const { data: records, isSuccess, isLoading, isPreviousData } = useQuery(
     ["record", pageNumber],
     async () => await getHomepageCT(pageNumber),
     {

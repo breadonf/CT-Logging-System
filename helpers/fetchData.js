@@ -14,6 +14,7 @@ const fetchData = async (query, { variables = {} }, system = false) => {
   });
   const json = await res.json();
   if (json.errors) {
+    console.log(json.errors);
   }
   return json;
 };

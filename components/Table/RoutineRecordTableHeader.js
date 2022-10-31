@@ -84,8 +84,7 @@ export const RecordTableHeaders = [
     headerName: "Protocol",
     field: "protocol",
     flex: true,
-    maxWidth: 300,
-    minWidth: 100,
+    minWidth: 200,
     renderCell: (protocol) => {
       return protocol.value ? (
         <div>

@@ -1,13 +1,13 @@
 import { Container, Grid, Paper } from "@mui/material";
+import { getCardiacSetup, getCardiacSetupNumber } from "~/queries/queries";
 
 import Head from "next/head";
 import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
-import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeaderNew";
+import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeader";
 import SearchIcon from "@mui/icons-material/Search";
-import TableMaterialReact from "/components/Table/MaterialTableReact";
-import { getCardiacSetup } from "/queries/queries";
+import TableMaterial from "~/components/Table/TableMaterial";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
@@ -38,14 +38,24 @@ export default function CardiacSetupTable() {
   const {
     data: records,
     isLoading,
-    isSuccess: isQuerySuccess,
+    isSuccess,
     isFetching,
     isPreviousData,
     isError,
-  } = useQuery(["CardiacSetupRecord"], async () => await getCardiacSetup(), {
-    keepPreviousData: true,
-  });
-
+  } = useQuery(
+    ["CardiacSetupRecord", pageNumber],
+    async () => await getCardiacSetup(pageNumber),
+    {
+      keepPreviousData: true,
+    }
+  );
+  const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(
+    "rowNumbers",
+    async () => await getHomepageCTNumber(),
+    {
+      staleTime: 60 * 1000,
+    }
+  );
   return (
     <Grid sx={{ py: 3 }} container>
       <Head>
@@ -64,50 +74,19 @@ export default function CardiacSetupTable() {
               overflowY: "auto",
             }}
           >
-            <TableMaterialReact
-              columnHeaders={RecordTableHeaders}
-              records={records ?? []}
-              enableBottomToolbar={false}
-              enablePagination={false}
-              enableRowVirtualization
-              enableColumnFilterModes
-              enableRowActions
-              enableClickToCopy
-              muiTableBodyCellProps={{
-                sx: {
-                  fontSize: "1rem",
-                },
-              }}
-              muiTableContainerProps={{
-                sx: {
-                  maxHeight: "75vh",
-                },
-              }}
-              onSortingChange={setSorting}
-              initialState={{
-                density: "spacious",
-                showColumnFilters: true,
-              }}
-              displayColumnDefOptions={{
-                "mrt-row-actions": {
-                  size: 100, //set custom width
-                  muiTableHeadCellProps: {
-                    align: "center", //change head cell props
-                  },
-                  muiTableBodyCellProps: {
-                    align: "center", //change head cell props
-                    padding: "none",
-                  },
-                },
-              }}
-              state={{
-                sorting,
-                isLoading,
-                showAlertBanner: isError,
-                showProgressBars: isFetching,
-              }}
-              renderRowActions={({ row }) => <RowActionsItems row={row} />}
-            />
+            {isSuccess && (
+              <TableMaterial
+                setPageNumber={setPageNumber}
+                records={records}
+                isSuccess={isSuccess}
+                rowCount={rowCount}
+                isLoading={isLoading}
+                pageNumber={pageNumber}
+                isPreviousData={isPreviousData}
+                columnHeaders={RecordTableHeaders}
+                paginationMode="server"
+              />
+            )}
           </Paper>
         </Container>
       </Grid>

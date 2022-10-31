@@ -1,8 +1,8 @@
 import fetchData from "../helpers/fetchData";
 
-/** 
+/**
  *  @Description For fetching records
- *  @query 
+ *  @query
 
 */
 // Home Page
@@ -51,36 +51,15 @@ const HomepageCTUnlimited = `
       CT (sort: ["-count"], limit: -1){
         Date
         count
-        remark
         rate
         volume
         kV_a
         sedation
-        sedatedBy
         injectionSite
-        circumference
-        urgent
         directPostContrast
-        handInjection
-        mixedContrast
-        keywords
         PID
-        radiographers
         radiologists
-        nurses
         protocol
-        pitch
-        height
-        weight
-        ttp
-        age
-        inPatient
-        kV_b
-        delays
-        contrastType
-        ctdi
-        examType
-        IR
       }
     }
 `;
@@ -167,14 +146,14 @@ const HomepageData = `
       protocol(limit: -1) {
         label
         value
-        
+
       }
       radiographers {
         label
         value
       }
       nurses: Nurses  {
-        
+
         label
         value
       }
@@ -329,8 +308,8 @@ const ExamsRecordBySearch = `
 //Cardiac Protocol
 const CardiacSetup = `
 #graphql
-query CardiacCT {
-  cardiacCT(sort: ["-id"], limit: -1) {
+query CardiacCT($page: Int!, $pageSize: Int!) {
+  cardiacCT(page:$page, limit: $pageSize, sort: ["-id"]) {
     sedation
     scanMode
     id
@@ -430,7 +409,7 @@ const CardiacCaseRecordByID = `
         delayTime
       }
     }
-    
+
 `;
 const CardiacCaseRecordBySearch = `
     #graphql
@@ -455,7 +434,7 @@ const CardiacCaseRecordBySearch = `
         delayTime
       }
     }
-    
+
 `;
 //Home Page
 
@@ -463,7 +442,7 @@ export const getHomepageCTUnlimited = async () => {
   const data = await fetchData(HomepageCTUnlimited, {
     variables: {},
   });
-
+  console.log("fetched");
   return data.data.CT;
 };
 export const getHomepageCT = async (page, pageSize = 25) => {
@@ -522,9 +501,9 @@ export const getExamsRecordBySearch = async (key) => {
   return data.data;
 };
 //Cardiac Protocol
-export const getCardiacSetup = async () => {
+export const getCardiacSetup = async (page, pageSize = 25) => {
   const data = await fetchData(CardiacSetup, {
-    variables: {},
+    variables: { page: page, pageSize: pageSize },
   });
 
   return data.data.cardiacCT;
