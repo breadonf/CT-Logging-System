@@ -14,6 +14,15 @@ export default function Filters({ endpoint }) {
   const ini_value = {
     search: "",
   };
+  const onKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // Prevent's default 'Enter' behavior.
+      handleSearch(event.target.value);
+      // your handler code
+      // Temp fixes
+      // For preventing pressing enter when in autocomplete to prevent inputting string value to the field without processing to array
+    }
+  };
   return (
     <Grid spacing={2} sx={{ py: 5 }} container>
       <Grid item xs={12}>
@@ -42,6 +51,7 @@ export default function Filters({ endpoint }) {
                         <TextfieldWrapper
                           name="search"
                           label="Search any keywords/ related information"
+                          onKeyDown={onKeyDown}
                         />
                       </Grid>
                       <Grid item xs={1}></Grid>

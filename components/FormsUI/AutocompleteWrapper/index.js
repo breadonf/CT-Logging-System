@@ -37,6 +37,7 @@ export default function AutocompleteWrapper({
         // Prevent's default 'Enter' behavior.
         event.defaultMuiPrevented = true;
         event.preventDefault();
+        console.log(event.target.value);
         // your handler code
         // Temp fixes
         // For preventing pressing enter when in autocomplete to prevent inputting string value to the field without processing to array

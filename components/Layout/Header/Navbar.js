@@ -192,22 +192,26 @@ const Navbar = () => {
             >
               <MenuList sx={styleOfMenuList}>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/logform" passHref>
+                  <Link href="/general/logform" replace passHref>
                     <a>Log Form</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/table" passHref>
+                  <Link href="/general/table" replace passHref>
                     <a>Table</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/search" passHref>
+                  <Link href="/general/search" replace passHref>
                     <a>Search</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href={`/general/today/${today.current}`} passHref>
+                  <Link
+                    href={`/general/today/${today.current}`}
+                    replace
+                    passHref
+                  >
                     <a>Today case</a>
                   </Link>
                 </MenuItem>
@@ -229,17 +233,17 @@ const Navbar = () => {
             >
               <MenuList onMouseLeave={handleClose2} sx={styleOfMenuItem}>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/cardiac/protocol/setup" passHref>
+                  <Link href="/cardiac/protocol/setup" replace passHref>
                     <a>Case Setup</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/cardiac/table" passHref>
+                  <Link href="/cardiac/table" replace passHref>
                     <a>Table</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/cardiac/search" passHref>
+                  <Link href="/cardiac/search" replace passHref>
                     <a>Search</a>
                   </Link>
                 </MenuItem>
