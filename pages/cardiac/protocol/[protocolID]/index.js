@@ -4,13 +4,13 @@ import {
   Divider,
   Grid,
   Paper,
-  Typography,
+  Typography
 } from "@mui/material";
 
 import Buttons from "~/components/DetailPage/Cardiac/Buttons";
 import CardiacSetup from "~/components/DetailPage/Cardiac/CardiacSetup";
 import Head from "next/head";
-import { LoadingSpinner } from "/components/Forms/LoadingSpinner";
+import { LoadingSpinner } from "~/components/Forms/LoadingSpinner";
 import PatientDetail from "~/components/DetailPage/Cardiac/PatientDetail";
 import React from "react";
 import { getCardiacSetupByID } from "~/queries/queries";

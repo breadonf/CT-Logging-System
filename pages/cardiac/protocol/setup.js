@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import CardiacProtocolForm from "~/components/Forms/CardiacProtocolForm";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
 import INITIAL_FORM_STATE from "/components/Forms/CardiacProtocolForm/InitialFormState";
@@ -25,9 +25,7 @@ function CardiacCases() {
     }
   );
   const handleSubmit = async (values) => {
-    console.log("handle", values);
     const modifiedValues = preprocessor(values);
-    console.log(modifiedValues);
     await new Promise((r) => setTimeout(r, 750));
     mutation.mutate(
       { ...modifiedValues },

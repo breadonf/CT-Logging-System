@@ -105,6 +105,7 @@ export const RecordTableHeaders = [
   {
     headerName: "Direct Post Contrast",
     field: "directPostContrast",
+    maxWidth: 100,
     renderCell: (isDirectPostContrast) => {
       return isDirectPostContrast.value ? <CheckRoundedIcon /> : <></>;
     },
@@ -138,6 +139,7 @@ export const RecordTableHeaders = [
   {
     headerName: "kV (Tube B)",
     field: "kV_b",
+    minWidth: 180,
     renderCell: (items) => {
       return items.value ? (
         <div>

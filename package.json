@@ -1,7 +1,7 @@
 {
   "name": "ct-logging-system-frontend",
   "private": true,
-  "version": "1.66",
+  "version": "1.68",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,7 +21,6 @@
     "@mui/material": "^5.10.5",
     "@mui/x-data-grid": "^5.3.0",
     "@next/bundle-analyzer": "^12.2.3",
-    "@tanstack/react-table": "^8.5.21",
     "cross-conf-env": "^1.2.1",
     "cross-env": "^7.0.3",
     "draft-convert": "^2.1.12",
@@ -31,7 +30,6 @@
     "formik": "^2.2.9",
     "html-react-parser": "^3.0.1",
     "html-to-draftjs": "^1.5.0",
-    "material-react-table": "^1.0.11",
     "next": "^12.3.1",
     "next-auth": "^4.13.0",
     "react": "^18.2.0",
@@ -41,7 +39,6 @@
     "react-error-boundary": "^3.1.4",
     "react-hot-toast": "^2.3.0",
     "react-query": "^3.34.12",
-    "react-virtual": "^2.10.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

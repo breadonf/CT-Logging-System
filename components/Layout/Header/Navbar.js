@@ -216,7 +216,7 @@ const Navbar = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href={`/general/ttpcalculator`} passHref>
+                  <Link href={`/general/ttpcalculator`} replace passHref>
                     <a>TTP calculator</a>
                   </Link>
                 </MenuItem>

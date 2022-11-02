@@ -1,5 +1,4 @@
 import { Container, Grid, Paper } from "@mui/material";
-import { getCardiacSetup, getCardiacSetupNumber } from "~/queries/queries";
 
 import Head from "next/head";
 import Link from "next/link";
@@ -8,6 +7,7 @@ import PageviewIcon from "@mui/icons-material/Pageview";
 import { RecordTableHeaders } from "/components/Table/CardiacRecordTableHeader";
 import SearchIcon from "@mui/icons-material/Search";
 import TableMaterial from "~/components/Table/TableMaterial";
+import { getCardiacSetup } from "~/queries/queries";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
@@ -49,7 +49,7 @@ export default function CardiacSetupTable() {
       keepPreviousData: true,
     }
   );
-  const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(
+  const { data: rowCount } = useQuery(
     "rowNumbers",
     async () => await getHomepageCTNumber(),
     {
@@ -78,7 +78,7 @@ export default function CardiacSetupTable() {
               <TableMaterial
                 setPageNumber={setPageNumber}
                 records={records}
-                isSuccess={isSuccess}
+                isSuccess={isSuccess} 
                 rowCount={rowCount}
                 isLoading={isLoading}
                 pageNumber={pageNumber}
