@@ -54,6 +54,8 @@ const HomepageCTUnlimited = `
         rate
         volume
         kV_a
+        ttp
+        weight
         sedation
         injectionSite
         directPostContrast
@@ -153,7 +155,10 @@ const HomepageData = `
         value
       }
       nurses: Nurses  {
-
+        label
+        value
+      }
+      ROI: ROI  {
         label
         value
       }

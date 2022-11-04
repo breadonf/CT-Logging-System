@@ -95,6 +95,7 @@ function RoutineForm({ data, handleSubmit, records }) {
                           <ContrastDetail
                             records={records}
                             formik={formik}
+                            autocompleteOptions={autocompleteOptions}
                             data={data}
                             contrast={contrast}
                             handleSwitch={handleSwitch}

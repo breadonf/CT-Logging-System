@@ -14,7 +14,14 @@ import Textfield from "../../FormsUI/Textfield";
 import injectionSites from "../SelectItems/injectionSites.json";
 import typeOfContrast from "../SelectItems/typeOfContrast.json";
 
-function ContrastDetail({ formik, data, contrast, handleSwitch, records }) {
+function ContrastDetail({
+  formik,
+  data,
+  contrast,
+  handleSwitch,
+  records,
+  autocompleteOptions,
+}) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 4 }}>
       <Grid item xs={12}>
@@ -184,8 +191,16 @@ function ContrastDetail({ formik, data, contrast, handleSwitch, records }) {
                   Bolus cases
                 </Typography>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={4}>
                 <Textfield name="ttp" label="Time to 150 HU(s)"></Textfield>
+              </Grid>
+              <Grid item xs={4}>
+                <AutocompleteWrapper
+                  name="ROI"
+                  label="ROI Location"
+                  autocompleteOptions={autocompleteOptions.ROI}
+                  prepopulatedvalue={data?.ROI ?? []}
+                />
               </Grid>
             </Grid>
           </>
