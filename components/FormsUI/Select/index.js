@@ -1,6 +1,7 @@
 import { InputLabel, ListSubheader, MenuItem, TextField } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
 import { useField, useFormikContext } from "formik";
+
+import FormControl from "@mui/material/FormControl";
 import React from "react";
 
 const SelectWrapper = ({
@@ -38,7 +39,6 @@ const SelectWrapper = ({
     variant: "filled",
     fullWidth: true,
     onChange: handleChange,
-
     defaultValue: field.value ? field.value : [],
     label: label,
   };

@@ -1,11 +1,12 @@
-import React from "react";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { Grid, Typography, Chip, Button } from "@mui/material";
+import { Button, Chip, Grid, Typography } from "@mui/material";
+
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import Textfield from "../../FormsUI/Textfield";
-import Select from "../../FormsUI/Select";
 import RadioGroup from "../../FormsUI/RadioGroup";
+import React from "react";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import Select from "../../FormsUI/Select";
+import SettingsIcon from "@mui/icons-material/Settings";
+import Textfield from "../../FormsUI/Textfield";
 import Toggle from "../../FormsUI/Toggle";
 
 function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
@@ -70,6 +71,7 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
               name={`IVSite[${i}].location`}
               label="Location"
               options={{
+                "": "",
                 "Lower Limb": "Lower Limb",
                 "Upper Limb": "Upper Limb",
               }}
@@ -80,6 +82,7 @@ function CardiacSetup({ formik, numberOfSites, setNumberOfSites }) {
               name={`IVSite[${i}].side`}
               label="Side"
               options={{
+                "": "",
                 Any: "Any",
                 Right: "Right",
                 Left: "Left",

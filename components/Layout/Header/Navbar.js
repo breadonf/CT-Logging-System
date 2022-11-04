@@ -25,7 +25,7 @@ const StyledMenu = styled((props) => <Menu {...props} />)(({ theme }) => ({
     boxShadow:
       "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
     "& .MuiMenu-list": {
-      padding: 1,
+      padding: 0, // Root cause of the white border of the menu
       color: "#001011",
     },
     "& .MuiMenuItem-root": {
@@ -192,17 +192,32 @@ const Navbar = () => {
             >
               <MenuList sx={styleOfMenuList}>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/logform" replace passHref>
+                  <Link
+                    key="/general/logform"
+                    href="/general/logform"
+                    replace
+                    passHref
+                  >
                     <a>Log Form</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/table" replace passHref>
+                  <Link
+                    key="/general/table"
+                    href="/general/table"
+                    replace
+                    passHref
+                  >
                     <a>Table</a>
                   </Link>
                 </MenuItem>
                 <MenuItem sx={styleOfMenuItem}>
-                  <Link href="/general/search" replace passHref>
+                  <Link
+                    key="/general/search"
+                    href="/general/search"
+                    replace
+                    passHref
+                  >
                     <a>Search</a>
                   </Link>
                 </MenuItem>
@@ -211,6 +226,7 @@ const Navbar = () => {
                     href={`/general/today/${today.current}`}
                     replace
                     passHref
+                    key="/general/today"
                   >
                     <a>Today case</a>
                   </Link>

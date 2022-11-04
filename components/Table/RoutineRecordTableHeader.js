@@ -14,37 +14,41 @@ export const RecordTableHeaders = [
     type: "actions",
     width: 120,
     getActions: (params) => [
-      <Link key="1" passHref href={`/exam/${params.id}`}>
-        <GridActionsCellItem
-          icon={
-            <Tooltip title="View exam detail">
-              <PageviewIcon />
-            </Tooltip>
-          }
-          label="View"
-        />
+      <Link key="1" href={`/exam/${params.id}`}>
+        <a>
+          <GridActionsCellItem
+            icon={
+              <Tooltip title="View exam detail">
+                <PageviewIcon />
+              </Tooltip>
+            }
+            label="View"
+          />
+        </a>
       </Link>,
-      <Link key="2" passHref href={`/forms/editForm/${params.id}`}>
-        <GridActionsCellItem
-          icon={
-            <Tooltip title="Edit exam">
-              <ModeEditIcon />
-            </Tooltip>
-          }
-          label="Edit"
-        />
+      <Link key="2" href={`/forms/editForm/${params.id}`}>
+        <a>
+          <GridActionsCellItem
+            icon={
+              <Tooltip title="Edit exam">
+                <ModeEditIcon />
+              </Tooltip>
+            }
+            label="Edit"
+          />
+        </a>
       </Link>,
-      <Link key="3" passHref href={`/general/search/${params.row.PID}`}>
-        <GridActionsCellItem
-          icon={
-            <Tooltip title="Search previous exam(s)">
-              <SearchIcon />
-            </Tooltip>
-          }
-          label="Edit"
-        >
-          Look Up to this patient
-        </GridActionsCellItem>
+      <Link key="3" href={`/general/search/${params.row.PID}`}>
+        <a>
+          <GridActionsCellItem
+            icon={
+              <Tooltip title="Search previous exam(s)">
+                <SearchIcon />
+              </Tooltip>
+            }
+            label="Edit"
+          />
+        </a>
       </Link>,
     ],
   },
