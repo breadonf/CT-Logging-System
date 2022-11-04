@@ -14,36 +14,40 @@ export const RecordTableHeaders = [
     width: 120,
     getActions: (params) => [
       <Link key="1" passHref href={`/cardiac/protocol/${params.id}`}>
-        <GridActionsCellItem
-          icon={
-            <Tooltip title="View exam detail">
-              <PageviewIcon />
-            </Tooltip>
-          }
-          label="View"
-        />
+        <a>
+          <GridActionsCellItem
+            icon={
+              <Tooltip title="View exam detail">
+                <PageviewIcon />
+              </Tooltip>
+            }
+            label="View"
+          />
+        </a>
       </Link>,
       <Link key="2" passHref href={`/forms/editCardiacSetup/${params.id}`}>
-        <GridActionsCellItem
-          icon={
-            <Tooltip title="Edit exam">
-              <ModeEditIcon />
-            </Tooltip>
-          }
-          label="Edit"
-        />
+        <a>
+          <GridActionsCellItem
+            icon={
+              <Tooltip title="Edit exam">
+                <ModeEditIcon />
+              </Tooltip>
+            }
+            label="Edit"
+          />
+        </a>
       </Link>,
       <Link key="3" passHref href={`/cardiac/table/${params.row.PID}`}>
-        <GridActionsCellItem
-          icon={
-            <Tooltip title="Search previous exam(s)">
-              <SearchIcon />
-            </Tooltip>
-          }
-          label="Edit"
-        >
-          Look Up to this patient
-        </GridActionsCellItem>
+        <a>
+          <GridActionsCellItem
+            icon={
+              <Tooltip title="Search previous exam(s)">
+                <SearchIcon />
+              </Tooltip>
+            }
+            label="Edit"
+          />
+        </a>
       </Link>,
     ],
   },
