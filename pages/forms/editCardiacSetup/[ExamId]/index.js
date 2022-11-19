@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "react-query";
 
-import CardiacProtocolForm from "/components/Forms/CardiacProtocolForm";
+import CardiacProtocolForm from "~/components/Forms/CardiacProtocolForm";
 import React from "react";
 import { getCardiacSetupByID } from "../../../../queries/queries";
 import preprocessor from "../../../../helpers/preprocessorCardiacForm";

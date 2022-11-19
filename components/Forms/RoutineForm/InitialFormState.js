@@ -27,10 +27,11 @@ const INITIAL_FORM_STATE = {
   nurses: [],
   keywords: "",
   remark: "",
-  delays: [""],
+  delays: Array(1).fill(null),
   examType: [],
   ctdi: [],
   IR: false,
+  ROI: "",
 };
 
 export default INITIAL_FORM_STATE;

@@ -34,7 +34,7 @@ function BottomButton({ formik, setRecordMode, recordMode, readyForRecord }) {
           variant="contained"
           type="reset"
           value="Reset"
-          onClick={formik.resetForm()}
+          onClick={formik.resetForm}
           fullWidth
         >
           Reset

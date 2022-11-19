@@ -264,6 +264,7 @@ const ExamDetailsByID = `
         ctdi
         examType
         IR
+        ROI
       }
     }
 `;
@@ -342,35 +343,32 @@ const CardiacSetupByID = `
       cardiacCT_by_id(id: $cardiacCtByIdId) {
         id
         PID
+        name
+        date
         radiologistInCharge
-        IVSite
         sedation
         breathingControl
-        targetHR
+        IVSite
         scanMode
         phase
-        name
+        sort
+        readyForRecord
         protocol
         contrastRegime
-        studyDose
-        seriesDose
-        seriesCTDI
         heartRate
         scanTechnique
-        breathingControl
+        breathingControl_record
         depictionOfROI
+        targetHR
         satisfaction
         artefact
         remarks
-        delayTime
-        date
-        date_func {
-          year
-          day
-          month
-        }
-      }
+        delays
+        studyDose
+        seriesDose
+        seriesCTDI
     }
+  }
 `;
 const CardiacSetupRecordBySearch = `
     #graphql

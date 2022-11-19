@@ -43,7 +43,10 @@ const FORM_VALIDATION = yup.object().shape({
   nurses: yup.array().typeError("Not an array"),
   contrastType: yup.string().typeError("Please select type of contrast"),
   rate: yup.string().nullable(),
-  delays: yup.array().of(yup.number().nullable()),
+  delays: yup
+    .array()
+    .typeError("")
+    .of(yup.number().typeError("Error, this is not an number").nullable()),
   directPostContrast: yup
     .boolean("Error")
     .nullable("Error")

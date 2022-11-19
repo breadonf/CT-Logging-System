@@ -1,20 +1,17 @@
-import React from "react";
-import { Grid, Paper, Typography, Container, Divider } from "@mui/material";
-import { Formik, Form } from "formik";
 import * as yup from "yup";
+
+import { Container, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Form, Formik } from "formik";
+
 import InputFields from "./inputFields";
+import React from "react";
 import Top10Display from "./top10Display";
 
 function TTPCalculatorForm({ handleSubmit, top10Values }) {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Container
-          maxWidth="lg"
-          sx={{
-            height: "90vh",
-          }}
-        >
+        <Container maxWidth="lg">
           <Formik
             initialValues={{ weight: "", rate: "" }}
             validationSchema={yup.object().shape({
@@ -44,33 +41,34 @@ function TTPCalculatorForm({ handleSubmit, top10Values }) {
                     justifyContent: "center",
                   }}
                 >
-                  <Paper
-                    elevation={12}
-                    sx={{
-                      p: 3,
-                      height: "85vh",
-                      weight: 800,
-                      bgcolor: "#F0F3BD",
-                      overflowY: "auto",
-                    }}
-                  >
-                    <Grid item xs={12} sx={{ p: 1 }}>
-                      <Typography variant="h3" align="center" color="#093A3E">
-                        Time to Peak Calculator
-                      </Typography>
-                    </Grid>
-                    <Divider />
-                    <Grid item xs={12}>
-                      <InputFields formik={formik} />
-                    </Grid>
-                    <Grid item xs={12}>
-                      {top10Values ? (
-                        <Top10Display top10Values={top10Values} />
-                      ) : (
-                        <h1>please enter data</h1>
-                      )}
-                    </Grid>
-                  </Paper>
+                  <Grid item xs={12}>
+                    <Paper
+                      elevation={12}
+                      sx={{
+                        p: 3,
+                        height: "85vh",
+                        bgcolor: "#F0F3BD",
+                        overflowY: "auto",
+                      }}
+                    >
+                      <Grid item xs={12} sx={{ p: 1 }}>
+                        <Typography variant="h3" align="center" color="#093A3E">
+                          Time to Peak Calculator
+                        </Typography>
+                      </Grid>
+                      <Divider />
+                      <Grid item xs={12}>
+                        <InputFields formik={formik} />
+                      </Grid>
+                      <Grid item xs={12}>
+                        {top10Values ? (
+                          <Top10Display top10Values={top10Values} />
+                        ) : (
+                          <h1>please enter data</h1>
+                        )}
+                      </Grid>
+                    </Paper>
+                  </Grid>
                 </Grid>
               </Form>
             )}

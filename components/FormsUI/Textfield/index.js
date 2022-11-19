@@ -30,6 +30,7 @@ const TextfieldWrapper = ({
   if (meta && meta.touched && meta.error) {
     configTextfield.error = true;
     configTextfield.helperText = meta.error;
+    console.log(meta.error);
   }
 
   return (

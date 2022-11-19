@@ -96,7 +96,7 @@ function ContrastDetail({
                 input)
               </Typography>
             </Grid>
-            <Grid item xs={5.92}>
+            <Grid item xs={5.96}>
               <FieldArray name="delays">
                 {(fieldArrayProps) => {
                   const { push, remove, form } = fieldArrayProps;
@@ -111,7 +111,7 @@ function ContrastDetail({
                             <Grid item xs={8} sx={{ pb: 2 }}>
                               <Textfield
                                 name={`delays[${index}]`}
-                                label={`Delay Time(s) ${index + 1}`}
+                                label={`${index + 1}. Delay Time(s) `}
                               />
                             </Grid>
                             <>
@@ -191,6 +191,7 @@ function ContrastDetail({
                   Bolus cases
                 </Typography>
               </Grid>
+
               <Grid item xs={4}>
                 <Textfield name="ttp" label="Time to 150 HU(s)"></Textfield>
               </Grid>

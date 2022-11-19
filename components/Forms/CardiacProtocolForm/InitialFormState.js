@@ -38,7 +38,7 @@ const INITIAL_FORM_STATE = {
   satisfaction: null,
   artefact: "",
   remarks: "",
-  delayTime: "",
+  delays: [""],
 };
 
 export default INITIAL_FORM_STATE;

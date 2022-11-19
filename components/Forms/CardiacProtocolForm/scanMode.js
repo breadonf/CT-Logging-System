@@ -1,12 +1,13 @@
-import React from "react";
-import { Grid, Typography, Divider } from "@mui/material";
-import Textfield from "../../FormsUI/Textfield";
-import RadioGroup from "../../FormsUI/RadioGroup";
-import Toggle from "../../FormsUI/Toggle";
-import TimerIcon from "@mui/icons-material/Timer";
-import Slider from "../../FormsUI/Slider";
+import { Divider, Grid, Typography } from "@mui/material";
 
-function ScanMode({ formik }) {
+import AutocompleteWrapper from "~/components/FormsUI/AutocompleteWrapper";
+import RadioGroup from "../../FormsUI/RadioGroup";
+import React from "react";
+import Slider from "../../FormsUI/Slider";
+import TimerIcon from "@mui/icons-material/Timer";
+import Toggle from "../../FormsUI/Toggle";
+
+function ScanMode({ formik, autocompleteOptions, data }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Divider />
@@ -15,7 +16,7 @@ function ScanMode({ formik }) {
           <TimerIcon sx={{ mr: 1 }} /> ECG-gated Scan Mode
         </Typography>
       </Grid>
-      <Grid item xs={12} sx={{ mt: 2 }}>
+      <Grid item xs={4} sx={{ mt: 2 }}>
         <Toggle
           name="scanMode.HRDependent"
           legend="Heart Rate Dependent?"
@@ -30,8 +31,8 @@ function ScanMode({ formik }) {
         )}
       </Grid>
 
-      <Grid container item xs={12} sx={{ mt: 2 }}>
-        <Grid item xs={4}>
+      <Grid container item xs={8} sx={{ mt: 2 }}>
+        <Grid item xs={6}>
           <RadioGroup
             name="scanMode.flash.mode"
             legend="Flash(Single/Dual)"
@@ -42,7 +43,7 @@ function ScanMode({ formik }) {
             ]}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           {formik.values.scanMode.flash.mode === "single" ? (
             <RadioGroup
               name="scanMode.flash.trigger"
@@ -57,17 +58,19 @@ function ScanMode({ formik }) {
           )}
         </Grid>
       </Grid>
-
       <Grid item xs={12} sx={{ mt: 2 }}>
-        <Toggle name="scanMode.ss.status" legend="SS" label="" />
-      </Grid>
-      {formik.values.scanMode.ss.status ? (
-        <Grid item xs={4} sx={{ mt: 2 }}>
-          <Slider label="SS range" name="scanMode.ss.range" legend="Range" />
+        <Grid item xs={4}>
+          <Toggle name="scanMode.ss.status" legend="SS" label="" />
         </Grid>
-      ) : (
-        <></>
-      )}
+        {formik.values.scanMode.ss.status ? (
+          <Grid item xs={8} sx={{ mt: 2 }}>
+            <Slider label="SS range" name="scanMode.ss.range" legend="Range" />
+          </Grid>
+        ) : (
+          <></>
+        )}
+      </Grid>
+
       <Grid container item xs={12} sx={{ mt: 2 }}>
         <Grid item xs={4}>
           <RadioGroup
@@ -80,8 +83,13 @@ function ScanMode({ formik }) {
             ]}
           />
         </Grid>
-        <Grid item xs={2} sx={{ mt: 2 }}>
-          <Textfield name="scanMode.ROI" label="ROI" />
+        <Grid item xs={4}>
+          <AutocompleteWrapper
+            name="scanMode.ROI"
+            label="ROI Location"
+            autocompleteOptions={autocompleteOptions.ROI}
+            prepopulatedvalue={data?.ROI ?? []}
+          />
         </Grid>
       </Grid>
     </Grid>

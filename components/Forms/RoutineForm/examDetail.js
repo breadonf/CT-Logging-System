@@ -1,9 +1,10 @@
-import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import { Box, Button, Chip, Grid, Typography } from "@mui/material";
-import React from "react";
+
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
+import ImageSearchIcon from "@mui/icons-material/ImageSearch";
+import React from "react";
 import Select from "../../FormsUI/Select";
 import Textfield from "../../FormsUI/Textfield";
 import examType from "../SelectItems/examType.json";

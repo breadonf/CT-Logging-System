@@ -1,14 +1,12 @@
 import { Container, Grid, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import BottomButton from "./bottomButton";
 import ContrastDetail from "./contrastDetail";
 import ExamDetail from "./examDetail";
 import FORM_VALIDATION from "./ValidationSchema";
 import INITIAL_FORM_STATE from "./InitialFormState";
 import { LoadingSpinner } from "../LoadingSpinner";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import PatientDetail from "./patientDetail";
 import React from "react";
 import Remarks from "./remarks";
@@ -45,79 +43,77 @@ function RoutineForm({ data, handleSubmit, records }) {
   }
   if (isSuccess) {
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Container
-              maxWidth="lg"
-              sx={{
-                height: "90vh",
-              }}
+      <Grid container>
+        <Grid item xs={12}>
+          <Container
+            maxWidth="lg"
+            sx={{
+              height: "90vh",
+            }}
+          >
+            <Formik
+              initialValues={data ? data : INITIAL_FORM_STATE}
+              validationSchema={FORM_VALIDATION}
+              onSubmit={handleSubmit}
             >
-              <Formik
-                initialValues={data ? data : INITIAL_FORM_STATE}
-                validationSchema={FORM_VALIDATION}
-                onSubmit={handleSubmit}
-              >
-                {(formik) => (
-                  <Form>
-                    <Grid container spacing={2} sx={{ height: "90vh", py: 3 }}>
-                      <Grid item xs={12}>
-                        <Paper
-                          elevation={12}
-                          sx={{
-                            p: 3,
-                            height: "85vh",
-                            bgcolor: "#F0F3BD",
-                            overflowY: "auto",
-                          }}
-                        >
-                          <Grid item xs={12}>
-                            <Typography
-                              variant="h3"
-                              align="center"
-                              color="#093A3E"
-                            >
-                              Routine Case Log Form
-                            </Typography>
-                          </Grid>
-                          <PatientDetail />
-                          <ExamDetail
-                            data={data}
-                            sedation={sedation}
-                            autocompleteOptions={autocompleteOptions}
-                            isSuccess={isSuccess}
-                            numberOfProtocol={numberOfProtocol}
-                            setNumberOfProtocol={setNumberOfProtocol}
-                            formik={formik}
-                            setSedation={setSedation}
-                          />
-                          <ContrastDetail
-                            records={records}
-                            formik={formik}
-                            autocompleteOptions={autocompleteOptions}
-                            data={data}
-                            contrast={contrast}
-                            handleSwitch={handleSwitch}
-                          />
-                          <StaffDetail
-                            data={data}
-                            autocompleteOptions={autocompleteOptions}
-                            isSuccess={isSuccess}
-                          />
-                          <Remarks />
-                          {/* Buttons */}
-                          <BottomButton formik={formik} />
-                        </Paper>
-                      </Grid>
+              {(formik) => (
+                <Form>
+                  <Grid container spacing={2} sx={{ height: "90vh", py: 3 }}>
+                    <Grid item xs={12}>
+                      <Paper
+                        elevation={12}
+                        sx={{
+                          p: 3,
+                          height: "85vh",
+                          bgcolor: "#F0F3BD",
+                          overflowY: "auto",
+                        }}
+                      >
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h3"
+                            align="center"
+                            color="#093A3E"
+                          >
+                            Routine Case Log Form
+                          </Typography>
+                        </Grid>
+                        <PatientDetail />
+                        <ExamDetail
+                          data={data}
+                          sedation={sedation}
+                          autocompleteOptions={autocompleteOptions}
+                          isSuccess={isSuccess}
+                          numberOfProtocol={numberOfProtocol}
+                          setNumberOfProtocol={setNumberOfProtocol}
+                          formik={formik}
+                          setSedation={setSedation}
+                        />
+                        <ContrastDetail
+                          records={records}
+                          formik={formik}
+                          autocompleteOptions={autocompleteOptions}
+                          data={data}
+                          contrast={contrast}
+                          handleSwitch={handleSwitch}
+                        />
+                        <StaffDetail
+                          data={data}
+                          autocompleteOptions={autocompleteOptions}
+                          isSuccess={isSuccess}
+                        />
+                        <Remarks />
+                        {/* Buttons */}
+                        <BottomButton formik={formik} />
+                      </Paper>
                     </Grid>
-                  </Form>
-                )}
-              </Formik>
-            </Container>
-          </Grid>
+                  </Grid>
+                </Form>
+              )}
+            </Formik>
+          </Container>
         </Grid>
-      </LocalizationProvider>
+      </Grid>
     );
   } else {
     return (
