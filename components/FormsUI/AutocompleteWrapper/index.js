@@ -35,9 +35,8 @@ export default function AutocompleteWrapper({
     onKeyDown: (event) => {
       if (event.key === "Enter") {
         // Prevent's default 'Enter' behavior.
-        event.defaultMuiPrevented = true;
+
         event.preventDefault();
-        console.log(event.target.value);
         // your handler code
         // Temp fixes
         // For preventing pressing enter when in autocomplete to prevent inputting string value to the field without processing to array
@@ -48,7 +47,6 @@ export default function AutocompleteWrapper({
     configAuto.error = true;
     configAuto.helperText = meta.error;
   }
-
   let flattenedAutocompleteOptions = autocompleteOptions.map(
     ({ label }) => label
   );
@@ -69,7 +67,10 @@ export default function AutocompleteWrapper({
       options={flattenedAutocompleteOptions}
       onChange={handleChange}
       defaultValue={prepopulatedvalue}
-      getOptionLabel={(option) => option ?? null}
+      getOptionLabel={(option) => {
+        console.log(option);
+        return option;
+      }}
       renderInput={(params) => <TextField {...configAuto} {...params} />}
       isOptionEqualToValue={(option, value) => {
         option == value;

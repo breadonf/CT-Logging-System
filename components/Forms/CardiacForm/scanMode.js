@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from "@mui/material";
 
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
+import AutocompleteWrapper from "~/components/FormsUI/AutocompleteWrapper";
 import Button from "@mui/material/Button";
 import { FieldArray } from "formik";
 import RadioGroup from "../../FormsUI/RadioGroup";
@@ -11,7 +11,7 @@ import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 import Textfield from "../../FormsUI/Textfield";
 import TimerIcon from "@mui/icons-material/Timer";
 
-function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
+function ScanMode({ isSuccess, data, autocompleteOptions }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ p: 2 }}>
       <Grid item xs={12}>
@@ -27,10 +27,8 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
           id="protocol"
           name="protocol"
           label="Protocol (Maximum 2 protcols can be selected)"
-          prepopulatedValue={data?.protocol ?? []}
-          autocompleteOptions={
-            isSuccess ? autocompleteOptions?.protocol ?? [] : ""
-          }
+          prepopulatedvalue={data?.protocol ?? []}
+          autocompleteOptions={isSuccess ? autocompleteOptions?.protocol : []}
         />
       </Grid>
       <Grid item xs={12}>

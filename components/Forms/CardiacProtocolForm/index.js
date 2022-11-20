@@ -38,7 +38,7 @@ function CardiacProtocolForm({ data, handleSubmit }) {
                 // HACK check form value using console.log(formik.values)
                 return (
                   <Form>
-                    <Grid spacing={2} sx={{ height: "90vh", py: 3 }}>
+                    <Grid container spacing={2} sx={{ height: "90vh", py: 3 }}>
                       <Grid item xs={12}>
                         <Paper
                           elevation={12}
@@ -81,6 +81,7 @@ function CardiacProtocolForm({ data, handleSubmit }) {
                                 formik={formik}
                                 data={data}
                                 autocompleteOptions={autocompleteOptions}
+                                isSuccess={isSuccess}
                               />
                               <PhaseDetail formik={formik} />
                             </>

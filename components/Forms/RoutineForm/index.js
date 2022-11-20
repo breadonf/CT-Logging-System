@@ -11,11 +11,10 @@ import PatientDetail from "./patientDetail";
 import React from "react";
 import Remarks from "./remarks";
 import StaffDetail from "./staffDetail";
-import { getHomepageData } from "../../../queries/queries";
+import { getHomepageData } from "~/queries/queries";
 import { useQuery } from "react-query";
 
 function RoutineForm({ data, handleSubmit, records }) {
-  const [locale, setLocale] = React.useState("zh-HK");
   const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
     "autocompleteOptions",
     async () => await getHomepageData()

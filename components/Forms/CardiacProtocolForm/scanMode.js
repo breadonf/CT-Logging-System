@@ -7,7 +7,7 @@ import Slider from "../../FormsUI/Slider";
 import TimerIcon from "@mui/icons-material/Timer";
 import Toggle from "../../FormsUI/Toggle";
 
-function ScanMode({ formik, autocompleteOptions, data }) {
+function ScanMode({ formik, autocompleteOptions, data, isSuccess }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
       <Divider />
@@ -87,8 +87,8 @@ function ScanMode({ formik, autocompleteOptions, data }) {
           <AutocompleteWrapper
             name="scanMode.ROI"
             label="ROI Location"
-            autocompleteOptions={autocompleteOptions.ROI}
-            prepopulatedvalue={data?.ROI ?? []}
+            autocompleteOptions={isSuccess ? autocompleteOptions.ROI : []}
+            prepopulatedvalue={data?.scanMode.ROI ?? []}
           />
         </Grid>
       </Grid>
