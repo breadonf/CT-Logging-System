@@ -48,9 +48,10 @@ function RoutineCases() {
                 border: "1px solid #713200",
                 padding: "40px",
                 color: "#713200",
-                fontSize: "1.5rem",
-                minWidth: "20%",
+                fontSize: "2rem",
+                minWidth: "80%",
               },
+              duration: 6000,
             }
           );
           router.push("/general/table");

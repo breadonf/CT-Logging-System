@@ -92,7 +92,7 @@ export const RecordTableHeaders = [
                 key={`radiologistid-${radiologist}`}
                 variant="outlined"
                 color="primary"
-                label={radiologist.match(/(.*) (\(.*\))/)[1]}
+                label={radiologist}
               />
             );
           })}

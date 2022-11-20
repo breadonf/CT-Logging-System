@@ -19,7 +19,6 @@ export default function AutocompleteWrapper({
   const handleChange = (e, value) => {
     if (multiple) {
       const result = value?.map((option) => option);
-
       setFieldValue(name, value !== null ? result : []);
     } else {
       setFieldValue(name, value);
@@ -68,7 +67,6 @@ export default function AutocompleteWrapper({
       onChange={handleChange}
       defaultValue={prepopulatedvalue}
       getOptionLabel={(option) => {
-        console.log(option);
         return option;
       }}
       renderInput={(params) => <TextField {...configAuto} {...params} />}
