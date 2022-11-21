@@ -1,11 +1,10 @@
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import { Avatar, Chip } from "@mui/material";
+
+import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
-import { Avatar, Chip } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
-import { GridActionsCellItem } from "@mui/x-data-grid";
-import Link from "next/link";
 
 export const RecordTableHeaders = [
   {
@@ -16,47 +15,33 @@ export const RecordTableHeaders = [
     getActions: (params) => [
       <Link key="1" href={`/exam/${params.id}`}>
         <a>
-          <GridActionsCellItem
-            icon={
-              <Tooltip title="View exam detail">
-                <PageviewIcon />
-              </Tooltip>
-            }
-            label="View"
-          />
+          <Tooltip title="View exam detail">
+            <PageviewIcon />
+          </Tooltip>
         </a>
       </Link>,
       <Link key="2" href={`/forms/editForm/${params.id}`}>
         <a>
-          <GridActionsCellItem
-            icon={
-              <Tooltip title="Edit exam">
-                <ModeEditIcon />
-              </Tooltip>
-            }
-            label="Edit"
-          />
+          <Tooltip title="Edit exam">
+            <ModeEditIcon />
+          </Tooltip>
         </a>
       </Link>,
       <Link key="3" href={`/general/search/${params.row.PID}`}>
         <a>
-          <GridActionsCellItem
-            icon={
-              <Tooltip title="Search previous exam(s)">
-                <SearchIcon />
-              </Tooltip>
-            }
-            label="Edit"
-          />
+          <Tooltip title="Search previous exam(s)">
+            <SearchIcon />
+          </Tooltip>
         </a>
       </Link>,
     ],
   },
-  { headerName: "Entry id", field: "count", width: 80 },
+  { headerName: "Entry id", field: "count", width: 80, align: "center" },
   {
     headerName: "Exam Date",
     field: "Date",
-    type: "dateTime",
+    align: "center",
+    type: "date",
     width: 100,
     valueGetter: ({ value }) => value && new Date(value),
     valueFormatter: ({ value }) => {
@@ -69,19 +54,18 @@ export const RecordTableHeaders = [
       return valueFormatted;
     },
   },
-  { headerName: "Patient ID", field: "PID", width: 100 },
+  { headerName: "Patient ID", field: "PID", width: 100, align: "center" },
   {
     headerName: "Sedation",
     field: "sedatedBy",
+    type: "boolean",
     width: 90,
-    renderCell: (sedatedBy) => {
-      return sedatedBy.value ? <CheckRoundedIcon /> : <></>;
-    },
   },
-
   {
     headerName: "Age",
     field: "age",
+    type: "number",
+    align: "center",
     width: 80,
     valueGetter: ({ value }) => value && new Number(value),
   },
@@ -113,10 +97,8 @@ export const RecordTableHeaders = [
     headerName: "Direct Post Contrast",
     field: "directPostContrast",
     width: 120,
-    renderCell: (isDirectPostContrast) => {
-      return isDirectPostContrast.value ? <CheckRoundedIcon /> : <></>;
-    },
     align: "center",
+    type: "boolean",
   },
   {
     headerName: "Injection Site",
@@ -141,21 +123,19 @@ export const RecordTableHeaders = [
         ) : (
           <Chip label={items.value} color="default" variant="outlined" />
         )
-      ) : (
-        <></>
-      );
+      ) : null;
     },
   },
-  { headerName: "Rate", field: "rate", width: 60 },
-  { headerName: "Volume", field: "volume" },
+  { headerName: "Rate", field: "rate", width: 60, type: "number" },
+  { headerName: "Volume", field: "volume", type: "number" },
 
-  { headerName: "CTDI", field: "ctdi", width: 60 },
+  { headerName: "CTDI", field: "ctdi", width: 60, type: "number" },
   {
     headerName: "kV (A)",
     field: "kV_a",
     width: 70,
     renderCell: (items) => {
-      return items.value ? (
+      return items.value && items.value.length != 0 ? (
         <div>
           {items.formattedValue.map((kVA) =>
             kVA.startsWith("Secondary") ? (
@@ -179,10 +159,10 @@ export const RecordTableHeaders = [
             )
           )}
         </div>
-      ) : (
-        <></>
-      );
+      ) : null;
     },
+    valueGetter: (params) =>
+      params.row.kV_a?.length > 0 ? params.row.kV_a : null,
   },
 
   {
@@ -190,10 +170,10 @@ export const RecordTableHeaders = [
     field: "kV_b",
     width: 70,
     renderCell: (items) => {
-      return items.value ? (
+      return items.value && items.value.length != 0 ? (
         <div>
           {items.formattedValue.map((kVB) =>
-            kVA.startsWith("Secondary") ? (
+            kVB.startsWith("Secondary") ? (
               <div>
                 <Chip
                   key={`kVB-${kVB}`}
@@ -214,19 +194,19 @@ export const RecordTableHeaders = [
             )
           )}
         </div>
-      ) : (
-        <></>
-      );
+      ) : null;
     },
+    valueGetter: (params) =>
+      params.row.kV_b?.length > 0 ? params.row.kV_b : null,
   },
   {
     headerName: "Reporting Radiologists",
     field: "radiologists",
     width: 250,
     renderCell: (radiologists) => {
-      return radiologists.value ? (
+      return radiologists.row.radiologists ? (
         <div>
-          {radiologists.formattedValue.map((radiologist) => (
+          {radiologists.row.radiologists.map((radiologist) => (
             <div>
               <Chip
                 key={`radiologistid-${radiologist}`}

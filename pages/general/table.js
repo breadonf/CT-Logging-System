@@ -9,9 +9,11 @@ import { useState } from "react";
 
 export default function Table() {
   const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(25);
+
   const { data: records, isSuccess, isLoading, isPreviousData } = useQuery(
-    ["record", pageNumber],
-    async () => await getHomepageCT(pageNumber),
+    ["record", pageNumber, pageSize],
+    async () => await getHomepageCT(pageNumber, pageSize),
     {
       keepPreviousData: true,
     }
@@ -48,6 +50,8 @@ export default function Table() {
                 columnHeaders={RecordTableHeaders}
                 paginationMode="server"
                 getRowId={(row) => row.count}
+                pageSize={pageSize}
+                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               />
             )}
           </Paper>

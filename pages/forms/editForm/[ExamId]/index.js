@@ -4,6 +4,7 @@ import {
 } from "../../../../queries/queries";
 import { useMutation, useQuery } from "react-query";
 
+import { LoadingSpinner } from "~/components/Forms/LoadingSpinner";
 import React from "react";
 import RoutineForm from "../../../../components/Forms/RoutineForm";
 import preprocessor from "../../../../helpers/preprocessor";
@@ -84,7 +85,7 @@ export default function EditRoutineForm() {
     }
   };
   if (isQueryLoading || !isQuerySuccess || !fetchedData) {
-    return <h2>Loading</h2>;
+    return <LoadingSpinner />;
   }
   if (isError) {
     return <></>;

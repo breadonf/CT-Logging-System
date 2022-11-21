@@ -1,7 +1,8 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import CustomPagination from "./CustomPagination";
+import { LinearProgress } from "@mui/material";
 import Toolbar from "./Toolbar";
 
 export default function TableMaterial({
@@ -15,15 +16,22 @@ export default function TableMaterial({
   columnHeaders,
   getRowId,
   height = "80vh",
-  pageSize = 25,
+  pageSize = 100,
+  onPageSizeChange,
 }) {
   const headers = useMemo(
     () => columnHeaders,
     [columnHeaders] //dep list
   );
+  // const [queryOptions, setQueryOptions] = useState({});
   const [rowCountState, setRowCountState] = useState(rowCount || 0);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
+  // const onFilterChange = useCallback((filterModel) => {
+  //   setQueryOptions({ filterModel: { ...filterModel } });
+  //   console.log(filterModel);
+  // }, []);
+
   useEffect(() => {
     setIsLoading(true);
     setRowCountState((prevRowCountState) =>
@@ -65,11 +73,18 @@ export default function TableMaterial({
     },
     rowCount: rowCountState,
     rowHeight: 65,
-    components: { Toolbar: GridToolbar, Pagination: CustomPagination },
+    components: { Pagination: CustomPagination },
     loading: isLoading,
     pageSize: pageSize,
+    // filterMode: "server",
+    // onFilterModelChange: onFilterChange,
+    columnBuffer: 10,
+    columnThreshold: 10,
+    onPageSizeChange: onPageSizeChange,
+    rowsPerPageOptions: [10, 25, -1],
     components: {
       Toolbar: Toolbar,
+      LoadingOverlay: LinearProgress,
     },
   };
   return (
