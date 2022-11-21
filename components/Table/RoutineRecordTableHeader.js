@@ -1,11 +1,11 @@
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import { Chip } from "@mui/material";
-import { GridActionsCellItem } from "@mui/x-data-grid";
-import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
+import { Chip } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import Link from "next/link";
 
 export const RecordTableHeaders = [
   {
@@ -52,10 +52,10 @@ export const RecordTableHeaders = [
       </Link>,
     ],
   },
-  { field: "count", headerName: "Entry id" },
+  { headerName: "Entry id", field: "count" },
   {
-    field: "Date",
     headerName: "Exam Date",
+    field: "Date",
     type: "dateTime",
     width: 100,
     valueGetter: ({ value }) => value && new Date(value),
@@ -69,10 +69,10 @@ export const RecordTableHeaders = [
       return valueFormatted;
     },
   },
-  { field: "PID", headerName: "Patient ID", width: 100 },
+  { headerName: "Patient ID", field: "PID", width: 100 },
   {
-    field: "sedatedBy",
     headerName: "Sedation",
+    field: "sedatedBy",
     width: 90,
     renderCell: (sedatedBy) => {
       return sedatedBy.value ? <CheckRoundedIcon /> : <></>;
@@ -80,25 +80,28 @@ export const RecordTableHeaders = [
   },
 
   {
-    field: "age",
     headerName: "Age",
+    field: "age",
+    width: 80,
     valueGetter: ({ value }) => value && new Number(value),
   },
   {
     headerName: "Protocol",
     field: "protocol",
     flex: true,
-    minWidth: 200,
+    minWidth: 250,
     renderCell: (protocol) => {
       return protocol.value ? (
         <div>
           {protocol.value.map((protocol) => (
-            <Chip
-              key={`ctdi-${protocol}`}
-              variant="outlined"
-              color="primary"
-              label={protocol}
-            />
+            <div>
+              <Chip
+                key={`ctdi-${protocol}`}
+                variant="outlined"
+                color="primary"
+                label={protocol}
+              />
+            </div>
           ))}
         </div>
       ) : (
@@ -109,52 +112,80 @@ export const RecordTableHeaders = [
   {
     headerName: "Direct Post Contrast",
     field: "directPostContrast",
-    maxWidth: 100,
+    width: 120,
     renderCell: (isDirectPostContrast) => {
       return isDirectPostContrast.value ? <CheckRoundedIcon /> : <></>;
     },
     align: "center",
   },
   { headerName: "Site", field: "injectionSite" },
-  { headerName: "Rate", field: "rate" },
+  { headerName: "Rate", field: "rate", width: 60 },
   { headerName: "Volume", field: "volume" },
 
-  { field: "ctdi", headerName: "CTDI", width: 60 },
+  { headerName: "CTDI", field: "ctdi", width: 60 },
   {
-    headerName: "kV (Tube A)",
+    headerName: "kV (A)",
     field: "kV_a",
+    width: 70,
     renderCell: (items) => {
       return items.value ? (
         <div>
-          {items.formattedValue.map((kVA) => (
-            <Chip
-              key={`kVA-${kVA}`}
-              variant="outlined"
-              color="error"
-              label={kVA}
-            />
-          ))}
+          {items.formattedValue.map((kVA) =>
+            kVA.startsWith("Secondary") ? (
+              <div>
+                <Chip
+                  key={`kVA-${kVA}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVA.slice(10)}
+                />
+              </div>
+            ) : (
+              <div>
+                <Chip
+                  key={`kVA-${kVA}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVA}
+                />
+              </div>
+            )
+          )}
         </div>
       ) : (
         <></>
       );
     },
   },
+
   {
-    headerName: "kV (Tube B)",
+    headerName: "kV (B)",
     field: "kV_b",
-    minWidth: 180,
+    width: 70,
     renderCell: (items) => {
       return items.value ? (
         <div>
-          {items.formattedValue.map((kVB) => (
-            <Chip
-              key={`kVB-${kVB}`}
-              variant="outlined"
-              color="error"
-              label={kVB}
-            />
-          ))}
+          {items.formattedValue.map((kVB) =>
+            kVA.startsWith("Secondary") ? (
+              <div>
+                <Chip
+                  key={`kVB-${kVB}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVB.slice(10)}
+                />
+              </div>
+            ) : (
+              <div>
+                <Chip
+                  key={`kVB-${kVB}`}
+                  variant="outlined"
+                  color="error"
+                  label={kVB}
+                />
+              </div>
+            )
+          )}
         </div>
       ) : (
         <></>
@@ -164,17 +195,19 @@ export const RecordTableHeaders = [
   {
     headerName: "Reporting Radiologists",
     field: "radiologists",
-    width: 150,
+    width: 250,
     renderCell: (radiologists) => {
       return radiologists.value ? (
         <div>
           {radiologists.formattedValue.map((radiologist) => (
-            <Chip
-              key={`radiologistid-${radiologist}`}
-              variant="outlined"
-              color="primary"
-              label={radiologist}
-            />
+            <div>
+              <Chip
+                key={`radiologistid-${radiologist}`}
+                variant="outlined"
+                color="primary"
+                label={radiologist}
+              />
+            </div>
           ))}
         </div>
       ) : (

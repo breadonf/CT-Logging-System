@@ -64,6 +64,7 @@ export default function TableMaterial({
       }
     },
     rowCount: rowCountState,
+    rowHeight: 65,
     components: { Toolbar: GridToolbar, Pagination: CustomPagination },
     loading: isLoading,
     pageSize: pageSize,
