@@ -56,6 +56,7 @@ export default function TableMaterial({
     },
     columns: headers,
     getRowId: getRowId,
+    getRowHeight: () => "auto",
     paginationMode: paginationMode,
     onPageChange: (newPage) => {
       if (!isPreviousData) {

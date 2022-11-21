@@ -1,16 +1,17 @@
-import { Chip } from "@mui/material";
-import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
+import { Chip } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+import Link from "next/link";
 
 export const RecordTableHeaders = [
   {
     headerName: "",
     field: "actions",
     type: "actions",
-    width: 150,
+
+    width: 100,
     getActions: (params) => [
       <Link key="1" passHref href={`/cardiac/protocol/${params.id}`}>
         <a>
@@ -35,8 +36,8 @@ export const RecordTableHeaders = [
       </Link>,
     ],
   },
-  { field: "id", headerName: "Protocol id", width: 150 },
-  { field: "PID", headerName: "Patient ID", width: 150 },
+  { field: "id", headerName: "Protocol ID", width: 100 },
+  { field: "PID", headerName: "Patient ID", width: 100 },
   { field: "name", headerName: "Patient Name", width: 150 },
   {
     field: "date_func",
@@ -59,7 +60,7 @@ export const RecordTableHeaders = [
     field: "sedation",
     headerName: "Sedation",
 
-    width: 150,
+    width: 120,
   },
   {
     field: "radiologistInCharge",
@@ -71,18 +72,15 @@ export const RecordTableHeaders = [
     headerName: "Reporting Radiologists",
     field: "radiologistInCharge",
 
-    width: 150,
+    width: 250,
     renderCell: (radiologists) => {
       return radiologists.value ? (
         <div>
           {radiologists.formattedValue.map((radiologist) => {
             return (
-              <Chip
-                key={`radiologistid-${radiologist}`}
-                variant="outlined"
-                color="primary"
-                label={radiologist}
-              />
+              <div key={`radiologistid-${radiologist}`}>
+                <Chip variant="outlined" color="primary" label={radiologist} />
+              </div>
             );
           })}
         </div>
