@@ -74,7 +74,10 @@ export default function TableMaterial({
     <>
       {isSuccess && (
         <div style={{ height: height }}>
-          <DataGrid sx={{ boxShadow: 5 }} {...configDataGrid} />
+          <DataGrid
+            sx={{ p: 4, boxShadow: 5, overflowX: "auto" }}
+            {...configDataGrid}
+          />
         </div>
       )}
     </>

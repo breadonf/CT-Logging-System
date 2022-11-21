@@ -66,6 +66,7 @@ function RoutineForm({ data, handleSubmit, records }) {
                           height: "85vh",
                           bgcolor: "#F0F3BD",
                           overflowY: "auto",
+                          
                         }}
                       >
                         <Grid item xs={12}>
