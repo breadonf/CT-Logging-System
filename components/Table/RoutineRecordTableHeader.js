@@ -2,7 +2,7 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
-import { Chip } from "@mui/material";
+import { Avatar, Chip } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Link from "next/link";
@@ -52,7 +52,7 @@ export const RecordTableHeaders = [
       </Link>,
     ],
   },
-  { headerName: "Entry id", field: "count" },
+  { headerName: "Entry id", field: "count", width: 80 },
   {
     headerName: "Exam Date",
     field: "Date",
@@ -99,7 +99,7 @@ export const RecordTableHeaders = [
                 key={`ctdi-${protocol}`}
                 variant="outlined"
                 color="primary"
-                label={protocol}
+                label={protocol.slice(2)}
               />
             </div>
           ))}
@@ -118,7 +118,34 @@ export const RecordTableHeaders = [
     },
     align: "center",
   },
-  { headerName: "Site", field: "injectionSite" },
+  {
+    headerName: "Injection Site",
+    field: "injectionSite",
+    width: 150,
+    renderCell: (items) => {
+      return items.value ? (
+        items.value.startsWith("L") ? (
+          <Chip
+            label={items.value.slice(5)}
+            color="primary"
+            variant="outlined"
+            avatar={<Avatar>L</Avatar>}
+          />
+        ) : items.value.startsWith("R") ? (
+          <Chip
+            label={items.value.slice(6)}
+            color="secondary"
+            variant="outlined"
+            avatar={<Avatar>R</Avatar>}
+          />
+        ) : (
+          <Chip label={items.value} color="default" variant="outlined" />
+        )
+      ) : (
+        <></>
+      );
+    },
+  },
   { headerName: "Rate", field: "rate", width: 60 },
   { headerName: "Volume", field: "volume" },
 
