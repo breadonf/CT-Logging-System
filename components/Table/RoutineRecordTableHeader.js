@@ -128,7 +128,6 @@ export const RecordTableHeaders = [
   },
   { headerName: "Rate", field: "rate", width: 60, type: "number" },
   { headerName: "Volume", field: "volume", type: "number" },
-
   { headerName: "CTDI", field: "ctdi", width: 60, type: "number" },
   {
     headerName: "kV (A)",

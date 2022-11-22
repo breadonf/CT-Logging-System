@@ -1,7 +1,7 @@
 {
   "name": "ct-logging-system-frontend",
   "private": true,
-  "version": "1.74",
+  "version": "1.75",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
