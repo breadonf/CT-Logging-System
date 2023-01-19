@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
+//import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
 import { RecordTableHeaders } from "../../../../components/Table/CardiacRecordTableHeader";
 import Filters from "../../../../components/Table/Filters";
 import TableMaterial from "../../../../components/Table/TableMaterial";
@@ -26,9 +26,6 @@ export default function CardiacSetupTable() {
     { retry: true }
   );
   console.log(records);
-  if (isQueryLoading || !isQuerySuccess || !records) {
-    return <LoadingSpinner />;
-  }
   if (isError) {
     return <></>;
   }
