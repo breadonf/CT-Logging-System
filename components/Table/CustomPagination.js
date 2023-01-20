@@ -1,11 +1,12 @@
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
 import {
-  useGridApiContext,
-  useGridSelector,
   gridPageCountSelector,
   gridPageSelector,
+  useGridApiContext,
+  useGridSelector,
 } from "@mui/x-data-grid";
+
+import PaginationItem from "@mui/material/PaginationItem";
+import TablePagination from "@mui/material/TablePagination";
 
 export default function CustomPagination() {
   const apiRef = useGridApiContext();
@@ -13,7 +14,7 @@ export default function CustomPagination() {
   const pageCount = useGridSelector(apiRef, gridPageCountSelector);
 
   return (
-    <Pagination
+    <TablePagination
       color="primary"
       variant="outlined"
       shape="rounded"
