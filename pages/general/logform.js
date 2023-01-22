@@ -33,7 +33,20 @@ function RoutineCases() {
       },
     }
   );
+  useEffect(() => {
+    let TEMP_FORM_STATE = {...INITIAL_FORM_STATE};
+    const nurses = window.localStorage.getItem('nurses');
+    const radiographers = window.localStorage.getItem('radiographers');
+    const radiologists = window.localStorage.getItem('radiologists');
+    if ( nurses !== null ) {
+      TEMP_FORM_STATE
+    }
+  }, []);
   const handleSubmit = async (values) => {
+    const { radiographers, radiologists, nurses, ...rest } = values;
+    localStorage.setItem("radiographers", JSON.stringify(radiographers));
+    localStorage.setItem("radiologists", JSON.stringify(radiologists));
+    localStorage.setItem("nurses", JSON.stringify(nurses));
     const modifiedValues = preprocessor(values);
     await new Promise((r) => setTimeout(r, 500));
 

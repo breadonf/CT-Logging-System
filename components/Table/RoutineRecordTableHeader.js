@@ -126,7 +126,15 @@ export const RecordTableHeaders = [
       ) : null;
     },
   },
-  { headerName: "Rate", field: "rate", width: 60, type: "number" },
+  {
+    headerName: "Rate",
+    field: "rate",
+    width: 60,
+    renderCell: (items) => {
+      return items.row.handInjection ? "H" : items.value;
+    },
+    valueGetter: (params) => (params.row.handInjection ? "H" : params.row.rate),
+  },
   { headerName: "Volume", field: "volume", type: "number" },
   { headerName: "CTDI", field: "ctdi", width: 60, type: "number" },
   {

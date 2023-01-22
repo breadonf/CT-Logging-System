@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { DataGrid, GridApi, GridToolbar } from "@mui/x-data-grid";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import CustomPagination from "./CustomPagination";
-import { DataGrid } from "@mui/x-data-grid";
 import { LinearProgress } from "@mui/material";
 import Toolbar from "./Toolbar";
 
@@ -85,6 +85,9 @@ export default function TableMaterial({
     components: {
       Toolbar: Toolbar,
       LoadingOverlay: LinearProgress,
+    },
+    onFilterModelChange: (model) => {
+      console.log(GridApi.getRowsCount());
     },
   };
   return (

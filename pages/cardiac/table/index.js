@@ -2,11 +2,7 @@ import { Container, Grid, Paper } from "@mui/material";
 import { getCardiacSetup, getCardiacSetupNumber } from "~/queries/queries";
 
 import Head from "next/head";
-import Link from "next/link";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import PageviewIcon from "@mui/icons-material/Pageview";
 import { RecordTableHeaders } from "~/components/Table/CardiacRecordTableHeader";
-import SearchIcon from "@mui/icons-material/Search";
 import TableMaterial from "~/components/Table/TableMaterial";
 import { useQuery } from "react-query";
 import { useState } from "react";
