@@ -13,6 +13,7 @@ import preprocessor from "../../helpers/preprocessor";
 import setData from "../../helpers/setData";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import useSessionStorage from "~/hooks/useSessionStorage";
 
 function RoutineCases() {
   const router = useRouter();
@@ -34,17 +35,11 @@ function RoutineCases() {
       },
     }
   );
-  const [formState, setFormState] = useState(INITIAL_FORM_STATE);
-  useEffect(() => {
-    const session = window.localStorage.getItem("sessionData");
-    if (session !== null) {
-      console.log(JSON.parse(session));
-      setFormState(JSON.parse(session));
-    }
-  }, []);
+  const [sessionData, setSessionData] = useSessionStorage("sessionData", null);
+
   const handleSubmit = async (values) => {
-    const sessionData = initializer(values);
-    localStorage.setItem("sessionData", JSON.stringify(sessionData));
+    const sessionDataFromSubmission = initializer(values);
+    setSessionData(sessionDataFromSubmission);
     const modifiedValues = preprocessor(values);
     await new Promise((r) => setTimeout(r, 500));
 
@@ -102,7 +97,7 @@ function RoutineCases() {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <RoutineForm
-        data={formState}
+        data={sessionData || INITIAL_FORM_STATE}
         handleSubmit={handleSubmit}
         records={records}
       />

@@ -7,7 +7,7 @@ const initializer = (values) => {
     values.radiographers
   );
   console.log(
-    "Modified value use this for debugging in submission",
+    "Modified value use this for debugging in initializer",
     sessionFormData
   );
   return sessionFormData;
