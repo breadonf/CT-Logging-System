@@ -4,12 +4,12 @@
     {
       "label": "Frontend",
       "type": "shell",
-      "command": "npm run dev",
+      "command": "pnpm dev",
       "windows": {
-        "command": "npm run dev"
+        "command": "pnpm dev"
       },
       "presentation": {
-        "reveal": "always",
+        "reveal": "silent",
         "panel": "new"
       },
       "runOptions": { "runOn": "folderOpen" }
