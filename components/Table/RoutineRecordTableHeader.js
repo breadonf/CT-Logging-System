@@ -136,7 +136,6 @@ export const RecordTableHeaders = [
     valueGetter: (params) => (params.row.handInjection ? "H" : params.row.rate),
   },
   { headerName: "Volume", field: "volume", type: "number" },
-
   { headerName: "CTDI", field: "ctdi", width: 60, type: "number" },
   {
     headerName: "kV (A)",

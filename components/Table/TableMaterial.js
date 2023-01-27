@@ -1,8 +1,8 @@
 import { DataGrid, GridApi, GridToolbar } from "@mui/x-data-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { LinearProgress } from "@mui/material";
 import CustomPagination from "./CustomPagination";
+import { LinearProgress } from "@mui/material";
 import Toolbar from "./Toolbar";
 
 export default function TableMaterial({
@@ -16,7 +16,7 @@ export default function TableMaterial({
   columnHeaders,
   getRowId,
   height = "80vh",
-  pageSize = 100,
+  pageSize = 25,
   onPageSizeChange,
 }) {
   const headers = useMemo(

@@ -171,7 +171,6 @@ const Navbar = () => {
                         <Link
                           key="/general/logform"
                           href="/general/logform"
-                          replace
                           passHref
                         >
                           <a>Log Form</a>

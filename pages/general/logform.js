@@ -1,17 +1,19 @@
+import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
 import INITIAL_FORM_STATE from "../../components/Forms/RoutineForm/InitialFormState";
-import React from "react";
 import RoutineForm from "../../components/Forms/RoutineForm";
 import { createCTrecord } from "../../queries/mutations";
 import { getHomepageCTUnlimited } from "../../queries/queries";
+import initializer from "../../helpers/initializer";
 import preprocessor from "../../helpers/preprocessor";
 import setData from "../../helpers/setData";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import useSessionStorage from "~/hooks/useSessionStorage";
 
 function RoutineCases() {
   const router = useRouter();
@@ -33,20 +35,11 @@ function RoutineCases() {
       },
     }
   );
-  useEffect(() => {
-    let TEMP_FORM_STATE = {...INITIAL_FORM_STATE};
-    const nurses = window.localStorage.getItem('nurses');
-    const radiographers = window.localStorage.getItem('radiographers');
-    const radiologists = window.localStorage.getItem('radiologists');
-    if ( nurses !== null ) {
-      TEMP_FORM_STATE
-    }
-  }, []);
+  const [sessionData, setSessionData] = useSessionStorage("sessionData", null);
+
   const handleSubmit = async (values) => {
-    const { radiographers, radiologists, nurses, ...rest } = values;
-    localStorage.setItem("radiographers", JSON.stringify(radiographers));
-    localStorage.setItem("radiologists", JSON.stringify(radiologists));
-    localStorage.setItem("nurses", JSON.stringify(nurses));
+    const sessionDataFromSubmission = initializer(values);
+    setSessionData(sessionDataFromSubmission);
     const modifiedValues = preprocessor(values);
     await new Promise((r) => setTimeout(r, 500));
 
@@ -104,7 +97,7 @@ function RoutineCases() {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <RoutineForm
-        data={INITIAL_FORM_STATE}
+        data={sessionData || INITIAL_FORM_STATE}
         handleSubmit={handleSubmit}
         records={records}
       />

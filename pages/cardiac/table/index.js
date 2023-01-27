@@ -1,35 +1,13 @@
 import { Container, Grid, Paper } from "@mui/material";
 import { getCardiacSetup, getCardiacSetupNumber } from "~/queries/queries";
 
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import PageviewIcon from "@mui/icons-material/Pageview";
-import SearchIcon from "@mui/icons-material/Search";
 import Head from "next/head";
-import Link from "next/link";
-import { useState } from "react";
-import { useQuery } from "react-query";
 import { RecordTableHeaders } from "~/components/Table/CardiacRecordTableHeader";
 import TableMaterial from "~/components/Table/TableMaterial";
+import { useQuery } from "react-query";
+import { useState } from "react";
 
 //import { getHomepageCT, getHomepageCTNumber } from "../../queries/queries";
-
-function RowActionsItems({ row }) {
-  const { id } = row.original;
-  const { PID } = row.original;
-  return (
-    <>
-      <Link key="1" passHref href={`/cardiac/protocol/${id}`}>
-        <PageviewIcon />
-      </Link>
-      <Link key="2" passHref href={`/forms/editCardiacSetup/${id}`}>
-        <ModeEditIcon />
-      </Link>
-      <Link key="3" passHref href={`/cardiac/table/${PID}`}>
-        <SearchIcon />
-      </Link>
-    </>
-  );
-}
 
 export default function CardiacSetupTable() {
   const [pageNumber, setPageNumber] = useState(1);
