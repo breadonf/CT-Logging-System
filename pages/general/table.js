@@ -16,6 +16,7 @@ export default function Table() {
     async () => await getHomepageCT(pageNumber, pageSize),
     {
       keepPreviousData: true,
+      refetchOnMount: "always",
     }
   );
   const { data: rowCount, isSuccess: isRowCountSuccess } = useQuery(

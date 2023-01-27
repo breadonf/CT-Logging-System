@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
 import INITIAL_FORM_STATE from "../../components/Forms/RoutineForm/InitialFormState";
+import React from "react";
 import RoutineForm from "../../components/Forms/RoutineForm";
 import { createCTrecord } from "../../queries/mutations";
 import { getHomepageCTUnlimited } from "../../queries/queries";
