@@ -1,7 +1,8 @@
-import SickIcon from "@mui/icons-material/Sick";
 import { Grid, Typography } from "@mui/material";
-import React from "react";
+
 import Checkbox from "../../FormsUI/Checkbox";
+import React from "react";
+import SickIcon from "@mui/icons-material/Sick";
 import Textfield from "../../FormsUI/Textfield";
 
 function PatientDetail({ data }) {
@@ -13,7 +14,11 @@ function PatientDetail({ data }) {
         </Typography>
       </Grid>
       <Grid item xs={4}>
-        <Textfield name="PID" label="Patient ID (e.g. A1234567)"></Textfield>
+        <Textfield
+          autoFocus
+          name="PID"
+          label="Patient ID (e.g. A1234567)"
+        ></Textfield>
       </Grid>
       <Grid item xs={5}>
         <Textfield
