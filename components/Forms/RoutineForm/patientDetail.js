@@ -1,7 +1,8 @@
-import SickIcon from "@mui/icons-material/Sick";
 import { Grid, Typography } from "@mui/material";
-import React from "react";
+
 import Checkbox from "../../FormsUI/Checkbox";
+import React from "react";
+import SickIcon from "@mui/icons-material/Sick";
 import Textfield from "../../FormsUI/Textfield";
 
 function PatientDetail({ formik }) {

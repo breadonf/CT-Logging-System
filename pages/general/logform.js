@@ -82,13 +82,14 @@ function RoutineCases() {
       );
     }
     if (mutation.onSettled) {
-      <Box sx={{ display: "flex" }}>
-        <CircularProgress />
-      </Box>;
+      return (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      );
     }
   };
-  if (mutation.isSuccess) {
-  }
+
   return (
     <>
       <Head>
