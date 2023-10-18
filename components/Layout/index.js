@@ -1,7 +1,10 @@
 import React from "react";
-import Navbar from "./Header/Navbar";
-import Footer from "./Footer";
 import { Toaster } from "react-hot-toast";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import("./Header/Navbar"));
+
+const Footer = dynamic(() => import("./Footer"));
 function Layout({ children }) {
   return (
     <div>

@@ -1,11 +1,11 @@
-import SickIcon from "@mui/icons-material/Sick";
 import { Grid, Typography } from "@mui/material";
-import React from "react";
-import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
+
 import Autocomplete from "../../FormsUI/AutocompleteWrapper";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
+import React from "react";
+import SickIcon from "@mui/icons-material/Sick";
 import Textfield from "../../FormsUI/Textfield";
-import FastTextField from "/components/FormsUI/FastTextField";
+import { alphabeticalSort } from "../../../helpers/alphabeticalSort";
 
 function PatientDetail({ isSuccess, autocompleteOptions, data }) {
   return (
@@ -16,7 +16,7 @@ function PatientDetail({ isSuccess, autocompleteOptions, data }) {
           id="radiologistInCharge"
           name="radiologistInCharge"
           label="Reporting radiologist(s)"
-          prepopulatedValue={data.radiologistInCharge ?? []}
+          prepopulatedvalue={data.radiologistInCharge ?? []}
           autocompleteOptions={
             isSuccess
               ? autocompleteOptions.radiologists.sort((a, b) =>
@@ -32,10 +32,7 @@ function PatientDetail({ isSuccess, autocompleteOptions, data }) {
         </Typography>
       </Grid>
       <Grid item xs={4}>
-        <FastTextField
-          name="PID"
-          label="Patient ID (e.g. A1234567)"
-        ></FastTextField>
+        <Textfield name="PID" label="Patient ID (e.g. A1234567)"></Textfield>
       </Grid>
       <Grid item xs={4}>
         <Textfield name="name" label="Patient Name"></Textfield>

@@ -1,12 +1,17 @@
-import TimerIcon from "@mui/icons-material/Timer";
 import { Divider, Grid, Typography } from "@mui/material";
-import React from "react";
+
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import AutocompleteWrapper from "~/components/FormsUI/AutocompleteWrapper";
+import Button from "@mui/material/Button";
+import { FieldArray } from "formik";
 import RadioGroup from "../../FormsUI/RadioGroup";
 import RatingWrapper from "../../FormsUI/Rating";
+import React from "react";
+import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 import Textfield from "../../FormsUI/Textfield";
-import AutocompleteWrapper from "/components/FormsUI/AutocompleteWrapper";
+import TimerIcon from "@mui/icons-material/Timer";
 
-function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
+function ScanMode({ isSuccess, data, autocompleteOptions }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ p: 2 }}>
       <Grid item xs={12}>
@@ -22,10 +27,8 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
           id="protocol"
           name="protocol"
           label="Protocol (Maximum 2 protcols can be selected)"
-          prepopulatedValue={data?.protocol ?? []}
-          autocompleteOptions={
-            isSuccess ? autocompleteOptions?.protocol ?? [] : ""
-          }
+          prepopulatedvalue={data?.protocol ?? []}
+          autocompleteOptions={isSuccess ? autocompleteOptions?.protocol : []}
         />
       </Grid>
       <Grid item xs={12}>
@@ -80,7 +83,7 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
         </Grid>
         <Grid item xs={6}>
           <RadioGroup
-            name="breathingControl"
+            name="breathingControl_record"
             legend="Breathing Control"
             options={[
               { label: "Manual", value: "Manual" },
@@ -106,8 +109,72 @@ function ScanMode({ formik, isSuccess, data, autocompleteOptions }) {
         <Grid item xs={4}>
           <Textfield name="remarks" label="Remarks" />
         </Grid>
-        <Grid item xs={4}>
-          <Textfield name="delayTime" label="Delay Time" />
+        <Grid item xs={5.92}>
+          <FieldArray name="delays">
+            {(fieldArrayProps) => {
+              const { push, remove, form } = fieldArrayProps;
+              let { values } = form;
+              let { delays } = values;
+              !delays ? (delays = [""]) : delays;
+              return (
+                <div>
+                  {delays?.map((delay, index) => (
+                    <div key={index}>
+                      <Grid container alignItems="center">
+                        <Grid item xs={8} sx={{ pb: 2 }}>
+                          <Textfield
+                            name={`delays[${index}]`}
+                            label={` ${index + 1}. Delay Time(s)`}
+                          />
+                        </Grid>
+                        <>
+                          {delays.length < 5 ? (
+                            <Grid item xs={2} sx={{ pb: 2 }}>
+                              <Button type="button" onClick={() => push(index)}>
+                                <AddCircleOutlinedIcon />
+                              </Button>
+                            </Grid>
+                          ) : (
+                            <Grid item xs={2} sx={{ pb: 2 }}>
+                              <Button
+                                type="button"
+                                disabled
+                                onClick={() => push(index)}
+                              >
+                                <AddCircleOutlinedIcon />
+                              </Button>
+                            </Grid>
+                          )}
+                        </>
+                        <>
+                          {delays.length > 1 ? (
+                            <Grid item xs={2} sx={{ pb: 2 }}>
+                              <Button
+                                type="button"
+                                onClick={() => remove(index)}
+                              >
+                                <RemoveCircleOutlinedIcon />
+                              </Button>
+                            </Grid>
+                          ) : (
+                            <Grid item xs={2} sx={{ pb: 2 }}>
+                              <Button
+                                type="button"
+                                disabled
+                                onClick={() => remove(index)}
+                              >
+                                <RemoveCircleOutlinedIcon />
+                              </Button>
+                            </Grid>
+                          )}
+                        </>
+                      </Grid>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
+          </FieldArray>
         </Grid>
       </Grid>
     </Grid>

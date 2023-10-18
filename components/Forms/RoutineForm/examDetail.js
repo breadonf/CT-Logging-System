@@ -1,9 +1,10 @@
-import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import { Box, Button, Chip, Grid, Typography } from "@mui/material";
-import React from "react";
+
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
 import DateTimePicker from "../../FormsUI/DateTimePicker";
+import ImageSearchIcon from "@mui/icons-material/ImageSearch";
+import React from "react";
 import Select from "../../FormsUI/Select";
 import Textfield from "../../FormsUI/Textfield";
 import examType from "../SelectItems/examType.json";
@@ -14,7 +15,6 @@ import sedationMethod from "../SelectItems/sedationMethod.json";
 
 function ExamDetail({
   data,
-  sedation,
   autocompleteOptions,
   isSuccess,
   numberOfProtocol,
@@ -34,7 +34,7 @@ function ExamDetail({
         <DateTimePicker
           name="Date"
           label="Exam Date"
-          prepopulatedValue={data.Date}
+          prepopulatedvalue={data.Date}
         />
       </Grid>
       <Grid item xs={2}>
@@ -60,7 +60,7 @@ function ExamDetail({
                 <Select
                   name="sedatedBy"
                   label="by"
-                  prepopulatedValue={data?.sedatedBy}
+                  prepopulatedvalue={data?.sedatedBy}
                   options={sedatedBy}
                 />
               </Grid>
@@ -70,7 +70,7 @@ function ExamDetail({
                   label="using"
                   multiple
                   autocompleteOptions={sedationMethod}
-                  prepopulatedValue={data?.sedationMethod ?? []}
+                  prepopulatedvalue={data?.sedationMethod ?? []}
                 />
               </Grid>
             </>
@@ -83,7 +83,7 @@ function ExamDetail({
           id="protocol"
           name="protocol"
           label="Protocol (Maximum 2 protcols can be selected)"
-          prepopulatedValue={data?.protocol ?? []}
+          prepopulatedvalue={data?.protocol ?? []}
           autocompleteOptions={
             isSuccess ? autocompleteOptions?.protocol ?? [] : ""
           }
@@ -95,7 +95,7 @@ function ExamDetail({
           name="examType"
           label="Body region"
           SelectProps={{ multiple: true }}
-          prepopulatedValue={data?.examType}
+          prepopulatedvalue={data?.examType}
           options={examType}
         />
       </Grid>
@@ -105,7 +105,7 @@ function ExamDetail({
           label="kV (Tube A)"
           multiple
           autocompleteOptions={kV_a}
-          prepopulatedValue={data?.kV_a ?? []}
+          prepopulatedvalue={data?.kV_a ?? []}
         />
       </Grid>
       <Grid item xs={4} sx={{ mt: 2 }}>
@@ -131,7 +131,7 @@ function ExamDetail({
           }}
           grouped
           options={kV_b}
-          prepopulatedValue={data?.kV_b ?? []}
+          prepopulatedvalue={data?.kV_b ?? []}
         />
       </Grid>
 

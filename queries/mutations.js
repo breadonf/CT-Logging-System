@@ -73,7 +73,7 @@ mutation Mutation($data: create_message_input!) {
 `;
 
 export const updateMessageById = `
-  mutation Mutation($updateMessageItemId: ID!, $data: update_Message_input!) {
+  mutation Mutation($updateMessageItemId: ID!, $data: update_message_input!) {
     update_message_item(id: $updateMessageItemId, data: $data) {
       id
     }

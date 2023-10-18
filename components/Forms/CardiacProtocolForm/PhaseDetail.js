@@ -1,9 +1,10 @@
+import { Box, Chip, Grid, Typography } from "@mui/material";
+
 import React from "react";
-import { Grid, Typography, Chip, Box } from "@mui/material";
-import Textfield from "../../FormsUI/Textfield";
 import Select from "../../FormsUI/Select";
-import Toggle from "../../FormsUI/Toggle";
+import Textfield from "../../FormsUI/Textfield";
 import TimerIcon from "@mui/icons-material/Timer";
+import Toggle from "../../FormsUI/Toggle";
 
 function PhaseDetail({ _formik }) {
   return (
@@ -121,6 +122,9 @@ function PhaseDetail({ _formik }) {
           </Grid>
         </Grid>
       ))}
+      <Grid item xs={12} sx={{ mt: 2 }}>
+        <Toggle name="readyForRecord" label="Ready for post-data capture?" />
+      </Grid>
     </Grid>
   );
 }

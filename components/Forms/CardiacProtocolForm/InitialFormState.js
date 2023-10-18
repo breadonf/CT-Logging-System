@@ -4,7 +4,7 @@ const INITIAL_FORM_STATE = {
   date: new Date(),
   radiologistInCharge: [],
   sedation: "",
-  breathingControl: [],
+  breathingControl: "",
   IVSite: [{ location: [], side: [], Diffusics: false }],
   targetHR: "",
   scanMode: {
@@ -25,6 +25,7 @@ const INITIAL_FORM_STATE = {
     { name: [], scanRange: "", processing: [], remark: "" },
     { name: [], scanRange: "", processing: [], remark: "" },
   ],
+  readyForRecord: false,
   protocol: [],
   contrastRegime: "",
   studyDose: "",
@@ -37,7 +38,7 @@ const INITIAL_FORM_STATE = {
   satisfaction: null,
   artefact: "",
   remarks: "",
-  delayTime: "",
+  delays: [""],
 };
 
 export default INITIAL_FORM_STATE;

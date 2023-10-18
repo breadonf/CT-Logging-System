@@ -1,7 +1,10 @@
 {
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "baseUrl": "/"
-  },
-  "include": ["/"],
-  "exclude": ["node_modules", "**/node_modules/*"]
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    }
+  }
 }

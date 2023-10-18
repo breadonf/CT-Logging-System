@@ -1,19 +1,20 @@
-import React from "react";
-import Link from "next/link";
 import {
   Card,
-  CardContent,
   CardActionArea,
-  Typography,
-  Grid,
+  CardContent,
   Divider,
+  Grid,
+  Typography,
 } from "@mui/material";
+
 import FmdBadIcon from "@mui/icons-material/FmdBad";
+import Link from "next/link";
+import React from "react";
 import parse from "html-react-parser";
 
 const MessageCard = ({ messageDetail }) => {
   return (
-    <Link href={"/Message"} passHref>
+    <Link href={`/message/${messageDetail.id}`} passHref>
       <Card raised>
         <CardActionArea>
           <CardContent>

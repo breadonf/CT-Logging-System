@@ -1,5 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+
 import React from "react";
 
 export default function AutocompleteWrapper({
@@ -7,7 +8,7 @@ export default function AutocompleteWrapper({
   name,
   label,
   autocompleteOptions,
-  prepopulatedValue,
+  prepopulatedvalue,
   multiple,
   groupBy,
   sx,
@@ -18,7 +19,6 @@ export default function AutocompleteWrapper({
   const handleChange = (e, value) => {
     if (multiple) {
       const result = value?.map((option) => option);
-      console.log("result", result);
       setFieldValue(name, value !== null ? result : []);
     } else {
       setFieldValue(name, value);
@@ -34,7 +34,7 @@ export default function AutocompleteWrapper({
     onKeyDown: (event) => {
       if (event.key === "Enter") {
         // Prevent's default 'Enter' behavior.
-        event.defaultMuiPrevented = true;
+
         event.preventDefault();
         // your handler code
         // Temp fixes
@@ -46,7 +46,6 @@ export default function AutocompleteWrapper({
     configAuto.error = true;
     configAuto.helperText = meta.error;
   }
-
   let flattenedAutocompleteOptions = autocompleteOptions.map(
     ({ label }) => label
   );
@@ -66,11 +65,12 @@ export default function AutocompleteWrapper({
       groupBy={groupBy}
       options={flattenedAutocompleteOptions}
       onChange={handleChange}
-      defaultValue={prepopulatedValue}
-      getOptionLabel={(option) => option ?? null}
+      defaultValue={prepopulatedvalue}
+      getOptionLabel={(option) => {
+        return option;
+      }}
       renderInput={(params) => <TextField {...configAuto} {...params} />}
       isOptionEqualToValue={(option, value) => {
-        console.log(option == value);
         option == value;
       }}
       {...otherProps}

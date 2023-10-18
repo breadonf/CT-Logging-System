@@ -1,18 +1,27 @@
-import React from "react";
-import { FieldArray } from "formik";
-import { Grid, Typography, Button, Switch, Divider } from "@mui/material";
+import { Button, Divider, Grid, Switch, Typography } from "@mui/material";
+
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
-import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import AutocompleteWrapper from "../../FormsUI/AutocompleteWrapper";
 import Checkbox from "../../FormsUI/Checkbox";
-import Select from "../../FormsUI/Select";
+import { FieldArray } from "formik";
+import GetTop10Wrapper from "./GetTop10Wrapper";
 import RadioGroup from "../../FormsUI/RadioGroup";
-import typeOfContrast from "../SelectItems/typeOfContrast.json";
-import injectionSites from "../SelectItems/injectionSites.json";
+import React from "react";
+import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
+import Select from "../../FormsUI/Select";
+import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import Textfield from "../../FormsUI/Textfield";
+import injectionSites from "../SelectItems/injectionSites.json";
+import typeOfContrast from "../SelectItems/typeOfContrast.json";
 
-function ContrastDetail({ data, contrast, handleSwitch }) {
+function ContrastDetail({
+  formik,
+  data,
+  contrast,
+  handleSwitch,
+  records,
+  autocompleteOptions,
+}) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 4 }}>
       <Grid item xs={12}>
@@ -25,13 +34,22 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
       <>
         {contrast && (
           <>
-            <Grid item xs={4}>
-              <AutocompleteWrapper
-                name="injectionSite"
-                label="Injection Site"
-                autocompleteOptions={injectionSites}
-                prepopulatedValue={data?.injectionSite ?? []}
-              />
+            <Grid item xs={4} container>
+              <Grid item xs={12} paddingY={1}>
+                <AutocompleteWrapper
+                  name="injectionSite"
+                  label="Injection Site"
+                  autocompleteOptions={injectionSites}
+                  prepopulatedvalue={data?.injectionSite ?? []}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Select
+                  name="contrastType"
+                  label="Type of Contrast"
+                  options={typeOfContrast}
+                />
+              </Grid>
             </Grid>
             <Grid item xs={2}>
               <Checkbox
@@ -53,19 +71,14 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
             <Grid item xs={3}>
               <Checkbox label="Yes" name="mixedContrast" legend="Split Bolus" />
             </Grid>
-            <Grid item xs={4}>
-              <Select
-                name="contrastType"
-                label="Type of Contrast"
-                options={typeOfContrast}
-              />
-            </Grid>
+
             <Grid item xs={4}>
               <Textfield name="rate" label="Injection Rate(ml/s)"></Textfield>
             </Grid>
             <Grid item xs={4}>
               <Textfield name="volume" label="Contrast Volume(ml)"></Textfield>
             </Grid>
+            <GetTop10Wrapper formik={formik} records={records} />
             <Grid
               item
               xs={4}
@@ -83,12 +96,12 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
                 input)
               </Typography>
             </Grid>
-            <Grid item xs={5.92}>
+            <Grid item xs={5.96}>
               <FieldArray name="delays">
                 {(fieldArrayProps) => {
                   const { push, remove, form } = fieldArrayProps;
-                  const { values } = form;
-                  const { delays } = values;
+                  let { values } = form;
+                  let { delays } = values;
                   !delays ? (delays = [""]) : delays;
                   return (
                     <div>
@@ -98,7 +111,7 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
                             <Grid item xs={8} sx={{ pb: 2 }}>
                               <Textfield
                                 name={`delays[${index}]`}
-                                label={`Delay Time(s) ${index + 1}`}
+                                label={`${index + 1}. Delay Time(s) `}
                               />
                             </Grid>
                             <>
@@ -178,8 +191,17 @@ function ContrastDetail({ data, contrast, handleSwitch }) {
                   Bolus cases
                 </Typography>
               </Grid>
-              <Grid item xs={8}>
+
+              <Grid item xs={4}>
                 <Textfield name="ttp" label="Time to 150 HU(s)"></Textfield>
+              </Grid>
+              <Grid item xs={4}>
+                <AutocompleteWrapper
+                  name="ROI"
+                  label="ROI Location"
+                  autocompleteOptions={autocompleteOptions.ROI}
+                  prepopulatedvalue={data?.ROI ?? []}
+                />
               </Grid>
             </Grid>
           </>

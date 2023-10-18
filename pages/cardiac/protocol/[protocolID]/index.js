@@ -4,17 +4,18 @@ import {
   Divider,
   Grid,
   Paper,
-  Typography,
+  Typography
 } from "@mui/material";
+
+import Buttons from "~/components/DetailPage/Cardiac/Buttons";
+import CardiacSetup from "~/components/DetailPage/Cardiac/CardiacSetup";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { LoadingSpinner } from "~/components/Forms/LoadingSpinner";
+import PatientDetail from "~/components/DetailPage/Cardiac/PatientDetail";
 import React from "react";
+import { getCardiacSetupByID } from "~/queries/queries";
 import { useQuery } from "react-query";
-import Buttons from "../../../../components/CardiacForm/Buttons";
-import CardiacSetup from "../../../../components/CardiacForm/CardiacSetup";
-import PatientDetail from "../../../../components/CardiacForm/PatientDetail";
-import { LoadingSpinner } from "../../../../components/Forms/CardiacForm/LoadingSpinner";
-import { getCardiacSetupByID } from "../../../../queries/queries";
+import { useRouter } from "next/router";
 
 export default function CardiacSetupViewer() {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function CardiacSetupViewer() {
     async () => await getCardiacSetupByID(protocolID),
     { retry: true }
   );
-  console.log(data);
+
   if (isQueryLoading || !isQuerySuccess || !data) {
     return <LoadingSpinner />;
   }
@@ -44,7 +45,7 @@ export default function CardiacSetupViewer() {
     return (
       <Grid sx={{ py: 3 }} container>
         <Head>
-          <title>{`Records of ${cardiacCT_by_id?.PID} at ${cardiacCT_by_id.date_func.year}-${cardiacCT_by_id.date_func.month}-${cardiacCT_by_id.date_func.day}`}</title>
+          <title>{`Cardiac Setup of ${cardiacCT_by_id?.PID} at ${cardiacCT_by_id.date_func.year}-${cardiacCT_by_id.date_func.month}-${cardiacCT_by_id.date_func.day}`}</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>

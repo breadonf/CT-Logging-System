@@ -1,8 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import { Grid, Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
+
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import Link from "next/link";
+import React from "react";
 
 function BottomButton({ Id }) {
   return (
@@ -13,7 +14,7 @@ function BottomButton({ Id }) {
       sx={{ pt: 4, justifyContent: "center" }}
     >
       <Grid item xs={4}>
-        <Link passHref href={"/Table"}>
+        <Link passHref href={"/general/table"}>
           <Button variant="contained" fullWidth>
             <ArrowCircleLeftIcon sx={{ mr: 1 }} />
             Back to Table
@@ -21,7 +22,7 @@ function BottomButton({ Id }) {
         </Link>
       </Grid>
       <Grid item xs={4}>
-        <Link passHref href={`/Forms/editForm/${Id}`}>
+        <Link passHref href={`/forms/editForm/${Id}`}>
           <Button variant="contained" color="secondary" fullWidth>
             Edit this record <BorderColorIcon sx={{ ml: 1 }} />
           </Button>

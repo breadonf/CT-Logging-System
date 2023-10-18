@@ -1,15 +1,15 @@
 import fetchData from "../helpers/fetchData";
 
-/** 
+/**
  *  @Description For fetching records
- *  @query 
+ *  @query
 
 */
 // Home Page
 const HomepageCT = `
     #graphql
-    query HomePageCT($page: Int!) {
-      CT (page:$page, limit: 25, sort: ["-count"]){
+    query HomePageCT($page: Int!, $pageSize: Int!) {
+      CT (page:$page, limit: $pageSize, sort: ["-count"]){
         Date
         count
         remark
@@ -42,6 +42,26 @@ const HomepageCT = `
         ctdi
         examType
         IR
+      }
+    }
+`;
+const HomepageCTUnlimited = `
+    #graphql
+    query HomePageCT {
+      CT (sort: ["-count"], limit: -1){
+        Date
+        count
+        rate
+        volume
+        kV_a
+        ttp
+        weight
+        sedation
+        injectionSite
+        directPostContrast
+        PID
+        radiologists
+        protocol
       }
     }
 `;
@@ -128,14 +148,17 @@ const HomepageData = `
       protocol(limit: -1) {
         label
         value
-        
+
       }
       radiographers {
         label
         value
       }
       nurses: Nurses  {
-        
+        label
+        value
+      }
+      ROI: ROI  {
         label
         value
       }
@@ -146,6 +169,7 @@ const MessageData = `
     #graphql
     query MessageData {
       message (sort: ["-inputDate"]) {
+        id
         inputDate
         inputDate_func {
           year
@@ -172,14 +196,19 @@ const MessageData = `
 const MessageByID = `
     #graphql
     query MessageByID($MessageByIdId: ID!) {
-      Message_by_id(id: $MessageByIdId) {
+      message_by_id(id: $MessageByIdId) {
         id
         inputDate
-        effectiveDate
-        date_func {
+        inputDate_func {
           year
-          day
           month
+          day
+        }
+        effectiveDate
+        effectiveDate_func {
+          year
+          month
+          day
         }
         category
         inputUser
@@ -187,6 +216,7 @@ const MessageByID = `
         important
         active
         messageEditorState
+        htmlMessage
         comments
       }
     }
@@ -234,6 +264,7 @@ const ExamDetailsByID = `
         ctdi
         examType
         IR
+        ROI
       }
     }
 `;
@@ -281,56 +312,72 @@ const ExamsRecordBySearch = `
 }
 `;
 //Cardiac Protocol
+const CardiacSetup = `
+#graphql
+query CardiacCT($page: Int!, $pageSize: Int!) {
+  cardiacCT(page:$page, limit: $pageSize, sort: ["-id"]) {
+    sedation
+    scanMode
+    id
+    name
+    PID
+    date
+    IVSite
+    radiologistInCharge
+  }
+}
+`;
+const CardiacSetupNumber = `
+    #graphql
+    query CardiacCTNumber {
+      cardiacCT_aggregated {
+        countDistinct {
+          id
+        }
+      }
+    }
+`;
 const CardiacSetupByID = `
     #graphql
     query CardiacSetupByID($cardiacCtByIdId: ID!) {
       cardiacCT_by_id(id: $cardiacCtByIdId) {
         id
         PID
+        name
+        date
         radiologistInCharge
-        IVSite
         sedation
         breathingControl
-        targetHR
+        IVSite
         scanMode
         phase
-        name
+        sort
+        readyForRecord
         protocol
         contrastRegime
-        studyDose
-        seriesDose
-        seriesCTDI
         heartRate
         scanTechnique
-        breathingControl
+        breathingControl_record
         depictionOfROI
+        targetHR
         satisfaction
         artefact
         remarks
-        delayTime
-        date
-        date_func {
-          year
-          day
-          month
-        }
-      }
+        delays
+        studyDose
+        seriesDose
+        seriesCTDI
     }
+  }
 `;
 const CardiacSetupRecordBySearch = `
     #graphql
     query CardiacSetupRecordBySearch($key: String) {
       cardiacCT(search: $key, sort: ["sort", "-id"]) {
         id
-        user_created
-        user_updated
         PID
         name
-        date_func {
-          year
-          month
-          day
-        }
+        date
         radiologistInCharge
         sedation
         breathingControl
@@ -365,7 +412,7 @@ const CardiacCaseRecordByID = `
         delayTime
       }
     }
-    
+
 `;
 const CardiacCaseRecordBySearch = `
     #graphql
@@ -390,19 +437,26 @@ const CardiacCaseRecordBySearch = `
         delayTime
       }
     }
-    
+
 `;
 //Home Page
-export const getHomepageCT = async (page) => {
-  const data = await fetchData(HomepageCT, {
-    variables: { page: page },
-  });
 
+export const getHomepageCTUnlimited = async () => {
+  const data = await fetchData(HomepageCTUnlimited, {
+    variables: {},
+  });
+  console.log("fetched");
+  return data.data.CT;
+};
+export const getHomepageCT = async (page, pageSize = 25) => {
+  const data = await fetchData(HomepageCT, {
+    variables: { page: page, pageSize: pageSize },
+  });
   return data.data.CT;
 };
 export const getHomepageCTToday = async (year, month, day) => {
   const data = await fetchData(HomepageCTToday, {
-    variables: {year: year, month: month, day: day },
+    variables: { year: year, month: month, day: day },
   });
 
   return data.data.CT;
@@ -433,7 +487,6 @@ export const getMessageByID = async (MessageByIdId) => {
   const data = await fetchData(MessageByID, {
     variables: { MessageByIdId: MessageByIdId },
   });
-
   return data.data;
 };
 //Exam Detail
@@ -448,10 +501,23 @@ export const getExamsRecordBySearch = async (key) => {
   const data = await fetchData(ExamsRecordBySearch, {
     variables: { key: key },
   });
-  console.log("in queries", data);
   return data.data;
 };
 //Cardiac Protocol
+export const getCardiacSetup = async (page, pageSize = 25) => {
+  const data = await fetchData(CardiacSetup, {
+    variables: { page: page, pageSize: pageSize },
+  });
+
+  return data.data.cardiacCT;
+};
+export const getCardiacSetupNumber = async () => {
+  const data = await fetchData(CardiacSetupNumber, {
+    variables: {},
+  });
+
+  return data.data.cardiacCT_aggregated[0].countDistinct.id;
+};
 export const getCardiacSetupByID = async (cardiacCtByIdId) => {
   const data = await fetchData(CardiacSetupByID, {
     variables: { cardiacCtByIdId: cardiacCtByIdId },

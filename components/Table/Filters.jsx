@@ -1,8 +1,8 @@
+import { Button, Container, Grid, Paper } from "@mui/material";
+import { Form, Formik } from "formik";
+
 import React from "react";
 import TextfieldWrapper from "../FormsUI/Textfield";
-import { Grid, Container, Button, Paper } from "@mui/material";
-
-import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 
 export default function Filters({ endpoint }) {
@@ -13,6 +13,15 @@ export default function Filters({ endpoint }) {
   };
   const ini_value = {
     search: "",
+  };
+  const onKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // Prevent's default 'Enter' behavior.
+      handleSearch(event.target.value);
+      // your handler code
+      // Temp fixes
+      // For preventing pressing enter when in autocomplete to prevent inputting string value to the field without processing to array
+    }
   };
   return (
     <Grid spacing={2} sx={{ py: 5 }} container>
@@ -31,7 +40,7 @@ export default function Filters({ endpoint }) {
                     <Grid
                       container
                       spacing={1}
-                      component={"div"} 
+                      component={"div"}
                       sx={{
                         py: 4,
                         justifyContent: "center",
@@ -42,6 +51,7 @@ export default function Filters({ endpoint }) {
                         <TextfieldWrapper
                           name="search"
                           label="Search any keywords/ related information"
+                          onKeyDown={onKeyDown}
                         />
                       </Grid>
                       <Grid item xs={1}></Grid>

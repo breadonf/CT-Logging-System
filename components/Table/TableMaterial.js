@@ -1,10 +1,8 @@
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-
+import { DataGrid, GridApi } from "@mui/x-data-grid";
 import { useEffect, useMemo, useState } from "react";
-import wait from "../../helpers/wait";
 
 import CustomPagination from "./CustomPagination";
-
+import { LinearProgress } from "@mui/material";
 import Toolbar from "./Toolbar";
 
 export default function TableMaterial({
@@ -19,23 +17,27 @@ export default function TableMaterial({
   getRowId,
   height = "80vh",
   pageSize = 25,
+  onPageSizeChange,
 }) {
   const headers = useMemo(
     () => columnHeaders,
     [columnHeaders] //dep list
   );
+  // const [queryOptions, setQueryOptions] = useState({});
   const [rowCountState, setRowCountState] = useState(rowCount || 0);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
+  // const onFilterChange = useCallback((filterModel) => {
+  //   setQueryOptions({ filterModel: { ...filterModel } });
+  //   console.log(filterModel);
+  // }, []);
+
   useEffect(() => {
     setIsLoading(true);
     setRowCountState((prevRowCountState) =>
       rowCount !== undefined ? rowCount : prevRowCountState
     );
-
     setData(records);
-
-    wait(0);
     setIsLoading(false);
   }, [pageNumber, records, rowCount]);
   const configDataGrid = {
@@ -60,28 +62,42 @@ export default function TableMaterial({
         </div>
       );
     },
-
     columns: headers,
     getRowId: getRowId,
+    getRowHeight: () => "auto",
     paginationMode: paginationMode,
     onPageChange: (newPage) => {
       if (!isPreviousData) {
         setPageNumber((newPage += 1));
       }
     },
-    rowCount: rowCount,
-    components: { Toolbar: GridToolbar, Pagination: CustomPagination },
+    rowCount: rowCountState,
+    rowHeight: 65,
+    components: { Pagination: CustomPagination },
     loading: isLoading,
     pageSize: pageSize,
+    // filterMode: "server",
+    // onFilterModelChange: onFilterChange,
+    columnBuffer: 10,
+    columnThreshold: 10,
+    onPageSizeChange: onPageSizeChange,
+    rowsPerPageOptions: [10, 25, -1],
     components: {
       Toolbar: Toolbar,
+      LoadingOverlay: LinearProgress,
+    },
+    onFilterModelChange: (model) => {
+      console.log(GridApi.getRowsCount());
     },
   };
   return (
     <>
       {isSuccess && (
         <div style={{ height: height }}>
-          <DataGrid sx={{ boxShadow: 5 }} {...configDataGrid} />
+          <DataGrid
+            sx={{ p: 4, boxShadow: 5, overflowX: "auto" }}
+            {...configDataGrid}
+          />
         </div>
       )}
     </>
