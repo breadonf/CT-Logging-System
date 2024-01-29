@@ -1,9 +1,35 @@
+import { Chip, IconButton, Tooltip } from "@mui/material";
+
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import Link from "next/link";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import SearchIcon from "@mui/icons-material/Search";
-import { Chip } from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
-import Link from "next/link";
+
+function onClickHandler(data) {
+  const { row } = data;
+  navigator.clipboard.writeText(
+    `Scan Technique:
+    ${row?.scanTechnique ?? ""}
+
+    Scan delay at ${
+      row?.delayTime ?? ""
+    } sec by manual/auto trigger/ test bolus with ROI in ${
+      row?.depictionOfROI ?? ""
+    }
+    Scanning heart rate:
+    Min: ${row.heartRate?.min ?? ""}
+    Max: ${row.heartRate?.max ?? ""}
+    Avg: ${row.heartRate?.average ?? ""}
+    Heart rate variability: ${row.heartRate?.variance ?? ""}
+
+    Contrast Injection Regime:
+    Angiocath site:                         ml(100%) + ml(50%) + ml NS @ ml/sec
+    Body Weight:   kg
+    Body Height:    cm
+    `
+  );
+}
 
 export const RecordTableHeaders = [
   {
@@ -11,7 +37,7 @@ export const RecordTableHeaders = [
     field: "actions",
     type: "actions",
 
-    width: 100,
+    width: 150,
     getActions: (params) => [
       <Link key="1" passHref href={`/cardiac/protocol/${params.id}`}>
         <a>
@@ -34,6 +60,15 @@ export const RecordTableHeaders = [
           </Tooltip>
         </a>
       </Link>,
+      <Tooltip title="Report template">
+        <IconButton
+          onClick={() => {
+            onClickHandler(params);
+          }}
+        >
+          <AssessmentIcon />
+        </IconButton>
+      </Tooltip>,
     ],
   },
   { field: "id", headerName: "Protocol ID", width: 100 },

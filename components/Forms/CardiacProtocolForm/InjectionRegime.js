@@ -6,7 +6,7 @@ import Textfield from "../../FormsUI/Textfield";
 import TimerIcon from "@mui/icons-material/Timer";
 import Toggle from "../../FormsUI/Toggle";
 
-function PhaseDetail({ _formik }) {
+function InjectionRegime({ _formik }) {
   return (
     <Grid
       alignItems="center"
@@ -19,50 +19,24 @@ function PhaseDetail({ _formik }) {
       <Grid alignItems="center" justifyContent="center" item container xs={12}>
         <Grid item xs={12}>
           <Typography variant="h5" color="#05668D">
-            <TimerIcon sx={{ mr: 1 }} /> Phase Detail
+            <TimerIcon sx={{ mr: 1 }} />
+            Injection Regime
           </Typography>
         </Grid>
         <Grid item container xs={12}>
-          <Grid item xs={1} sx={{ mt: 2 }}></Grid>
-          <Grid item xs={2} sx={{ mt: 2 }}>
-            <Typography>Phase</Typography>
+          <Grid item xs={3} sx={{ mt: 2 }}></Grid>
+          <Grid item xs={3} sx={{ mt: 2 }}>
+            <Typography>Strength</Typography>
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Typography>Processing</Typography>
+            <Typography>Volume</Typography>
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Typography>Scan Range</Typography>
+            <Typography>Rate</Typography>
           </Grid>
-          <Grid item xs={3} sx={{ mt: 2 }}>
-            <Typography>Remark</Typography>
-          </Grid>
-        </Grid>
-        <Grid item xs={1} sx={{ mt: 2 }}>
-          <Chip label={1} />
-        </Grid>
-        <Grid item xs={2} sx={{ mt: 2 }}>
-          <Typography variant="body1" color="#05668D">
-            Plain
-          </Typography>
-        </Grid>
-        <Grid item xs={3} sx={{ mt: 2 }}>
-          <Toggle name="phase[0].processing.caScore" label="CaScore Table" />
-        </Grid>
-        <Grid item xs={3} sx={{ mt: 2 }}>
-          <Select
-            name="phase[0].scanRange"
-            label="Scan Range"
-            options={{
-              Heart: "Heart",
-              WholeThorax: "Whole Thorax",
-            }}
-          />
-        </Grid>
-        <Grid item xs={3} sx={{ mt: 2 }}>
-          <Textfield name="phase[0].remark" label="Remark" />
         </Grid>
       </Grid>
-      {[...Array(3)].map((values, i) => (
+      {[...Array(2)].map((values, i) => (
         <Grid
           key={i}
           item
@@ -71,24 +45,20 @@ function PhaseDetail({ _formik }) {
           container
           xs={12}
         >
-          <Grid item xs={1} sx={{ mt: 2 }}>
-            <Chip label={i + 2} />
+          <Grid item xs={3} sx={{ mt: 2 }}>
+            <Chip label={i + 1} />
           </Grid>
-          <Grid item xs={2} sx={{ mt: 2 }}>
+          <Grid item xs={3} sx={{ mt: 2 }}>
             <Select
-              name={`phase[${i + 1}].name`}
-              label="Phase"
-              multiple
+              name={`injection[${i + 1}].strength`}
+              label="Strength"
               options={{
-                directVen: "Direct Ven",
-                pulmonaryArtery: "Pulmonary Artery",
-                pulmonaryVein: "Pulmonary Vein",
-                coronaries: "Coronaries",
-                aorta: "Aorta",
-                systemicVein: "Systemic Vein",
+                0.5: "50%",
+                0.67: "67%",
+                0.75: "75%",
+                1: "100%",
               }}
               SelectProps={{
-                multiple: true,
                 renderValue: (selected) => {
                   return (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -104,8 +74,7 @@ function PhaseDetail({ _formik }) {
           <Grid item xs={3} sx={{ mt: 2 }}>
             <Select
               name={`phase[${i + 1}].processing`}
-              label="Processing"
-              SelectProps={{ multiple: true }}
+              label="volume"
               grouped
               options={GROUPED_OPTIONS_PROCESSING}
             />
@@ -117,19 +86,13 @@ function PhaseDetail({ _formik }) {
               options={SCAN_RANGE_OPTIONS}
             />
           </Grid>
-          <Grid item xs={3} sx={{ mt: 2 }}>
-            <Textfield name={`phase[${i + 1}].remark`} label="Remark" />
-          </Grid>
         </Grid>
       ))}
-      <Grid item xs={12} sx={{ mt: 2 }}>
-        <Toggle name="readyForRecord" label="Ready for post-data capture?" />
-      </Grid>
     </Grid>
   );
 }
 
-export default PhaseDetail;
+export default InjectionRegime;
 
 const GROUPED_OPTIONS_PROCESSING = [
   {

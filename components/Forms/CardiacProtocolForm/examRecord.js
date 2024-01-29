@@ -5,11 +5,6 @@ import ScanMode from "../CardiacForm/scanMode";
 function CardiacExamRecord({ data, formik, isSuccess, autocompleteOptions }) {
   return (
     <Grid container spacing={2} component={"div"} sx={{ py: 5 }}>
-      <Grid item xs={12}>
-        <Typography variant="h5" align="center" color="#093A3E">
-          Cardiac Case Record of {formik.values?.PID}
-        </Typography>
-      </Grid>
       <ScanMode
         autocompleteOptions={autocompleteOptions}
         formik={formik}

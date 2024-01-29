@@ -1,7 +1,7 @@
-import { DataGrid, GridApi } from "@mui/x-data-grid";
 import { useEffect, useMemo, useState } from "react";
 
 import CustomPagination from "./CustomPagination";
+import { DataGrid } from "@mui/x-data-grid";
 import { LinearProgress } from "@mui/material";
 import Toolbar from "./Toolbar";
 
@@ -47,7 +47,7 @@ export default function TableMaterial({
         <div style={{ display: "flex", alignItems: "center" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            classNameName="h-6 w-6"
+            className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -86,9 +86,7 @@ export default function TableMaterial({
       Toolbar: Toolbar,
       LoadingOverlay: LinearProgress,
     },
-    onFilterModelChange: (model) => {
-      console.log(GridApi.getRowsCount());
-    },
+   
   };
   return (
     <>

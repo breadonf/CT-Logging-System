@@ -6,7 +6,7 @@ import CardiacExamRecord from "./examRecord";
 import CardiacSetup from "./CardiacSetup";
 import { LoadingSpinner } from "../LoadingSpinner";
 import PatientDetail from "./patientDetail";
-import PhaseDetail from "./PhaseDetail";
+import InjectionRegime from "./InjectionRegime";
 import React from "react";
 import ScanMode from "./scanMode";
 import { getHomepageData } from "../../../queries/queries";
@@ -17,10 +17,11 @@ function CardiacProtocolForm({ data, handleSubmit }) {
   const [numberOfSites, setNumberOfSites] = React.useState(1);
   const [recordMode, setRecordMode] = React.useState(false);
 
-  const { data: autocompleteOptions, isSuccess, isLoading } = useQuery(
-    "autocompleteOptions",
-    async () => await getHomepageData()
-  );
+  const {
+    data: autocompleteOptions,
+    isSuccess,
+    isLoading,
+  } = useQuery("autocompleteOptions", async () => await getHomepageData());
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -49,43 +50,34 @@ function CardiacProtocolForm({ data, handleSubmit }) {
                             overflowY: "auto",
                           }}
                         >
-                          {recordMode ? (
-                            <CardiacExamRecord
-                              autocompleteOptions={autocompleteOptions}
-                              isSuccess={isSuccess}
-                              data={data}
-                              formik={formik}
-                            />
-                          ) : (
-                            <>
-                              <Grid item xs={12}>
-                                <Typography
-                                  variant="h3"
-                                  align="center"
-                                  color="#093A3E"
-                                >
-                                  Cardiac Case Setup Log Form
-                                </Typography>
-                              </Grid>
-                              <PatientDetail
-                                autocompleteOptions={autocompleteOptions}
-                                isSuccess={isSuccess}
-                                data={data}
-                              />
-                              <CardiacSetup
-                                formik={formik}
-                                numberOfSites={numberOfSites}
-                                setNumberOfSites={setNumberOfSites}
-                              />
-                              <ScanMode
-                                formik={formik}
-                                data={data}
-                                autocompleteOptions={autocompleteOptions}
-                                isSuccess={isSuccess}
-                              />
-                              <PhaseDetail formik={formik} />
-                            </>
-                          )}
+                          <Grid item xs={12}>
+                            <Typography
+                              variant="h3"
+                              align="center"
+                              color="#093A3E"
+                            >
+                              Cardiac Case Record
+                            </Typography>
+                          </Grid>
+                          <PatientDetail
+                            autocompleteOptions={autocompleteOptions}
+                            isSuccess={isSuccess}
+                            data={data}
+                          />
+
+                          <CardiacSetup
+                            formik={formik}
+                            numberOfSites={numberOfSites}
+                            setNumberOfSites={setNumberOfSites}
+                          />
+                          <ScanMode
+                            formik={formik}
+                            data={data}
+                            autocompleteOptions={autocompleteOptions}
+                            isSuccess={isSuccess}
+                          />
+                          <InjectionRegime formik={formik} />
+
                           <BottomButton
                             formik={formik}
                             setRecordMode={setRecordMode}
