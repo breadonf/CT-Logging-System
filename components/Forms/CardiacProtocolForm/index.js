@@ -64,7 +64,6 @@ function CardiacProtocolForm({ data, handleSubmit }) {
                             isSuccess={isSuccess}
                             data={data}
                           />
-
                           <CardiacSetup
                             formik={formik}
                             numberOfSites={numberOfSites}
@@ -77,7 +76,6 @@ function CardiacProtocolForm({ data, handleSubmit }) {
                             isSuccess={isSuccess}
                           />
                           <InjectionRegime formik={formik} />
-
                           <BottomButton
                             formik={formik}
                             setRecordMode={setRecordMode}

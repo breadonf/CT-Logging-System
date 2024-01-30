@@ -1,12 +1,15 @@
-import { Box, Chip, Grid, Typography } from "@mui/material";
+import { Button, Box, Chip, Grid, Typography } from "@mui/material";
 
 import React from "react";
 import Select from "../../FormsUI/Select";
 import Textfield from "../../FormsUI/Textfield";
 import TimerIcon from "@mui/icons-material/Timer";
 import Toggle from "../../FormsUI/Toggle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-function InjectionRegime({ _formik }) {
+function InjectionRegime({ formik }) {
+  const [injections, setInjections] = React.useState(2);
   return (
     <Grid
       alignItems="center"
@@ -29,14 +32,14 @@ function InjectionRegime({ _formik }) {
             <Typography>Strength</Typography>
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Typography>Volume</Typography>
+            <Typography>Volume(ml)</Typography>
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Typography>Rate</Typography>
+            <Typography>Rate(ml/s)</Typography>
           </Grid>
         </Grid>
       </Grid>
-      {[...Array(2)].map((values, i) => (
+      {[...Array(injections)].map((values, i) => (
         <Grid
           key={i}
           item
@@ -45,7 +48,7 @@ function InjectionRegime({ _formik }) {
           container
           xs={12}
         >
-          <Grid item xs={3} sx={{ mt: 2 }}>
+          <Grid item xs={1} sx={{ mt: 2 }}>
             <Chip label={i + 1} />
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
@@ -53,13 +56,14 @@ function InjectionRegime({ _formik }) {
               name={`injection[${i + 1}].strength`}
               label="Strength"
               options={{
-                0.5: "50%",
-                0.67: "67%",
-                0.75: "75%",
-                1: "100%",
+                asdsad: "50%",
+                asd123asd: "67%",
+                bvsd: "75%",
+                jiqofeq: "100%",
               }}
               SelectProps={{
                 renderValue: (selected) => {
+                  console.log(selected);
                   return (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                       {selected.map((value) => (
@@ -72,19 +76,43 @@ function InjectionRegime({ _formik }) {
             />
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Select
-              name={`phase[${i + 1}].processing`}
-              label="volume"
-              grouped
-              options={GROUPED_OPTIONS_PROCESSING}
-            />
+            <Textfield
+              name={`phase[${i + 1}].volume`}
+              label="Volume(ml)"
+            ></Textfield>
           </Grid>
           <Grid item xs={3} sx={{ mt: 2 }}>
-            <Select
-              name={`phase[${i + 1}].scanRange`}
-              label="Scan Range"
-              options={SCAN_RANGE_OPTIONS}
-            />
+            <Textfield
+              name={`phase[${i + 1}].rate`}
+              label="Rate(ml/s)"
+            ></Textfield>
+          </Grid>
+          <Grid item xs={1}>
+            <Button
+              type="button"
+              disabled={injections == 3}
+              onClick={() => {
+                setInjections((prev) => prev + 1);
+                formik.setFieldValue("phase", [
+                  ...formik.values.phase,
+                  { strength: undefined, volume: undefined, rate: undefined },
+                ]);
+              }}
+            >
+              <AddCircleIcon></AddCircleIcon>
+            </Button>
+          </Grid>
+          <Grid item xs={1}>
+            <Button
+              type="button"
+              disabled={injections < 2}
+              onClick={() => {
+                setInjections((prev) => prev - 1);
+                formik.values.phase.pop();
+              }}
+            >
+              <RemoveCircleIcon></RemoveCircleIcon>
+            </Button>
           </Grid>
         </Grid>
       ))}
